@@ -1,0 +1,112 @@
+"item_ring_of_basilius_datadriven"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"item_datadriven"
+	"ID"							"1088"  //Valve's version of this item uses the ID "88".
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"Model"							"models/props_gameplay/red_box.vmdl" 
+	"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
+	"AbilityTextureName"			"item_ring_of_basilius_active"
+	
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"					"525"
+	"ItemInitialCharges"				"0"
+	"ItemCombinable"				"0"
+	"ItemPermanent"					"1"
+	"ItemStackable"					"0"
+	"ItemRecipe"					"0"
+	"ItemDroppable"					"0"
+	"ItemPurchasable"				"0"
+	"ItemSellable"					"0"
+	"ItemRequiresCharges"				"0"
+	"ItemKillable"					"0"
+	"ItemDisassemblable"				"0"
+	"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+	"ItemDeclaresPurchase"				"0"
+	
+	// Sound
+	//-------------------------------------------------------------------------------------------------------------			
+	"UIPickupSound"					"Item.PickUpRingShop"
+	"UIDropSound"					"Item.DropRingShop"
+	"WorldDropSound"				"Item.DropRingWorld"
+	
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_damage"			"6"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_armor"			"1"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"aura_radius"			"900"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"aura_mana_regen"		"0.65"  //This variable is unused due to an obscure engine bug.
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"aura_bonus_armor"		"2"
+		}
+	}
+	
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_item_ring_of_basilius_consumed"
+			"Target"	"CASTER"  "Duration"   "600"
+		}
+		"RunScript"
+		{
+			"ScriptFile"		"items/item_consumed.lua"
+			"Function"		"ConsumeItemSpendCharge"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"modifier_item_ring_of_basilius_datadriven"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE"				"%armor_aura"
+				"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"						"0.65"  //This is hardcoded due to an obscure engine bug.
+
+			}
+		}
+		"modifier_item_ring_of_basilius_consumed"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+			"TextureName"		"item_ring_of_basilius"
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE"				"%armor_aura"
+				"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"						"0.65"  //This is hardcoded due to an obscure engine bug.
+
+			}
+		}
+	}
+}

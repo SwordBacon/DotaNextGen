@@ -1,0 +1,90 @@
+"item_magic_wand_datadriven"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"item_datadriven"
+	"ID"							"1036"  //Valve's version of this item uses the ID "36".
+	"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"Model"							"models/props_gameplay/magic_wand.mdl"
+	"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
+	"AbilityTextureName"					"item_magic_wand"
+
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"					"465"
+	"ItemInitialCharges"				"0"
+	"ItemCombinable"				"0"
+	"ItemPermanent"					"1"
+	"ItemStackable"					"0"
+	"ItemRecipe"					"0"
+	"ItemDroppable"					"0"
+	"ItemPurchasable"				"0"
+	"ItemSellable"					"0"
+	"ItemRequiresCharges"				"0"
+	"ItemKillable"					"0"
+	"ItemDisassemblable"				"0"
+	"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+	"ItemDeclaresPurchase"				"0"
+
+
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_all_stats"		"4"
+		}
+
+	}
+	
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_item_magic_wand_consumed"
+			"Target"	"CASTER"  "Duration"   "600"
+		}
+		"RunScript"
+		{
+			"ScriptFile"		"items/item_consumed.lua"
+			"Function"		"ConsumeItemSpendCharge"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_item_magic_wand_datadriven"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+		
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_stats"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all_stats"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all_stats"
+			}
+		}
+		"modifier_item_magic_wand_consumed"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsPurgeable"			"0"
+			"TextureName"		"item_magic_wand"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_PERMANENT"
+		
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_stats"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all_stats"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all_stats"
+			}
+		}
+
+	}
+}

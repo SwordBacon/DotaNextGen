@@ -1,0 +1,113 @@
+// Rewrite of Shadow Blade
+// Author: Rook
+// Date: February 3, 2015
+// Known bugs:
+//     Invisibility is lost upon the hero's autoattack projectile connecting with a unit, not when it is created like it should be.
+
+"item_invis_sword_datadriven"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"item_datadriven"
+	"ID"							"1152"  //Valve's version of this item uses the ID "152".
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"Model"							"models/props_gameplay/red_box.vmdl" 
+	"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
+	"AbilityTextureName"			"item_invis_sword"
+	"FightRecapLevel"				"1"
+
+
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"					"2800"
+	"ItemInitialCharges"				"0"
+	"ItemCombinable"				"0"
+	"ItemPermanent"					"1"
+	"ItemStackable"					"0"
+	"ItemRecipe"					"0"
+	"ItemDroppable"					"0"
+	"ItemPurchasable"				"0"
+	"ItemSellable"					"0"
+	"ItemRequiresCharges"				"0"
+	"ItemKillable"					"0"
+	"ItemDisassemblable"				"0"
+	"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+	"ItemDeclaresPurchase"				"0"
+	
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"									"FIELD_INTEGER"
+			"bonus_damage"								"22"
+		}
+		"02"
+		{
+			"var_type"									"FIELD_INTEGER"
+			"bonus_attack_speed"						"30"
+		}
+		"03"
+		{
+			"var_type"									"FIELD_FLOAT"
+			"windwalk_duration"							"14.0"
+		}
+		"04"
+		{
+			"var_type"									"FIELD_INTEGER"
+			"windwalk_bonus_movement_speed_percentage"	"20"
+		}
+		"05"
+		{
+			"var_type"									"FIELD_FLOAT"
+			"windwalk_fade_time"						"0.3"
+		}
+		"06"
+		{
+			"var_type"									"FIELD_INTEGER"
+			"windwalk_bonus_damage"						"175"
+		}
+	}
+	
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_item_invis_sword_consumed"
+			"Target"	"CASTER"  "Duration"   "600"
+		}
+		"RunScript"
+		{
+			"ScriptFile"		"items/item_consumed.lua"
+			"Function"		"ConsumeItemSpendCharge"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"modifier_item_invis_sword_datadriven"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
+			}
+		}
+		"modifier_item_invis_sword_consumed"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"TextureName"		"item_invis_sword"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_PERMANENT"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
+			}
+		}
+	}
+}

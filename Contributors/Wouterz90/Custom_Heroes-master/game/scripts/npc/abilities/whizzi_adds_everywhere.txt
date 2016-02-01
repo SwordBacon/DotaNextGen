@@ -1,0 +1,62 @@
+"Ads_Everywhere"
+{	
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"whizzi/Ads_Everywhere"
+	"MaxLevel" 						"4"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"cast_point_increase" "-40 -70 -100 -130"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"duration"			"4"
+		}	
+	}
+
+	"OnUpgrade"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"Ads_Everywhere"
+			"Target" 		"CASTER"
+			"Duration"		"-1"
+		}
+	}
+	"Modifiers"
+	{
+		"Ads_Everywhere"
+		{
+			"Passive" 			"0"
+			"IsPurgable"		"0"
+			"IsBuff"			"1"
+			"IsDebuff"			"0"
+			"IsStunDebuff"		"0"
+			"IsHidden"			"0"
+			"OnCreated"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/whizzi/Ads_Everywhere.lua"
+					"Function"		"Start_Effect"
+				}
+			}
+			"OnTakeDamage"
+			// Example: Nether ward
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/whizzi/Ads_Everywhere.lua"
+					"Function"		"Ad_On_Take_Damage"
+				}
+			}
+		}
+	}
+}

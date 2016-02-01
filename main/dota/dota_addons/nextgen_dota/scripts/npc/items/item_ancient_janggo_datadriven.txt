@@ -1,0 +1,115 @@
+// Rewrite of Drum of Endurance
+// Author: Rook
+// Date: February 4, 2015
+
+"item_ancient_janggo_datadriven"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"item_datadriven"
+	"ID"							"1185"  //Valve's version of this item uses the ID "185".
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"Model"							"models/props_gameplay/red_box.vmdl" 
+	"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
+	"AbilityTextureName"			"item_ancient_janggo"
+	"FightRecapLevel"				"1"
+	
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"					"0"
+	"ItemInitialCharges"				"0"
+	"ItemCombinable"				"0"
+	"ItemPermanent"					"1"
+	"ItemStackable"					"0"
+	"ItemRecipe"					"0"
+	"ItemDroppable"					"0"
+	"ItemPurchasable"				"0"
+	"ItemSellable"					"0"
+	"ItemRequiresCharges"				"0"
+	"ItemInitialCharges"				"0"
+	"ItemDisplayCharges"				"0"
+	"ItemKillable"					"0"
+	"ItemDisassemblable"				"0"
+	"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+	"ItemDeclaresPurchase"				"0"
+	
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"								"FIELD_INTEGER"
+			"bonus_stats"							"9"
+		}
+		"02"
+		{
+			"var_type"								"FIELD_INTEGER"
+			"bonus_damage"							"3"
+		}
+		"03"
+		{
+			"var_type"								"FIELD_INTEGER"
+			"aura_bonus_attack_speed"				"5"
+		}
+		"04"
+		{
+			"var_type"								"FIELD_INTEGER"
+			"aura_bonus_movement_speed_pct"			"5"
+		}
+		"05"
+		{
+			"var_type"								"FIELD_INTEGER"
+			"aura_radius"							"900"
+		}
+
+	}
+	
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_item_ancient_janggo_consumed"
+			"Target"	"CASTER"  "Duration"   "600"
+		}
+		"RunScript"
+		{
+			"ScriptFile"		"items/item_consumed.lua"
+			"Function"		"ConsumeItemSpendCharge"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"modifier_item_ancient_janggo_datadriven"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_stats"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_stats"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_stats"
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+			}
+		}
+		"modifier_item_ancient_janggo_consumed"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsPurgeable"			"0"
+			"TextureName"			"item_ancient_janggo"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_PERMANENT"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_stats"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_stats"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_stats"
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%aura_bonus_attack_speed"
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%aura_bonus_movement_speed_pct"
+			}
+		}
+	}
+}

@@ -1,0 +1,25 @@
+//=================================================================================================================
+// Xarax - Share Tricks
+//=================================================================================================================
+"xarax_share_tricks"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityType"				"DOTA_ABILITY_TYPE_ULTIMATE"
+	"FightRecapLevel"				"1"
+	"AbilityTextureName"			"xarax_share_tricks"
+
+	
+	"AbilityCastPoint"		"0.3"
+	"AbilityCooldown"		"120 90 60"
+	"AbilityManaCost"		"200"
+
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_xarax/share_tricks.lua"
+			"Function"	"ShareTricks"
+		}
+	}
+}

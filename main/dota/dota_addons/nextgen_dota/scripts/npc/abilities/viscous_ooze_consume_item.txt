@@ -1,0 +1,81 @@
+//=================================================================================================================
+// Viscous Ooze - Consume Item
+//=================================================================================================================
+"viscous_ooze_consume_item"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_ITEM | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+	"AbilityType"				"DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityTextureName"			"viscous_ooze_consume_item"
+	"FightRecapLevel"			"0"
+	
+	"AbilityCastPoint"				"0.0"
+	"AbilityCooldown"				"0"
+	"AbilityManaCost"				"0"
+	
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"base_cooldown"				"50"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"gold_cooldown"			"1.0 0.8 0.6"
+		}
+
+	}
+	"precache"
+	{
+		"particle"  "particles/items3_fx/octarine_core_lifesteal.vpcf"
+		"particle"  "particles/viscous_ooze_consume_item.vpcf"
+	}
+	"OnToggleOn"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_viscous_ooze/consume_item.lua"
+			"Function"		"ConsumeItemOn"
+		}
+	}
+	"OnToggleOff"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_viscous_ooze/consume_item.lua"
+			"Function"		"ConsumeItemOff"
+		} 
+	}
+	"Modifiers"
+	{
+		"modifier_consume_item_look"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"Duration"			"1.0"
+		
+			"OnCreated"
+			{
+				"FireEffect"
+				{
+					"EffectName"	"particles/units/heroes/hero_venomancer/venomancer_poison_nova_cast.vpcf"
+					"EffectAttachType"	"attach_origin"
+					"Target"		"CASTER"
+				}
+				"FireEffect"
+				{
+					"EffectName"        "particles/econ/courier/courier_flopjaw/flopjaw_death.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "CASTER"
+				}
+				"FireSound"
+				{
+					"EffectName"	"DOTA_Item.Cheese.Activate"
+					"Target" 		"CASTER"
+				}
+			}
+		}
+	}
+}

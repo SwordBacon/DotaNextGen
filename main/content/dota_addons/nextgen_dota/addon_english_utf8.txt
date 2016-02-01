@@ -1,0 +1,1152 @@
+﻿"lang"
+{
+	"Language"		"English"
+	"Tokens"
+	{	
+		"addon_game_name"				"Hero Concepts"
+
+		"npc_dota_hero_venomancer"			"Viscous Ooze"
+		"npc_dota_hero_bounty_hunter"		"Veera"
+		"npc_dota_hero_enchantress"			"Cherub"
+		"npc_dota_hero_riki"				"Xarax"
+		"npc_dota_hero_skywrath_mage"		"Zulf"
+		"npc_dota_hero_phoenix"				"Scaw'mar"
+		"npc_dota_hero_disruptor"			"Alpha Stryder"
+		"npc_dota_hero_skeleton_king"		"Zeros"
+		"npc_dota_hero_nyx_assassin"		"Sunagakure"
+		"npc_dota_hero_juggernaut"			"Onimusha"
+		"npc_dota_hero_phantom_lancer"		"Vardor"
+
+		"npc_dota_hero_abaddon"				"Garros (NYI)"
+		"npc_dota_hero_spectre"				"Edgewalker (incomplete)"
+		"npc_dota_hero_bloodseeker"			"Bellatrix (incomplete)"
+
+
+
+
+
+		//-------------------------------------------------------------------
+		// The Alpha Stryder
+		//-------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_alpha_strider_static_charge"		"Static Charge"
+		"DOTA_Tooltip_Ability_alpha_strider_static_charge_Description"	"While toggled, Alpha Stryder builds up a powerful static charge, adding bonus magical damage and a slow effect to Alpha Stryder's next attack. Damage and slow effect increase per charge. At 10 charges, the slow effects becomes a stun. Deals half damage to towers."	
+		"DOTA_Tooltip_Ability_alpha_strider_static_charge_Slow_amount"				"%SLOW PER STACK:"
+		"DOTA_Tooltip_Ability_alpha_strider_static_charge_Duration"	"DEBUFF DURATION:"
+		"DOTA_Tooltip_Ability_alpha_strider_static_charge_Buff_duration"			"BUFF DURATION:"
+
+		"DOTA_Tooltip_Ability_alpha_strider_plasma_leap"		"Plasma Leap"
+		"DOTA_Tooltip_Ability_alpha_strider_plasma_leap_Description"	"Leaps to the targeted location, creating a plasma wave upon jumping and landing which deals magical damage in an area."	
+		"DOTA_Tooltip_Ability_alpha_strider_plasma_leap_Range"			"LEAP RANGE:"
+		"DOTA_Tooltip_Ability_alpha_strider_plasma_leap_Radius"			"RADIUS:"
+
+		"DOTA_Tooltip_Ability_alpha_strider_talon_spark"		"Talon Spark"
+		"DOTA_Tooltip_Ability_alpha_strider_talon_spark_Description"	"Restores Alpha Stryder's mana plus additional mana for each static charge. A percentage of mana restored is also burned from nearby enemies. Consumes all static charges."
+		"DOTA_Tooltip_Ability_alpha_strider_talon_spark_mana_restore"		"MANA RESTORE:"	
+		"DOTA_Tooltip_Ability_alpha_strider_talon_spark_bonus_restore"		"BONUS RESTORE PER CHARGE:"		
+		"DOTA_Tooltip_Ability_alpha_strider_talon_spark_burn_amount"		"%MANA BURN PERCENTAGE:"
+		"DOTA_Tooltip_Ability_alpha_strider_talon_spark_radius"		"BURN RADIUS:"		
+
+		"DOTA_Tooltip_Ability_alpha_strider_short_circuit"		"Short Circuit"
+		"DOTA_Tooltip_Ability_alpha_strider_short_circuit_Description"		"The Alpha Stryder damages itself to reset the cooldowns of its other skills. The remaining cooldowns of each skill are transferred to this ability."	
+		"DOTA_Tooltip_Ability_alpha_strider_short_circuit_Damage"		"SELF DAMAGE:"	
+
+		"DOTA_Tooltip_Ability_alpha_strider_alternating_current"		"Alternating Current"	
+		"DOTA_Tooltip_Ability_alpha_strider_alternating_current_Description"		"Innate. Whenever Alpha Stryder casts one of his basic spells, the cooldown for that spell is randomly assigned to any of his learned non-ultimate abilities."	
+
+		"DOTA_Tooltip_Modifier_static_toggle"	"Charging"
+		"DOTA_Tooltip_Modifier_static_charge"	"Static Charges"
+		"DOTA_Tooltip_Modifier_plasma_leap"		"Plasma Leap"
+
+
+
+
+
+		//-------------------------------------------------------------------
+		// Bellatrix Venai, the Blood Cultist
+		//-------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_bellatrix_bloodrake"  "Blood Rake"
+		"DOTA_Tooltip_Ability_bellatrix_bloodrake_Description" "Bellatrix uses to Kru'or's tainted edge to slice open her waist, launching impaling torrents of demonic blood. Enemies hit by the torrents will suffer damage and are inflicted with a debuff. All debuffed units are teleported to the cast location after 1.5 seconds."
+		"DOTA_Tooltip_Ability_bellatrix_bloodrake_health_cost" "HEALTH COST:"
+
+		"DOTA_Tooltip_Ability_bellatrix_unholy_ecstasy"  "Unholy Ecstasy"
+		"DOTA_Tooltip_Ability_bellatrix_unholy_ecstasy_Description" "Bellatrix douses herself or an ally in a fraction of the corrupted blood that resides in Kru'or, sending her target into a state of manic ecstasy that reduces incoming damage. At the end of the buff's duration a percentage of the damage received is converted to additional magic damage that will be applied on the next auto-attack."
+		"DOTA_Tooltip_Ability_bellatrix_unholy_ecstasy_damage_reduction" "%DAMAGE REDUCTION:"
+		"DOTA_Tooltip_Ability_bellatrix_unholy_ecstasy_bonus_damage" "BONUS DAMAGE:"
+
+		"DOTA_Tooltip_Ability_bellatrix_rip_and_tear"  "Rip and Tear"
+		"DOTA_Tooltip_Ability_bellatrix_rip_and_tear_Description" "Bellatrix slashes Kru'or through the air twice with strength of her demon lord, forming massive claws of blood from the tip of the cursed weapon. The first massive strike (500AoE) comes from the right, the second, smaller strike(250AoE) comes from the left after a short delay. Each strike damages the target based on a multiplier of Bellatrix's Intelligence. Healing is calculated as percentage of damage done by each swing."
+		"DOTA_Tooltip_Ability_bellatrix_rip_and_tear_int_multiplier_tooltip" "INT MULTIPLIER:"
+		"DOTA_Tooltip_Ability_bellatrix_rip_and_tear_ini_damage" "INITIAL DAMAGE:"
+		"DOTA_Tooltip_Ability_bellatrix_rip_and_tear_ss_delay" "SECOND STRIKE DELAY:"
+
+		"DOTA_Tooltip_Ability_bellatrix_live_transfusion"  "Live Transfusion"
+		"DOTA_Tooltip_Ability_bellatrix_live_transfusion_Description" "Bellatrix thrusts Kru'or forwards with such force that it tears her apart, launching her forwards in a ball of blood and absorbing the life force of those who stand in her path. This bloody maneuver leaves a trail of slippery, corrupted gore in her wake, speeding up allies and slowing and damaging enemies. Has 3 charges, starts with 1."
+
+		"DOTA_Tooltip_Ability_bellatrix_live_transfusion_buff_ms" 	"MOVESPEED EFFECT:"
+		"DOTA_Tooltip_Ability_bellatrix_live_transfusion_PercentDamage" "%ENEMY HP LOSS:"
+		"DOTA_Tooltip_Ability_bellatrix_live_transfusion_charge_replenish_time" "CHARGE REPLENISH TIME:"
+
+		"DOTA_Tooltip_Modifier_live_transfusion_buff" 				"Live Transfusion buff"
+		"DOTA_Tooltip_Modifier_live_transfusion_buff_description" 	"You stand in Bellatrix blood, your movement speed is increased."
+
+		"DOTA_Tooltip_Modifier_live_transfusion_buff" "Live Transfusion debuff"
+		"DOTA_Tooltip_Modifier_live_transfusion_buff_description" "You stand in Bellatrix blood, your movement speed is decreased and you take damage over time based on your health"
+
+		"DOTA_Tooltip_damage_reduction" "Damage Reduction"
+		"DOTA_Tooltip_damage_reduction_description" "You take less damage by the ecstasy of caused by your pain"
+
+		"DOTA_Tooltip_Unholy_Ecstasy_Bonus_Damage" "Unholy Ecstasy"
+		"DOTA_Tooltip_Unholy_Ecstasy_Bonus_Damage_description" "Your next attack deals extra damage based on the damage that was dealt to you during Unholy Ecstasy"
+
+
+
+
+
+
+
+
+		//-------------------------------------------------------------------
+		// Cherub, the Dancing Flower
+		//-------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_cherub_sleep_cloud"			"Sleep Cloud"	
+		"DOTA_Tooltip_Ability_cherub_sleep_cloud_Description"		"Creates a cloud of soothing aromas which put enemies to sleep if they are within the cloud's radius for 4 seconds. Enemies will wake up when the cloud duration ends or when they take a certain amount of damage."	
+		"DOTA_Tooltip_Ability_cherub_sleep_cloud_Radius"		"RADIUS:"	
+		"DOTA_Tooltip_Ability_cherub_sleep_cloud_Sleep_timer"		"TIME TO SLEEP:"	
+		"DOTA_Tooltip_Ability_cherub_sleep_cloud_Duration"		"DURATION:"	
+		"DOTA_Tooltip_Ability_cherub_sleep_cloud_Damage_to_wake"	"DAMAGE TO WAKE:"	
+	
+
+		"DOTA_Tooltip_Ability_cherub_synthesis"				"Synthesis"	
+		"DOTA_Tooltip_Ability_cherub_synthesis_Description"		"While Toggled, converts Cherub's mana into health or health into mana, depending on the day/night cycle. During the day cycle, converts her health into mana. During the night cycle, converts her man into health."	
+		"DOTA_Tooltip_Ability_cherub_synthesis_Base_conversion_rate"	"BASE CONVERSION RATE:"	
+		"DOTA_Tooltip_Ability_cherub_synthesis_mana_to_health"		"%MANA TO HEALTH (night):"	
+		"DOTA_Tooltip_Ability_cherub_synthesis_health_to_mana"		"%HEALTH TO MANA (day):"
+
+		"DOTA_Tooltip_Ability_cherub_explosive_spore"			"Explosive Spore"
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Description"	"Creates a floating spore with free pathing. Spores will explode after 10 seconds or upon dying, dealing magical damage in an area of effect and lifestealing based on damage dealt."
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Note0"		"Spores have 0 armor and 0 magical resistance, and give 30 gold and 25 experience when killed. 
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Delay"		"EXPLODE DELAY:"
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Radius"		"EXPLODE RADIUS:"
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Damage"			"DAMAGE:"
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Lifesteal_hero"		"%LIFESTEAL (hero):"
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Lifesteal_creep"		"%LIFESTEAL (creep):"
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Spore_health"		"SPORE HEALTH:"	
+		"DOTA_Tooltip_Ability_cherub_explosive_spore_Spore_movespeed"		"SPORE MOVEMENT SPEED:"
+
+	
+		"DOTA_Tooltip_Ability_cherub_flower_garden"			"Flower Garden"
+		"DOTA_Tooltip_Ability_cherub_flower_garden_Description"		"Fertilizes a plot of land on the map grid for 5 minutes, turning it into a garden plot. Costs 10 percent of Cherub's Max health. Cherub can plant any one of six different flowers on her garden plots using her mana, which have increased stats based on the level of this ability."
+		"DOTA_Tooltip_Ability_cherub_flower_garden_Note0"		"Each plant has 0 armor and 50 percent magic resistance."
+		"DOTA_Tooltip_Ability_cherub_flower_garden_Duration"			"DURATION:"
+		"DOTA_Tooltip_Ability_cherub_flower_garden_Flower_health"		"FLOWER HEALTH:"
+		"DOTA_Tooltip_Ability_cherub_flower_garden_Scepter_flower_health"	"SCEPTER FLOWER HEALTH:"
+		"DOTA_Tooltip_Ability_cherub_flower_garden_Scepter_damage_return"	"SCEPTER DAMAGE RETURN:"
+
+
+		"DOTA_Tooltip_Ability_garden_white_flower"		"White Flower"
+		"DOTA_Tooltip_Ability_garden_white_flower_Description"	"Plants a white flower that deals low attack damage from a high range."
+
+		"DOTA_Tooltip_Ability_garden_red_flower"		"Red Flower"
+		"DOTA_Tooltip_Ability_garden_red_flower_Description"	"Plants a red flower that deals high attack damage from a short range."
+
+		"DOTA_Tooltip_Ability_garden_pink_blossom"		"Pink Blossom"
+		"DOTA_Tooltip_Ability_garden_pink_blossom_Description"	"Plants a pink blossom which heals three random allies every second"
+
+		"DOTA_Tooltip_Ability_garden_blue_blossom"		"Blue Blossom"
+		"DOTA_Tooltip_Ability_garden_blue_blossom_Description"	"Plants a blue blossom which restores mana in an area every 5 seconds."
+
+		"DOTA_Tooltip_Ability_garden_yellow_daisy"		"Yellow Daisy"
+		"DOTA_Tooltip_Ability_garden_yellow_daisy_Description"	"Plants a yellow daisy which increases attackspeed for nearby allies."
+
+		"DOTA_Tooltip_Ability_garden_purple_lotus"		"Purple Lotus"
+		"DOTA_Tooltip_Ability_garden_purple_lotus_Description"	"Plants a purple lotus which lowers magic resistance for nearby enemies."
+		
+		"DOTA_Tooltip_Ability_destroy_flower"		"Destroy Flower"
+
+
+		// Modifiers
+		"DOTA_Tooltip_Modifier_sleep_cloud_aura"			"Sleep Aura"	
+		"DOTA_Tooltip_Modifier_sleep_cloud_aura_Description"		"Affected units will fall asleep if they stay within the cloud for 4 seconds."
+		"DOTA_Tooltip_Modifier_sleep_cloud_effect"			"Sleep Effect"	
+		"DOTA_Tooltip_Modifier_sleep_cloud_effect_Description"		"Unit is asleep and will wake up if they take a certain amount of damage."
+
+		"DOTA_Tooltip_Modifier_synthesis_day"				"Synthesis Day"	
+		"DOTA_Tooltip_Modifier_synthesis_day_Description"		"Converting Health into Mana"
+		"DOTA_Tooltip_Modifier_synthesis_night"				"Synthesis Night"	
+		"DOTA_Tooltip_Modifier_synthesis_night_Description"		"Converting Mana into Health"
+
+		"DOTA_Tooltip_Modifier_explosive_spore"				"Explosive"	
+		"DOTA_Tooltip_Modifier_explosive_spore_Description"		"This unit will explode upon dying, dealing magical damage to units within 350 units."
+
+		"DOTA_Tooltip_Modifier_garden_channel"				"Fertilizing Plot"	
+		"DOTA_Tooltip_Modifier_garden_channel_Description"		"Creating a garden plot after 2 seconds of channeling."
+		"DOTA_Tooltip_Modifier_yellow_flower_aura"				"Attackspeed Bonus"
+		"DOTA_Tooltip_Modifier_purple_flower_aura"				"Magic Resistance Debuff"
+
+
+		"explosive_spore"				"Explosive Spore"
+		"garden_plot"					"Garden Plot"
+		"white_flower"					"White Flower"
+		"red_flower"					"Red Flower"
+		"pink_flower"					"Pink Blossom"
+		"blue_flower"					"Blue Blossom"
+		"yellow_flower"					"Yellow Daisy"
+		"purple_flower"					"Purple Lotus"
+
+
+
+
+
+		//-------------------------------------------------------------------
+		// Rasetsumaru, the Onimusha
+		//-------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_onimusha_dash"			"Dash"
+		"DOTA_Tooltip_Ability_onimusha_dash_Description"  "The Onimusha dashes forward immediately, dealing magical damage to everyone in his path. Damage is increased based on Onimusha's combined Agility and Intelligence stats."
+		"DOTA_Tooltip_Ability_onimusha_dash_AoE"			"RADIUS:"
+		"DOTA_Tooltip_Ability_onimusha_dash_MovementRange"		"DASH DISTANCE:"
+		"DOTA_Tooltip_Ability_onimusha_dash_MovementRange_BL"		"BLOODLUST DASH DISTANCE:"
+		"DOTA_Tooltip_Ability_onimusha_dash_multiplier"			"%INT + AGI MULTIPLIER:"
+
+		"DOTA_Tooltip_Ability_onimusha_guard"			"Guard"
+		"DOTA_Tooltip_Ability_onimusha_guard_Description"  "The Onimusha instantly blocks any damage, from both magical and physical sources and performs a swift counterattack." 
+
+
+		"DOTA_Tooltip_Ability_onimusha_orochi"			"Orochi"
+		"DOTA_Tooltip_Ability_onimusha_orochi_Description"  "The Onimusha gains six charges of Orochi, adding bonus magical damage to his attacks. Charges are spent on attacking enemy heroes. Once all charges are spent, the Onimusha transforms into a demonic beast, granting him increased attack range, range on Dash, and a reduced base attack time for 6 seconds."
+		"DOTA_Tooltip_Ability_onimusha_orochi_Bonus_damage" 			"BONUS DAMAGE:"
+		"DOTA_Tooltip_Ability_onimusha_orochi_Attack_Range_tooltip" 	"BONUS ATTACK RANGE:"
+		"DOTA_Tooltip_Ability_onimusha_orochi_BAT" 						"BONUS BASE ATTACK TIME:"
+
+
+		"DOTA_Tooltip_Ability_onimusha_battojutsu"		"BATTŌJUTSU!"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Description" "Targets an enemy to perform Battojutsu, transforming the Onimusha's basic spells into slash attacks. Each slash will strike either the target of this spell if they are within range, the nearest enemy unit in range, or HIMSELF. After all three slashes have been cast, the Onimusha may perform the final strike, having unique effects depending upon the order the slashes were executed."
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Note0"		"Combos:"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Note1"		"<font color='#fff2e5'>QWE -</font> <font color='#ff0000'>Amakakeru Ryu no Hirameki (天翔龍之閃)</font><font color='#fff2e5'>: Deals pure damage on the fourth strike, instantly killing the target if they drop below 7.5% max health.</font>"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Note2"		"<font color='#fff2e5'>QEW -</font> <font color='#0000ff'>Ryukansen Arashi (龍巻閃・嵐)</font><font color='#fff2e5'>: Deals attack damage and maims all enemies within 475/550/625 units of the target for 2.4/3.2/4.0 seconds.</font> "
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Note3"		"<font color='#fff2e5'>WQE -</font> <font color='#ffff00'>Ryumeisen (龍鳴閃)</font><font color='#fff2e5'>: Stuns and Breaks the target for 2.0/2.5/3.0 seconds.</font>"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Note4"		"<font color='#fff2e5'>WEQ -</font> <font color='#66ff66'>Rairyusen (雷龍閃)</font><font color='#fff2e5'>: Silences and blinds all enemy units in a 475/550/625 AoE for 3.0/4.0/5.0 seconds. </font>"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Note5"		"<font color='#fff2e5'>EQW -</font> <font color='#ff00ff'>Karyusen (渦龍閃)</font><font color='#fff2e5'>: Has an extended 825/950/1075 casting range.</font>"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Note6"		"<font color='#fff2e5'>EWQ -</font> <font color='#ff9933'>Hiryusen (飛龍閃)</font><font color='#fff2e5'>: Has an extended 825/950/1075 casting range, and does not reposition you to the target's location. </font>"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Duration"			"DURATION:"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Range" 			"RANGE:"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_High_range" 		"HIGH RANGE:"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_Damage_tooltip" 	"%SLASH DAMAGE:"
+
+
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_q"		"(Q) HYYYAH!"
+
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_w"		"(W) YAAAAA!"
+
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_e"		"(E) ONIMUSHAAAAAAAAAA!!!"
+
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_r"		"F I N A L   S T R I K E !"
+		"DOTA_Tooltip_Ability_onimusha_battojutsu_rr"		"F I N A L   S T R I K E !"
+		
+
+		"DOTA_Tooltip_Modifier_orochi_stacks"			"Orochi Charges"
+
+
+		
+		
+		
+		
+		
+		//------------------------------------------------------------------
+		// Scaw'mar, the Wildwing Scryer
+		//------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_scawmar_illusion_line"			"Illusion Line"
+		"DOTA_Tooltip_Ability_scawmar_illusion_line_Description"	"Disappear briefly and return with 4 illusions shuffled in a horizontal line. Scaw'mar and all illusions are immobile for 4 seconds after using this skill. Illusions last 8 seconds."
+		"DOTA_Tooltip_Ability_scawmar_illusion_line_Illusion_count"		"NUMBER OF ILLUSIONS:"
+		"DOTA_Tooltip_Ability_scawmar_illusion_line_Incoming_damage"		"%ILLUSION INCOMING DAMAGE:"
+		"DOTA_Tooltip_Ability_scawmar_illusion_line_Outgoing_damage_display"	"%ILLUSION OUTGOING DAMAGE:"
+		"DOTA_Tooltip_Ability_scawmar_illusion_line_Duration"					"DURATION:"
+		"DOTA_Tooltip_Ability_scawmar_illusion_line_Immobile_duration"			"IMMOBILE DURATION:"		
+
+		"DOTA_Tooltip_Ability_scawmar_fade_blink"			"Fade Blink"
+		"DOTA_Tooltip_Ability_scawmar_fade_blink_Description"		"CHANNELED - Fade out over a duration, then blink to the targeted location and fade back in. While fading out and in, Scaw'mar becomes invisible but cannot move, attack, or cast spells."
+		"DOTA_Tooltip_Ability_scawmar_fade_blink_Fade_time"		"FADE TIME:"
+		"DOTA_Tooltip_Ability_scawmar_fade_blink_Fade_delay"	"INVISIBILITY DELAY:"
+		"DOTA_Tooltip_Ability_scawmar_fade_blink_Range"			"CAST RANGE:"
+
+
+		"DOTA_Tooltip_Ability_scawmar_scryers_circle"			"Scryer's Circle"
+		"DOTA_Tooltip_Ability_scawmar_scryers_circle_Description"	"Surround a targeted area with nine Scryer illusions. These illusions will automatically begin channeling fire bombs targeted at the center of the circle, dealing heavy magical damage in a radius after a delay."
+		"DOTA_Tooltip_Ability_scawmar_scryers_circle_Radius"			"CIRCLE RADIUS:"
+		"DOTA_Tooltip_Ability_scawmar_scryers_circle_Illusion_count"		"SCRYER ILLUSIONS:"
+		"DOTA_Tooltip_Ability_scawmar_scryers_circle_Illusion_damage_taken"	"%ILLUSION INCOMING DAMAGE:"
+		"DOTA_Tooltip_Ability_scawmar_scryers_circle_Fire_bomb_delay"		"FIRE BOMB DELAY:"
+		"DOTA_Tooltip_Ability_scawmar_scryers_circle_Fire_bomb_damage"		"FIRE BOMB DAMAGE:"
+		"DOTA_Tooltip_Ability_scawmar_scryers_circle_Fire_bomb_radius"		"FIRE BOMB RADIUS:"
+
+		"DOTA_Tooltip_Ability_scryer_fire_bomb"			"Fire Bomb"
+
+
+		"DOTA_Tooltip_Ability_scawmar_mind_control"			"Mesmerize"
+		"DOTA_Tooltip_Ability_scawmar_mind_control_Description"		"Beckons an enemy hero to lose all vision and walk uncontrollably towards Scaw'mar at a reduced movement speed. The effect ends if the mesmerized hero takes a certain amount of damage. Mesmerized enemies can be attacked by both teams."
+		"DOTA_Tooltip_Ability_scawmar_mind_control_Duration"			"MAX DURATION:"
+		"DOTA_Tooltip_Ability_scawmar_mind_control_Damage_threshold"	"DAMAGE TO BREAK:"
+		"DOTA_Tooltip_Ability_scawmar_mind_control_Movement_slow"	"%MOVEMENT SLOW:"
+
+		"DOTA_Tooltip_Modifier_fade_blink"			"Fading In"
+
+		"DOTA_Tooltip_Modifier_mind_control"		"Mesmerized"
+		"DOTA_Tooltip_Modifier_mind_control_Description"		"This hero is uncontrollably walking towards Scaw'mar."
+
+
+
+
+
+
+
+
+
+		//------------------------------------------------------------------
+		// Sunagakure, the Puppeteer
+		//------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_suna_blight_and_wither"			"Blight & Wither"
+		"DOTA_Tooltip_Ability_suna_blight_and_wither_Description"		"Saps enemies in a small AoE, making them suffer extra damage when exchanging hits, and exhausting the flesh, substance and spirit in their bodies. The more they attack and the more they're attacked, the slower they will move."
+		"DOTA_Tooltip_Ability_suna_blight_and_wither_Note0"				"Attacks made and taken by non hero units causes half the damage, 5/7/9/11"
+		"DOTA_Tooltip_Ability_suna_blight_and_wither_Note1"				"Lasts twice its duration on non hero units, 14 seconds."
+		"DOTA_Tooltip_Ability_suna_blight_and_wither_Note2"				"Blight shows no effect on cast nor anything on its affected units aside a debuff icon; it only starts to show a smooth animation if the slow starts to stack heavily."
+		"DOTA_Tooltip_Ability_suna_blight_and_wither_Movement_slow"		"%MOVEMENT SPEED SLOW PER HIT:"
+		"DOTA_Tooltip_Ability_suna_blight_and_wither_Duration"			"DURATION:"
+
+		"DOTA_Tooltip_Ability_suna_vicissitude"					"Burrow"
+		"DOTA_Tooltip_Ability_suna_vicissitude_Description"		"Suna burrows into the ground, becoming nearly undetectable while moving. Grants a sub-ability, Vicissitude."
+		"DOTA_Tooltip_Ability_suna_vicissitude_Duration"				"MAX DURATION:"
+
+		"DOTA_Tooltip_Ability_suna_mind_control"					"Vicissitude"
+		"DOTA_Tooltip_Ability_suna_mind_control_Description"		"Surface from the ground and control the body of an enemy unit, allowing you to attack and move with them while channeling."
+		"DOTA_Tooltip_Ability_suna_mind_control_Duration"				"MAX DURATION:"
+		"DOTA_Tooltip_Ability_suna_mind_control_Movement_slow"			"%MOVEMENT SPEED SLOW:"
+
+		"DOTA_Tooltip_Ability_suna_puppeteer"					"Skeleton Puppets"
+		"DOTA_Tooltip_Ability_suna_puppeteer_Description"		"Suna strings a skeleton puppet to himself, which can be controlled and used to fight. If the strings are broken by walking a maximum distance, the skeletons will instantly die. Whenever a skeletal puppet dies, any other puppets strung to Suna will receive bonus attackspeed and health regeneration temporarily."
+		"DOTA_Tooltip_Ability_suna_puppeteer_Note0"				"Skeleton puppets have 305 health, 5 armor, 35 magic resistance, and 310/325/340/355 movespeed. Skeleton puppets will despawn if they are idle for 30 seconds."
+		"DOTA_Tooltip_Ability_suna_puppeteer_Skeleton_count"			"MAXIMUM PUPPETS:"
+		"DOTA_Tooltip_Ability_suna_puppeteer_Max_distance"				"MAX DISTANCE:"
+		"DOTA_Tooltip_Ability_suna_puppeteer_Attackspeed_bonus"			"BONUS ATTACKSPEED ON DEATH:"
+		"DOTA_Tooltip_Ability_suna_puppeteer_Regen_bonus"				"BONUS HEALTH REGEN ON DEATH:"
+		"DOTA_Tooltip_Ability_suna_puppeteer_Buff_duration"					"BONUS DURATION:"
+		"skeleton_puppet"	"Skeleton Puppet"
+
+		"DOTA_Tooltip_Ability_suna_dead_mans_chest"				"Dead Man's Chest"
+		"DOTA_Tooltip_Ability_suna_dead_mans_chest_Description"			"Applies a buff to the targeted allied hero that lasts for a few seconds. If that hero dies, they will be denied by Suna instead of killed, having their respawning time reduced by half. If the ally does die, Suna can summon them to the battlefield once again, briefly, with a sub-ability."
+		"DOTA_Tooltip_Ability_suna_dead_mans_chest_Duration"			"DURATION:"
+
+		"DOTA_Tooltip_Ability_suna_kyonshi"						"Kyonshi"
+		"DOTA_Tooltip_Ability_suna_kyonshi_Description"				"Summons the dead hero targeted by Dead Man's Chest back to the battlefield."
+		"DOTA_Tooltip_Ability_suna_kyonshi_Duration"				"DURATION:"
+
+
+
+		"DOTA_Tooltip_Modifier_blight_slow_stack"			"Blight"
+		"DOTA_Tooltip_Modifier_blight_slow_stack_Description"		"This unit is losing movement speed and taking magic damage with every attack they deal and take."
+
+
+		// ******************** UNITS ********************
+		"npc_dota_creature_gnoll_assassin"                                                "Dota Creature Gnoll Assassin"
+		"dummy_unit"                                                                      "Stucking Yari"
+
+		// ******************** ABILITY MODIFIERS ********************
+		"DOTA_Tooltip_modifier_mental_thrusts_target_datadriven"                          "Mental Thrusts"
+		"DOTA_Tooltip_modifier_mental_thrusts_target_datadriven_Description"              "Target will loose maximum HP and Mana for each stack."
+
+		"DOTA_Tooltip_modifier_prevent_movement"                                          "Yari's Hold"
+		"DOTA_Tooltip_modifier_prevent_movement_Description"                              "Cannot move after getting hit by stcuking Yari"
+
+		"DOTA_Tooltip_modifier_dummy_slow_aura"                                           "Yari's Slowing Ground"
+		"DOTA_Tooltip_modifier_dummy_slow_aura_Description"                               "The stucking Yari will force all enemies to move slower"
+
+		"DOTA_Tooltip_modifier_slow_aura"                                                 "Yari's Slowing Ground"
+		"DOTA_Tooltip_modifier_slow_aura_Description"                                     "The stucking Yari will force all enemies to move slower"
+
+		"DOTA_Tooltip_modifier_yari"                                                      "Yari's Throw"
+		"DOTA_Tooltip_modifier_yari_Description"                                          "Vardor has thrown his Yari away!"
+
+		"DOTA_Tooltip_modifier_celestial"                                                 "Celestial"
+		"DOTA_Tooltip_modifier_celestial_Description"                                     "Vardor enhances his weapons with pure energy"
+
+		"DOTA_Tooltip_modifier_stun"                                                      "Stun"
+		"DOTA_Tooltip_modifier_stun_Description"                                          ""
+
+		"DOTA_Tooltip_modifier_hold_yari"                                                 "Hold Yari"
+		"DOTA_Tooltip_modifier_hold_yari_Description"                                     "How many Yari's can be used"
+
+
+
+		// ******************** ABILITIES ********************
+		"DOTA_Tooltip_ability_vardor_mental_thrusts"                              "Mental Thrusts"
+		"DOTA_Tooltip_ability_vardor_mental_thrusts_Description"                  "Whenever Vardor hits an enemy, they will get one stack of 'Mind Bleeding'. Every Stack of 'Mind Bleeding' will reduce the maximum and the current mana and health."
+		"DOTA_Tooltip_ability_vardor_mental_thrusts_Lore"						  "His Yari does not only hurt the enemies body. He hits their whole existence."
+		"DOTA_Tooltip_ability_vardor_mental_thrusts_reduction"                    "REDUCTION:"
+		"DOTA_Tooltip_ability_vardor_mental_thrusts_duration"                     "DURATION:"
+
+		"DOTA_Tooltip_ability_vardor_piercing_shot"                               "Piercing Shot"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_Description"                   "Throws a yari at certain point or target hero. There it will stuck and Vardor can't use this spell upon using the sub ability 'Return of the Yari'. Also the ability 'Mental Thrusts' is disabled for that duration. 
+Point: All enemy heroes in small radius around the yari get damage and can't move for a short time after impact. As long as the yari stucks there enemies around are slowed. 
+Hero: The target hero will be damaged upon impact. As long as the yari stucks there the target gets a stack of 'Mind Bleeding' every second."
+		"DOTA_Tooltip_ability_vardor_piercing_shot_Lore"						  "A well aimed throw and the day will be saved - or lost for the victim..."
+		"DOTA_Tooltip_ability_vardor_piercing_shot_Note0"						  "Enemies affected by the yari, who can't move can still use items, spells and attacks"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_damage"                        "DAMAGE:"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_duration"                      "DURATION:"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_vision_radius"                 "VISION RADIUS:"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_projectile_speed"              "PROJECTILE SPEED:"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_projectile_range"              "PROJECTILE RANGE:"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_AOE"                           "AOE:"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_radius"                        "RADIUS:"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_duration_spear"                "DURATION SPEAR:"
+		"DOTA_Tooltip_ability_vardor_piercing_shot_slow"                          "SLOW:"
+
+		"DOTA_Tooltip_ability_vardor_return_of_the_yari"                          "Return Of The Yari"
+		"DOTA_Tooltip_ability_vardor_return_of_the_yari_Description"              "Return all yaris to Vardor instantly."
+
+		"DOTA_Tooltip_ability_vardor_graceful_jump"                               "Graceful Jump"
+		"DOTA_Tooltip_ability_vardor_graceful_jump_Description"                   "Vardor teleports him over his yari and strikes down with great force, dealing damage in little AoE and stunning enemies when it stucked in an enemy. If a enemy is hit with stacks of 'Mind Bleeding', they will get extra damage."
+		"DOTA_Tooltip_ability_vardor_graceful_jump_Lore"						  "A jump for survive, but elegant as always."
+		"DOTA_Tooltip_ability_vardor_graceful_jump_Note0"						  "Vardor will not pickup his yari after reaching his target"
+		"DOTA_Tooltip_ability_vardor_graceful_jump_range"                         "RANGE:"
+		"DOTA_Tooltip_ability_vardor_graceful_jump_speed"                         "SPEED:"
+		"DOTA_Tooltip_ability_vardor_graceful_jump_max_range"                     "MAX RANGE:"
+		"DOTA_Tooltip_ability_vardor_graceful_jump_damage"                        "DAMAGE:"
+		"DOTA_Tooltip_ability_vardor_graceful_jump_extra_damage"                  "EXTRA DAMAGE:"
+
+		"DOTA_Tooltip_ability_vardor_celestial_yari"                              "Celestial Yari"
+		"DOTA_Tooltip_ability_vardor_celestial_yari_Description"                  "Vardor reinforces his yari and creates and second one. This will effect all his other abilities for a certain duration:
+Piercing Shot: Vardor now can throw up to two yaris at different targets and his cooldown is reduced. He also can throw one yari and fight normally with the other as he hadn't throw a yari away.
+Graceful Jump: If Vardor jumps to a stucking yari, he will now stun enemies 0.1s for every stack of 'Mind Bleeding'
+Mental Thrusts: If Vardor hadn't throw any yari away, the enemies will get two stacks of 'Mind Bleeding' with every attack."
+		"DOTA_Tooltip_ability_vardor_celestial_yari_Lore"						  "Yaris are weapons for true soldiers. These Yaris can only wield by an incomprehensible might."
+		"DOTA_Tooltip_ability_vardor_celestial_yari_duration"                     "DURATION:"
+
+
+
+
+
+
+		//------------------------------------------------------------------
+		// Veera, the Plains Huntress
+		//------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_veera_toxic_darts"			"Toxic Darts"
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Description"		"Veera throws a dart towards the targeted unit or direction, dealing physical damage when contacting an enemy and applying one of four different poison effects. This ability uses charges which restore over time. All toxic effects stack."	
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Note0"			"Effect 1: Deals 75 physical damage over 5 seconds."	
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Note1"			"Effect 2: Slows movement speed by 15% and attackspeed by 15 for 5 seconds."
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Note2"			"Effect 3: Stuns for 0.75 seconds."
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Note3"			"Effect 4: Reduces Armor by 3 for 10 seconds."
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Lore"			"Veera, a masterful dart thrower, makes use of several toxic substances she finds on her journey, including venom from the Jidi Isles, ooze from the Bleeding Hills, bone powder from a Prefectura voodoo ritual, and an acidic substance from a family of Darkbrew alchemists."
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Damage"			"DAMAGE:"	
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Maximum_charges"	"MAXIMUM DARTS:"
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Charge_replenish_time"	"DART REPLENISH TIME:"
+		"DOTA_Tooltip_Ability_veera_toxic_darts_Length"			"DART RANGE:"
+
+		"DOTA_Tooltip_Ability_veera_evasive_roll"			"Evasive Backflip"
+		"DOTA_Tooltip_Ability_veera_evasive_roll_Description"		"Veera jumps backwards from her position, doing a backflip and disjointing projectiles. Distance is based on Veera's current movement speed plus a bonus."
+		"DOTA_Tooltip_Ability_veera_evasive_roll_Lore"			"Engage – Disengage. Veera knows when to strike her prey."
+		"DOTA_Tooltip_Ability_veera_evasive_roll_Bonus_Speed"		"BONUS ROLL SPEED:"
+		"DOTA_Tooltip_Ability_veera_evasive_roll_Duration"		"DURATION:"
+
+		"DOTA_Tooltip_Ability_veera_plains_runner"			"Plains Runner"
+		"DOTA_Tooltip_Ability_veera_plains_runner_Description"		"Increases Veera’s movement speed for every 200 units she travels, lasting 3 seconds and refreshing with each new stack. Veera will gain 10 stacks for every level of terrain she descends, but will lose half of her stacks when ascending terrain and when turning 180 degrees. Veera also gains a higher movespeed cap and bonus agility based on a percentage of her extra movement speed."
+		"DOTA_Tooltip_Ability_veera_plains_runner_Lore"			"The vastness of the plains brings swiftness to the hunter."
+		"DOTA_Tooltip_Ability_veera_plains_runner_Movespeed_bonus"	"MOVESPEED BONUS PER STACK:"
+		"DOTA_Tooltip_Ability_veera_plains_runner_Movespeed_limit"	"MOVESPEED LIMIT:"
+		"DOTA_Tooltip_Ability_veera_plains_runner_Agility_bonus"	"%AGILITY PER EXTRA MOVESPEED:"
+
+		"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt"				"Thrill of the Hunt"	
+		"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Description"		"Veera engages in a hunting spree, causing her to receive a number of bonuses. While active, increases vision and the camera viewing angle based on her level of elevation, dramatically reduces her cooldowns and cast points, increases her turn rate, and removes the turning penalty from Plains Runner."	
+		"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_Vision"		"BONUS VISION:"	
+		"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_camera_view"	"BONUS CAMERA DISTANCE:"	
+		"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Cooldown_reduction"	"%COOLDOWN REDUCTION:"	
+		"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Duration"		"DURATION:"
+
+		// Modifiers
+		"DOTA_Tooltip_Modifier_toxic_dart_stack_count"		"Toxic Dart Charges"
+		"DOTA_Tooltip_Modifier_toxic_1"			"Jidi Isles Venom"	
+		"DOTA_Tooltip_Modifier_toxic_2"			"Bleeding Hills Ooze"
+		"DOTA_Tooltip_Modifier_toxic_3"			"Bone Powder"
+		"DOTA_Tooltip_Modifier_toxic_4"			"Darkbrew Acid"
+		"DOTA_Tooltip_Modifier_toxic_1_Description"			"Taking 15 physical damage every second."	
+		"DOTA_Tooltip_Modifier_toxic_2_Description"			"Slowed movement speed by 15 percent and attackspeed by 15."
+		"DOTA_Tooltip_Modifier_toxic_3_Description"			"Stunned."
+		"DOTA_Tooltip_Modifier_toxic_4_Description"			"Reduced armor by 3."
+
+
+		"DOTA_Tooltip_Modifier_thrill_active"			"Thrill of the Hunt"		
+		"DOTA_Tooltip_Modifier_thrill_active_Description"	"Veera has drastically reduced cooldowns and cast points, as well as increased vision and turn rate."
+
+
+
+
+
+
+
+
+
+
+		//-------------------------------------------------------------------
+		// Viscous Ooze
+		//-------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail"			"Slime Trail"	
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail_Description" 	"While toggled, Viscous Ooze leaves behind a trail of slime upon moving, damaging enemies and slowing their movement speed. Viscous Ooze will take damage for every 50 units traveled, based on a percentage of his max health."
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail_Note0"		"Viscous Ooze gains free pathing if he does not take hero damage for 2.5 seconds while active."	
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail_Lore"		"For many centuries the Bleeding Hills have been known for their tarry blood – a thick, viscous fluid in the uplands, gathering in slickened black ravines to accumulate in killing pools where the bones of many ancient beasts now reside."
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail_Radius"		"RADIUS:"
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail_Damage"		"DAMAGE PER SECOND:"
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail_Slow"		"%MOVEMENT SLOW:"
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail_Duration"	"SLIME DURATION:"
+		"DOTA_Tooltip_Ability_viscous_ooze_slime_trail_Self_damage"	"%SELF DAMAGE:" 
+
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings"		"Split Oozelings"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Description"	"Passively gain charges whenever Viscous Ooze takes 100 damage, which are expended to create more oozelings. Viscous Ooze splits off several Oozelings from itself, reducing his strength temporarily while increasing his movement speed and attackspeed. Creates one Oozeling plus an additional one for each charge. Oozelings will explode when they die or come in contact with an enemy, coating all nearby enemies with toxic ooze which damages over time and slows. Toxic Ooze stacks."
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Lore"	"The essence of the ooze is spread across the battlefield."
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Note0"	"Oozelings have 200/200 sight range, 50 health, 0 damage, 0 magic resistance, and 0 armor. Grants 10 xp and 11-14 gold bounty."
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Note1"	"When you lose strength, it does not reduce your current hp total, only your maximum. The strength/speed modifier lasts as long as oozelings."
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Note2"	"Toxic Ooze damage is applied on contact in addition to the 3 damage instances per tick. Deals 76/84/92/100 total damage."
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Threshold" 		"DAMAGE THRESHOLD:" 
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Max_charges"		"MAX CHARGES:"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Oozeling_duration"	"OOZELING DURATION:"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Toxic_radius"	"TOXIC OOZE EXPLOSION RADIUS:"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Toxic_damage"	"TOXIC OOZE DAMAGE OVER TIME:"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Toxic_slow"		"%TOXIC OOZE MOVEMENT SLOW:"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Toxic_duration"	"TOXIC OOZE DURATION:"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Oozeling_speed"	"OOZELING MOVESPEED:"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_Contact_radius"	"CONTACT RADIUS:"
+		"DOTA_Tooltip_Ability_viscous_ooze_split_oozelings_ooze_health"		"STRENGTH LOSS/SPEED GAIN:"
+		"oozeling_1"						"Oozeling"
+
+		"DOTA_Tooltip_Ability_viscous_ooze_sticky_membrane"		"Sticky Membrane"
+		"DOTA_Tooltip_Ability_viscous_ooze_sticky_membrane_Description"	"Viscous Ooze excretes sticky tar from its membrane, causing nearby enemies to sometimes lose grip of their weapon on attacks, disarming them while giving Viscous Ooze bonus damage equal to a percentage of their base damage for 5 seconds."
+		"DOTA_Tooltip_Ability_viscous_ooze_sticky_membrane_Lore"	"Viscous Ooze can grasp any weapon it touches, even if it’s currently wielded by an attacker."
+		"DOTA_Tooltip_Ability_viscous_ooze_sticky_membrane_Trigger_chance" 	"%CHANCE TO TRIGGER:"
+		"DOTA_Tooltip_Ability_viscous_ooze_sticky_membrane_Trigger_radius"	"TRIGGER RADIUS:"
+		"DOTA_Tooltip_Ability_viscous_ooze_sticky_membrane_Disarm_duration"	"DISARM DURATION:"
+		"DOTA_Tooltip_Ability_viscous_ooze_sticky_membrane_Bonus_duration"	"BONUS DURATION:"
+		"DOTA_Tooltip_Ability_viscous_ooze_sticky_membrane_Bonus_damage"	"%BONUS BASE DAMAGE:"
+
+		"DOTA_Tooltip_Ability_viscous_ooze_consume_item"		"Consume Item"
+		"DOTA_Tooltip_Ability_viscous_ooze_consume_item_Description"	"While toggled, allows Viscous Ooze to consume an item in its inventory by clicking on it, permanently gaining the passive bonuses of that item. Consuming an item costs one charge. Charges are gained through leveling this ability, and do not refresh over time. Rare items can only be consumed once. Certain items cannot be consumed (all recipes, Gem of True Sight, Aegis, and Divine Rapier). Items owned by other players CAN be consumed for the full benefits."
+		"DOTA_Tooltip_Ability_viscous_ooze_consume_item_Lore"		"Having accumulated the wealth lain across the Ruelands on its journey, Viscous Ooze now seeks to consume what the merchants offer for their similarly unclaimed power."
+		"DOTA_Tooltip_Ability_viscous_ooze_consume_item_Max_charges"	"MAX ITEM CHARGES:" 
+	
+
+		//Modifiers
+		"DOTA_Tooltip_Modifier_slime_puddle_buff"			"Slime Trail"
+		"DOTA_Tooltip_Modifier_slime_puddle_buff_Description"		"Creates a puddle at the cost of health for every 50 units traveled."	
+		"DOTA_Tooltip_Modifier_slime_puddle_debuff"			"Slime Puddle"
+		"DOTA_Tooltip_Modifier_slime_puddle_debuff_Description"		"Slowed and taking magical damage every second."
+		"DOTA_Tooltip_Modifier_slime_puddle_phased"			"Free Pathing"
+		"DOTA_Tooltip_Modifier_slime_puddle_phased_Description"		"Viscous Ooze has free pathing and increased movement speed."
+
+		"DOTA_Tooltip_Modifier_split_oozelings_charges"			"Oozeling Charges"	
+		"DOTA_Tooltip_Modifier_toxic_ooze"				"Toxic Ooze"	
+		"DOTA_Tooltip_Modifier_toxic_ooze_Description"			"Slowed and taking magical damage every second. Stacks."	
+		
+		"DOTA_Tooltip_Modifier_sticky_membrane_bonus"			"Sticky Membrane Bonus"
+		"DOTA_Tooltip_Modifier_sticky_membrane_disarm"			"Sticky Membrane Disarm"
+		
+		"DOTA_Tooltip_Modifier_consume_item_charges"			"Consume Item Charges"	
+		"DOTA_Tooltip_Modifier_consume_item_look"				"Consuming Item"
+		"DOTA_Tooltip_Modifier_consume_item_look_Description"		"Nom Nom Nom"
+
+
+		//Consumable Item Names	(WIP)
+		"DOTA_Tooltip_Ability_item_abyssal_blade_datadriven"			"Abyssal Blade "
+		"DOTA_Tooltip_Ability_item_ancient_janggo_datadriven"			"Drums of Endurance "
+		"DOTA_Tooltip_Ability_item_arcane_boots_datadriven"			"Arcane Boots "
+		"DOTA_Tooltip_Ability_item_armlet_datadriven"				"Armlet of Mordiggian "
+		"DOTA_Tooltip_Ability_item_assault_datadriven"				"Assault Cuirass "
+		"DOTA_Tooltip_Ability_item_basher_datadriven"				"Skull Basher"
+		"DOTA_Tooltip_Ability_item_belt_of_strength_datadriven"			"Belt of Strength "
+		"DOTA_Tooltip_Ability_item_bfury_datadriven"				"Battle Fury "
+		"DOTA_Tooltip_Ability_item_black_king_bar_datadriven"			"Black King Bar "
+		"DOTA_Tooltip_Ability_item_blade_of_alacrity_datadriven"		"Blade of Alacrity "
+		"DOTA_Tooltip_Ability_item_blades_of_attack_datadriven"			"Blades of Attack "
+		"DOTA_Tooltip_Ability_item_bloodstone_datadriven"			"Bloodstone "
+		"DOTA_Tooltip_Ability_item_boots_datadriven"				"Boots "
+		"DOTA_Tooltip_Ability_item_boots_of_elves_datadriven"			"Band of Elvenskin "
+		"DOTA_Tooltip_Ability_item_bracer_datadriven"				"Bracer "
+		"DOTA_Tooltip_Ability_item_branches_datadriven"				"Iron Branch "
+		"DOTA_Tooltip_Ability_item_broadsword_datadriven"			"Broadsword "
+		"DOTA_Tooltip_Ability_item_buckler_datadriven"				"Buckler "
+		"DOTA_Tooltip_Ability_item_butterfly_datadriven"			"Butterfly "
+		"DOTA_Tooltip_Ability_item_chainmail_datadriven"			"Chainmail "
+		"DOTA_Tooltip_Ability_item_circlet_datadriven"				"Circlet "
+		"DOTA_Tooltip_Ability_item_claymore_datadriven"				"Claymore "
+		"DOTA_Tooltip_Ability_item_cloak_datadriven"				"Cloak "
+		"DOTA_Tooltip_Ability_item_cyclone_datadriven"				"Eul's Scepter "
+		"DOTA_Tooltip_Ability_item_dagon_1_datadriven"				"Dagon "
+		"DOTA_Tooltip_Ability_item_dagon_2_datadriven"				"Dagon "
+		"DOTA_Tooltip_Ability_item_dagon_3_datadriven"				"Dagon "
+		"DOTA_Tooltip_Ability_item_dagon_4_datadriven"				"Dagon "
+		"DOTA_Tooltip_Ability_item_dagon_5_datadriven"				"Dagon "
+		"DOTA_Tooltip_Ability_item_demon_edge_datadriven"			"Demon Edge "
+		"DOTA_Tooltip_Ability_item_desolator_datadriven"			"Desolator "
+		"DOTA_Tooltip_Ability_item_eagle_datadriven"				"Eaglesong "
+		"DOTA_Tooltip_Ability_item_energy_booster_datadriven"			"Energy Booster "
+		"DOTA_Tooltip_Ability_item_gauntlets_datadriven"			"Gauntlets "
+		"DOTA_Tooltip_Ability_item_ghost_datadriven"				"Ghost Scepter "
+		"DOTA_Tooltip_Ability_item_gloves_datadriven"				"Gloves of Haste "
+		"DOTA_Tooltip_Ability_item_hand_of_midas_datadriven"			"Hand of Midas "
+		"DOTA_Tooltip_Ability_item_headdress_datadriven"			"Headdress "
+		"DOTA_Tooltip_Ability_item_heart_datadriven"				"Heart of Tarrasque "
+		"DOTA_Tooltip_Ability_item_heavens_halberd_datadriven"			"Heaven's Halberd "
+		"DOTA_Tooltip_Ability_item_helm_of_iron_will_datadriven"		"Helm of Iron Will "
+		"DOTA_Tooltip_Ability_item_hood_of_defiance_datadriven"			"Hood of Defiance "
+		"DOTA_Tooltip_Ability_item_hyperstone_datadriven"			"Hyperstone "
+		"DOTA_Tooltip_Ability_item_invis_sword_datadriven"			"Shadow Blade "
+		"DOTA_Tooltip_Ability_item_javelin_datadriven"				"Javelin "
+		"DOTA_Tooltip_Ability_item_lifesteal_datadriven"			"Morbid Mask "
+		"DOTA_Tooltip_Ability_item_magic_wand_datadriven"			"Magic Wand "
+		"DOTA_Tooltip_Ability_item_manta_datadriven"				"Manta Style "
+		"DOTA_Tooltip_Ability_item_mantle_datadriven"				"Mantle of Intelligence "
+		"DOTA_Tooltip_Ability_item_mask_of_madness_datadriven"			"Mask of Madness "
+		"DOTA_Tooltip_Ability_item_medallion_of_courage_datadriven"		"Medallion "
+		"DOTA_Tooltip_Ability_item_mekansm_datadriven"				"Mekansm "
+		"DOTA_Tooltip_Ability_item_mithril_hammer_datadriven"			"Mithril Hammer "
+		"DOTA_Tooltip_Ability_item_monkey_king_bar_datadriven"			"Monkey King Bar "
+		"DOTA_Tooltip_Ability_item_mystic_staff_datadriven"			"Mystic Staff "
+		"DOTA_Tooltip_Ability_item_null_talisman_datadriven"			"Null Tailsman "
+		"DOTA_Tooltip_Ability_item_oblivion_staff_datadriven"			"Oblivion Staff "
+		"DOTA_Tooltip_Ability_item_ogre_axe_datadriven"				"Ogre Club "
+		"DOTA_Tooltip_Ability_item_orb_of_venom_datadriven"			"Orb of Venom "
+		"DOTA_Tooltip_Ability_item_pers_datadriven"				"Perseverance "
+		"DOTA_Tooltip_Ability_item_phase_boots_datadriven"			"Phase Boots "
+		"DOTA_Tooltip_Ability_item_platemail_datadriven"			"Platemail "
+		"DOTA_Tooltip_Ability_item_point_booster_datadriven"			"Point Booster "
+		"DOTA_Tooltip_Ability_item_power_treads_strength_datadriven"		"Power Treads "
+		"DOTA_Tooltip_Ability_item_power_treads_agility_datadriven"		"Power Treads "
+		"DOTA_Tooltip_Ability_item_power_treads_intelligence_datadriven"	"Power Treads "
+		"DOTA_Tooltip_Ability_item_quarterstaff_datadriven"			"Quarterstaff "
+		"DOTA_Tooltip_Ability_item_radiance_datadriven"				"Radiance "
+		"DOTA_Tooltip_Ability_item_reaver_datadriven"				"Reaver "
+		"DOTA_Tooltip_Ability_item_refresher_datadriven"			"Refresher Orb "
+		"DOTA_Tooltip_Ability_item_relic_datadriven"				"Sacred Relic "
+		"DOTA_Tooltip_Ability_item_ring_of_aquila_datadriven"			"Ring of Aquila "
+		"DOTA_Tooltip_Ability_item_ring_of_basilius_datadriven"			"Ring of Basilius "
+		"DOTA_Tooltip_Ability_item_ring_of_health_datadriven"			"Ring of Health "
+		"DOTA_Tooltip_Ability_item_ring_of_protection_datadriven"		"Ring of Protection "
+		"DOTA_Tooltip_Ability_item_ring_of_regen_datadriven"			"Ring of Regen "
+		"DOTA_Tooltip_Ability_item_robe_datadriven"					"Robe of the Magi "
+		"DOTA_Tooltip_Ability_item_rod_of_atos_datadriven"			"Rod of Atos "
+		"DOTA_Tooltip_Ability_item_sange_and_yasha_datadriven"			"Sange and Yasha "
+		"DOTA_Tooltip_Ability_item_sange_datadriven"				"Sange "
+		"DOTA_Tooltip_Ability_item_satanic_datadriven"				"Satanic "
+		"DOTA_Tooltip_Ability_item_shivas_guard_datadriven"			"Shiva's Guard "
+		"DOTA_Tooltip_Ability_item_skadi_datadriven"				"Eye of Skadi "
+		"DOTA_Tooltip_Ability_item_slippers_datadriven"				"Slippers of Agility "
+		"DOTA_Tooltip_Ability_item_sobi_mask_datadriven"			"Sage's Mask "
+		"DOTA_Tooltip_Ability_item_soul_booster_datadriven"			"Soul Booster "
+		"DOTA_Tooltip_Ability_item_sphere_datadriven"				"Linken's Sphere "
+		"DOTA_Tooltip_Ability_item_staff_of_wizardry_datadriven"		"Staff of Wizardry "
+		"DOTA_Tooltip_Ability_item_talisman_of_evasion_datadriven"		"Tailsman of Evasion "
+		"DOTA_Tooltip_Ability_item_ultimate_orb_datadriven"			"Ultimate Orb "
+		"DOTA_Tooltip_Ability_item_ultimate_scepter_datadriven"			"Aghanim's Scepter "
+		"DOTA_Tooltip_Ability_item_urn_of_shadows_datadriven"			"Urn of Shadows "
+		"DOTA_Tooltip_Ability_item_vanguard_datadriven"				"Vanguard "		
+		"DOTA_Tooltip_Ability_item_veil_of_discord_datadriven"			"Veil of Discord "
+		"DOTA_Tooltip_Ability_item_vitality_booster_datadriven"			"Vitality Booster "
+		"DOTA_Tooltip_Ability_item_vladmir_datadriven"				"Vladmir's Offering "
+		"DOTA_Tooltip_Ability_item_void_stone_datadriven"			"Void Stone "
+		"DOTA_Tooltip_Ability_item_wraith_band_datadriven"			"Wraith Band "
+		"DOTA_Tooltip_Ability_item_yasha_datadriven"				"Yasha "
+		
+		//Consumable Item Names	(WIP)
+		"DOTA_Tooltip_Ability_item_abyssal_blade_datadriven_Description"			"Consume this item to gain the passive bonuses from Abyssal Blade "
+		"DOTA_Tooltip_Ability_item_ancient_janggo_datadriven_Description"			"Consume this item to gain the passive bonuses from Drums of Endurance "
+		"DOTA_Tooltip_Ability_item_arcane_boots_datadriven_Description"				"Consume this item to gain the passive bonuses from Arcane Boots "
+		"DOTA_Tooltip_Ability_item_armlet_datadriven_Description"					"Consume this item to gain the passive bonuses from Armlet of Mordiggian "
+		"DOTA_Tooltip_Ability_item_assault_datadriven_Description"					"Consume this item to gain the passive bonuses from Assault Cuirass "
+		"DOTA_Tooltip_Ability_item_basher_datadriven_Description"					"Consume this item to gain the passive bonuses from Skull Basher 
+		"DOTA_Tooltip_Ability_item_belt_of_strength_datadriven_Description"			"Consume this item to gain the passive bonuses from Belt of Strength "
+		"DOTA_Tooltip_Ability_item_bfury_datadriven_Description"					"Consume this item to gain the passive bonuses from Battle Fury "
+		"DOTA_Tooltip_Ability_item_black_king_bar_datadriven_Description"			"Consume this item to gain the passive bonuses from Black King Bar "
+		"DOTA_Tooltip_Ability_item_blade_of_alacrity_datadriven_Description"		"Consume this item to gain the passive bonuses from Blade of Alacrity "
+		"DOTA_Tooltip_Ability_item_blades_of_attack_datadriven_Description"			"Consume this item to gain the passive bonuses from Blades of Attack "
+		"DOTA_Tooltip_Ability_item_bloodstone_datadriven_Description"				"Consume this item to gain the passive bonuses from Bloodstone "
+		"DOTA_Tooltip_Ability_item_boots_datadriven_Description"					"Consume this item to gain the passive bonuses from Boots "
+		"DOTA_Tooltip_Ability_item_boots_of_elves_datadriven_Description"			"Consume this item to gain the passive bonuses from Band of Elvenskin "
+		"DOTA_Tooltip_Ability_item_bracer_datadriven_Description"					"Consume this item to gain the passive bonuses from Bracer "
+		"DOTA_Tooltip_Ability_item_branches_datadriven_Description"					"Consume this item to gain the passive bonuses from Iron Branch "
+		"DOTA_Tooltip_Ability_item_broadsword_datadriven_Description"				"Consume this item to gain the passive bonuses from Broadsword "
+		"DOTA_Tooltip_Ability_item_buckler_datadriven_Description"					"Consume this item to gain the passive bonuses from Buckler "
+		"DOTA_Tooltip_Ability_item_butterfly_datadriven_Description"				"Consume this item to gain the passive bonuses from Butterfly "
+		"DOTA_Tooltip_Ability_item_chainmail_datadriven_Description"				"Consume this item to gain the passive bonuses from Chainmail "
+		"DOTA_Tooltip_Ability_item_circlet_datadriven_Description"					"Consume this item to gain the passive bonuses from Circlet "
+		"DOTA_Tooltip_Ability_item_claymore_datadriven_Description"					"Consume this item to gain the passive bonuses from Claymore "
+		"DOTA_Tooltip_Ability_item_cloak_datadriven_Description"					"Consume this item to gain the passive bonuses from Cloak "
+		"DOTA_Tooltip_Ability_item_cyclone_datadriven_Description"					"Consume this item to gain the passive bonuses from Eul's Scepter "
+		"DOTA_Tooltip_Ability_item_dagon_1_datadriven_Description"					"Consume this item to gain the passive bonuses from Dagon "
+		"DOTA_Tooltip_Ability_item_dagon_2_datadriven_Description"					"Consume this item to gain the passive bonuses from Dagon "
+		"DOTA_Tooltip_Ability_item_dagon_3_datadriven_Description"					"Consume this item to gain the passive bonuses from Dagon "
+		"DOTA_Tooltip_Ability_item_dagon_4_datadriven_Description"					"Consume this item to gain the passive bonuses from Dagon "
+		"DOTA_Tooltip_Ability_item_dagon_5_datadriven_Description"					"Consume this item to gain the passive bonuses from Dagon "
+		"DOTA_Tooltip_Ability_item_demon_edge_datadriven_Description"				"Consume this item to gain the passive bonuses from Demon Edge "
+		"DOTA_Tooltip_Ability_item_desolator_datadriven_Description"				"Consume this item to gain the passive bonuses from Desolator "
+		"DOTA_Tooltip_Ability_item_eagle_datadriven_Description"					"Consume this item to gain the passive bonuses from Eaglesong "
+		"DOTA_Tooltip_Ability_item_energy_booster_datadriven_Description"			"Consume this item to gain the passive bonuses from Energy Booster "
+		"DOTA_Tooltip_Ability_item_gauntlets_datadriven_Description"				"Consume this item to gain the passive bonuses from Gauntlets "
+		"DOTA_Tooltip_Ability_item_ghost_datadriven_Description"					"Consume this item to gain the passive bonuses from Ghost Scepter "
+		"DOTA_Tooltip_Ability_item_gloves_datadriven_Description"					"Consume this item to gain the passive bonuses from Gloves of Haste "
+		"DOTA_Tooltip_Ability_item_hand_of_midas_datadriven_Description"			"Consume this item to gain the passive bonuses from Hand of Midas "
+		"DOTA_Tooltip_Ability_item_headdress_datadriven_Description"				"Consume this item to gain the passive bonuses from Headdress "
+		"DOTA_Tooltip_Ability_item_heart_datadriven_Description"					"Consume this item to gain the passive bonuses from Heart of Tarrasque "
+		"DOTA_Tooltip_Ability_item_heavens_halberd_datadriven_Description"			"Consume this item to gain the passive bonuses from Heaven's Halberd "
+		"DOTA_Tooltip_Ability_item_helm_of_iron_will_datadriven_Description"		"Consume this item to gain the passive bonuses from Helm of Iron Will "
+		"DOTA_Tooltip_Ability_item_hood_of_defiance_datadriven_Description"			"Consume this item to gain the passive bonuses from Hood of Defiance "
+		"DOTA_Tooltip_Ability_item_hyperstone_datadriven_Description"				"Consume this item to gain the passive bonuses from Hyperstone "
+		"DOTA_Tooltip_Ability_item_invis_sword_datadriven_Description"				"Consume this item to gain the passive bonuses from Shadow Blade "
+		"DOTA_Tooltip_Ability_item_javelin_datadriven_Description"					"Consume this item to gain the passive bonuses from Javelin "
+		"DOTA_Tooltip_Ability_item_lifesteal_datadriven_Description"				"Consume this item to gain the passive bonuses from Morbid Mask "
+		"DOTA_Tooltip_Ability_item_magic_wand_datadriven_Description"				"Consume this item to gain the passive bonuses from Magic Wand "
+		"DOTA_Tooltip_Ability_item_manta_datadriven_Description"					"Consume this item to gain the passive bonuses from Manta Style "
+		"DOTA_Tooltip_Ability_item_mantle_datadriven_Description"					"Consume this item to gain the passive bonuses from Mantle of Intelligence "
+		"DOTA_Tooltip_Ability_item_mask_of_madness_datadriven_Description"			"Consume this item to gain the passive bonuses from Mask of Madness "
+		"DOTA_Tooltip_Ability_item_medallion_of_courage_datadriven_Description"		"Consume this item to gain the passive bonuses from Medallion "
+		"DOTA_Tooltip_Ability_item_mekansm_datadriven_Description"					"Consume this item to gain the passive bonuses from Mekansm "
+		"DOTA_Tooltip_Ability_item_mithril_hammer_datadriven_Description"			"Consume this item to gain the passive bonuses from Mithril Hammer "
+		"DOTA_Tooltip_Ability_item_monkey_king_bar_datadriven_Description"			"Consume this item to gain the passive bonuses from Monkey King Bar "
+		"DOTA_Tooltip_Ability_item_mystic_staff_datadriven_Description"				"Consume this item to gain the passive bonuses from Mystic Staff "
+		"DOTA_Tooltip_Ability_item_null_talisman_datadriven_Description"			"Consume this item to gain the passive bonuses from Null Tailsman "
+		"DOTA_Tooltip_Ability_item_oblivion_staff_datadriven_Description"			"Consume this item to gain the passive bonuses from Oblivion Staff "
+		"DOTA_Tooltip_Ability_item_ogre_axe_datadriven_Description"					"Consume this item to gain the passive bonuses from Ogre Club "
+		"DOTA_Tooltip_Ability_item_orb_of_venom_datadriven_Description"				"Consume this item to gain the passive bonuses from Orb of Venom "
+		"DOTA_Tooltip_Ability_item_pers_datadriven_Description"						"Consume this item to gain the passive bonuses from Perseverance "
+		"DOTA_Tooltip_Ability_item_phase_boots_datadriven_Description"				"Consume this item to gain the passive bonuses from Phase Boots "
+		"DOTA_Tooltip_Ability_item_platemail_datadriven_Description"				"Consume this item to gain the passive bonuses from Platemail "
+		"DOTA_Tooltip_Ability_item_point_booster_datadriven_Description"			"Consume this item to gain the passive bonuses from Point Booster "
+		"DOTA_Tooltip_Ability_item_power_treads_datadriven_Description"				"Consume this item to gain the passive bonuses from Power Treads "
+		"DOTA_Tooltip_Ability_item_quarterstaff_datadriven_Description"				"Consume this item to gain the passive bonuses from Quarterstaff "
+		"DOTA_Tooltip_Ability_item_radiance_datadriven_Description"					"Consume this item to gain the passive bonuses from Radiance "
+		"DOTA_Tooltip_Ability_item_reaver_datadriven_Description"					"Consume this item to gain the passive bonuses from Reaver "
+		"DOTA_Tooltip_Ability_item_refresher_datadriven_Description"				"Consume this item to gain the passive bonuses from Refresher Orb "
+		"DOTA_Tooltip_Ability_item_relic_datadriven_Description"					"Consume this item to gain the passive bonuses from Sacred Relic "
+		"DOTA_Tooltip_Ability_item_ring_of_aquila_datadriven_Description"			"Consume this item to gain the passive bonuses from Ring of Aquila "
+		"DOTA_Tooltip_Ability_item_ring_of_basilius_datadriven_Description"			"Consume this item to gain the passive bonuses from Ring of Basilius "
+		"DOTA_Tooltip_Ability_item_ring_of_health_datadriven_Description"			"Consume this item to gain the passive bonuses from Ring of Health "
+		"DOTA_Tooltip_Ability_item_ring_of_protection_datadriven_Description"		"Consume this item to gain the passive bonuses from Ring of Protection "
+		"DOTA_Tooltip_Ability_item_ring_of_regen_datadriven_Description"			"Consume this item to gain the passive bonuses from Ring of Regen "
+		"DOTA_Tooltip_Ability_item_robe_datadriven_Description"						"Consume this item to gain the passive bonuses from Robe of the Magi "
+		"DOTA_Tooltip_Ability_item_rod_of_atos_datadriven_Description"				"Consume this item to gain the passive bonuses from Rod of Atos "
+		"DOTA_Tooltip_Ability_item_sange_and_yasha_datadriven_Description"			"Consume this item to gain the passive bonuses from Sange and Yasha "
+		"DOTA_Tooltip_Ability_item_sange_datadriven_Description"					"Consume this item to gain the passive bonuses from Sange "
+		"DOTA_Tooltip_Ability_item_satanic_datadriven_Description"					"Consume this item to gain the passive bonuses from Satanic "
+		"DOTA_Tooltip_Ability_item_shivas_guard_datadriven_Description"				"Consume this item to gain the passive bonuses from Shiva's Guard "
+		"DOTA_Tooltip_Ability_item_skadi_datadriven_Description"					"Consume this item to gain the passive bonuses from Eye of Skadi "
+		"DOTA_Tooltip_Ability_item_slippers_datadriven_Description"					"Consume this item to gain the passive bonuses from Slippers of Agility "
+		"DOTA_Tooltip_Ability_item_sobi_mask_datadriven_Description"				"Consume this item to gain the passive bonuses from Sage's Mask "
+		"DOTA_Tooltip_Ability_item_soul_booster_datadriven_Description"				"Consume this item to gain the passive bonuses from Soul Booster "
+		"DOTA_Tooltip_Ability_item_sphere_datadriven_Description"					"Consume this item to gain the passive bonuses from Linken's Sphere "
+		"DOTA_Tooltip_Ability_item_staff_of_wizardry_datadriven_Description"		"Consume this item to gain the passive bonuses from Staff of Wizardry "
+		"DOTA_Tooltip_Ability_item_talisman_of_evasion_datadriven_Description"		"Consume this item to gain the passive bonuses from Tailsman of Evasion "
+		"DOTA_Tooltip_Ability_item_ultimate_orb_datadriven_Description"				"Consume this item to gain the passive bonuses from Ultimate Orb "
+		"DOTA_Tooltip_Ability_item_ultimate_scepter_datadriven_Description"			"Consume this item to gain the passive bonuses from Aghanim's Scepter "
+		"DOTA_Tooltip_Ability_item_urn_of_shadows_datadriven_Description"			"Consume this item to gain the passive bonuses from Urn of Shadows "
+		"DOTA_Tooltip_Ability_item_vanguard_datadriven_Description"					"Consume this item to gain the passive bonuses from Vanguard "		
+		"DOTA_Tooltip_Ability_item_veil_of_discord_datadriven_Description"			"Consume this item to gain the passive bonuses from Veil of Discord "
+		"DOTA_Tooltip_Ability_item_vitality_booster_datadriven_Description"			"Consume this item to gain the passive bonuses from Vitality Booster "
+		"DOTA_Tooltip_Ability_item_vladmir_datadriven_Description"					"Consume this item to gain the passive bonuses from Vladmir's Offering "
+		"DOTA_Tooltip_Ability_item_void_stone_datadriven_Description"				"Consume this item to gain the passive bonuses from Void Stone "
+		"DOTA_Tooltip_Ability_item_wraith_band_datadriven_Description"				"Consume this item to gain the passive bonuses from Wraith Band "
+		"DOTA_Tooltip_Ability_item_yasha_datadriven_Description"					"Consume this item to gain the passive bonuses from Yasha "
+
+
+		//Consumable Modifier Names (WIP)
+		"DOTA_Tooltip_Modifier_item_abyssal_blade_consumed"			"Abyssal Blade "
+		"DOTA_Tooltip_Modifier_item_ancient_janggo_consumed"			"Drums of Endurance "
+		"DOTA_Tooltip_Modifier_item_arcane_boots_consumed"			"Arcane Boots "
+		"DOTA_Tooltip_Modifier_item_armlet_consumed"				"Armlet of Mordiggian "
+		"DOTA_Tooltip_Modifier_item_assault_consumed"				"Assault Cuirass "
+		"DOTA_Tooltip_Modifier_item_basher_consumed"				"Skull Basher "
+		"DOTA_Tooltip_Modifier_item_belt_of_strength_consumed"			"Belt of Strength "
+		"DOTA_Tooltip_Modifier_item_bfury_consumed"				"Battle Fury "
+		"DOTA_Tooltip_Modifier_item_black_king_bar_consumed"			"Black King Bar "
+		"DOTA_Tooltip_Modifier_item_blade_of_alacrity_consumed"		"Blade of Alacrity "
+		"DOTA_Tooltip_Modifier_item_blades_of_attack_consumed"			"Blades of Attack "
+		"DOTA_Tooltip_Modifier_item_bloodstone_consumed"			"Bloodstone "
+		"DOTA_Tooltip_Modifier_item_boots_consumed"				"Boots "
+		"DOTA_Tooltip_Modifier_item_boots_of_elves_consumed"			"Band of Elvenskin "
+		"DOTA_Tooltip_Modifier_item_bracer_consumed"				"Bracer "
+		"DOTA_Tooltip_Modifier_item_branches_consumed"				"Iron Branch "
+		"DOTA_Tooltip_Modifier_item_broadsword_consumed"			"Broadsword "
+		"DOTA_Tooltip_Modifier_item_buckler_consumed"				"Buckler "
+		"DOTA_Tooltip_Modifier_item_butterfly_consumed"			"Butterfly "
+		"DOTA_Tooltip_Modifier_item_chainmail_consumed"			"Chainmail "
+		"DOTA_Tooltip_Modifier_item_circlet_consumed"				"Circlet "
+		"DOTA_Tooltip_Modifier_item_claymore_consumed"				"Claymore "
+		"DOTA_Tooltip_Modifier_item_cloak_consumed"				"Cloak "
+		"DOTA_Tooltip_Modifier_item_cyclone_consumed"				"Eul's Scepter of Divinity "
+		"DOTA_Tooltip_Modifier_item_dagon_1_consumed"				"Dagon "
+		"DOTA_Tooltip_Modifier_item_dagon_2_consumed"				"Dagon "
+		"DOTA_Tooltip_Modifier_item_dagon_3_consumed"				"Dagon "
+		"DOTA_Tooltip_Modifier_item_dagon_4_consumed"				"Dagon "
+		"DOTA_Tooltip_Modifier_item_dagon_5_consumed"				"Dagon "
+		"DOTA_Tooltip_Modifier_item_demon_edge_consumed"			"Demon Edge "
+		"DOTA_Tooltip_Modifier_item_desolator_consumed"			"Desolator "
+		"DOTA_Tooltip_Modifier_item_eagle_consumed"				"Eaglesong "
+		"DOTA_Tooltip_Modifier_item_energy_booster_consumed"			"Energy Booster "
+		"DOTA_Tooltip_Modifier_item_gauntlets_consumed"			"Gauntlets "
+		"DOTA_Tooltip_Modifier_item_ghost_consumed"				"Ghost Scepter "
+		"DOTA_Tooltip_Modifier_item_gloves_consumed"				"Gloves of Haste "
+		"DOTA_Tooltip_Modifier_item_hand_of_midas_consumed"			"Hand of Midas "
+		"DOTA_Tooltip_Modifier_item_headdress_consumed"			"Headdress "
+		"DOTA_Tooltip_Modifier_item_heart_consumed"				"Heart of Tarrasque "
+		"DOTA_Tooltip_Modifier_item_heavens_halberd_consumed"			"Heaven's Halberd "
+		"DOTA_Tooltip_Modifier_item_helm_of_iron_will_consumed"		"Helm of Iron Will "
+		"DOTA_Tooltip_Modifier_item_hood_of_defiance_consumed"			"Hood of Defiance "
+		"DOTA_Tooltip_Modifier_item_hyperstone_consumed"			"Hyperstone "
+		"DOTA_Tooltip_Modifier_item_invis_sword_consumed"			"Shadow Blade "
+		"DOTA_Tooltip_Modifier_item_javelin_consumed"				"Javelin "
+		"DOTA_Tooltip_Modifier_item_lifesteal_consumed"			"Morbid Mask "
+		"DOTA_Tooltip_Modifier_item_magic_wand_consumed"			"Magic Wand "
+		"DOTA_Tooltip_Modifier_item_manta_consumed"				"Manta Style "
+		"DOTA_Tooltip_Modifier_item_mantle_consumed"				"Mantle of Intelligence "
+		"DOTA_Tooltip_Modifier_item_mask_of_madness_consumed"			"Mask of Madness "
+		"DOTA_Tooltip_Modifier_item_medallion_of_courage_consumed"		"Medallion of Courage "
+		"DOTA_Tooltip_Modifier_item_mekansm_consumed"				"Mekansm "
+		"DOTA_Tooltip_Modifier_item_mithril_hammer_consumed"			"Mithril Hammer "
+		"DOTA_Tooltip_Modifier_item_monkey_king_bar_consumed"			"Monkey King Bar "
+		"DOTA_Tooltip_Modifier_item_mystic_staff_consumed"			"Mystic Staff "
+		"DOTA_Tooltip_Modifier_item_null_talisman_consumed"			"Null Tailsman "
+		"DOTA_Tooltip_Modifier_item_oblivion_staff_consumed"			"Oblivion Staff "
+		"DOTA_Tooltip_Modifier_item_ogre_axe_consumed"				"Ogre Club "
+		"DOTA_Tooltip_Modifier_item_orb_of_venom_consumed"			"Orb of Venom "
+		"DOTA_Tooltip_Modifier_item_pers_consumed"				"Perseverance "
+		"DOTA_Tooltip_Modifier_item_phase_boots_consumed"			"Phase Boots "
+		"DOTA_Tooltip_Modifier_item_platemail_consumed"			"Platemail "
+		"DOTA_Tooltip_Modifier_item_point_booster_consumed"			"Point Booster "
+		"DOTA_Tooltip_Modifier_item_power_treads_strength_consumed"		"Power Treads "
+		"DOTA_Tooltip_Modifier_item_power_treads_agility_consumed"		"Power Treads "
+		"DOTA_Tooltip_Modifier_item_power_treads_intelligence_consumed"	"Power Treads "
+		"DOTA_Tooltip_Modifier_item_quarterstaff_consumed"			"Quarterstaff "
+		"DOTA_Tooltip_Modifier_item_radiance_consumed"				"Radiance "
+		"DOTA_Tooltip_Modifier_item_reaver_consumed"				"Reaver "
+		"DOTA_Tooltip_Modifier_item_refresher_consumed"			"Refresher Orb "
+		"DOTA_Tooltip_Modifier_item_relic_consumed"				"Sacred Relic "
+		"DOTA_Tooltip_Modifier_item_ring_of_aquila_consumed"			"Ring of Aquila "
+		"DOTA_Tooltip_Modifier_item_ring_of_basilius_consumed"			"Ring of Basilius "
+		"DOTA_Tooltip_Modifier_item_ring_of_health_consumed"			"Ring of Health "
+		"DOTA_Tooltip_Modifier_item_ring_of_protection_consumed"		"Ring of Protection "
+		"DOTA_Tooltip_Modifier_item_ring_of_regen_consumed"			"Ring of Regen "
+		"DOTA_Tooltip_Modifier_item_robe_consumed"				"Robe of the Magi "
+		"DOTA_Tooltip_Modifier_item_rod_of_atos_consumed"			"Rod of Atos "
+		"DOTA_Tooltip_Modifier_item_sange_and_yasha_consumed"			"Sange and Yasha "
+		"DOTA_Tooltip_Modifier_item_sange_consumed"				"Sange "
+		"DOTA_Tooltip_Modifier_item_satanic_consumed"				"Satanic "
+		"DOTA_Tooltip_Modifier_item_shivas_guard_consumed"			"Shiva's Guard "
+		"DOTA_Tooltip_Modifier_item_skadi_consumed"				"Eye of Skadi "
+		"DOTA_Tooltip_Modifier_item_slippers_consumed"				"Slippers of Agility "
+		"DOTA_Tooltip_Modifier_item_sobi_mask_consumed"			"Sage's Mask "
+		"DOTA_Tooltip_Modifier_item_soul_booster_consumed"			"Soul Booster "
+		"DOTA_Tooltip_Modifier_item_sphere_consumed"				"Linken's Sphere "
+		"DOTA_Tooltip_Modifier_item_staff_of_wizardry_consumed"		"Staff of Wizardry "
+		"DOTA_Tooltip_Modifier_item_talisman_of_evasion_consumed"		"Tailsman of Evasion "
+		"DOTA_Tooltip_Modifier_item_ultimate_orb_consumed"			"Ultimate Orb "
+		"DOTA_Tooltip_Modifier_item_ultimate_scepter_consumed"			"Aghanim's Scepter "
+		"DOTA_Tooltip_Modifier_item_urn_of_shadows_consumed"			"Urn of Shadows "
+		"DOTA_Tooltip_Modifier_item_vanguard_consumed"				"Vanguard "		
+		"DOTA_Tooltip_Modifier_item_veil_of_discord_consumed"			"Veil of Discord "
+		"DOTA_Tooltip_Modifier_item_vitality_booster_consumed"			"Vitality Booster "
+		"DOTA_Tooltip_Modifier_item_vladmir_consumed"				"Vladmir's Offering "
+		"DOTA_Tooltip_Modifier_item_void_stone_consumed"			"Void Stone "
+		"DOTA_Tooltip_Modifier_item_wraith_band_consumed"			"Wraith Band "
+		"DOTA_Tooltip_Modifier_item_yasha_consumed"					"Yasha "	
+
+
+
+
+
+
+
+
+
+
+		//-------------------------------------------------------------------
+		// Xarax, the Trickster
+		//-------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_xarax_devils_cape"			"Devil's Cape"	
+		"DOTA_Tooltip_Ability_xarax_devils_cape_Description"			"Wave a magical cape, causing nearby allies to become invisible and nearby enemies to turn uncontrollably for a duration."
+		"DOTA_Tooltip_Ability_xarax_devils_cape_Radius"				"RADIUS:"	
+		"DOTA_Tooltip_Ability_xarax_devils_cape_Duration"			"DURATION:" 
+
+		"DOTA_Tooltip_Ability_xarax_trap_door"				"Trap Door"	
+		"DOTA_Tooltip_Ability_xarax_trap_door_Description"			"Place a trap door beneath you, and another at the targeted location. Trap Doors have an ability that sends all units within 200 units of the other trapdoor to its location."	
+		"DOTA_Tooltip_Ability_xarax_trap_door_Duration"				"DURATION"	
+		"DOTA_Tooltip_Ability_xarax_trap_door_Range"				"CAST RANGE:"	
+
+		"trap_door_1"	"Trap Door"
+		"trap_door_2"	"Trap Door"
+		"trap_door_3"	"Trap Door"
+		"trap_door_4"	"Trap Door"
+
+		"DOTA_Tooltip_Ability_xarax_trick_box_1"			"Trick Box #1"	
+		"DOTA_Tooltip_Ability_xarax_trick_box_1_Description"			"Puts a Trick on the an enemy, applying one of three different status effect after a random delay."	
+		"DOTA_Tooltip_Ability_xarax_trick_box_1_Effect_1"			"Effect 1: <font color='#70EA72'>Slow</font>"	
+		"DOTA_Tooltip_Ability_xarax_trick_box_1_Effect_2"			"Effect 2: <font color='#70EA72'>Stun</font>"
+		"DOTA_Tooltip_Ability_xarax_trick_box_1_Effect_3"			"Effect 3: <font color='#70EA72'>Silence</font>"	
+		"DOTA_Tooltip_Ability_xarax_trick_box_1_Slow_effect"			"%SLOW EFFECT:"	
+		"DOTA_Tooltip_Ability_xarax_trick_box_1_Slow_duration"			"SLOW DURATION:"
+		"DOTA_Tooltip_Ability_xarax_trick_box_1_Stun_duration"			"STUN DURATION:"
+		"DOTA_Tooltip_Ability_xarax_trick_box_1_Silence_duration"		"SILENCE DURATION:"
+
+		"DOTA_Tooltip_Ability_xarax_trick_box_2"			"Trick Box #2"
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Description"			"Puts a Trick on an enemy, dealing magical damage in one of three different ways after a random delay."	
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Effect_1"			"Effect 1: Instant Damage"	
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Effect_2"			"Effect 2: Damage Over Time"
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Effect_3"			"Effect 3: Splash Damage"
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Instant_damage"			"INSTANT DAMAGE:"
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Damage_over_time"		"DAMAGE OVER TIME:"
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Duration"			"DURATION:"
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Splash_damage"			"SPLASH DAMAGE:"
+		"DOTA_Tooltip_Ability_xarax_trick_box_2_Splash_radius"			"SPLASH RADIUS:"
+			
+
+		"DOTA_Tooltip_Ability_xarax_trick_box_3"			"Trick Box #3"	
+		"DOTA_Tooltip_Ability_xarax_trick_box_3_Description"			"Puts a Trick on an enemy, doing nothing but confirming that it is in fact box #3 after a random delay."	
+		"DOTA_Tooltip_Ability_xarax_trick_box_3_Effect_1"			"Effect 1: ERROR"	
+		"DOTA_Tooltip_Ability_xarax_trick_box_3_Effect_2"			"Effect 2: CONFIRMED"
+		"DOTA_Tooltip_Ability_xarax_trick_box_3_Effect_3"			"Effect 3: ???"
+
+		"DOTA_Tooltip_Ability_xarax_share_tricks"			"Share Tricks"
+		"DOTA_Tooltip_Ability_xarax_share_tricks_Description"			"Xarax shares his tricks with his allies, duplicating his abilities as items and scattering them on the ground. Trick items last 60 seconds, and can be shared and dropped (except Trick Box #3), but not sold."	
+		
+		"DOTA_Tooltip_Ability_item_xarax_devils_cape"			"Devil's Cape"	
+		"DOTA_Tooltip_Ability_item_xarax_devils_cape_Description"		"Wave a magical cape, causing nearby enemies to turn uncontrollably for a duration. Item lasts 60 seconds upon creation."
+		"DOTA_Tooltip_Ability_item_xarax_devils_cape_Radius"			"RADIUS:"	
+		"DOTA_Tooltip_Ability_item_xarax_devils_cape_Duration"			"DURATION:"
+
+		"DOTA_Tooltip_Ability_item_xarax_trap_door"			"Trap Door"	
+		"DOTA_Tooltip_Ability_item_xarax_trap_door_Description"			"Place a trap door beneath you, and another at the targeted location. Trap Doors have an ability that sends all units within 200 units of the other trapdoor to its location. Item lasts 60 seconds upon creation."	
+		"DOTA_Tooltip_Ability_item_xarax_trap_door_Duration"			"DURATION"	
+		"DOTA_Tooltip_Ability_item_xarax_trap_door_Range"			"CAST RANGE:"	
+
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1"			"Trick Box #1"	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Description"		"Puts a Trick on the an enemy, applying one of three different status effect after a random delay. Item lasts 60 seconds upon creation."	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Min_delay"			"MIN DELAY:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Max_delay"			"MAX DELAY:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Effect_1"			"Effect 1: <font color='#70EA72'>Slow over Time</font>"	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Effect_2"			"Effect 2: <font color='#70EA72'>Stun</font>"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Effect_3"			"Effect 3: <font color='#70EA72'>Silence</font>"	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Slow_effect"		"%SLOW EFFECT:"	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Slow_duration"		"SLOW DURATION:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Stun_duration"		"STUN DURATION:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_1_Silence_duration"		"SILENCE DURATION:"
+
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2"			"Trick Box #2"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Description"		"Puts a Trick on an enemy, dealing magical damage in one of three different ways after a random delay. Item lasts 60 seconds upon creation."	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Min_delay"			"MIN DELAY:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Max_delay"			"MAX DELAY:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Effect_1"			"Effect 1: <font color='#70EA72'>Instant Damage</font>"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Effect_2"			"Effect 2: <font color='#70EA72'>Damage Over Time</font>"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Effect_3"			"Effect 3: <font color='#70EA72'>Splash Damage</font>"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Instant_damage"		"INSTANT DAMAGE:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Damage_over_time"		"DAMAGE OVER TIME:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Duration"			"DURATION:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Splash_damage"		"SPLASH DAMAGE:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_2_Splash_radius"		"SPLASH RADIUS:"
+			
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_3"			"Trick Box #3"	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_3_Description"		"Puts a Trick on an enemy, doing nothing but confirming that it is in fact box #3 after a random delay. Item lasts 60 seconds upon creation."	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_3_Min_delay"			"MIN DELAY:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_3_Max_delay"			"MAX DELAY:"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_3_Effect_1"			"Effect 1: ERROR"	
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_3_Effect_2"			"Effect 2: CONFIRMED"
+		"DOTA_Tooltip_Ability_item_xarax_trick_box_3_Effect_3"			"Effect 3: ???"
+
+
+
+		"DOTA_Tooltip_Modifier_cape_spin"					"Uncontrollably Spinning"
+
+		"DOTA_Tooltip_Modifier_box_1_aura"					"Trap 1"
+		"DOTA_Tooltip_Modifier_box_2_aura"					"Trap 2"
+		"DOTA_Tooltip_item_Modifier_box_1_aura"				"Trap 3"
+		"DOTA_Tooltip_item_Modifier_box_2_aura"				"Trap 4"
+
+		"DOTA_Tooltip_Modifier_trick_1"		"Trick Box"
+		"DOTA_Tooltip_Modifier_trick_2"		"Trick Box"
+		"DOTA_Tooltip_Modifier_trick_3"		"Trick Box"
+
+		"DOTA_Tooltip_Modifier_trick_1_Description"		"What's inside? Find out soon!"
+		"DOTA_Tooltip_Modifier_trick_2_Description"		"What's inside? Find out soon!"
+		"DOTA_Tooltip_Modifier_trick_3_Description"		"What's inside? Find out soon!"
+
+		"DOTA_Tooltip_Modifier_trick_1_slow"		"Slow Surprise!"
+		"DOTA_Tooltip_Modifier_trick_1_stun"		"Stun Surprise!"
+		"DOTA_Tooltip_Modifier_trick_1_silence"		"Silence Surprise"!
+		"DOTA_Tooltip_Modifier_trick_2_damage_over_time"		"Poison Surprise!"
+		"DOTA_Tooltip_Modifier_trick_3_error"					"404"
+		"DOTA_Tooltip_Modifier_trick_3_error_Description"		"Number 3 not found."
+		"DOTA_Tooltip_Modifier_trick_3_confirmed"				"hl3.txt"
+		"DOTA_Tooltip_Modifier_trick_3_confirmed_Description"	"HL3 CONFIRMED!!!!1"
+		"DOTA_Tooltip_Modifier_trick_3_lie"						"THE BOX IS A LIE!"
+		"DOTA_Tooltip_Modifier_trick_3_lie_Description"			"4Head."
+
+
+
+
+
+
+
+
+
+
+		//-------------------------------------------------------------------
+		// Zeros, the Dreaded Archduke of Stonehall
+		//-------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_zeros_impose_tax"						"Impose Tax"	
+		"DOTA_Tooltip_Ability_zeros_impose_tax_Description"			"Imposes a tax upon a hero, causing the next creep they kill to give the bounty to Zeros. The hero will gradually lose movement speed while the effect persists. If they do not kill a creep before the effect expires, they will suffer from poverty, taking magical damage and losing a percentage of gold normally lost upon death."
+		"DOTA_Tooltip_Ability_zeros_impose_tax_Duration"			"EFFECT DURATION:"
+		"DOTA_Tooltip_Ability_zeros_impose_tax_Gold_loss_pct"		"%GOLD LOSS:"
+		"DOTA_Tooltip_Ability_zeros_impose_tax_Movement_slow"		"%MAX MOVEMENT SLOW:"
+
+		"DOTA_Tooltip_Ability_zeros_royal_statue"				"Royal Statue"
+		"DOTA_Tooltip_Ability_zeros_royal_statue_Description"		"Zeros places a golden statue of himself on the ground, reducing nearby enemy attack damage every second while it stands. Enemies who attack the statue also have a chance to be affected by malice if Zeros has Blade of Malice leveled."
+		"DOTA_Tooltip_Ability_zeros_royal_statue_Note0"				"Statue provides 800/800 vision."
+		"DOTA_Tooltip_Ability_zeros_royal_statue_Duration"				"STATUE DURATION:"
+		"DOTA_Tooltip_Ability_zeros_royal_statue_Health"				"STATUE HEALTH:"
+		"DOTA_Tooltip_Ability_zeros_royal_statue_Bounty"				"STATUE BOUNTY:"
+		"DOTA_Tooltip_Ability_zeros_royal_statue_Radius"				"AURA RADIUS:"
+		"DOTA_Tooltip_Ability_zeros_royal_statue_Damage_reduction"		"DAMAGE REDUCTION PER SECOND:"
+		"golden_statue"	"Golden Statue"
+
+		"DOTA_Tooltip_Ability_zeros_blade_of_malice"				"Blade of Malice"
+		"DOTA_Tooltip_Ability_zeros_blade_of_malice_Description"	"Whenever Zeros is attacked, there is a chance that the attacker will be affected by malice. When Zeros attacks an enemy with malice, he will deal critical damage and stun them, removing the malice effect. Zeros gains vision of units with malice and bonus movement speed for every unit affected by malice."
+		"DOTA_Tooltip_Ability_zeros_blade_of_malice_Proc_chance"		"%TRIGGER CHANCE:"
+		"DOTA_Tooltip_Ability_zeros_blade_of_malice_Crit_damage"		"%CRITCAL DAMAGE:"
+		"DOTA_Tooltip_Ability_zeros_blade_of_malice_Stun_duration"		"STUN DURATION:"	
+		"DOTA_Tooltip_Ability_zeros_blade_of_malice_Duration"			"MALICE DURATION:"	
+		"DOTA_Tooltip_Ability_zeros_blade_of_malice_Bonus_movement_speed"		"%BONUS MOVEMENT SPEED:"
+
+		"DOTA_Tooltip_Ability_zeros_fanaticism"						"Fanaticism"
+		"DOTA_Tooltip_Ability_zeros_fanaticism_Description"			"Zeros embraces fanaticism, granting him powerful bonuses retroactively when he is 1800 units away from his allies. Increases all damage dealt and reduces all damage received, but also drastically reduces his sight range. "
+		"DOTA_Tooltip_Ability_zeros_fanaticism_Duration"				"DURATION:"
+		"DOTA_Tooltip_Ability_zeros_fanaticism_Bonus_damage_pct"		"%BONUS DAMAGE:"
+		"DOTA_Tooltip_Ability_zeros_fanaticism_Damage_reduction_pct"	"%DAMAGE REDUCTION:"
+		"DOTA_Tooltip_Ability_zeros_fanaticism_Day_vision"				"DAY VISION:"
+		"DOTA_Tooltip_Ability_zeros_fanaticism_Night_vision"			"NIGHT VISION:"
+
+		"DOTA_Tooltip_Modifier_poverty"				"Tax Imposed"
+		"DOTA_Tooltip_Modifier_poverty_Description"			"Gradually losing movement speed. Give Zeros a last hit, or suffer from poverty!"
+		"DOTA_Tooltip_Modifier_poverty_slow"				"Poverty"
+		"DOTA_Tooltip_Modifier_poverty_slow_Description"	"Suffering from Poverty. Movement speed decreased."
+
+		"DOTA_Tooltip_Modifier_statue_aura"			"Golden Statue"
+		"DOTA_Tooltip_Modifier_statue_aura_Description"			"Emitting Golden Aura, reducing enemy damage every second."
+
+		"DOTA_Tooltip_Modifier_statue_debuff"			"Golden Aura"
+		"DOTA_Tooltip_Modifier_statue_debuff_Description"		"Greed is making you lose attack damage. Don't be tempted!"
+
+		"DOTA_Tooltip_Modifier_statue_debuff_stack"	"Damage Reduction Stacks"
+
+		"DOTA_Tooltip_Modifier_malice_debuff"		"Malice"
+		"DOTA_Tooltip_Modifier_malice_debuff_Description"		"Will be critically struck and stunned if attacked by Zeros. You made him angry!"
+
+		"DOTA_Tooltip_Modifier_malice_buff"			"Malice Buff"
+		"DOTA_Tooltip_Modifier_modifier_malice_buff_Description"	"Increased movement speed. KILL THOSE PEASANTS!"
+
+		"DOTA_Tooltip_Modifier_malice_stun"			"Stunned"
+		"DOTA_Tooltip_Modifier_malice_stun_Description"		"You have been struck by the blade of malice for daring to oppose the Duke of Stonehall."
+
+		"DOTA_Tooltip_Modifier_fanatic"				"Fanatic"
+		"DOTA_Tooltip_Modifier_fanatic_Description"			"Deals more damage and takes less damage when 1800 units away from his allies. Has drastically reduced vision."
+
+		"DOTA_Tooltip_Modifier_fanatic_buff"		"Fanatic Bonus"
+		"DOTA_Tooltip_Modifier_fanatic_buff_Description"			"Increases damage done and reduces all damage taken."
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//-------------------------------------------------------------------
+		// Zulf, the Stormhunter
+		//-------------------------------------------------------------------
+		"DOTA_Tooltip_Ability_zulf_cyclone_trap"			"Cyclone Trap"	
+		"DOTA_Tooltip_Ability_zulf_cyclone_trap_Description"		"Place a trap on the ground that cyclones the closest enemy unit who walks on it, dealing 50 magical damage and applying a strong dispel. Also reduces the target's armor for a duration."
+		"DOTA_Tooltip_Ability_zulf_cyclone_trap_Lore"			"Stormhunter's especially sadistic brand of wind magic has only improved after his fall from grace."		
+		"DOTA_Tooltip_Ability_zulf_cyclone_trap_Cast_range"		"CAST RANGE:"
+		"DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_reduction"		"ARMOR REDUCTION:"
+		"DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_duration"		"DEBUFF DURATION:"
+		"DOTA_Tooltip_Ability_zulf_cyclone_trap_Duration"		"TRAP DURATION:"
+		"DOTA_Tooltip_Ability_zulf_cyclone_trap_AOERadius"		"TRAP RADIUS:"
+
+
+		"DOTA_Tooltip_Ability_zulf_jet_stream"				"Jet Stream"
+		"DOTA_Tooltip_Ability_zulf_jet_stream_Description"		"Create a narrow, but very long strip of air turbulence that affects allies and enemies differently depending on the direction they are facing. Allies will gain increased movement speed and flying movement capabilities when facing away from the stream, while enemies will lose movement speed when facing the stream. Enemies facing the stream for an extended duration will be forcibly knocked back briefly."
+		"DOTA_Tooltip_Ability_zulf_jet_stream_Lore"			"Higher than can be imagined, at the border of sky and space, are winds so fast that any being can fly in them."
+		"DOTA_Tooltip_Ability_zulf_jet_stream_Speed_buff"		"%MOVESPEED INCREASE/DECREASE:"
+		"DOTA_Tooltip_Ability_zulf_jet_stream_Speed_increase"	"%BONUS MOVESPEED INCREASE/DECREASE PER STACK:"
+		"DOTA_Tooltip_Ability_zulf_jet_stream_Length"			"STREAM LENGTH:"
+		"DOTA_Tooltip_Ability_zulf_jet_stream_Width"			"STREAM WIDTH:"	
+		"DOTA_Tooltip_Ability_zulf_jet_stream_Duration"			"DURATION:"
+
+		"DOTA_Tooltip_Ability_zulf_gale_force"				"Gale Force"	
+		"DOTA_Tooltip_Ability_zulf_gale_force_Description"		"Summon a current of extremely fast air around you that disarms yourself and nearby enemies, dealing damage over time based on Zulf's agility."
+		"DOTA_Tooltip_Ability_zulf_gale_force_Lore"					"A Stormhunter needs no blade to kill his prey, when the wicked winds at his talontips do just the trick."	
+		"DOTA_Tooltip_Ability_zulf_gale_force_Damage_per_agility"	"DAMAGE PER AGILITY:"	
+		"DOTA_Tooltip_Ability_zulf_gale_force_Radius"				"RADIUS:"
+		"DOTA_Tooltip_Ability_zulf_gale_force_Duration"				"DURATION:"	
+
+		"DOTA_Tooltip_Ability_zulf_typhoon"				"Typhoon"	
+		"DOTA_Tooltip_Ability_zulf_typhoon_Description"			"After a long cast delay, causes all enemy units to be swept up in a large area around Zulf while channeling, shuffling their positions and dealing fall damage based on their elevation."
+		"DOTA_Tooltip_Ability_zulf_typhoon_Lore"			"The storm of the century!"
+		"DOTA_Tooltip_Ability_zulf_typhoon_Radius"			"RADIUS:"
+		"DOTA_Tooltip_Ability_zulf_typhoon_Damage"			"%DAMAGE PER ELEVATION:"
+		"DOTA_Tooltip_Ability_zulf_typhoon_Slow"			"%MOVEMENT SLOW:"
+		"DOTA_Tooltip_Ability_zulf_typhoon_Slow_duration"			"SLOW DURATION:"
+
+		"DOTA_Tooltip_Modifier_modifier_jet_stream_buff"				"Jet Stream"
+		"DOTA_Tooltip_Modifier_modifier_jet_stream_buff_increase"		"Jet Stream Stacks"
+		"DOTA_Tooltip_Modifier_modifier_jet_stream_debuff"				"Jet Stream"
+		"DOTA_Tooltip_Modifier_modifier_jet_stream_buff_decrease"		"Jet Stream Stacks"
+
+		"DOTA_Tooltip_Modifier_modifier_gale_force"							"Disarm"
+		"DOTA_Tooltip_Modifier_modifier_gale_force_Description"				"Disarms and damages based on your agility to nearby enemies in a radius around you."
+		"DOTA_Tooltip_Modifier_modifier_gale_force_disarm"					"Disarmed from Gale Force. Taking damage over time."
+
+		"DOTA_Tooltip_Modifier_typhoon"				"Typhoon"
+		"DOTA_Tooltip_Modifier_typhoon_Description"	"Channelling Typhoon"
+		"DOTA_Tooltip_Modifier_typhoon_effect"			"Typhoon Effect"
+		"DOTA_Tooltip_Modifier_typhoon_effect_Description"			"You are being sent up in the air. Enjoy the lift!"
+		"DOTA_Tooltip_Modifier_typhoon_stun"			"Airborne"
+		"DOTA_Tooltip_Modifier_typhoon_stun_Description"			"Stunned until you land"
+		"DOTA_Tooltip_Modifier_typhoon_slow"			"Slowed"
+
+			
+
+
+
+
+
+
+
+
+
+
+
+		//-------------------------------------------------------------------------------------------------------------------------
+		//
+		//
+		//
+		// 							Items
+		//
+		//
+		//
+		//-------------------------------------------------------------------------------------------------------------------------
+	
+		//-------------------------------------------------------------------
+		// Throwing Knives
+		//-------------------------------------------------------------------	
+		"DOTA_Tooltip_Ability_item_throwing_knives"			"!Throwing Knives"
+		"DOTA_Tooltip_Ability_item_throwing_knives_Description"		"Active - <bold>Throw Knife</bold>: Deals minor damage to an enemy creep from a long range, killing the creep if they are below a 10 percent hp threshold after the damage is applied."
+		"DOTA_Tooltip_Ability_item_throwing_knives_Damage"			"DAMAGE:"
+		
+		"DOTA_Tooltip_Ability_item_emperors_baton"			"!Emperor's Baton (NYI)"
+	}
+}

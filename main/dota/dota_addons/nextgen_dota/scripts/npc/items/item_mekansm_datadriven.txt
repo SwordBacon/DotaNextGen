@@ -1,0 +1,132 @@
+// Rewrite of Mekansm
+// Author: Rook
+// Date: January 26, 2015
+
+"item_mekansm_datadriven"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"item_datadriven"
+	"ID"							"1079"  //Valve's version of this item uses the ID "79".
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"Model"							"models/props_gameplay/red_box.vmdl" 
+	"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
+	"AbilityTextureName"			"item_mekansm"
+	"FightRecapLevel"				"2"
+
+	
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"					"0"
+	"ItemInitialCharges"				"0"
+	"ItemCombinable"				"0"
+	"ItemPermanent"					"1"
+	"ItemStackable"					"0"
+	"ItemRecipe"					"0"
+	"ItemDroppable"					"0"
+	"ItemPurchasable"				"0"
+	"ItemSellable"					"0"
+	"ItemRequiresCharges"				"0"
+	"ItemKillable"					"0"
+	"ItemDisassemblable"				"0"
+	"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+	"ItemDeclaresPurchase"				"0"
+	
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_all_stats"		"5"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_armor"			"5"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"aura_radius"			"750"
+		}
+		"04"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"aura_health_regen"		"4"
+		}
+		"05"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"heal_amount"			"250"
+		}
+		"06"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"heal_radius"			"750"
+		}
+		"07"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"heal_bonus_armor"		"2"
+		}
+		"08"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"heal_armor_duration"	"25.0"
+		}
+	}
+	
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_item_mekansm_consumed"
+			"Target"	"CASTER"  "Duration"   "600"
+		}
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_item_mekansm_consumed_aura_emitter"
+			"Target"	"CASTER"  "Duration"   "600"
+		}
+		"RunScript"
+		{
+			"ScriptFile"		"items/item_consumed.lua"
+			"Function"		"ConsumeItemSpendCharge"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"modifier_item_mekansm_datadriven"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_stats"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all_stats"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all_stats"
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
+				"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%aura_health_regen"
+			}
+		}
+		"modifier_item_mekansm_consumed"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"TextureName"		"item_mekansm"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_PERMANENT"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_stats"
+				"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all_stats"
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all_stats"
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
+				"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%aura_health_regen"
+			}
+		}
+	}
+}

@@ -1,0 +1,105 @@
+//=================================================================================================================
+// Viscous Ooze - Sticky Membrane
+//=================================================================================================================
+"viscous_ooze_sticky_membrane"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityTextureName"			"viscous_ooze_sticky_membrane"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	"AbilityCastRange"				"350"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"trigger_chance"		"15"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"trigger_radius"		"350"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"disarm_duration"		"2.0 2.5 3.0 3.5"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"bonus_duration"		"5.0"
+		}
+		"05"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"bonus_damage"			"30 40 50 60"
+		}
+	}
+	"precache"
+	{
+		"particle"		"particles/viscous_ooze_sticky_disarm.vpcf"
+		"particle"		"particles/units/heroes/hero_rubick/rubick_spell_steal.vpcf"
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+	}
+	"Modifiers"
+	{
+		"modifier_sticky_membrane_passive"
+		{
+			"Passive"	"1"
+			"IsHidden"	"1"
+			"OnAttacked"
+			{
+				"Random"
+				{
+					"Chance"	"%trigger_chance"
+
+		 		 	"OnSuccess"
+		  		    {
+	            		"RunScript"
+						{
+							"ScriptFile"	"heroes/hero_viscous_ooze/sticky_membrane.lua"
+							"Function"		"StickyMembraneDistanceCheck"
+							"Target"			"ATTACKER"
+							"Damage"			"%attack_damage"
+						}      
+		   			}
+				}
+			}
+		}
+		"modifier_sticky_membrane_disarm"
+		{
+			"IsDebuff"	"1"
+			"IsPurgeable"	"1"
+			"Duration"	"%disarm_duration"
+			"EffectName"		"particles/viscous_ooze_sticky_disarm.vpcf"
+			"EffectAttachType"	"follow_overhead"
+			"States"
+			{
+				"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+			"OnCreated"
+			{
+				"FireSound"
+				{
+					"EffectName"	"Hero_Bane.Enfeeble.Cast"
+					"Target" 		"TARGET"
+				}
+			}
+		}
+		"modifier_sticky_membrane_bonus"
+		{
+			"IsBuff"	"1"
+			"IsPurgeable"	"1"
+			"Duration"	"%bonus_duration"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"1"
+			}
+		}
+	}
+}

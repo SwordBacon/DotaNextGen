@@ -1,0 +1,54 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/gameinfo.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/gameinfo.js" />
+	</scripts>
+	<Panel class="GameInfo">
+		<!--
+		<Panel id="nav">
+			<Button id="howto" onactivate="OnNavButtonClicked()">
+				<Label text="#gameinfo_nav_howto" />
+			</Button>
+			<Button id="about" onactivate="OnNavButtonClicked()">
+				<Label text="#gameinfo_nav_about" />
+			</Button>
+		</Panel>
+		-->
+		<Panel class="page active-page" id="howto">
+			<Panel id="Title" class="border-bottom">
+				<Label id="TitleName" class="TitleFont" text="#addonname" />
+			</Panel>
+			<Panel id="content" class="border-bottom">
+				<Label text="#gameinfo_main_intro1" />
+				<Label text="#gameinfo_main_intro2" />
+				<Label text="#gameinfo_main_intro3" />
+				<Label text="#gameinfo_main_intro4" />
+			</Panel>
+			<Panel id="about" class="border-bottom">
+				<Label text="#gameinfo_about_author" />
+				<Label text="#gameinfo_about_specialthanks" />
+				<Panel class="list">
+					<Label text="#gameinfo_about_thanks1" />
+					<Label text="#gameinfo_about_thanks2" />
+					<Label text="#gameinfo_about_thanks3" />
+					<Label text="#gameinfo_about_thanks4" />
+					<Label text="#gameinfo_about_thanks5" />
+					<Label text="#gameinfo_about_thanks6" />
+					<Label text="#gameinfo_about_thanks7" />
+					<Label text="#gameinfo_about_thanks8" />
+					<Label text="#gameinfo_about_thanks9" />
+					<Label text="#gameinfo_about_thanks10" />
+				</Panel>
+			</Panel>
+			<Panel id="attributions">
+				<Label text="#gameinfo_attributions" />
+				<Panel class="list">
+					<Label text="#gameinfo_attributions1" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

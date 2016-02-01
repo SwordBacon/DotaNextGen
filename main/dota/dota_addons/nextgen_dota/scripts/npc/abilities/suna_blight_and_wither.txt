@@ -1,0 +1,293 @@
+//==========================================================================================================================================================
+//
+//
+//
+//
+//
+//
+// 					    			Sunagakure, the Puppeteer	
+// 
+//
+//
+//
+//
+//
+//==========================================================================================================================================================
+//==========================================================================================================================================================
+// Suna - Blight & Wither
+//==========================================================================================================================================================
+"suna_blight_and_wither"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"suna_blight_and_wither"
+	"MaxLevel" 						"4"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	"AbilityCastRange"				"675 750 825 900"
+	"AbilityCastPoint"				"0.3"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	"AnimationPlaybackRate"			"1.2"
+
+	"AOERadius"						"275"
+
+	"AbilityCooldown"				"26 22 18 14"
+	"AbilityManaCost"				"120"
+	"AbilityDamage"					"10 14 18 22"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"radius"		"275"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"movement_slow"		"-2.0 -2.5 -3.0 -3.5"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"armor_reduction"		"-0.2 -0.25 -0.3 -0.35"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"duration"			"7"
+		}
+		"05"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"creep_damage"		"5 7 9 11"
+		}
+		"06"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"creep_duration"	"14"
+		}
+	}
+	"precache"
+	{
+		"particle"  "particles/suna_blight_and_wither.vpcf"
+		"particle"  "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+		"particle"  "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"FireEffect"
+		{
+			"EffectName"        "particles/suna_blight_and_wither.vpcf"
+			"EffectAttachType"  "start_at_customorigin"
+			"Target"            "CASTER"
+			"EffectRadius"			"%radius"
+			"ControlPoints"
+			{
+				"00"				"POINT"
+			}
+		}
+		"CreateThinker"
+		{
+			"ModifierName"	"modifier_blight_thinker"
+			"Target" 		"POINT"
+		}
+		"ActOnTargets"
+		{
+			"Target"
+			{
+				"Center"  	"POINT"
+				"Radius" 	"%radius"
+				"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Types" 	"DOTA_UNIT_TARGET_HERO"
+			}
+		
+			"Action"    
+			{
+				"FireSound"
+				{
+					"EffectName"	"Hero_Undying.Decay.Target"
+					"Target" 		"TARGET"
+				}
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_blight_debuff_hero"
+					"Target" 		"TARGET"
+					"Duration"		"%duration"
+				}
+			}
+		}
+		"ActOnTargets"
+		{
+			"Target"
+			{
+				"Center"  	"POINT"
+				"Radius" 	"%radius"
+				"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Types" 	"DOTA_UNIT_TARGET_BASIC"
+			}
+		
+			"Action"    
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_blight_debuff_creep"
+					"Target" 		"TARGET"
+					"Duration"		"%creep_duration"
+				}
+			}
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_blight_thinker"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"0"
+			"Duration"			"3.0"
+		
+			"OnCreated"
+			{
+				"FireSound"
+				{
+					"EffectName"	"Hero_Undying.Decay.Cast"
+					"Target" 		"TARGET"
+				}
+			}
+		}
+		"modifier_blight_debuff_hero"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"1"
+
+			"StatusEffectName"	"particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+			"StatusEffectPriority"	"10"
+
+			"OnAttack"
+			{
+				"Damage"
+				{	
+					"Target"		"ATTACKER"
+					"Type"			"DAMAGE_TYPE_MAGICAL"
+					"Damage"		"%AbilityDamage"
+				}
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/blight_and_wither"
+					"Function"		"ApplySlowStacksOnAttack"
+				}
+				"FireEffect"
+				{
+					"EffectName"        "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "ATTACKER"
+				}
+			}
+			"OnAttacked"
+			// "%attack_damage" is set to the damage value after mitigation
+			{
+				"FireEffect"
+				{
+					"EffectName"        "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "TARGET"
+				}
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/blight_and_wither"
+					"Function"		"ApplyBlightDamage"
+				}
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/blight_and_wither"
+					"Function"		"ApplySlowStacksOnAttacked"
+				}
+			}
+			"OnDestroy"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_blight_slow_stack"
+					"Target" 		"TARGET"
+				}
+			}
+		}
+		"modifier_blight_debuff_creep"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"1"
+
+			"StatusEffectName"	"particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+			"StatusEffectPriority"	"10"
+	
+			"OnAttack"
+			{
+				"Damage"
+				{
+					"Target"		"ATTACKER"
+					"Type"			"DAMAGE_TYPE_MAGICAL"
+					"Damage"		"%AbilityDamage"
+				}
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/blight_and_wither"
+					"Function"		"ApplySlowStacksOnAttack"
+				}
+				"FireEffect"
+				{
+					"EffectName"        "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "ATTACKER"
+				}
+			}
+			"OnAttacked"
+			// "%attack_damage" is set to the damage value after mitigation
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/blight_and_wither"
+					"Function"		"ApplyBlightDamage"
+				}
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/blight_and_wither"
+					"Function"		"ApplySlowStacksOnAttacked"
+				}
+				"FireEffect"
+				{
+					"EffectName"        "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "TARGET"
+				}
+			}
+			"OnDestroy"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_blight_slow_stack"
+					"Target" 		"TARGET"
+				}
+			}
+		}
+		"modifier_blight_slow_stack"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+			"IsDebuff"			"1"
+		
+			"Properties"
+			{
+			    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow" 
+			    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_reduction"
+			}
+		}
+	}
+}

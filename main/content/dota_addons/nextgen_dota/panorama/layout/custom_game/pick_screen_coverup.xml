@@ -1,0 +1,22 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
+		<include src="file://{resources}/styles/dotastyles.css" />
+	</styles>
+	<script>
+		$.Msg("player " + Players.GetLocalPlayer() + " loaded cover screen")
+		function LoopFakeHeroEvent() {
+			if (Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) == -1) {
+				$.Msg("requesting fake hero for player " + Players.GetLocalPlayer())
+				GameEvents.SendCustomGameEventToServer("player_needs_fake_hero", {})
+				$.Schedule(2, LoopFakeHeroEvent)
+			}
+		}
+		LoopFakeHeroEvent()
+	</script>
+	<Panel class="AddonLoadingRoot">
+    	<Panel id="TitlePanel">
+    	  <Label id="AddonTitle" text="#addon_game_name" />
+    	</Panel>
+  	</Panel>
+</root>

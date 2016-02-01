@@ -1,0 +1,29 @@
+//=================================================================================================================
+// HERO: The Alpha Stryder
+//=================================================================================================================
+"hero_alpha_strider"
+{
+	"override_hero"				"npc_dota_hero_disruptor"
+	"AbilityLayout"				"5"
+	"Ability1"				"alpha_strider_static_charge"			// Ability 1
+	"Ability2"				"alpha_strider_plasma_leap"			// Ability 2
+	"Ability3"				"alpha_strider_talon_spark"			// Ability 3
+	"Ability4"				"alpha_strider_alternating_current"		// Innate
+	"Ability5"				"attribute_bonus"				
+	"Ability6"				"alpha_strider_short_circuit"			// Ultimate
+	
+
+	"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"			// Primary Attribute
+	"AttributeBaseStrength"		"14"						// Base strength
+	"AttributeStrengthGain"		"1.2"						// Strength bonus per level.
+	"AttributeBaseIntelligence"	"18"						// Base intelligence
+	"AttributeIntelligenceGain"	"2.0"						// Intelligence bonus per level.
+	"AttributeBaseAgility"		"20"						// Base agility
+	"AttributeAgilityGain"		"1.7"						// Agility bonus per level.
+	"ArmorPhysical"			"3"	
+	"AttackRate" 			"1.7"
+	"AttackRange"			"325"
+	"MovementSpeed" 		"325"
+	"AttackDamageMin"		"14"						
+	"AttackDamageMax"		"18"	
+}

@@ -1,0 +1,28 @@
+"garden_red_flower"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityTextureName"			"furion_teleportation"
+	"AOERadius"				"350"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"range"			"350"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"damage"		"40 50 60"
+		}
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+			"Function"	"PlantRed"
+		}
+	}
+}

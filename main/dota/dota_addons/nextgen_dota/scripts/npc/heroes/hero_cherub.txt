@@ -1,0 +1,25 @@
+//=================================================================================================================
+// HERO: Cherub, the Dancing Flower
+//=================================================================================================================
+"hero_cherub"
+{
+	"override_hero"				"npc_dota_hero_enchantress"
+	"Ability1"				"cherub_sleep_cloud"			// Ability 1
+	"Ability2"				"cherub_synthesis"			// Ability 2
+	"Ability3"				"cherub_explosive_spore"		// Ability 3
+	"Ability4"				"cherub_flower_garden"			// Ultimate
+
+	"AttributeBaseStrength"		"22"						// Base strength
+	"AttributeStrengthGain"		"2.3"						// Strength bonus per level.
+	"AttributeBaseIntelligence"	"25"						// Base intelligence
+	"AttributeIntelligenceGain"	"2.5"						// Intelligence bonus per level.
+	"AttributeBaseAgility"		"11"						// Base agility
+	"AttributeAgilityGain"		"1.5"						// Agility bonus per level.
+	"ArmorPhysical"			"1"	
+	"AttackRate" 			"1.7"
+	"AttackRange"			"550"
+	"ProjectileSpeed"		"900"
+	"MovementSpeed" 		"310"
+	"AttackDamageMin"		"24"						
+	"AttackDamageMax"		"28"	
+}

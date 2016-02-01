@@ -1,0 +1,28 @@
+"garden_purple_lotus"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityTextureName"			"furion_teleportation"
+	"AOERadius"				"400"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"radius"			"400"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"resistance"			"25 35 50"
+		}
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+			"Function"	"PlantPurple"
+		}
+	}
+}

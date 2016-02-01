@@ -1,0 +1,23 @@
+"Third_Eye_Blind"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"Skoros/skoros_Third_Eye_Blind"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityCooldown"				"90"
+		"AbilityCastPoint"				"0.3"
+		"AbilityManaCost"				"150"
+		"AbilityCastRange"				"70000"
+		"MaxLevel"						"1"
+		
+	
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/Skoros/Nexus.lua"
+				"Function"		"MoveToTarget"
+			}
+		}
+	}

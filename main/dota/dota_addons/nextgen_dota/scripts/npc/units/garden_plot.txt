@@ -1,0 +1,59 @@
+"garden_plot"
+{
+	"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+	"Model"						"models/props_nature/lily_flower00.vmdl"	// Model.
+	"Level"						"1"
+	"ModelScale" 				"1.8"
+
+	"precache"
+	{
+		"model"			"models/props_nature/lily_flower00.vmdl"
+	}
+	"AbilityLayout"				"6"
+	"Ability1"				"garden_white_flower"
+	"Ability2"				"garden_red_flower"
+	"Ability3"				"garden_pink_blossom"
+	"Ability4"				"garden_blue_blossom"
+	"Ability5"				"garden_yellow_daisy"
+	"Ability6"				"garden_purple_lotus"
+
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"0"			// Physical protection.
+	"MagicalResistance"			"50"			// Magical protection.
+
+	// Movement
+	//----------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
+	"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+	"MovementSpeed"				"0"			// Speed
+	"MovementTurnRate"			"0.5"		// Turning rate.
+	
+	// Bounty
+	//----------------------------------------------------------------
+	"BountyXP"				"0"		// Experience earn.
+	"BountyGoldMin"				"0"		// Gold earned min.
+	"BountyGoldMax"				"0"		// Gold earned max.
+
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"150"		// Base health.
+	"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+	"StatusMana"				"0"			// Base mana.
+	"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+	// Team
+	//----------------------------------------------------------------
+	"TeamName"				"DOTA_TEAM_GOODGUYS"			// Team name.
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"UnitRelationshipClass"			"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+	// Vision
+	//----------------------------------------------------------------
+	"VisionDaytimeRange"		"400"		// Range of vision during day light.
+	"VisionNighttimeRange"		"400"		// Range of vision at night time.
+
+	//Inventory
+	"HasInventory"				"0"
+}

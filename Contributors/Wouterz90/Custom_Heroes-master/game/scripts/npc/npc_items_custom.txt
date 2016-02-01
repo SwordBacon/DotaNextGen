@@ -1,0 +1,17 @@
+"DOTAAbilities"
+{
+	"item_heist_stolen"
+		{
+			"ID"           			"1250"
+	    	"BaseClass"    			"item_datadriven"
+	    	"AbilityTextureName" 	"item_rapier"
+	    	"Model"        			"models/props_gameplay/recipe.vmdl" 
+	    	"Effect"       			"particles/generic_gameplay/dropped_item.vpcf"
+	    	"ItemQuality"  			"common"
+			"ItemCost" 				"0"
+			"ItemKillable" 			"1" 
+			"ItemSellable" 			"0"
+			"ItemPurchasable" 		"0"
+			"ItemDroppable" 		"0"
+		}
+}

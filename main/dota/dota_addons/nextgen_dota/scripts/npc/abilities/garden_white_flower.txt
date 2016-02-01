@@ -1,0 +1,28 @@
+"garden_white_flower"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityTextureName"			"furion_teleportation"
+	"AOERadius"				"700"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"range"			"700"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"damage"		"20 25 30"
+		}
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+			"Function"	"PlantWhite"
+		}
+	}
+}

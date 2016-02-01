@@ -1,0 +1,43 @@
+"trap_receive"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityTextureName"			"rattletrap_power_cogs"  
+	"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+
+	"AbilityCooldown"	"5"
+	"AbilityCastPoint"	"0.5"
+	"AOERadius"		"200"
+
+	"OnSpellStart"
+	{
+		"FireEffect"
+		{
+			"EffectName"        "particles/econ/events/nexon_hero_compendium_2014/teleport_end_ground_drop_nexon_hero_cp_2014.vpcf"
+			"EffectAttachType"  "follow_origin"
+			"Target"            "CASTER"
+		}
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_xarax/trap_door.lua"
+			"Function"		"TrapReceive"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_trap_phased"
+		{
+			"Passive"	"0"
+			"IsHidden"	"0"
+			"IsPurgeable"	"0"
+			"Duration"	"5"
+			"States"
+			{
+				"MODIFIER_STATE_FLYING" 		"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_NO_UNIT_COLLISION" 	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+		}
+	}
+}

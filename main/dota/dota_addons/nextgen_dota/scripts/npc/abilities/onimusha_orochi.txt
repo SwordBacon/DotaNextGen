@@ -1,0 +1,197 @@
+//=================================================================================================================
+// Onimusha - Orochi
+//=================================================================================================================
+    "onimusha_orochi"
+    {
+        //general
+        "BaseClass"                             "ability_datadriven"
+        "AbilityTextureName"                    "onimusha_orochi"
+        "MaxLevel"                                              "4"
+        "TargetTeams"                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "TargetTypes"                           "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "FightRecapLevel"                               "0"
+        "AbilityDuration"                               "1"
+        "AbilityCooldown"				"60"
+        "AbilityUnitDamageType"                 "DAMAGE_TYPE_PHYSICAL"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "cooldown_timer"        		"60"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "bonus_damage"			"15 25 35 45"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "Attack_Range_tooltip"  "400 425 450 475"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "BAT"                           "1.4"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "orochi_max_charges"            "6"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "orochi_replenish_time" 		"60"
+            }
+        }
+        "precache"
+        {
+        	"model"  	"models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl"
+        	"particle"  "particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf"
+        	"particle"  "particles/econ/items/warlock/warlock_staff_hellborn/warlock_rain_of_chaos_hellborn_cast.vpcf"
+        	"particle"  "particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf"
+        	"soundfile" "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+        }
+        "OnUpgrade"
+        {               
+            "RunScript"
+            {
+                "ScriptFile"    "heroes/hero_onimusha/orochi.lua"
+                "Function"              "orochi_start_charge"
+            }    
+        }
+
+        "Modifiers"
+        {
+            "modifier_orochi_stacks"
+            {
+                "IsPurgable"            "0"
+                "IsBuff"                        "1"
+                "IsDebuff"                      "0"
+                "IsStunDebuff"          "0"
+                "IsHidden"                      "0"
+                "Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
+       
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "heroes/hero_onimusha/orochi.lua"
+                        "Function"              "orochi_On_Atk"
+                        "DamageDealt"   "%bonus_damage"
+                    }
+                }
+            }
+
+            "modifier_orochi_bloodlust"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "0"
+                "IsDebuff"                      "0"
+                "IsBuff"                        "1"
+                "Duration"                      "6"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"                  "275 300 325 350"
+                    "MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"   "%BAT"
+                }
+                "OnCreated"
+                {
+                	"RunScript"
+                	{
+                		"ScriptFile"	"heroes/hero_onimusha/orochi.lua"
+                		"Function"		"DemonForm"
+                		"model"		"models/items/warlock/golem/hellsworn_golem/hellsworn_golem.vmdl"
+                	}
+                	"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_onimusha/orochi.lua"
+					"Function"		"HideWearables"
+				}
+				"FireSound"
+				{
+					"EffectName"	"Hero_Warlock.RainOfChaos_buildup"
+					"Target" 		"CASTER"
+				}
+				"FireEffect"
+				{
+					"EffectName"        "particles/econ/items/warlock/warlock_staff_hellborn/warlock_rain_of_chaos_hellborn_cast.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "CASTER"
+				}
+				"DelayedAction"
+				{
+					"Delay"     "0.2"
+					"Action"    
+					{
+						"FireSound"
+						{
+							"EffectName"	"Hero_Warlock.RainOfChaos"
+							"Target" 		"CASTER"
+						}
+						"FireEffect"
+						{
+							"EffectName"        "particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf"
+							"EffectAttachType"  "follow_origin"
+							"Target"            "TARGET"
+						}
+						"AttachEffect"
+	                	{
+	                		"EffectName"        "particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf"
+	                		"EffectAttachType"	"start_at_customorigin"
+	                		"Target"					"CASTER"
+	                		"ControlPointEntities"
+							{
+								"TARGET"				"attach_head"
+								"TARGET"				"attach_attack1"
+								"TARGET"				"attach_attack2"
+								"TARGET"				"attach_hitloc"
+								"TARGET"				"attach_hitloc"
+							}
+	                	}
+	                	"AttachEffect"
+	                	{
+	                		"EffectName"        "particle_name"
+	                		"EffectAttachType"  "follow_origin"
+	                		"Target"            "TARGET"
+	                	}
+					}
+				}
+				
+                }
+                "OnAttackStart"
+                {
+                	"RunScript"
+                	{
+                		"ScriptFile"	"heroes/hero_onimusha/orochi.lua"
+                		"Function"		"StartAttackSound"
+                	}
+                }
+                "OnAttack"
+                {
+                	"RunScript"
+                	{
+                		"ScriptFile"	"heroes/hero_onimusha/orochi.lua"
+                		"Function"		"FinishAttackSound"
+                	}
+                }
+                "OnDestroy"
+                {
+                	"RunScript"
+                	{
+                		"ScriptFile"	"heroes/hero_onimusha/orochi.lua"
+                		"Function"		"HumanForm"
+                	}
+                	"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_onimusha/orochi.lua"
+					"Function"		"ShowWearables"
+				}
+                }
+            }
+
+        }
+    }

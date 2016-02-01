@@ -1,0 +1,147 @@
+// Rewrite of Desolator
+// Author: Rook
+// Date: February 4, 2015
+
+"item_desolator_datadriven"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"item_datadriven"
+	"ID"							"1168"  //Valve's version of this item uses the ID "168".
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"Model"							"models/props_gameplay/red_box.vmdl" 
+	"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
+	"AbilityTextureName"			"item_desolator"
+	
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"					"3500"
+	"ItemInitialCharges"				"0"
+	"ItemCombinable"				"0"
+	"ItemPermanent"					"1"
+	"ItemStackable"					"0"
+	"ItemRecipe"					"0"
+	"ItemDroppable"					"0"
+	"ItemPurchasable"				"0"
+	"ItemSellable"					"0"
+	"ItemRequiresCharges"				"0"
+	"ItemKillable"					"0"
+	"ItemDisassemblable"				"0"
+	"ItemShareability"				"ITEM_FULLY_SHAREABLE"
+	"ItemDeclaresPurchase"				"0"
+		
+	// Special	
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"bonus_damage"			"50"
+		}
+		"02"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"corruption_armor"		"-7"
+		}
+		"03"
+		{
+			"var_type"				"FIELD_FLOAT"
+			"corruption_duration"	"15.0"
+		}
+	}
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_item_desolator_consumed"
+			"Target"	"CASTER"  "Duration"   "600"
+		}
+		"RunScript"
+		{
+			"ScriptFile"		"items/item_consumed.lua"
+			"Function"		"ConsumeItemSpendCharge"
+		}
+	}		
+	"Modifiers"
+	{
+		"modifier_item_desolator_datadriven"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"						"%bonus_damage"
+			}
+			
+			"Orb"
+			{
+				"Priority"				"DOTA_ORB_PRIORITY_ITEM"
+				"ProjectileName"		"particles/items_fx/desolator_projectile.vpcf"
+				"CastAttack"			"0"
+			}
+
+			"OnOrbImpact"
+			{
+				"ApplyModifier"
+				{
+					"Target"			"TARGET"
+					"ModifierName"		"modifier_item_desolator_corruption"
+				}
+				
+				"FireSound"
+				{
+					"EffectName"		"Item_Desolator.Target"
+					"Target"			"TARGET"
+				}
+			}
+		}
+		"modifier_item_desolator_consumed"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"TextureName"		"item_desolator"
+			"Attributes" 		"MODIFIER_ATTRIBUTE_PERMANENT"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"						"%bonus_damage"
+			}
+			
+			"Orb"
+			{
+				"Priority"				"DOTA_ORB_PRIORITY_ITEM"
+				"ProjectileName"		"particles/items_fx/desolator_projectile.vpcf"
+				"CastAttack"			"0"
+			}
+
+			"OnOrbImpact"
+			{
+				"ApplyModifier"
+				{
+					"Target"			"TARGET"
+					"ModifierName"		"modifier_item_desolator_corruption"
+				}
+				
+				"FireSound"
+				{
+					"EffectName"		"Item_Desolator.Target"
+					"Target"			"TARGET"
+				}
+			}
+		}
+		"modifier_item_desolator_datadriven_corruption"
+		{
+			"Duration"				"%corruption_duration"
+			"Passive"				"0"
+			"IsHidden"				"0"
+			
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%corruption_armor"
+			}
+		}
+	}
+}

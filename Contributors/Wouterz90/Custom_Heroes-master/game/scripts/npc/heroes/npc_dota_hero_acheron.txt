@@ -1,0 +1,12 @@
+"npc_dota_hero_acheron"
+{
+	"override_hero"				"npc_dota_hero_kunkka"
+	"AbilityLayout" 			"4"
+	"Ability1"					"Maelstrom"
+	"Ability2"					"Swirling Embrace"
+	"Ability3"					"Glowing Ice"
+	"Ability4"					"Simulate delay!"
+	"Ability5"					""
+	"Ability6"					""
+	"Ability7"					"attribute_bonus"
+}

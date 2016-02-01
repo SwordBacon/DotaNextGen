@@ -1,0 +1,28 @@
+"garden_pink_blossom"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityTextureName"			"furion_teleportation"
+	"AOERadius"				"500"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"radius"			"500"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"heal_amount"			"7 11 15"
+		}
+	}
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_cherub/flower_garden.lua"
+			"Function"	"PlantPink"
+		}
+	}
+}

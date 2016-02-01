@@ -1,0 +1,259 @@
+//==============================================================================================================================================================
+//
+//
+//	
+//
+//
+//
+//								Viscous Ooze
+//
+//
+//
+//
+//
+//
+//==============================================================================================================================================================
+
+//=================================================================================================================
+// Viscous Ooze - Slime Trail
+//=================================================================================================================
+"viscous_ooze_slime_trail"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityTextureName"			"viscous_ooze_slime_trail"
+
+	"AbilityCooldown"				"2.0"
+	"AbilityCastPoint"				"0"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"damage"			"12.5 20 27.5 35"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"radius"			"150"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"slow"				"-10 -12 -14 -16"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"duration"			"35"
+		}
+		"05"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"self_damage"			"0.6"
+		}
+		"06"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"tick_rate"			"1.0"
+		}
+		"07"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"slime_distance"	"50"
+		}
+		"08"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"phase_delay"		"2.5"
+		}
+	}
+	"precache"
+	{
+		"particle"  "particles/viscous_ooze_slime_trail.vpcf"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+	}
+	"OnToggleOn"
+	{
+		"CreateThinker"
+	 	{
+	 		"ModifierName"	"modifier_slime_puddle_thinker"
+	 		"Target" 		"CASTER"
+	 	}	
+		"ApplyModifier"
+		{
+			"Target"		"CASTER"
+			"ModifierName"	"modifier_slime_puddle_buff"
+		}
+		"ApplyModifier"
+		{
+			"Target"		"CASTER"
+			"ModifierName"	"modifier_slime_puddle_phase_timer"
+		}
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_viscous_ooze/slime_trail.lua"
+			"Function"		"SlimeTrailInitializeCaster"
+		}
+	}
+	"OnToggleOff"
+	{
+		"RemoveModifier"
+		{
+			"Target"	"CASTER"
+			"ModifierName"	"modifier_slime_puddle_buff"
+		}
+		"RemoveModifier"
+		{
+			"Target"	"CASTER"
+			"ModifierName"	"modifier_slime_puddle_phase_timer"
+		}
+		"RemoveModifier"
+		{
+			"Target"		"CASTER"
+			"ModifierName"	"modifier_slime_puddle_phased"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_slime_puddle_buff"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsBuff"			"1"
+
+			"ThinkInterval"	"0.03"
+
+			"OnIntervalThink"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_slime_puddle_creator"
+					"Target"	"CASTER"
+				}
+
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_viscous_ooze/slime_trail.lua"
+					"Function"		"SlimeTrailDistanceCheck"
+					"damage"		"%self_damage"
+				}
+			}
+		}
+		"modifier_slime_puddle_phase_timer"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+
+			"ThinkInterval"			"%phase_delay"
+			"OnIntervalThink"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_slime_puddle_phased"
+					"Target"	"CASTER"
+				}
+			}
+			"OnTakeDamage"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_viscous_ooze/slime_trail.lua"
+					"Function"		"SlimeTrailDisablePhase"
+					"damage"		"%attack_damage"
+				}
+			}
+		}
+		"modifier_slime_puddle_phased"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsBuff"			"1"
+
+			"States"
+			{
+				"MODIFIER_STATE_NO_UNIT_COLLISION" 	"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_FLYING"			"MODIFIER_STATE_VALUE_ENABLED"
+			}
+			"OnDestroy"
+			{
+				"DestroyTrees"
+				{
+					"Radius"	"128"
+				}
+			}
+		}
+		"modifier_slime_puddle_creator"
+		{
+			"IsHidden"	"1"
+			"OnDestroy"
+			{
+				"CreateThinker"
+				{
+					"ModifierName"	"modifier_slime_puddle_thinker"
+					"Target"	"CASTER"
+				}
+			}
+		}
+		"modifier_slime_puddle_thinker"
+		{
+			"Aura"				"modifier_slime_puddle_debuff"
+			"Aura_Radius"			"%radius"
+			"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+			"Aura_Flags"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			"Duration"				"%duration"
+
+			"OnCreated"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_viscous_ooze/slime_trail.lua"
+					"Function"		"SlimeTrailInitializeCaster"
+				}
+				"FireSound"
+				{
+					"EffectName" 	"Hero_Alchemist.AcidSpray.Damage"
+					"Target"		"CASTER"
+				}
+				"AttachEffect"
+				{
+					"EffectName"		"particles/viscous_ooze_slime_trail.vpcf"
+					"EffectAttachType"	"follow_origin"
+					"Target"			"TARGET"
+					"ControlPoints"
+					{
+						"00" "0 0 0"
+						"01" "%radius 1 1"
+						"15" "0 15 0"
+						"16" "1 0 0"
+					}
+				}
+			}
+		}
+		"modifier_slime_puddle_debuff"
+		{
+			"IsDebuff"		"1"
+			"ThinkInterval"	"%tick_rate"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+			}
+			
+			"OnIntervalThink"
+			{
+				"Damage"
+				{
+					"Target"		 "TARGET"
+					"Type"			 "DAMAGE_TYPE_MAGICAL"
+					"Damage"		 "%damage"
+				}
+			}
+		}
+	}
+}

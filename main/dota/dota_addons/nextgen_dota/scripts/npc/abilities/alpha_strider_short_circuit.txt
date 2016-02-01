@@ -1,0 +1,96 @@
+//=================================================================================================================
+// Alpha Stryder - Short Circuit
+//=================================================================================================================
+"alpha_strider_short_circuit"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"disruptor_static_storm"
+	"MaxLevel" 				"3"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+
+	"AbilityCooldown"				"0"
+	"AbilityManaCost"				"200 100 50"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"damage"			"10"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"radius"			"350"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"targets"			"1 2 3"
+		}
+	}
+	"precache"
+	{
+		"particle"	"particles/units/heroes/hero_razor/razor_static_link_beam.vpcf"
+		"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+			"EffectName"	"Hero_ShadowShaman.EtherShock"
+			"Target" 		"CASTER"
+		}
+		"FireSound"
+		{
+			"EffectName"	"Hero_ShadowShaman.EtherShock.Target"
+			"Target" 		"CASTER"
+		}
+		"FireEffect"
+		{
+			"EffectName"        "particles/units/heroes/hero_disruptor/disruptor_staticstrom_inits.vpcf"
+			"EffectAttachType"  "follow_origin"
+			"Target"            "CASTER"
+		}
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_alpha_strider/short_circuit.lua"
+			"Function"		"RefreshCooldowns"
+		}
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_short_circuit"
+			"Target" 		"CASTER"
+			"Duration"		"%duration"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_short_circuit"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+			"IsDebuff"			"0"
+			"Duration"			"1.0"
+
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"EffectName"		"particles/units/heroes/hero_razor/razor_static_link_beam.vpcf"
+					"EffectAttachType"	"attach_hitloc"
+					"Target"			"TARGET"
+					
+					"ControlPointEntities"
+					{
+						"CASTER"	"attach_hitloc"
+						"TARGET"	"attach_hitloc"
+					}
+				}
+			}	
+		}
+	}
+}

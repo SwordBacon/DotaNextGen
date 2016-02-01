@@ -1,0 +1,30 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/main.css" />
+		<include src="s2r://panorama/styles/popups/popups_shared.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/main.js" />
+	</scripts>
+	<Panel class="main" hittest="false">
+		<Panel id="alert" hittest="false">
+			<Label id="alert-text" hittest="false" />
+		</Panel>
+		<Panel id="tips" class="dialog hidden">
+			<Label id="tips-header" text="#lorem_ipsum" />
+			<Panel id="tips-contents">
+				<Panel id="tips-top-container">
+					<Label id="tip-1" text="#lorem_ipsum" />
+					<DOTAHeroImage heroimagestyle="portrait" id="tips-heroimage" />
+				</Panel>
+				<Label id="tip-2" text="#lorem_ipsum" />
+				<Label id="tip-3" text="#lorem_ipsum" />
+			</Panel>
+			<ToggleButton id="tips-dont-show-again" text="#tips_dont_show_again" />
+			<Button id="tips-close" class="big-red-button" onactivate="CloseTips()">
+				<Label text="#close" />
+			</Button>
+		</Panel>
+	</Panel>
+</root>
