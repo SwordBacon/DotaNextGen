@@ -14,3 +14,5 @@
 #other stuff
 *.psd
 *.xcf
+
+settings.kv
