@@ -1,0 +1,86 @@
+//==========================================================================================================================================================
+//
+//
+//
+//
+//
+//
+// 					    			Vardor, the Yari Archmage
+//									Original concept and code provided by Nibuja
+//
+//
+//
+//
+//
+//
+//==========================================================================================================================================================
+"vardor_celestial_yari"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMIDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET  | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+	"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+	"FightRecapLevel"               "2"
+	"AbilityTextureName"			"clinkz_searing_arrows"
+	"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+	"AbilityProcsMagicStick"		"1"
+
+	"AbilityCooldown"				"80.0 70.0 60.0"
+	"precache"
+	{
+		"particle"  "particles/items_fx/black_king_bar_overhead.vpcf"
+	}
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"duration"			"30 30 30"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_celestial"
+			"Target" 		"CASTER"
+			"Duration"		"%duration"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_celestial"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"0"
+
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"EffectName"        "particles/items_fx/black_king_bar_overhead.vpcf"
+					"EffectAttachType"  "follow_overhead"
+					"Target"            "CASTER"
+				}
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_vardor/vardor_celestial_yari"
+					"Function"		"Celestial"
+					"duration"		"%duration"
+				}
+			}
+			"OnDestroy"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_vardor/vardor_celestial_yari"
+					"Function"		"CelestialDestroy"
+				}
+			}
+		}
+	}
+}

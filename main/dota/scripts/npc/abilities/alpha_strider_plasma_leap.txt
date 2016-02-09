@@ -1,0 +1,130 @@
+//=================================================================================================================
+// Alpha Stryder - Plasma Leap
+//=================================================================================================================
+"alpha_strider_plasma_leap"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"disruptor_glimpse"
+	"MaxLevel" 						"4"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+	"AbilityCastRange"				"550 700 850 1000"
+	"AbilityCastPoint"				"0.15"
+	"AbilityCastAnimation"			"ACT_DOTA_FLAIL"
+
+	"AbilityCooldown"				"5.0"
+	"AbilityManaCost"				"50"
+	"AbilityDamage"					"30 50 70 90"
+	"AbilityProcsMagicStick"		"1"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"range"			"550 700 850 1000"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"radius"			"250"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"duration"			"0.85"
+		}
+	}
+	"precache"
+	{
+		"particle"  "particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+			"EffectName"	"Hero_Disruptor.ThunderStrike.Target"
+			"Target" 		"CASTER"
+		}
+
+		"ActOnTargets"
+		{
+			"Target"
+			{
+				"Center"  	"CASTER"
+				"Radius" 	"%radius"
+				"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+			}
+		
+			"Action"    
+			{
+				"Damage"
+				{
+					"Target"		"TARGET"
+					"Type"			"DAMAGE_TYPE_MAGICAL"
+					"Damage"		"%AbilityDamage"
+				}
+			}
+		}
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_alpha_strider/plasma_leap"
+			"Function"		"LeapDistance"
+			"Target"		"POINT"
+		}
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_alpha_strider/alternating_current.lua"
+			"Function"		"BeginCooldown"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_plasma_leap"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"0"
+	
+			"States"
+			{
+				"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+			}
+			"OnDestroy"
+			{
+				"FireSound"
+				{
+					"EffectName"	"Hero_Disruptor.ThunderStrike.Target"
+					"Target" 		"CASTER"
+				}
+
+				"ActOnTargets"
+				{
+					"Target"
+					{
+						"Center"  	"CASTER"
+						"Radius" 	"%radius"
+						"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+						"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					}
+					
+					"Action"    
+					{
+						"Damage"
+						{
+							"Target"		"TARGET"
+							"Type"			"DAMAGE_TYPE_MAGICAL"
+							"Damage"		"%AbilityDamage"
+						}
+					}
+				}
+			}
+		}
+	}
+}

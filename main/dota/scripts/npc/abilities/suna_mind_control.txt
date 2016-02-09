@@ -1,0 +1,155 @@
+"suna_mind_control"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"suna_vicissitude"
+	"MaxLevel" 						"4"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+	"AbilityCastRange"				"475"
+	"AbilityCastPoint"				"0.0"
+	"AbilityChannelTime"			"2.5 3.0 3.5 4.0"
+	"AbilityManaCost"				"110 130 150 170"
+	"AbilityCooldown"				"2.0"
+	"AnimationPlaybackRate"			"0.6"
+	"AbilityProcsMagicStick"		"1"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"duration"			"2.5 3.0 3.5 4.0"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"movement_slow"		"-55 -50 -45 -40"
+		}
+	}
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_vicissitude_effect"
+			"Target" 		"CASTER"
+			"Duration"		"%duration"
+		}
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_suna/vicissitude.lua"
+			"Function"		"MindControlAdd"
+		}
+		"RemoveModifier"
+		{
+			"ModifierName"	"modifier_vicissitude_burrow"
+			"Target" 		"CASTER"
+		}
+	}
+	"OnChannelFinish"
+	{
+		"RemoveModifier"
+		{
+			"ModifierName"	"modifier_vicissitude"
+			"Target" 		"TARGET"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_vicissitude_effect"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"0"
+
+			"StatusEffectName" 		"particles/status_fx/status_effect_invisible.vpcf" 	   
+			"StatusEffectPriority"  "10"
+		
+			"States"
+			{
+				"MODIFIER_STATE_COMMAND_RESTRICTED"   "MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_INVISIBLE"   			"MODIFIER_STATE_VALUE_ENABLED"
+			}
+		}
+		"modifier_vicissitude"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"1"
+			"IsPurgeable"		"1"
+
+			"Properties"
+			{
+			    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow" 
+			}
+			"States"
+			{
+				"MODIFIER_STATE_SILENCED"			"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_MUTED"				"MODIFIER_STATE_VALUE_ENABLED"
+			}
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"EffectName"		"particles/suna_puppeteer.vpcf"
+					"EffectAttachType"	"attach_hitloc"
+					"Target"			"TARGET"
+					
+					"ControlPointEntities"
+					{
+						"CASTER"	"attach_attack1"
+						"TARGET"	"attach_attack1"
+					}
+				}
+				"AttachEffect"
+				{
+					"EffectName"		"particles/suna_puppeteer.vpcf"
+					"EffectAttachType"	"attach_hitloc"
+					"Target"			"TARGET"
+					
+					"ControlPointEntities"
+					{
+						"CASTER"	"attach_attack2"
+						"TARGET"	"attach_attack2"
+					}
+				}
+			}
+			"OnDestroy"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/vicissitude.lua"
+					"Function"		"MindControlRemove"
+				}
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_vicissitude_effect"
+					"Target" 		"CASTER"
+				}
+			}
+			"OnDealDamage"
+			// "%attack_damage" is set to the damage value after mitigation
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/vicissitude"
+					"Function"		"MindControlKill"
+					"Damage"		"%attack_damage"
+				}
+			}
+			"OnTakeDamage"
+			// "%attack_damage" is set to the damage value after mitigation
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_suna/vicissitude"
+					"Function"		"MindControlDie"
+					"Damage"		"%attack_damage"
+				}
+			}
+		}
+	}
+}

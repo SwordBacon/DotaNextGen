@@ -1,0 +1,256 @@
+//=================================================================================================================
+// Veera - Pursuit (replacement of Evasive Roll)
+//=================================================================================================================
+"veera_pursuit"
+{
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+	"AbilityTextureName"			"veera_evasive_roll"
+	"AbilityProcsMagicStick"		"1"
+
+	"AbilityCastRange"			"1200"
+	"AbilityCastPoint"			"0.15"
+	"AbilityCooldown"			"17 15 13 11"
+	"AbilityManaCost"			"90"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"movement_bonus"		"50"
+		}			
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"movement_damage"		"10 15 20 25"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"movement_slow"			"-25 -30 -35 -40"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"duration"			"4.0"
+		}
+	}
+	"precache"
+	{
+		"particle"  	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+		"particle" 		"particles/status_fx/status_effect_rupture.vpcf" 
+		"particle"  	"particles/status_fx/status_effect_beserkers_call.vpcf"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_veera.vsndevts"
+	}
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_pursuit_buff"
+			"Target" 		"CASTER"
+			"Duration"		"5.0"
+		}
+		"ApplyModifier"
+		{
+			"ModifierName"	"modifier_pursuit_vision"
+			"Target" 		"TARGET"
+		}
+		"FireSound"
+		{
+			"EffectName"	"Hero_Veera.Pursuit"
+			"Target" 		"CASTER"
+		}
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_veera/pursuit.lua"
+			"Function"		"PursuitAttack"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_pursuit_buff"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsBuff"			"1"
+
+			"StatusEffectName" 		"particles/status_fx/status_effect_beserkers_call.vpcf" 	   
+			"StatusEffectPriority"  "10"
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "200"
+			    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_bonus"
+			}
+			"States"
+			{
+				"MODIFIER_STATE_FLYING"		"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+	
+			"OnAttackStart"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_pursuit_orb"
+					"Target" 		"CASTER"
+					"Duration"		"0.9"
+				}
+			}
+			"ThinkInterval"  "0.1"
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_veera/pursuit.lua"
+					"Function"		"CheckPursuit"
+				}
+			}
+			"OnDestroy"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_veera/pursuit.lua"
+					"Function"		"RemoveForceAttack"
+				}
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_veera/pursuit.lua"
+					"Function"		"RollInitiate"
+				}
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_pursuit_vision"
+					"Target" 		"TARGET"
+				}
+				"FireSound"
+				{
+					"EffectName"	"Hero_Veera.Pursuit.Jump"
+					"Target" 		"TARGET"
+				}
+				"DestroyTrees"
+				{
+					"Target" 		"CASTER"
+					"Radius"		"150"
+				}
+			}
+		}
+		"modifier_pursuit_orb"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+		
+			"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_2"
+		
+			"OnAttackLanded"
+			// "%attack_damage" is set to the damage value before mitigation
+			{
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_pursuit_buff"
+					"Target" 		"CASTER"
+				}
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_pursuit_orb"
+					"Target" 		"CASTER"
+				}
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_pursuit_vision"
+					"Target" 		"TARGET"
+				}
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_pursuit_debuff"
+					"Target" 		"TARGET"
+					"Duration"		"%duration"
+				}
+				"FireEffect"
+				{
+					"EffectName"        "particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "TARGET"
+				}
+				"FireSound"
+				{
+					"EffectName"	"Hero_BountyHunter.Jinada"
+					"Target" 		"TARGET"
+				}
+			}
+		}
+		"modifier_pursuit_vision"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"1"
+			"IsPurgable" 		"0"
+
+			"States"
+			{
+				"MODIFIER_STATE_INVISIBLE"		"MODIFIER_STATE_VALUE_DISABLED"
+			}
+
+			"ThinkInterval"  "0.03"
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_veera/pursuit.lua"
+					"Function"		"PursuitVision"
+				}
+			}
+			"OnDestroy"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_pursuit_buff"
+					"Target" 		"CASTER"
+				}
+			}
+		}
+		"modifier_pursuit_debuff"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsDebuff"			"1"
+
+			"StatusEffectName" 		"particles/status_fx/status_effect_rupture.vpcf" 	   
+			"StatusEffectPriority"  "10"
+		
+			"Properties"
+			{
+			    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow" 
+			}
+			"ThinkInterval"  "1.0"
+			"OnIntervalThink"
+			{
+				"FireEffect"
+				{
+					"EffectName"        "particles/veera_pursuit_damage.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "TARGET"
+				}
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_veera/pursuit.lua"
+					"Function"		"PursuitDamage"
+				}
+			}
+			"OnDestroy"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/hero_veera/pursuit.lua"
+					"Function"		"RemoveForceAttack"
+				}
+			}
+		}
+	}
+}

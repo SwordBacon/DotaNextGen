@@ -1,0 +1,55 @@
+//==========================================================================================================================================================
+//
+//
+//
+//
+//
+//
+// 					    			The Alpha Stryder	
+//									Original concept by /u/TheGreatGimmick
+//
+//
+//
+//
+//
+//==========================================================================================================================================================
+//=================================================================================================================
+// Alpha Stryder - Alternating Current
+//=================================================================================================================
+"alpha_strider_alternating_current"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"razor_plasma_field"
+	"MaxLevel" 				"1"
+
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+	"AbilityCooldown"			"1.0"
+
+	"precache"
+	{
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+	}
+
+	"OnSpellStart"
+	{
+		"RemoveModifier"
+		{
+			"ModifierName"	"modifier_alternating_current_stacks"
+			"Target" 		"CASTER"
+		}
+		"FireSound"
+		{
+			"EffectName"	"Hero_StormSpirit.Overload"
+			"Target" 		"CASTER"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_alternating_current_stacks"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsPurgable"		"0"	
+		}
+	}
+}

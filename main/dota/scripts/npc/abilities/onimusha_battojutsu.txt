@@ -1,0 +1,333 @@
+//=================================================================================================================
+// Onimusha - BATTOJUTSU
+//=================================================================================================================
+    "onimusha_battojutsu"
+    {
+   		"BaseClass"             		"ability_datadriven"
+   		"AbilityTextureName"			"onimusha_battojutsu"
+   		"MaxLevel" 						"3"
+
+   		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+   		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+   		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+   		"AbilityCooldown"				"35 25 20"
+
+   		"AbilityCastPoint"				"0.0"
+   		"AbilityProcsMagicStick"		"1"
+
+   		"AbilitySpecial"
+   		{
+   			"01"
+   			{
+   				"var_type"		"FIELD_FLOAT"
+   				"duration"		"5.0"
+   			}
+   			"02"
+   			{
+   				"var_type"		"FIELD_INTEGER"
+   				"range"			"310"
+   			}
+   			"03"
+   			{
+   				"var_type"		"FIELD_INTEGER"
+   				"high_range"	"825 950 1075"
+   			}
+   			"03"
+   			{
+   				"var_type"		"FIELD_INTEGER"
+   				"damage_penalty"	"-40 -30 -20"
+   			}
+   			"03"
+   			{
+   				"var_type"		"FIELD_INTEGER"
+   				"damage_tooltip"	"60 70 80"
+   			}
+   		}
+   		"precache"
+   		{
+   			"particle"  "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf"
+   			"particle"  "particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_start_ring_arcana_flag_fire.vpcf"
+   			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_a.vpcf"
+   			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_b.vpcf"
+   			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_c.vpcf"
+   			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_d.vpcf"
+   			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_e.vpcf"
+   			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_f.vpcf"
+   			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_g.vpcf"
+   			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+   			"soundfile" "soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+   			"soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+   		}
+   		"OnUpgrade"
+   		{
+   			"LevelUpAbility"
+   			{
+   				"Target" 		"CASTER"
+   				"AbilityName"	"onimusha_battojutsu_q"
+   			}
+   			"LevelUpAbility"
+   			{
+   				"Target" 		"CASTER"
+   				"AbilityName"	"onimusha_battojutsu_w"
+   			}
+   			"LevelUpAbility"
+   			{
+   				"Target" 		"CASTER"
+   				"AbilityName"	"onimusha_battojutsu_e"
+   			}
+   			"LevelUpAbility"
+   			{
+   				"Target" 		"CASTER"
+   				"AbilityName"	"onimusha_battojutsu_r"
+   			}
+   			"LevelUpAbility"
+   			{
+   				"Target" 		"CASTER"
+   				"AbilityName"	"onimusha_battojutsu_rr"
+   			}
+   		}
+   		"OnSpellStart"
+   		{
+   			"ApplyModifier"
+   			{
+   				"ModifierName"	"modifier_battojutsu"
+   				"Target" 		"CASTER"
+   				"Duration"		"%duration"
+   			}
+		"ApplyModifier"
+   			{
+   				"ModifierName"	"modifier_battojutsu_enemy"
+   				"Target" 		"TARGET"
+   				"Duration"		"%duration"
+   			}
+   		}
+   		"Modifiers"
+   		{
+   			"modifier_battojutsu"
+   			{
+   				"Passive"			"0"
+   				"IsHidden"			"0"
+   				"IsDebuff"			"0"
+   		
+   				"EffectName"		"particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf"
+   				"EffectAttachType"	"follow_origin"
+			
+				"OnCreated"
+   				{
+   					"RunScript"
+   					{
+   						"ScriptFile"	"heroes/hero_onimusha/battojutsu.lua"
+   						"Function"		"SwapBasicAbilities"
+   					}
+   					"AttachEffect"
+   					{
+   						"EffectName"        "particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_start_ring_arcana_flag_fire.vpcf"
+   						"EffectAttachType"  "follow_origin"
+   						"Target"            "CASTER"
+   					}
+					"FireSound"
+   					{
+   						"EffectName"	"Hero_Sven.GodsStrength"
+   						"Target" 		"CASTER"
+   					}
+				}
+				"OnDestroy"
+   				{
+   					"RunScript"
+   					{
+   						"ScriptFile"	"heroes/hero_onimusha/battojutsu.lua"
+   						"Function"		"SwapUltimateAbilities"
+   					}
+   				}
+   			}
+   			"modifier_battojutsu_attack"
+   			{
+   				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				"OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%damage_penalty"
+				}
+   			}
+   			"modifier_battojutsu_final_strike_a"
+   			{
+   				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				"OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+	
+				"OnAttack"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_a.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.OmniSlash"
+						"Target" 		"CASTER"
+					}
+				}
+   			}
+   			"modifier_battojutsu_final_strike_b"
+   			{
+   				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				"OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+	
+				"OnAttack"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_b.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.OmniSlash"
+						"Target" 		"TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_EmberSpirit.FireRemnant.Stop"
+						"Target" 		"TARGET"
+					}
+				}
+   			}
+   			"modifier_battojutsu_final_strike_c"
+   			{
+   				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				"OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+	
+				"OnAttack"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_c.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.OmniSlash"
+						"Target" 		"TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_EmberSpirit.FireRemnant.Stop"
+						"Target" 		"TARGET"
+					}
+				}
+   			}
+   			"modifier_battojutsu_final_strike_d"
+   			{
+   				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				"OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+	
+				"OnAttack"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_d.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.OmniSlash"
+						"Target" 		"TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_EmberSpirit.FireRemnant.Stop"
+						"Target" 		"TARGET"
+					}
+				}
+   			}
+   			"modifier_battojutsu_final_strike_e"
+   			{
+   				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				"OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+	
+				"OnAttack"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_e.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.OmniSlash"
+						"Target" 		"TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_EmberSpirit.FireRemnant.Stop"
+						"Target" 		"TARGET"
+					}
+				}
+   			}
+   			"modifier_battojutsu_final_strike_f"
+   			{
+   				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				"OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+	
+				"OnAttack"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_f.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.OmniSlash"
+						"Target" 		"TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_EmberSpirit.FireRemnant.Stop"
+						"Target" 		"TARGET"
+					}
+				}
+   			}
+   			"modifier_battojutsu_final_strike_g"
+   			{
+   				"IsPurgable"				"0"
+				"IsHidden"					"1"
+				"OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+	
+				"OnAttack"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_g.vpcf"
+						"EffectAttachType"  "follow_overhead"
+						"Target"            "TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.OmniSlash"
+						"Target" 		"TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_EmberSpirit.FireRemnant.Stop"
+						"Target" 		"TARGET"
+					}
+				}
+   			}
+   		}
+    }

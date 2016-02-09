@@ -1,0 +1,48 @@
+//==========================================================================================================================================================
+// Suna - Kyonshi
+//==========================================================================================================================================================
+"suna_kyonshi"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"suna_kyonshi"
+	"MaxLevel" 						"3"
+
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+	"AbilityProcsMagicStick"		"1"
+
+	"AbilityCooldown"				"2.0"
+	"AbilityManaCost"				"120 140 160"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"duration"		"6.5 7.75 9.0"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"	"heroes/hero_suna/dead_mans_chest.lua"
+			"Function"		"KyonshiRevive"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_kyonshi"
+		{
+			"Passive"			"0"
+			"IsHidden"			"0"
+			"IsPurgeable"		"0"
+	
+			"StatusEffectName" 		"particles/status_fx/status_effect_ghost.vpcf" 	   
+			"StatusEffectPriority"  "10"
+		}
+	}
+}

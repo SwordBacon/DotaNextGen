@@ -1,0 +1,64 @@
+//================================================================================================
+// Ability: Reality Shift
+// Status/Todo: 
+// 
+//================================================================================================
+"edgewalker_reality_shift"
+{
+	"ScriptFile"					"heroes/hero_edgewalker/edgewalker_reality_shift.lua"
+	"BaseClass"             		"ability_lua"
+	"AbilityTextureName"			"edgewalker_reality_shift"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+	"AbilityCooldown"				"110 80 50"
+	"AbilityManaCost"				"175 200 225"
+	"AbilityProcsMagicStick"		"1"
+
+	"AbilitySpecial"
+	{	
+		"01"		
+		{		
+			"var_type"						"FIELD_FLOAT"
+			"ward_duration"					"9"
+		}		
+		"02"		
+		{		
+			"var_type"						"FIELD_FLOAT"
+			"aura_range"					"325"
+		}		
+		"03"		
+		{		
+			"var_type"						"FIELD_FLOAT"
+			"explosion_damage"				"180 270 360"
+		}		
+		"04"		
+		{		
+			"var_type"						"FIELD_FLOAT"
+			"root_duration"					"1.5"
+		}		
+		"05"		
+		{		
+			"var_type"						"FIELD_FLOAT"
+			"debuff_value"					"35"
+		}		
+		"06"		
+		{		
+			"var_type"						"FIELD_FLOAT"
+			"parent_buff_value"				"0 20 40"
+		}
+		"07"
+		{		
+			"var_type"						"FIELD_FLOAT"
+			"stickiness"					"1.5"
+		}
+		"08"
+		{		
+			"var_type"						"FIELD_FLOAT"
+			"charge_cooldown"				"110 80 50"
+		}
+	}
+}
