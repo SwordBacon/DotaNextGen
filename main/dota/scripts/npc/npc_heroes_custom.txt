@@ -37,10 +37,12 @@
 		"override_hero"				"npc_dota_hero_bloodseeker"
 		"InternalName"				"Bellatrix"
 		"AbilityLayout" 			"4"
-		"Ability1"					"blood_rake"
-		"Ability2"					"unholy_ecstasy"
-		"Ability3"					"rip_and_tear"
-		"Ability4"					"live_transfusion"
+		"Ability1"					"bellatrix_blood_rake"
+		"Ability2"					"bellatrix_blood_cross"
+		//"Ability1"					"ixhotil_gore_left"
+		//"Ability2"					"ixhotil_gore_right"
+		"Ability3"					"bellatrix_unholy_ecstasy"
+		"Ability4"					"bellatrix_live_transfusion"
 		"Ability5"					""
 		"Ability6"					""
 		"Ability7"					"attribute_bonus"	
@@ -218,6 +220,30 @@
 		"StatusHealth"				"180"
 	}
 	//=================================================================================================================
+	// HERO: Cherub, the Dancing Flower
+	//=================================================================================================================
+	"hero_ixhotil"
+	{
+		"override_hero"			"npc_dota_hero_bristleback"
+		"Model" 				"models/creeps/neutral_creeps/n_creep_thunder_lizard/n_creep_thunder_lizard_big.vmdl"
+		"AbilityLayout"			"4"
+		"Ability1"				"ixhotil_gore_left"			// Ability 1
+		"Ability2"				"ixhotil_gore_right"			// Ability 2
+	
+		"AttributeBaseStrength"		"22"						// Base strength
+		"AttributeStrengthGain"		"2.3"						// Strength bonus per level.
+		"AttributeBaseIntelligence"	"25"						// Base intelligence
+		"AttributeIntelligenceGain"	"2.5"						// Intelligence bonus per level.
+		"AttributeBaseAgility"		"11"						// Base agility
+		"AttributeAgilityGain"		"1.5"						// Agility bonus per level.
+		"ArmorPhysical"			"1"	
+		"AttackRate" 			"1.7"
+		"ProjectileSpeed"		"900"
+		"MovementSpeed" 		"310"
+		"AttackDamageMin"		"24"						
+		"AttackDamageMax"		"28"	
+	}
+	//=================================================================================================================
 	// HERO: Karnage, the Keen Commander (NYI)
 	//=================================================================================================================
 	"hero_keen_commander"
@@ -329,10 +355,11 @@
 	{
 		"override_hero"				"npc_dota_hero_clinkz"
 		"AbilityLayout"				"4"
-		"Ability1"					"Arbalest"
-		"Ability2"					"Blackout"
-		"Ability3"					"Auspice"
-		"Ability4"					"Nexus"
+		"Ability1"					"skoros_Arbalest"
+		"Ability2"					"skoros_Blackout"
+		"Ability3"					"skoros_Auspice"
+		"Ability4"					"skoros_Nexus"
+		"Ability5"					"skoros_Arbalest_Attack"
 		"Ability6"					""
 		"Ability7"					"attribute_bonus"
 	
@@ -402,6 +429,21 @@
 		"ProjectileSpeed"		"900"
 		"AttackDamageMin"		"30"					
 		"AttackDamageMax"		"40"	
+	}
+	//=================================================================================================================
+	// HERO: Uther, the Lightbringer
+	//=================================================================================================================
+	"hero_uther"
+	{
+		"override_hero"				"npc_dota_hero_omniknight"
+		"AbilityLayout" 			"5"
+		"Ability1"					"uther_hurl_hammer"
+		"Ability2"					"uther_threatening_bolt"
+		"Ability3"					"uther_argent_smite"
+		"Ability4"					"uther_omniscience"
+		"Ability5"					"uther_hail_back"
+		"Ability6"					""
+		"Ability7"					"attribute_bonus"
 	}
 	//=================================================================================================================
 	// HERO: Vardor, the Yari Archmage
@@ -512,8 +554,8 @@
 		"ArmorPhysical"			"2"	
 		"AttackRate" 			"1.7"
 		"MovementSpeed" 		"290"
-		"AttackDamageMin"		"15"						
-		"AttackDamageMax"		"33"	
+		"AttackDamageMin"		"18"						
+		"AttackDamageMax"		"36"	
 	}
 	//=================================================================================================================
 	// HERO: Zeros, the Archduke of Stonehall
@@ -524,7 +566,7 @@
 		"Ability1"				"zeros_impose_tax"		// Ability 1
 		"Ability2"				"zeros_royal_statue"
 		"Ability3"				"zeros_blade_of_malice"
-		"Ability4"				"zeros_fanaticism"
+		"Ability4"				"zeros_gerrymandering"
 		
 		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"		// Primary Attribute
 		"AttributeBaseStrength"		"20"						// Base strength

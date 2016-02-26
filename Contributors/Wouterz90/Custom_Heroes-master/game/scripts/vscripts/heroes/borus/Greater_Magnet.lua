@@ -33,7 +33,6 @@ function greater_magnet_field (keys)
 	-- Base it on position? Fits the magnetic theme and rewards smart magnetic uses.
 
 
-
 	
 end
 	
@@ -45,7 +44,9 @@ function start_greater_magnet (keys)
 	local duration = ability:GetLevelSpecialValueFor("duration", ability:GetLevel() -1)
 	local radius = ability:GetSpecialValueFor("radius")-100
 	
-
+	caster.greater_magnet_cast_point_increase = ability:GetLevelSpecialValueFor("cast_point_increase", ability:GetLevel() -1)
+	caster.greater_magnet_attackspeed_increase = ability:GetLevelSpecialValueFor("attackspeed_increase", ability:GetLevel() -1)
+	caster.greater_magnet_ms_increase = ability:GetLevelSpecialValueFor("ms_increase", ability:GetLevel() -1)
 
 	local random = RandomFloat(0, 1)
 	if not (caster:HasModifier("Positive_Charge_Magnetic") or caster:HasModifier("Negative_Charge_Magnetic")) then

@@ -80,7 +80,7 @@
 
 		"OnProjectileHitUnit"
 		{
-			"DeleteOnHit"	"1"
+			"DeleteOnHit"	"0"
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_slice_and_dice_dash"

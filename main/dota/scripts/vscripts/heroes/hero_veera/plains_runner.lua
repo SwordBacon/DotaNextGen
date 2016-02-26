@@ -41,6 +41,7 @@ function PlainsRunnerDistanceCheck( keys )
 	
 	while caster.distance >= check_distance do
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_plains_runner_bonus", {})
+		if stacks == nil then stacks = caster:GetModifierStackCount("modifier_plains_runner_bonus", ability) end
 		stacks = stacks + 1
 		caster:SetModifierStackCount("modifier_plains_runner_bonus", ability, math.floor(stacks))
 		caster.distance = caster.distance - check_distance

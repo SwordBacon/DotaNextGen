@@ -40,7 +40,6 @@
 					<Label text="#gameinfo_about_thanks7" />
 					<Label text="#gameinfo_about_thanks8" />
 					<Label text="#gameinfo_about_thanks9" />
-					<Label text="#gameinfo_about_thanks10" />
 				</Panel>
 			</Panel>
 			<Panel id="attributions">

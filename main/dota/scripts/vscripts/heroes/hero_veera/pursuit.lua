@@ -2,12 +2,10 @@ function PursuitAttack (keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local movementDamage = ability:GetLevelSpecialValueFor("movement_damage", ability:GetLevel() - 1)
-	print(caster:GetTeam())
+	local movementDamage = ability:GetLevelSpecialValueFor("movement_damage", ability:GetLevel() - 1) / 100
 
 	caster:SetForceAttackTarget(target)
-	target:MakeVisibleToTeam(caster:GetTeam(), 5)
-	pursuitDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()) * movementDamage / 100 + 0.6
+	pursuitDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()) * movementDamage + 0.6
 	pursuitTarget = target
 
 	if pursuitDamage < 0 then pursuitDamage = 0.6 end
@@ -22,13 +20,14 @@ function CheckPursuit( keys )
 	local target_loc = target:GetAbsOrigin()
 	local distance = (caster_loc - target_loc):Length2D()
 
+	ability:CreateVisibilityNode(target_loc, 30, 0.15)
+
 	if distance < 300 then
 		if target:IsUnselectable() or target:IsAttackImmune() or target:IsInvulnerable() or not target:IsAlive() then
 			caster:RemoveModifierByName("modifier_pursuit_buff")
 			pursuitTarget:RemoveModifierByName("modifier_pursuit_vision")
 		end
 	end
-
 end
 
 
@@ -46,6 +45,27 @@ function PursuitDamage( keys )
         DamageTable.ability = ability
 
     ApplyDamage(DamageTable)
+
+    local amount = pursuitDamage
+
+    local armor = target:GetPhysicalArmorValue()
+    local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
+    amount = amount - (amount * damageReduction)
+
+    local lens_count = 0
+    for i=0,5 do
+        local item = caster:GetItemInSlot(i)
+        if item ~= nil and item:GetName() == "item_aether_lens" then
+            lens_count = lens_count + 1
+        end
+    end
+    
+    amount = amount * (1 + (.08 * lens_count))
+
+
+    amount = math.floor(amount)
+
+    PopupNumbers(target, "crit", Vector(204, 0, 0), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
 end
 
 

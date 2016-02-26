@@ -75,10 +75,6 @@ function PiercingShotCast(keys)
 		end
 		ability:ApplyDataDrivenModifier(caster, caster, modifierName2, {Duration = duration + 5})
 		
-
-
-		
-
 	else
 
 

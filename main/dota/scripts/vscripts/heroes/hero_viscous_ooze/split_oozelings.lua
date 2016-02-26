@@ -1,21 +1,20 @@
 function SplitOozelingsInitialize()
 	oozeling_charges = 0
 	damage_counter = 0
-	print("test")
-	print(oozeling_charges)
-	print(damage_counter)
 end
 
 function SplitOozelingsCharges( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local damage = keys.DamageTaken
-	print(damage)
+
+	oozeling_charges = oozeling_charges or 0
 	
 	local max_charges = ability:GetLevelSpecialValueFor("max_charges", (ability:GetLevel() - 1))
 	local threshold = ability:GetLevelSpecialValueFor("threshold", (ability:GetLevel() - 1))
+	if damage_counter == nil then damage_counter = damage end
 	damage_counter = damage_counter + damage
-	print(damage_counter)
+
 	while (damage_counter > threshold) do
 		if oozeling_charges < max_charges then
 			oozeling_charges = oozeling_charges + 1
@@ -29,7 +28,6 @@ function SplitOozelingsCharges( keys )
 			end
 		end
 		damage_counter = damage_counter - threshold
-		print(damage_counter)
 	end
 end
 
@@ -109,7 +107,9 @@ function OozelingTracker( keys )
 	local units = FindUnitsInRadius(target:GetTeamNumber(), target:GetAbsOrigin(), nil, contact_radius, target_team, target_types, target_flags, FIND_CLOSEST, false)
 
 	if #units > 0 then
-		target:ForceKill(true)
+		Timers:CreateTimer(0.3, function()
+			target:ForceKill(true)
+		end)
 	end
 end
 
@@ -118,7 +118,6 @@ function OozelingAttack( keys )
 end
 
 function OozelingDeath( keys )
-	print( keys.target:GetHealth() )
 	if not keys.target:IsAlive() then
 		local particleName = "particles/viscous_ooze_toxic_ooze.vpcf"
 		local soundEventName = "Ability.SandKing_CausticFinale"

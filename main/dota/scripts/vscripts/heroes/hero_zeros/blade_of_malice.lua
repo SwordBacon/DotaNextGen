@@ -4,7 +4,7 @@ function MaliceOrbCheck( keys )
 	local target = keys.target
 
 	if target:HasModifier("modifier_malice_debuff") then
-		ability:ApplyDataDrivenModifier(caster, caster, "modifier_malice_orb", {duration=0.9})
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_malice_orb", {duration=0.7})
 		caster:EmitSound("Hero_SkeletonKing.CriticalStrike")
 	end
 end

@@ -13,7 +13,19 @@ function RestoreMana( keys )
 	caster:GiveMana(mana)
 
 	local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	burnAmount = mana * burnAmount
 	for _,v in pairs(targets) do
-		v:ReduceMana(mana * burnAmount)
+		PopupSparkBurn(keys, v, burnAmount)
+		v:ReduceMana(burnAmount)
 	end
+end
+
+function PopupSparkBurn(keys, target, burn_amount)
+    local caster = keys.caster
+    local ability = keys.ability
+    local amount = math.floor(burn_amount)
+
+    if target:GetMana() > 0 then
+    	PopupNumbers(target, "mana_loss", Vector(0, 153, 255), 2.0, amount, POPUP_SYMBOL_PRE_MINUS, nil)
+    end
 end

@@ -1,0 +1,60 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Vardor
+	//=================================================================================================================
+	"npc_dota_hero_phantom_lancer"
+	{
+		"override_hero"				"npc_dota_hero_phantom_lancer"			// Hero to override
+		"Ability1"					"vardor_piercing_shot"			// Ability 1
+		"Ability2"					"vardor_graceful_jump"			// Ability 2
+		"Ability3"					"vardor_mental_thrusts"			// Ability 3
+		"Ability4"					"vardor_celestial_yari"			// Ultimate
+		"Ability6"					"vardor_return_of_the_yari"		// Bonus Ability
+		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
+	
+		"Model"		"models/heroes/phantom_lancer/phantom_lancer.vmdl"
+			"Portrait"		"vgui/hud/heroportraits/portrait_phantom_lancer"
+			"SoundSet"		"Hero_PhantomLancer"
+			"Enabled"		"1"
+			"HeroUnlockOrder"		"2"
+			"Role"			"Nuker,Disabler,Initiator,Escape"
+			"Rolelevels"	"2,1,1,1"
+			"Team"		"Good"
+			"HeroID"		"12"
+			"NameAliases"		"vd"
+			"PickSound"		"phantom_lancer_plance_spawn_01"
+			"BanSound"		"phantom_lancer_plance_anger_06"
+			"CMEnabled"		"1"
+			"ModelScale"		"0.840000"
+			"LoadoutScale"		"0.970000"
+			"url"		"Phantom_Lancer"
+			"LastHitChallengeRival"		"npc_dota_hero_juggernaut"
+			"HeroSelectSoundEffect"		"Hero_PhantomLancer.Pick"
+			"ArmorPhysical"		"3"
+			"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+			"AttackDamageMin"		"26"
+			"AttackDamageMax"		"38"
+			"AttackRate"		"1.700000"
+			"AttackAnimationPoint"		"0.500000"
+			"AttackAcquisitionRange"		"600"
+			"AttackRange"		"128"
+			"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
+			"AttributeBaseStrength"		"22"
+			"AttributeStrengthGain"		"2.300000"
+			"AttributeBaseIntelligence"		"28"
+			"AttributeIntelligenceGain"		"2.700000"
+			"AttributeBaseAgility"		"14"
+			"AttributeAgilityGain"		"1.600000"
+			"StatusHealthRegen"		"1.000000"
+			"MovementSpeed"		"305"
+			"MovementTurnRate"		"0.600000"
+			"HasAggressiveStance"		"1"
+			"particle_folder"		"particles/units/heroes/hero_phantom_lancer"
+			"HealthBarOffset"		"190"
+			"BoundsHullName"		"DOTA_HULL_SIZE_SMALL"
+			"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"VoiceFile"		"soundevents/voscripts/game_sounds_vo_phantom_lancer.vsndevts"
+	
+	}
+}

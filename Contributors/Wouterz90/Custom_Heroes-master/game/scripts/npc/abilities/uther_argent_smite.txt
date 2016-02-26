@@ -1,0 +1,118 @@
+"Argent_Smite"
+{
+	"BaseClass"             		"ability_datadriven"
+	"AbilityTextureName"			"uther/uther_Argent_Smite"
+	"MaxLevel" 						"4"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"Cooldown_Factor"	"0.4"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"Cooldown_Chance"	"15 17 19 21"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"Range_Bonus"		"110 170 230 290"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"Heal_Factor"		"0.75 1 1.25 1.5"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_specially_deniable"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+			"IsDebuff"			"0"
+	
+			"EffectName"		""
+			"EffectAttachType"	"follow_origin"
+
+
+			"States"
+			{
+				"MODIFIER_STATE_SPECIALLY_DENIABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+			}
+			"OnCreated"
+			{
+				"FireEffect"
+				{
+					"EffectName"        ""
+					"EffectAttachType"  "follow_origin"
+					"Target"            "TARGET"
+				}
+			}
+
+			"OnAttacked"
+			// "%attack_damage" is set to the damage value after mitigation
+			{
+				
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/uther/Argent_Smite.lua"
+					"Function"		"HealingAttack"
+					"DamageTaken"	"%attack_damage"
+				}
+			}
+
+			"OnDeath"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_argent_smite"
+					"Target" 		"CASTER"
+				}
+			}
+			"OnTeleported"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName"	"modifier_argent_smite"
+					"Target" 		"CASTER"
+				}
+			}
+		}
+
+		"modifier_argent_smite"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+			"IsDebuff"			"0"
+			
+			
+			
+		
+			"EffectName"		""
+			"EffectAttachType"	"follow_origin"
+
+			"Properties"
+			{
+			    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%Range_Bonus" 
+			}
+		}
+		"modifier_argent_smite_orb"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+			"IsDebuff"			"0"
+			"Orb"
+			{
+				"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
+				"ProjectileName"    ""
+				"CastAttack"		"1"
+			}
+		}
+	}
+}

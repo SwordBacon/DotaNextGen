@@ -9,7 +9,18 @@ function GardenCheck( keys )
 		caster:Stop()
 		caster:RemoveModifierByName("modifier_garden_channel")
 	end
-	
+end
+
+function SetAbilityLevel( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+
+
+	for i=0,5 do
+		local flowerAbility = target:GetAbilityByIndex(i)
+		flowerAbility:SetLevel(ability:GetLevel())
+	end
 end
 
 function PlantSetHealth( keys )
@@ -17,9 +28,10 @@ function PlantSetHealth( keys )
 	local owner = caster:GetOwner()
 	local target = keys.target
 	local ability = keys.ability
-	local health = ability:GetLevelSpecialValueFor("flower_health", ability:GetLevel() - 1 )
-	local whiteDamage = ability:GetLevelSpecialValueFor("white_flower_damage", ability:GetLevel() - 1 )
-	local redDamage = ability:GetLevelSpecialValueFor("red_flower_damage", ability:GetLevel() - 1 )
+	local abilityLevel = ability:GetLevel()
+	local health = ability:GetLevelSpecialValueFor("flower_health", abilityLevel - 1 )
+	local whiteDamage = ability:GetLevelSpecialValueFor("white_flower_damage", abilityLevel - 1 )
+	local redDamage = ability:GetLevelSpecialValueFor("red_flower_damage", abilityLevel - 1 )
 	
 	print(target:GetUnitName())
 	print(health)
@@ -35,6 +47,13 @@ function PlantSetHealth( keys )
 		target:SetBaseDamageMin(redDamage - 10)
 		target:SetBaseDamageMax(redDamage + 10)
 	end
+end
+
+function DamageCooldown( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+
+	ability:StartCooldown(3)
 end
 
 function PlantWhite( keys )

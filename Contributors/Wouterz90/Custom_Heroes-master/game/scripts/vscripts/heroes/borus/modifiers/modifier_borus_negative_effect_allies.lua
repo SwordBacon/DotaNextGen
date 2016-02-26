@@ -3,6 +3,11 @@ if modifier_borus_negative_effect_allies == nil then
 end
 
 
+function modifier_borus_negative_effect_allies:OnCreated()
+	if IsServer() then
+		print(self:GetCaster().greater_magnet_ms_increase)
+	end
+end
 function modifier_borus_negative_effect_allies:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -12,9 +17,13 @@ function modifier_borus_negative_effect_allies:DeclareFunctions()
 end
 
 function modifier_borus_negative_effect_allies:GetModifierAttackSpeedBonus_Constant(params)
-	return self.attackspeed_increase
+	if IsServer() then
+		return self:GetCaster().greater_magnet_attackspeed_increase
+	end
 end
 
 function modifier_borus_negative_effect_allies:GetModifierMoveSpeedBonus_Percentage (params)
-	return self.ms_increase
+	if IsServer() then
+		return self:GetCaster().greater_magnet_ms_increase
+	end
 end

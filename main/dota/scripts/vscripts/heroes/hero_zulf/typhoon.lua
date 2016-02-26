@@ -63,14 +63,34 @@ function TyphoonSpinEffect( keys )
 			FindClearSpaceForUnit(target, target:GetAbsOrigin(), false) 
 			
 			local damageTable = {}
-			damageTable.attacker = caster
-			damageTable.victim = target
-			damageTable.damage_type = ability:GetAbilityDamageType()
-			damageTable.ability = ability
-			damageTable.damage = fallDamage
-			print(damageTable)
+
+				damageTable.attacker = caster
+				damageTable.victim = target
+				damageTable.damage_type = ability:GetAbilityDamageType()
+				damageTable.ability = ability
+				damageTable.damage = fallDamage
 	
 			ApplyDamage(damageTable)
+
+			local amount = fallDamage
+
+	        local armor = target:GetPhysicalArmorValue()
+	        local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
+	        amount = amount - (amount * damageReduction)
+
+		    local lens_count = 0
+		    for i=0,5 do
+		        local item = caster:GetItemInSlot(i)
+		        if item ~= nil and item:GetName() == "item_aether_lens" then
+		            lens_count = lens_count + 1
+		        end
+		    end
+		    amount = amount * (1 + (.08 * lens_count))
+
+    		amount = math.floor(amount)
+
+    		PopupNumbers(target, "damage", Vector(255, 26, 26), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+
 			return nil
 		end
 		return 1/30

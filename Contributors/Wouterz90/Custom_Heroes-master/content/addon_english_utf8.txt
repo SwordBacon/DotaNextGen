@@ -1,0 +1,526 @@
+﻿	"lang"
+	{
+		"Language"		"English"
+		"Tokens"
+		{		
+			"addon_game_name"			"PlayDotA Allstars"
+					// DOTA 2 MODKIT GENERATED TOOLTIPS FOR: superstrength
+			// Keys already defined in addon_english.txt are not listed, nor are Modifiers with the property "IsHidden" "1".
+
+			// ******************** HEROES ********************
+
+			// ******************** UNITS ********************
+			"npc_magnet_unit"                                                                 "Magnet Unit"
+			"npc_dota_hero_base"                                                              "Dota Hero Base"
+			"npc_dota_hero_bloodseeker" 														"!Bellatrix!"
+			"npc_dota_hero_juggernaut"															"!Rasetsumaru!"
+			"npc_dota_hero_pudge"																"!FATMAN!"
+			"npc_dota_hero_razor"																"!Borus!"
+			"npc_dota_hero_tinker"																"!Whizzi!"
+			"npc_dota_hero_clinkz"																"!Skoros!"
+			"npc_dota_hero_beastmaster"															"!Eurus!"
+			"npc_dota_hero_omniknight"															"!!Uther!!"
+
+			// ******************** ABILITY MODIFIERS ********************
+
+			"DOTA_Tooltip_Modifier_guard"                                                     "Modifier Guard"
+			"DOTA_Tooltip_Modifier_guard_Description"                                         "Blocks units and returns an attack"
+
+			"DOTA_Tooltip_modifier_guard_reflected"                                           "Guard Reflected"
+			"DOTA_Tooltip_modifier_guard_reflected_Description"                               "Outdated"
+
+			"DOTA_Tooltip_modifier_orochi_stacks"                                             "Orochi Stacks"
+			"DOTA_Tooltip_modifier_orochi_stacks_Description"                                 "Deal bonus damage per stack, on 0 transforms"
+
+			"DOTA_Tooltip_modifier_orochi_bloodlust"                                          "Orochi Bloodlust"
+			"DOTA_Tooltip_modifier_orochi_bloodlust_Description"                              "How you like me now"
+
+			"DOTA_Tooltip_Battojutsu_maim"                                                    "Battojutsu Maim"
+			"DOTA_Tooltip_Battojutsu_maim_Description"                                        ""
+
+			"DOTA_Tooltip_Battojutsu_Ryumeisen"                                               "Battojutsu Ryumeisen"
+			"DOTA_Tooltip_Battojutsu_Ryumeisen_Description"                                   ""
+
+			"DOTA_Tooltip_Battojutsu_Rairyusen"                                               "Battojutsu Rairyusen"
+			"DOTA_Tooltip_Battojutsu_Rairyusen_Description"                                   ""
+
+			"DOTA_Tooltip_BloodRake_hit"                                                      "BloodRake Hit"
+			"DOTA_Tooltip_BloodRake_hit_Description"                                          "You were hit by bloodrake, you will soon move to the sword"
+
+			"DOTA_Tooltip_MarkLocation"                                                       "MarkLocation"
+			"DOTA_Tooltip_MarkLocation_Description"                                           ""
+
+			"DOTA_Tooltip_Blood_Visual"                                                       "Blood Visual"
+			"DOTA_Tooltip_Blood_Visual_Description"                                           ""
+
+			"DOTA_Tooltip_modifier_bellatrix_thinker_buff_aura"                               "Bellatrix Thinker Buff Aura"
+			"DOTA_Tooltip_modifier_bellatrix_thinker_buff_aura_Description"                   ""
+
+			"DOTA_Tooltip_modifier_live_transfusion_buff"                                     "Live Transfusion Buff"
+			"DOTA_Tooltip_modifier_live_transfusion_buff_Description"                         "You stand in Bellatrix blood, your movement speed is increased."
+
+			"DOTA_Tooltip_modifier_bellatrix_thinker_debuff_aura"                             "Bellatrix Thinker Debuff Aura"
+			"DOTA_Tooltip_modifier_bellatrix_thinker_debuff_aura_Description"                 ""
+
+			"DOTA_Tooltip_modifier_live_transfusion_debuff"                                   "Live Transfusion Debuff"
+			"DOTA_Tooltip_modifier_live_transfusion_debuff_Description"                       "You stand in Bellatrix blood, your movement speed is decreased and you take damage over time based on your health"
+
+			"DOTA_Tooltip_modifier_live_transfusion_stack_counter_datadriven"                 "Live Transfusion Stack Counter Datadriven"
+			"DOTA_Tooltip_modifier_live_transfusion_stack_counter_datadriven_Description"     "Number of charges"
+
+			"DOTA_Tooltip_Damage_Reduction"                                                   "Damage Reduction"
+			"DOTA_Tooltip_Damage_Reduction_Description"                                       "You take less damage by the ecstasy of caused by your pain"
+
+			"DOTA_Tooltip_Unholy_Ecstasy_Bonus_Damage"                                        "Unholy Ecstasy Bonus Damage"
+			"DOTA_Tooltip_Unholy_Ecstasy_Bonus_Damage_Description"                            "Your next attack deals extra damage based on the damage that was dealt to you during Unholy Ecstasy"
+
+			"DOTA_Tooltip_Presence_of_the_Fat_Man_aura1"                                      "Presence Of The Fat Man Aura1"
+			"DOTA_Tooltip_Presence_of_the_Fat_Man_aura1_Description"                          "You are around a very fat person who is starving you to death. You are losing health based on his hp"
+
+			"DOTA_Tooltip_OnDestroy"                                                          "OnDestroy"
+			"DOTA_Tooltip_OnDestroy_Description"                                              ""
+
+			"DOTA_Tooltip_minisleep"                                                          "Minisleep"
+			"DOTA_Tooltip_minisleep_Description"                                              ""
+
+			"DOTA_Tooltip_maelstrom_ministun"                                                 "Maelstrom Ministun"
+			"DOTA_Tooltip_maelstrom_ministun_Description"                                     ""
+
+			"DOTA_Tooltip_maelstrom_slow_aura"                                                "Maelstrom Slow Aura"
+			"DOTA_Tooltip_maelstrom_slow_aura_Description"                                    ""
+
+			"DOTA_Tooltip_maelstrom_slow"                                                     "Maelstrom Slow"
+			"DOTA_Tooltip_maelstrom_slow_Description"                                         ""
+
+			"DOTA_Tooltip_maelstrom_speed_aura"                                               "Maelstrom Speed Aura"
+			"DOTA_Tooltip_maelstrom_speed_aura_Description"                                   ""
+
+			"DOTA_Tooltip_maelstrom_speed"                                                    "Maelstrom Speed"
+			"DOTA_Tooltip_maelstrom_speed_Description"                                        ""
+
+			"DOTA_Tooltip_Swirling_Embrace_Start_Slow"                                        "Swirling Embrace Start Slow"
+			"DOTA_Tooltip_Swirling_Embrace_Start_Slow_Description"                            ""
+
+			"DOTA_Tooltip_Swirling_Embrace_mid_slow1"                                         "Swirling Embrace Mid Slow1"
+			"DOTA_Tooltip_Swirling_Embrace_mid_slow1_Description"                             ""
+
+			"DOTA_Tooltip_Swirling_Embrace_mid_slow2"                                         "Swirling Embrace Mid Slow2"
+			"DOTA_Tooltip_Swirling_Embrace_mid_slow2_Description"                             ""
+
+			"DOTA_Tooltip_Swirling_Embrace_mid_slow3"                                         "Swirling Embrace Mid Slow3"
+			"DOTA_Tooltip_Swirling_Embrace_mid_slow3_Description"                             ""
+
+			"DOTA_Tooltip_metal_rod_leash"                                                    "Metal Rod Leash"
+			"DOTA_Tooltip_metal_rod_leash_Description"                                        "You are tied to the magnet"
+			"DOTA_Tooltip_metal_rod_modifier_dummy"                                           "Metal Rod Modifier Dummy"
+			"DOTA_Tooltip_metal_rod_modifier_dummy_Description"                               ""
+
+			"DOTA_Tooltip_ddosed"                                                             "Ddosed"
+			"DOTA_Tooltip_ddosed_Description"                                                 "You have problems controlling your hero"
+
+			"DOTA_Tooltip_Disconnected"                                                       "Disconnected"
+			"DOTA_Tooltip_Disconnected_Description"                                           "You are disconnected from your team!"
+
+			"DOTA_Tooltip_protect"                                                            "Protect"
+			"DOTA_Tooltip_protect_Description"                                                ""
+
+			"DOTA_Tooltip_Ads_Everywhere"                                                     "Ads Everywhere"
+			"DOTA_Tooltip_Ads_Everywhere_Description"                                         "Slows the next spell from anyone who damaged you"
+
+			"DOTA_Tooltip_Scamming"                                                           "Scamming"
+			"DOTA_Tooltip_Scamming_Description"                                               "Whizzi is scamming"
+
+			"DOTA_Tooltip_Arbalest"                                                           "Arbalest"
+			"DOTA_Tooltip_Arbalest_Description"                                               ""
+
+			"DOTA_Tooltip_arbalest_attack"                                                    "Arbalest Attack"
+			"DOTA_Tooltip_arbalest_attack_Description"                                        ""
+
+			"DOTA_Tooltip_modifier_blackout"                                                  "Blackout"
+			"DOTA_Tooltip_modifier_blackout_Description"                                      "Orders have a chance of getting cancelled"
+
+			"DOTA_Tooltip_modifier_block_commands"                                            "Block Commands"
+			"DOTA_Tooltip_modifier_block_commands_Description"                                ""
+
+			"DOTA_Tooltip_modifier_Auspice"                                                   "Auspice"
+			"DOTA_Tooltip_modifier_Auspice_Description"                                       ""
+
+			"DOTA_Tooltip_modifier_auspice_ghosts"                                            "Auspice Ghosts"
+			"DOTA_Tooltip_modifier_auspice_ghosts_Description"                                ""
+
+			"DOTA_Tooltip_no_collision"                                                       "No Collision"
+			"DOTA_Tooltip_no_collision_Description"                                           ""
+
+			"DOTA_Tooltip_Nexus_on_ally"                                                      "Nexus On Ally"
+			"DOTA_Tooltip_Nexus_on_ally_Description"                                          "This hero carries a part of Skoros with him"
+
+			"DOTA_Tooltip_Nexus_ManaSpent"                                                    "Nexus ManaSpent"
+			"DOTA_Tooltip_Nexus_ManaSpent_Description"                                        ""
+
+			"DOTA_Tooltip_modifier_bird_position"                                             "Bird Position"
+		"DOTA_Tooltip_modifier_bird_position_Description"                                 ""
+
+		"DOTA_Tooltip_modifier_feather_barrage_dummy"                                     "Feather Barrage"
+		"DOTA_Tooltip_modifier_feather_barrage_dummy_Description"                         "Your bird is shooting feathers to target location, the closer you are the more damage they deal"
+
+		"DOTA_Tooltip_momentum_charges"                                                   "Momentum Charges"
+		"DOTA_Tooltip_momentum_charges_Description"                                       "Your movement speed is being increased and will deal damamge based on the extra movement speed you have."
+
+		"DOTA_Tooltip_modifier_slice_and_dice_dash"                                       "Slice And Dice Dash"
+		"DOTA_Tooltip_modifier_slice_and_dice_dash_Description"                           ""
+
+		"DOTA_Tooltip_modifier_swirlwind"                                                 "Swirlwind"
+		"DOTA_Tooltip_modifier_swirlwind_Description"                                     "Your movement speed is increased"
+
+		"DOTA_Tooltip_modifier_swirlwind_stun"                                            "Swirlwind Stun"
+		"DOTA_Tooltip_modifier_swirlwind_stun_Description"                                ""
+
+		"DOTA_Tooltip_Bulldozed"                                                          "Bulldozed"
+		"DOTA_Tooltip_Bulldozed_Description"                                              "You are pushed to the ground, you can't move"
+
+		"DOTA_Tooltip_modifier_Magnetic_Echo"                                             "Magnetic Echo"
+		"DOTA_Tooltip_modifier_Magnetic_Echo_Description"                                 "You echoing magnetic waves around, dealing damage to heroes around"
+
+		"DOTA_Tooltip_metal_rod_stack_counter"                                            "Metal Rod Stack Counter"
+		"DOTA_Tooltip_metal_rod_stack_counter_Description"                                "Number of magnets you have in stock"
+
+		"DOTA_Tooltip_modifier_Power_Surge"                                               "Power Surge"
+		"DOTA_Tooltip_modifier_Power_Surge_Description"                                   "Gives you the force to push units damaging you away"
+
+
+			// ******************** ITEM MODIFIERS ********************
+			"DOTA_Tooltip_Modifier_Pewter_Spyglass_Vision"                                    "Modifier Pewter Spyglass Vision"
+			"DOTA_Tooltip_Modifier_Pewter_Spyglass_Vision_Description"                        ""
+
+
+			// ******************** ABILITIES ********************
+			"DOTA_Tooltip_Ability_Dash"  														"Dash"  
+			"DOTA_Tooltip_Ability_Dash_Description"  											"Ratsumaru dashes forward, dealing his int + agi as damage to everyone in his path"
+			//"DOTA_Tooltip_ability_Dash_AoE"                                                   "AOE:"
+			//"DOTA_Tooltip_ability_Dash_MovementRange"                                         "MOVEMENTRANGE:"
+			//"DOTA_Tooltip_ability_Dash_MovementRange_BL"                                      "MOVEMENTRANGE BL:"
+			//"DOTA_Tooltip_ability_Dash_DashMovementSpeed"                                     "DASHMOVEMENTSPEED:"
+
+			"DOTA_Tooltip_Ability_Orochi"  														"Orochi"  
+			"DOTA_Tooltip_Ability_Orochi_Description"  											"When Ratsumaru attacks he deals X times his intelligence times the amount of Orochi charges as bonus damage. When Orochi charges run out, Ratsumaru gets bloodlusted, giving him bonus attack range and a 1.4 BAT. Lasts 6 seconds."
+			"DOTA_Tooltip_Ability_Orochi_int_multiplier_tooltip" 								"X:"
+			"DOTA_Tooltip_Ability_Orochi_Attack_Range_tooltip" "								Bonus attack range:"
+
+			//"DOTA_Tooltip_ability_Battojutsu(E)_amakakeru_cull"                               "AMAKAKERU CULL:"
+			//"DOTA_Tooltip_ability_Battojutsu(E)_battojutsu_aoe"                               "BATTOJUTSU AOE:"
+			//"DOTA_Tooltip_ability_Battojutsu(E)_battojutsu_effect_duration"                   "BATTOJUTSU EFFECT DURATION:"
+			//"DOTA_Tooltip_ability_Battojutsu(E)_ryukansen_movement_decrease"                  "RYUKANSEN MOVEMENT DECREASE:"
+			//"DOTA_Tooltip_ability_Battojutsu(E)_battojutsu_extra_range"                       "BATTOJUTSU EXTRA RANGE:"
+			//"DOTA_Tooltip_ability_Battojutsu(E)_window"                                       "WINDOW:"
+			//"DOTA_Tooltip_ability_Battojutsu(E)_CD"                                           "CD:"
+
+			//"DOTA_Tooltip_ability_W"                                                          "W"
+			//"DOTA_Tooltip_ability_W_Description"                                              ""
+			//"DOTA_Tooltip_ability_W_amakakeru_cull"                                           "AMAKAKERU CULL:"
+			//"DOTA_Tooltip_ability_W_battojutsu_aoe"                                           "BATTOJUTSU AOE:"
+			//"DOTA_Tooltip_ability_W_battojutsu_effect_duration"                               "BATTOJUTSU EFFECT DURATION:"
+			//"DOTA_Tooltip_ability_W_ryukansen_movement_decrease"                              "RYUKANSEN MOVEMENT DECREASE:"
+			//"DOTA_Tooltip_ability_W_battojutsu_extra_range"                                   "BATTOJUTSU EXTRA RANGE:"
+			//"DOTA_Tooltip_ability_W_window"                                                   "WINDOW:"
+			//"DOTA_Tooltip_ability_W_CD"                                                       "CD:"
+
+			//"DOTA_Tooltip_ability_R"                                                          "R"
+			//"DOTA_Tooltip_ability_R_Description"                                              ""
+			//"DOTA_Tooltip_ability_R_amakakeru_cull"                                           "AMAKAKERU CULL:"
+			//"DOTA_Tooltip_ability_R_battojutsu_aoe"                                           "BATTOJUTSU AOE:"
+			//"DOTA_Tooltip_ability_R_battojutsu_effect_duration"                               "BATTOJUTSU EFFECT DURATION:"
+			//"DOTA_Tooltip_ability_R_ryukansen_movement_decrease"                              "RYUKANSEN MOVEMENT DECREASE:"
+			//"DOTA_Tooltip_ability_R_battojutsu_extra_range"                                   "BATTOJUTSU EXTRA RANGE:"
+			//"DOTA_Tooltip_ability_R_window"                                                   "WINDOW:"
+			//"DOTA_Tooltip_ability_R_CD"                                                       "CD:"
+
+			"DOTA_Tooltip_Ability_Blood Rake"  													"Blood Rake"
+			"DOTA_Tooltip_Ability_Blood Rake_Description" 										"Bellatrix uses to Kru'or's tainted edge to slice open her waist, launching impaling torrents of demonic blood. Enemies hit by the torrents will suffer damage and are inflicted with a debuff. All debuffed units are teleported to the cast location after 1.5 seconds."
+			"DOTA_Tooltip_Ability_Blood Rake_health_cost" 										"Health cost:"
+
+
+			//"DOTA_Tooltip_ability_Blood Rake_start_radius"                                    "START RADIUS:"
+			//"DOTA_Tooltip_ability_Blood Rake_end_radius"                                      "END RADIUS:"
+			//"DOTA_Tooltip_ability_Blood Rake_torrent_speed"                                   "TORRENT SPEED:"
+			//"DOTA_Tooltip_ability_Blood Rake_pullback_time"                                   "PULLBACK TIME:"
+			//"DOTA_Tooltip_ability_Blood Rake_returned_time"                                   "RETURNED TIME:"
+			//"DOTA_Tooltip_ability_Blood Rake_buff_duration"                                   "BUFF DURATION:"
+			//"DOTA_Tooltip_ability_Blood Rake_blood_range"                                     "BLOOD RANGE:"
+			//"DOTA_Tooltip_ability_Blood Rake_vision_radius"                                   "VISION RADIUS:"
+			//"DOTA_Tooltip_ability_Blood Rake_animation"                                       "ANIMATION:"
+
+
+			"DOTA_Tooltip_Ability_Rip and Tear"  												"Rip and Tear"
+			"DOTA_Tooltip_Ability_Rip and Tear_Description" 									"Bellatrix slashes Kru'or through the air twice with strength of her demon lord, forming massive claws of blood from the tip of the cursed weapon. The first massive strike (500AoE) comes from the right, the second, smaller strike(250AoE) comes from the left after a short delay. Each strike damages the target based on a multiplier of Bellatrix's Intelligence. Healing is calculated as percentage of damage done by each swing."
+			"DOTA_Tooltip_Ability_Unholy Ecstasy_int_multiplier_tooltip" 						"Intelligence Multiplier:"
+			"DOTA_Tooltip_Ability_Unholy Ecstasy_ini_damage" 									"Initial damage:"
+			"DOTA_Tooltip_Ability_Unholy Ecstasy_ss_delay" 										"Second Strike Delay:"
+			//"DOTA_Tooltip_ability_Rip and Tear_first_strike"                                  "FIRST STRIKE:"
+			//"DOTA_Tooltip_ability_Rip and Tear_second_strike"                                 "SECOND STRIKE:"
+			//"DOTA_Tooltip_ability_Rip and Tear_damage_reduction"                              "DAMAGE REDUCTION:"
+			//"DOTA_Tooltip_ability_Rip and Tear_int_multiplier_tooltip"                        "INT MULTIPLIER TOOLTIP:"
+			//"DOTA_Tooltip_ability_Rip and Tear_ss_delay_tooltip"                              "SS DELAY TOOLTIP:"
+			//"DOTA_Tooltip_ability_Rip and Tear_buff_duration"                                 "BUFF DURATION:"
+			//"DOTA_Tooltip_ability_Rip and Tear_damage_healed"                                 "DAMAGE HEALED:"
+			//"DOTA_Tooltip_ability_Rip and Tear_ini_damage"                                    "INI DAMAGE:"
+
+			"DOTA_Tooltip_Ability_Live Transfusion"  											"Live Transfusion"
+			"DOTA_Tooltip_Ability_Live Transfusion_Description" 								"Bellatrix thrusts Kru'or forwards with such force that it tears her apart, launching her forwards in a ball of blood and absorbing the life force of those who stand in her path. This bloody maneuver leaves a trail of slippery, corrupted gore in her wake, speeding up allies and slowing and damaging enemies. Has 3 charges, starts with 1."
+			//"DOTA_Tooltip_ability_Live Transfusion_effect_radius"                             "EFFECT RADIUS:"
+			//"DOTA_Tooltip_ability_Live Transfusion_effect_radius_scepter"                     "EFFECT RADIUS SCEPTER:"
+			//"DOTA_Tooltip_ability_Live Transfusion_buff_ms_scepter"                           "BUFF MS SCEPTER:"
+			//"DOTA_Tooltip_ability_Live Transfusion_hp_cost"                                   "HP COST:"
+			//"DOTA_Tooltip_ability_Live Transfusion_impact_heal"                               "IMPACT HEAL:"
+			//"DOTA_Tooltip_ability_Live Transfusion_vision_radius"                             "VISION RADIUS:"
+			//"DOTA_Tooltip_ability_Live Transfusion_transfusion_speed"                         "TRANSFUSION SPEED:"
+			//"DOTA_Tooltip_ability_Live Transfusion_ally_regen"                                "ALLY REGEN:"
+			//"DOTA_Tooltip_ability_Live Transfusion_slow_ms"                                   "SLOW MS:"
+			//"DOTA_Tooltip_ability_Live Transfusion_slow_ms_scepter"                           "SLOW MS SCEPTER:"
+			//"DOTA_Tooltip_ability_Live Transfusion_max_charges"                               "MAX CHARGES:"
+
+			"DOTA_Tooltip_Ability_Unholy Ecstasy"  												"Unholy Ecstasy"
+			"DOTA_Tooltip_Ability_Unholy Ecstasy_description" 									"Bellatrix douses herself or an ally in a fraction of the corrupted blood that resides in Kru'or, sending her target into a state of manic ecstasy that reduces incoming damage. At the end of the buff's duration a percentage of the damage received is converted to additional magic damage that will be applied on the next auto-attack."
+			"DOTA_Tooltip_Ability_Unholy Ecstasy_damage_reduction" 								"Damage Reduction:"
+			"DOTA_Tooltip_Ability_Unholy Ecstasy_bonus_damage" 									"Bonus Damage:"
+			//"DOTA_Tooltip_ability_Unholy Ecstasy_damage_cap"                                  "DAMAGE CAP:"
+			//"DOTA_Tooltip_ability_Unholy Ecstasy_buff_duration"                               "BUFF DURATION:"
+
+			"DOTA_Tooltip_Ability_Presence of the Fat Man" 										"Presence of the FATMAN"
+			"DOTA_Tooltip_Ability_Presence of the Fat Man_description" 							"Deals damage based on your curren health in an area around you. Layers stack!"
+			"DOTA_Tooltip_Ability_Presence of the Fat Man_AreaRadius" 							"Layer sizes:"
+			"DOTA_Tooltip_Ability_Presence of the Fat Man_DamageTick" 							"Damage percentage dealt:"
+
+			"DOTA_Tooltip_Presence_of_the_Fat_Man_buff1" 										"Presence of the FATMAN"
+			"DOTA_Tooltip_Presence_of_the_Fat_Man_buff1_description" 							"You are around a very fat person who is starving you to death. You are losing health based on his hp"
+			"DOTA_Tooltip_Presence_of_the_Fat_Man_buff2" 										"Presence of the FATMAN"
+			"DOTA_Tooltip_Presence_of_the_Fat_Man_buff2_description" 							"You are around a very fat person who is starving you to death. You are losing health based on his hp"
+			"DOTA_Tooltip_Presence_of_the_Fat_Man_buff3" 										"Presence of the FATMAN"
+			"DOTA_Tooltip_Presence_of_the_Fat_Man_buff3_description" 							"You are around a very fat person who is starving you to death. You are losing health based on his hp"
+
+			"DOTA_Tooltip_Extra_Strength" 														"Extra Strength"
+			"DOTA_Tooltip_Extra_Strength_description" 											"Extra Strength gained."
+
+			"DOTA_Tooltip_Minus_Strength" 														"Minus Strength"
+			"DOTA_Tooltip_Minus_Strength_description" 											"Strength stolen."
+
+			//"DOTA_Tooltip_ability_Presence of the Fat Man_AuraRadius1"                        "AURARADIUS1:"
+			//"DOTA_Tooltip_ability_Presence of the Fat Man_DamageInterval"                     "DAMAGEINTERVAL:"
+			//"DOTA_Tooltip_ability_Presence of the Fat Man_AuraRadius2"                        "AURARADIUS2:"
+			//"DOTA_Tooltip_ability_Presence of the Fat Man_AuraRadius3"                        "AURARADIUS3:"
+
+			"DOTA_Tooltip_Ability_Run for your Life" 											"Run for your life!"
+			"DOTA_Tooltip_Ability_Run for your Life_description" 								"Whenever you take damage you'll lose weight making you faster for a short time"
+			"DOTA_Tooltip_Ability_Run for your Life_RunningBonus" 								"MS increment:"
+			"DOTA_Tooltip_Ability_Run for your Life_Buff_Duration" 								"Duration:"
+
+			"DOTA_Tooltip_Ability_All you can eat" 												"All you can eat!"
+			"DOTA_Tooltip_Ability_All you can eat_description" 									"All you can eat is the kind of meal FATMAN likes, while dropping everyhing to eat he rapidly starts getting his health back. His meal lasts a maximum of 10 seconds"
+			"DOTA_Tooltip_Ability_All you can eat_Heal" 										"Heal percentage:"
+			//"DOTA_Tooltip_ability_All you can eat_Interval"                                   "INTERVAL:"
+
+			//"DOTA_Tooltip_ability_Nap Time_radius"                                            "RADIUS:"
+			"DOTA_Tooltip_Ability_Nap Time" 													"Nap Time"
+			"DOTA_Tooltip_Ability_Nap Time_description" 										"FATMAN falls asleep and starts rolling, bulldozing enemies on his path. Rolling is slower than walking"
+			"DOTA_Tooltip_Ability_Nap Time_bulldoze_duration" 									"Bulldoze duration:"
+			"DOTA_Tooltip_Ability_Nap Time_movement_speed_penalty" 								"Movement speed penalty:"
+
+			"DOTA_Tooltip_ability_Maelstrom"                                                  "Maelstrom"
+			"DOTA_Tooltip_ability_Maelstrom_Description"                                      ""
+			"DOTA_Tooltip_ability_Maelstrom_slow_ms"                                          "SLOW MS:"
+			"DOTA_Tooltip_ability_Maelstrom_stunduration"                                     "STUNDURATION:"
+			"DOTA_Tooltip_ability_Maelstrom_speed_ms"                                         "SPEED MS:"
+			"DOTA_Tooltip_ability_Maelstrom_radius"                                           "RADIUS:"
+
+			"DOTA_Tooltip_ability_Swirling Embrace"                                           "Swirling Embrace"
+			"DOTA_Tooltip_ability_Swirling Embrace_Description"                               ""
+			"DOTA_Tooltip_ability_Swirling Embrace_start_slow"                                "START SLOW:"
+			"DOTA_Tooltip_ability_Swirling Embrace_mid_slow1"                                 "MID SLOW1:"
+			"DOTA_Tooltip_ability_Swirling Embrace_mid_slow2"                                 "MID SLOW2:"
+			"DOTA_Tooltip_ability_Swirling Embrace_mid_slow3"                                 "MID SLOW3:"
+			"DOTA_Tooltip_ability_Swirling Embrace_end_slow"                                  "END SLOW:"
+			"DOTA_Tooltip_ability_Swirling Embrace_interval"                                  "INTERVAL:"
+
+			"DOTA_Tooltip_ability_Glowing Ice"                                                "Glowing Ice"
+			"DOTA_Tooltip_ability_Glowing Ice_Description"                                    ""
+			"DOTA_Tooltip_ability_Glowing Ice_healvalue"                                      "HEALVALUE:"
+			"DOTA_Tooltip_ability_Glowing Ice_restarttime"                                    "RESTARTTIME:"
+
+			"DOTA_Tooltip_ability_Tidal Wave"                                                 "Tidal Wave"
+			"DOTA_Tooltip_ability_Tidal Wave_Description"                                     ""
+			"DOTA_Tooltip_ability_Tidal Wave_radius"                                          "RADIUS:"
+			"DOTA_Tooltip_ability_Tidal Wave_delay"                                           "DELAY:"
+			"DOTA_Tooltip_ability_Tidal Wave_duration"                                        "DURATION:"
+			"DOTA_Tooltip_ability_Tidal Wave_cast_range"                                      "CAST RANGE:"
+			"DOTA_Tooltip_ability_Tidal Wave_startradius"                                     "STARTRADIUS:"
+
+			"Dota_Tooltip_Ability_Positive_Charge" "Positive Charge"
+			"Dota_Tooltip_Ability_Positive_Charge_description" "Applies a magnetic charge to target unit. Units with the same charge can't get closer than half the pull range, while units with opposite charges get pulled towards each other. Shares charges with Negative Charge"		
+			
+			"Dota_Tooltip_Ability_Positive_Charge_magnetic_aoe" "Pull Range:"
+			"Dota_Tooltip_Ability_Positive_Charge_duration" "Duration:"
+			"Dota_Tooltip_Ability_Positive_Charge_max_charges" "Maximum Charges:"
+			"Dota_Tooltip_Ability_Positive_Charge_charge_replenish_time" "Charge Replenish Time:"
+
+
+			"Dota_Tooltip_Ability_Negative_Charge" "Negative Charge"
+			"Dota_Tooltip_Ability_Negative_Charge_description" "Applies a magnetic charge to target unit. Units with the same charge can't get close, while units with opposite charges get pulled towards each other. Shares charges with Positive Charge"
+			
+			"Dota_Tooltip_Ability_Negative_Charge_magnetic_aoe" "Pull Range:"
+			"Dota_Tooltip_Ability_Negative_Charge_duration" "Duration:"
+			"Dota_Tooltip_Ability_Negative_Charge_max_charges" "Maximum Charges:"
+			"Dota_Tooltip_Ability_Negative_Charge_charge_replenish_time" "Charge Replenish Time:"
+
+			"Dota_Tooltip_Positive_Charge_Magnetic" "Positive Charge"
+			"Dota_Tooltip_Positive_Charge_Magnetic_description" "You have a positive magnetic Charge"
+
+
+			"Dota_Tooltip_Negative_Charge_Magnetic" "Negative Charge"
+			"Dota_Tooltip_Negative_Charge_Magnetic_description" "You have a negative magnetic Charge"
+
+
+			
+			"Dota_Tooltip_Ability_Metal_Rod" "Metal Rod"
+			"Dota_Tooltip_Ability_Metal_Rod_description" "Borus drops down a magnet pulling every unit with a charge towards it and leashing it for a duration. Silences on positive charge, disarms on a negative charge"
+			"Dota_Tooltip_Ability_Metal_Rod_Positive_Damage" "Damage:"
+			"Dota_Tooltip_Ability_Metal_Rod_Silence_duration" "Duration:"
+			"Dota_Tooltip_Ability_Metal_Rod_leash_duration" "Leash Duration:"
+			"DOTA_Tooltip_ability_Metal_Rod_Rod_Charges"                                      "ROD CHARGES:"
+			"DOTA_Tooltip_ability_Metal_Rod_metal_rod_charge_replenish_time"                  "METAL ROD CHARGE REPLENISH TIME:"
+
+			"Dota_Tooltip_electric_charge_stack_counter" "Magnetic Charge Counter"
+			"Dota_Tooltip_rod_disarm" "Disarmed"
+			"Dota_Tooltip_rod_silence" "Silenced"
+
+			"Dota_Tooltip_Ability_Greater_Magnet" "Greater Magnet"
+			"Dota_Tooltip_Ability_Greater_Magnet_description" "Borus gets a random magnetic field around him, increasing the movement speed of his allies and decreasing the speed of the enemies. The charge can be manipulated by Borus. A positive field also manipulates cast speed and a negative field manipulates attack speed. "
+
+			"DOTA_Tooltip_ability_Greater_Magnet_duration"                                    "DURATION:"
+			"DOTA_Tooltip_ability_Greater_Magnet_attackspeed_increase"                        "ATTACKSPEED INCREASE:"
+			"DOTA_Tooltip_ability_Greater_Magnet_ms_increase"                                 "MOVEMENT SPEED INCREASE:"
+			"DOTA_Tooltip_ability_Greater_Magnet_cast_point_increase"                         "CASTTIME INCREASE:"
+
+			"DOTA_Tooltip_ability_Power_Surge"                                                "Power Surge"
+			"DOTA_Tooltip_ability_Power_Surge_Description"                                    "Overloads the owner with such force that he pushes units away when taking damage. When under positive magnetic effects you react heavier to magic damage, but don't react to physical damage and vice versa for negative magnetism. Has a hidden cooldown"
+			"DOTA_Tooltip_ability_Power_Surge_push_distance"                                  "PUSH DISTANCE:"
+			"DOTA_Tooltip_ability_Power_Surge_right_type_x"                                   "RIGHT TYPE X:"
+			"DOTA_Tooltip_ability_Power_Surge_transfer_duration"                              "TRANSFER DURATION:"
+			"DOTA_Tooltip_ability_Power_Surge_internal_cooldown"                              "HIDDEN COOLDOWN:"
+
+			"DOTA_Tooltip_ability_Magnetic_Echo"                                              "Magnetic Echo"
+			"DOTA_Tooltip_ability_Magnetic_Echo_Description"                                  "Attaches a disturbing effect to each magnetic hero in target area. Any effect unit will deal damage over time to areas withing the the radius"
+			"DOTA_Tooltip_ability_Magnetic_Echo_radius"                                       "RADIUS:"
+			"DOTA_Tooltip_ability_Magnetic_Echo_duration"                                     "DURATION:"
+			"DOTA_Tooltip_ability_Magnetic_Echo_damage"                                       "DAMAGE:"
+
+
+			"DOTA_Tooltip_ability_DDOS_Attack"                                                "DDOS Attack"
+			"DOTA_Tooltip_ability_DDOS_Attack_Description"                                    "The connection is terrible, your signal gets lost"
+			"DOTA_Tooltip_ability_DDOS_Attack_radius"                                         "RADIUS:"
+			"DOTA_Tooltip_ability_DDOS_Attack_duration"                                       "DURATION:"
+
+			"DOTA_Tooltip_ability_Global_Disconnect"                                          "Global Disconnect"
+			"DOTA_Tooltip_ability_Global_Disconnect_Description"                              "All enemies get disconnected from each other and will be able to each others"
+
+			"DOTA_Tooltip_ability_Ads_Everywhere"                                             "Ads Everywhere"
+			"DOTA_Tooltip_ability_Ads_Everywhere_Description"                                 "Anyone who deals magic damage to you gets has trouble focussing on his next spells, resulting in longer casttimes."
+			"DOTA_Tooltip_ability_Ads_Everywhere_cast_point_increase"                         "CASTTIME INCREASE:"
+			"DOTA_Tooltip_ability_Ads_Everywhere_duration"                                    "DURATION:"
+
+			"DOTA_Tooltip_ability_Nigerian_Scam"                                              "Nigerian Scam"
+			"DOTA_Tooltip_ability_Nigerian_Scam_Description"                                  "Heals target for % of  your current health and allows you to reclaim it, the longer you wait the more you get. Don't forget though!"
+			"DOTA_Tooltip_ability_Nigerian_Scam_hp_factor"                                    "HP FACTOR:"
+			"DOTA_Tooltip_ability_Nigerian_Scam_duration"                                     "DURATION:"
+			"DOTA_Tooltip_ability_Nigerian_Scam_break_range"                                  "BREAK RANGE:"
+
+			"DOTA_Tooltip_ability_Nigerian_Scam_CASH"                                         "Nigerian Scam CASH"
+			"DOTA_Tooltip_ability_Nigerian_Scam_CASH_Description"                             "Take the health back!"
+
+			"DOTA_Tooltip_ability_Arbalest"                                                   "Arbalest"
+			"DOTA_Tooltip_ability_Arbalest_Description"                                       "Disables attacking, but gives you a spell that attacks to a point. Attackspeed grants 50% bonus damage"
+			//"DOTA_Tooltip_ability_Arbalest_duration"                                          "DURATION:"
+			//"DOTA_Tooltip_ability_Arbalest_aoe"                                               "AOE:"
+			//"DOTA_Tooltip_ability_Arbalest_aoe_vision"                                        "AOE VISION:"
+			//"DOTA_Tooltip_ability_Arbalest_fly_time"                                          "FLY TIME:"
+			"DOTA_Tooltip_ability_Arbalest_attack_animation"                                  	"ATTACK TIME:"
+			//"DOTA_Tooltip_ability_Arbalest_target_vision_radius"                              "TARGET VISION RADIUS:"
+			//"DOTA_Tooltip_ability_Arbalest_target_vision_duration"                            "TARGET VISION DURATION:"
+
+			"DOTA_Tooltip_ability_Arbalest_Attack"                                            "Arbalest Attack"
+			"DOTA_Tooltip_ability_Arbalest_Attack_Description"                                "Attack target point"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_duration"                                   "DURATION:"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_aoe"                                        "AOE:"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_aoe_vision"                                 "AOE VISION:"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_fly_time"                                   "FLY TIME:"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_attack_animation"                           "ATTACK ANIMATION:"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_projectile_speed"                           "PROJECTILE SPEED:"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_bonus_range"                                "BONUS RANGE:"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_target_vision_radius"                       "TARGET VISION RADIUS:"
+			//"DOTA_Tooltip_ability_Arbalest_Attack_target_vision_duration"                     "TARGET VISION DURATION:"
+
+			"DOTA_Tooltip_ability_Blackout"                                                   "Blackout"
+			"DOTA_Tooltip_ability_Blackout_Description"                                       "Gives a chance to disable commands"
+			"DOTA_Tooltip_ability_Blackout_duration"                                          "DURATION:"
+			"DOTA_Tooltip_ability_Blackout_halt_chance"                                       "HALT CHANCE:"
+
+			"DOTA_Tooltip_ability_Auspice"                                                    "Auspice"
+			"DOTA_Tooltip_ability_Auspice_Description"                                        "Creates a ghost following the unit with 2.25 seconds delay"
+
+			"DOTA_Tooltip_ability_Nexus"                                                      "Nexus"
+			"DOTA_Tooltip_ability_Nexus_Description"                                          "Exchanges armor and a part of you so you can use their location to cast spells"
+			"DOTA_Tooltip_ability_Nexus_sight_aoe"                                            "SIGHT AOE:"
+			"DOTA_Tooltip_ability_Nexus_duration"                                             "DURATION:"
+			"DOTA_Tooltip_ability_Nexus_armor_change"                                         "ARMOR CHANGE:"
+			//"DOTA_Tooltip_ability_Nexus_interval"                                             "INTERVAL:"
+
+			"DOTA_Tooltip_ability_feather_barrage"                                            "Feather Barrage"
+		"DOTA_Tooltip_ability_feather_barrage_Description"                                "You get a bird above you which starts shooting feathers at target location, feathers get weaker as they travel, dealing reduced damage after more they traveled more distance"
+		"DOTA_Tooltip_ability_feather_barrage_projectiledamage"                           "PROJECTILEDAMAGE:"
+		"DOTA_Tooltip_ability_feather_barrage_duration"                                   "DURATION:"
+
+		"DOTA_Tooltip_ability_momentum"                                                   "Momentum"
+		"DOTA_Tooltip_ability_momentum_Description"                                       "You get faster for running, when attacking you deal bonus damage on your first attack based on the charges."
+		"DOTA_Tooltip_ability_momentum_ms_gain"                                           "MS GAIN:"
+		"DOTA_Tooltip_ability_momentum_ms_damage"                                         "MS DAMAGE:"
+		"DOTA_Tooltip_ability_momentum_ondistancemoved"                                   "CHARGE PER DISTANCE MOVED:"
+
+		"DOTA_Tooltip_ability_slice_and_dice"                                             "Slice And Dice"
+		"DOTA_Tooltip_ability_slice_and_dice_Description"                                 ""
+		"DOTA_Tooltip_ability_slice_and_dice_ms_damage"                                   "MS DAMAGE:"
+		"DOTA_Tooltip_ability_slice_and_dice_turn_rate_slow"                              "TURN RATE SLOW:"
+		"DOTA_Tooltip_ability_slice_and_dice_modifier_duration"                           "MODIFIER DURATION:"
+		"DOTA_Tooltip_ability_slice_and_dice_range"                                       "RANGE:"
+
+		"DOTA_Tooltip_ability_swirlwind"                                                  "Swirlwind"
+		"DOTA_Tooltip_ability_swirlwind_Description"                                      ""
+		"DOTA_Tooltip_ability_swirlwind_layers"                                           "LAYERS:"
+		"DOTA_Tooltip_ability_swirlwind_swirlwind_aoe"                                    "SWIRLWIND AOE:"
+		"DOTA_Tooltip_ability_swirlwind_ms_bonus"                                         "MS BONUS:"
+
+		
+
+		"DOTA_Tooltip_ability_gamble"                                                     "Gamble"
+		"DOTA_Tooltip_ability_gamble_Description"                                         "You throw a spear at target location, and have a chance of the following happen"
+		"DOTA_Tooltip_ability_gamble_projectile_aoe"                                      "PROJECTILE AOE:"
+		"DOTA_Tooltip_ability_gamble_block_chance"                                        "BLOCK CHANCE:"
+		"DOTA_Tooltip_ability_gamble_1_x_attack_chance"                                   "1 X ATTACK CHANCE:"
+		"DOTA_Tooltip_ability_gamble_2_x_attack_chance"                                   "2 X ATTACK CHANCE:"
+		"DOTA_Tooltip_ability_gamble_3_x_attack_chance"                                   "3 X ATTACK CHANCE:"
+		"DOTA_Tooltip_ability_gamble_4_x_attack_chance"                                   "4 X ATTACK CHANCE:"
+		"DOTA_Tooltip_ability_gamble_max_slow_rate"                                       "MAX SLOW RATE:"
+		"DOTA_Tooltip_ability_gamble_2nd_slow_rate"                                       "2ND SLOW RATE:"
+		"DOTA_Tooltip_ability_gamble_3rd_slow_rate"                                       "3RD SLOW RATE:"
+		"DOTA_Tooltip_ability_gamble_min_slow_rate"                                       "MIN SLOW RATE:"
+		"DOTA_Tooltip_ability_gamble_duration"                                            "DURATION:"
+		"DOTA_Tooltip_ability_gamble_distance"                                            "DISTANCE:"
+		"DOTA_Tooltip_ability_gamble_projectile_speed"                                    "PROJECTILE SPEED:"
+
+		"DOTA_Tooltip_ability_snatch"                                                     "Snatch"
+		"DOTA_Tooltip_ability_snatch_Description"                                         "You steal targets equipment, reducing attack speed and armor. If the target is ranged you also become ranged for the duration"
+		"DOTA_Tooltip_ability_snatch_base_reduction"                                      "BASE REDUCTION:"
+		"DOTA_Tooltip_ability_snatch_other_reduction"                                     "OTHER REDUCTION:"
+
+
+
+
+		}	
+	}

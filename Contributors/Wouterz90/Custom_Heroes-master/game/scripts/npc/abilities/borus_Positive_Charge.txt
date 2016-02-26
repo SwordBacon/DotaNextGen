@@ -20,6 +20,7 @@
 			"particle"  "particles/borus/positive_charge.vpcf"
 			"particle"  "particles/generic_gameplay/generic_disarm.vpcf"
 			"particle"  "particles/generic_gameplay/generic_silenced.vpcf"
+			"particle"	"particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
 		}
 	
 		"AbilitySpecial"		// Values this spell has like charges, AOES and amplifications etc.
@@ -138,7 +139,21 @@
 				"IsDebuff"			"0"
 				"IsBuff"			"0"
 		
-	
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"Target"		"TARGET"
+
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_hitloc"
+							"CASTER"	"attach_hitloc"
+						}
+					}
+				}
 		
 				"ThinkInterval"  "0.03"			// Every .01 second this gets checked.
 				"OnIntervalThink"

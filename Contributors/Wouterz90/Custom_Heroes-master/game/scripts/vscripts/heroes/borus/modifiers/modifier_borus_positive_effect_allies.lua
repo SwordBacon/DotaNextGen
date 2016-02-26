@@ -12,11 +12,13 @@ function modifier_borus_positive_effect_allies:DeclareFunctions()
 end
 
 function modifier_borus_positive_effect_allies:GetModifierPercentageCasttime(params)
-	return self.cast_point_increase
+	if IsServer() then
+		return self:GetCaster().greater_magnet_cast_point_increase
+	end
 end
 
 function modifier_borus_positive_effect_allies:GetModifierMoveSpeedBonus_Percentage (params)
-
-	return self.ms_increase
-
+	if IsServer() then
+		return self:GetCaster().greater_magnet_ms_increase
+	end
 end

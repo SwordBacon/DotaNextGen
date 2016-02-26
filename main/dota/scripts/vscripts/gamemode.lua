@@ -22,6 +22,8 @@ require('libraries/notifications')
 require('libraries/animations')
 -- This library can be used for performing "Frankenstein" attachments on units
 require('libraries/attachments')
+-- This library can be used for displaying popups for damage/status values
+require('libraries/popups')
 
 -- These internal libraries set up barebones's events and processes.  Feel free to inspect them/change them if you need to.
 require('internal/gamemode')
@@ -91,7 +93,7 @@ function GameMode:OnHeroInGame(hero)
   if not hero:IsIllusion() then
       if hero:GetUnitName() == "npc_dota_hero_clinkz" then 
           skoros = hero
-          blackout = skoros:FindAbilityByName("Blackout")
+          blackout = skoros:FindAbilityByName("skoros_Blackout")
       elseif hero:GetUnitName() == "npc_dota_hero_razor" then
           hero:UpgradeAbility(hero:FindAbilityByName("Positive_Charge"))
           hero:UpgradeAbility(hero:FindAbilityByName("Negative_Charge"))

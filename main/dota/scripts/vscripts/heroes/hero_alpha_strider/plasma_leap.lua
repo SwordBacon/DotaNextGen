@@ -3,6 +3,8 @@ function LeapDistance( keys )
 	local ability = keys.ability
 	local point = keys.target_points[1]
 	local leap_distance = (caster:GetAbsOrigin() - point):Length2D()
+	local leap_range = ability:GetLevelSpecialValueFor("range", ability:GetLevel() - 1)
+	if leap_distance > leap_range then leap_distance = leap_range end
 
 	-- Clears any current command
 	caster:Stop()

@@ -3,7 +3,8 @@ LinkLuaModifier( "nexus_super_illusion", "heroes/skoros/modifiers/nexus_super_il
 function CreateSuperIllusion (keys)
 	local caster = keys.caster
 	local target = keys.target
-	local ability = keys.ability
+	local owner = caster:GetPlayerOwner():GetAssignedHero()
+	local ability = owner:FindAbilityByName("skoros_Nexus")
 
 	target.nexusdouble = CreateUnitByName( caster:GetUnitName(), target:GetAbsOrigin(), false, caster, caster:GetOwner(), caster:GetTeamNumber())
 	--target.nexusdouble:MakeClone
@@ -22,18 +23,14 @@ function CreateSuperIllusion (keys)
 	for ability_id = 0, 15 do
 		local ability = target.nexusdouble:GetAbilityByIndex(ability_id)
 		if ability then
-			if ability:GetAbilityName() == "Arbalest" or ability:GetAbilityName() == "Arbalest_Attack" then
-			--Do not learn them
-			else
-				ability:SetLevel(caster:GetAbilityByIndex(ability_id):GetLevel())
-			end
+			ability:SetLevel(caster:GetAbilityByIndex(ability_id):GetLevel())
 		end
 	end
 	for item_id = 0, 5 do
 		local item_in_caster = caster:GetItemInSlot(item_id)
 		if item_in_caster ~= nil then
 			local item_name = item_in_caster:GetName()
-			if not (item_name == "item_aegis" or item_name == "item_smoke_of_deceit" or item_name == "item_recipe_refresher" or item_name == "item_refresher" or item_name == "item_ward_observer" or item_name == "item_ward_sentry" or item_name == "item_bottle" or item_name == "item_blink") then
+			if not (item_name == "item_aegis" or item_name == "item_smoke_of_deceit" or item_name == "item_recipe_refresher" or item_name == "item_refresher" or item_name == "item_ward_observer" or item_name == "item_ward_sentry" or item_name == "item_bottle" or item_name == "item_blink" or item_name == "item_travel_boots" or item_name == "item_travel_boots_2" or item_name == "item_tpscroll") then
 				local item_created = CreateItem( item_in_caster:GetName(), target.nexusdouble, target.nexusdouble)
 				target.nexusdouble:AddItem(item_created)
 				item_created:SetCurrentCharges(item_in_caster:GetCurrentCharges()) 
@@ -79,14 +76,28 @@ function SyncSpells (keys)
 				local ability = unit:GetAbilityByIndex(ability_id)
 				local originalability = caster:GetAbilityByIndex(ability_id)
 				if ability and originalability then
-					if not ability:IsCooldownReady() and ability:GetCooldownTimeRemaining() > 0 then
-						originalability:StartCooldown(ability:GetCooldownTimeRemaining())
-					end
-					if not originalability:IsCooldownReady() and originalability:GetCooldownTimeRemaining() > 0 then
-						ability:StartCooldown(originalability:GetCooldownTimeRemaining())
-					end
-					if not ability:IsCooldownReady() and ability:GetCooldownTimeRemaining() > 0 then
-						originalability:StartCooldown(ability:GetCooldownTimeRemaining())
+					if ability:GetName() ~= "skoros_Arbalest" and originalability:GetName() ~= "skoros_Arbalest" then 
+						if not ability:IsCooldownReady() and ability:GetCooldownTimeRemaining() > 0 then
+							originalability:StartCooldown(ability:GetCooldownTimeRemaining())
+						end
+						if not originalability:IsCooldownReady() and originalability:GetCooldownTimeRemaining() > 0 then
+							ability:StartCooldown(originalability:GetCooldownTimeRemaining())
+						end
+						if not ability:IsCooldownReady() and ability:GetCooldownTimeRemaining() > 0 then
+							originalability:StartCooldown(ability:GetCooldownTimeRemaining())
+						end
+					else
+						ability = unit:FindAbilityByName("skoros_Arbalest")
+						originalability = caster:FindAbilityByName("skoros_Arbalest")
+						if not ability:IsCooldownReady() and ability:GetCooldownTimeRemaining() > 0 then
+							originalability:StartCooldown(ability:GetCooldownTimeRemaining())
+						end
+						if not originalability:IsCooldownReady() and originalability:GetCooldownTimeRemaining() > 0 then
+							ability:StartCooldown(originalability:GetCooldownTimeRemaining())
+						end
+						if not ability:IsCooldownReady() and ability:GetCooldownTimeRemaining() > 0 then
+							originalability:StartCooldown(ability:GetCooldownTimeRemaining())
+						end
 					end
 				end
 			end

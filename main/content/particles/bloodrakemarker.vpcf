@@ -63,6 +63,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/bellatrix_bloodritual_explode.vpcf"
+			m_bDisableChild = true
 		},
 	]
 }

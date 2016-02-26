@@ -218,18 +218,8 @@ function metal_rod( keys )
 								metal_rod_ability:ApplyDataDrivenModifier(caster,target,"rod_silence", {duration = silence_duration })
 							end
 							ability:ApplyDataDrivenModifier(caster, target, "no_collision", {duration = 0.2})
-							ability:ApplyDataDrivenModifier(caster,target,"metal_rod_leash", {duration = metal_rod_leash_duration})
+							ability:ApplyDataDrivenModifier(unit,target,"metal_rod_leash", {duration = metal_rod_leash_duration})
 							leash_magnet_unit = unit
-
-
-
-							
-							-- Do the visuals
-
-							local particleName = "particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
-							caster.LeashParticle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, unit)
-							ParticleManager:SetParticleControlEnt(caster.LeashParticle, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)	
-
 
 						end
 						if distance < metal_rod_aoe then
@@ -322,6 +312,7 @@ function metal_rod_leash( keys )
 	local caster = borus_caster
 	local ability = caster:FindAbilityByName("Positive_Charge")
 	local leash_range = ability:GetSpecialValueFor("leash_range")
+	
 	if target.positions[(math.floor((currTime -0.03) * 100)/100)] ~= nil then
 		target.OldPosition = target.positions[(math.floor((currTime -0.03) * 100)/100)]
 	end
@@ -333,16 +324,15 @@ function metal_rod_leash( keys )
 	elseif (magnetposition - target:GetAbsOrigin()):Length2D() > leash_range then
 		target:SetAbsOrigin(target.OldPosition)
 	end
+	
 
 	if leash_magnet_unit:IsNull() then
 		target:RemoveModifierByName("metal_rod_leash")
 	end
 end
  function metal_rod_leash_reset_values (keys)
- 	local caster =borus_caster
- 	magnetposition = nil
-
- 	ParticleManager:DestroyParticle(caster.LeashParticle,true)
+ 	local target = keys.target
+ 	magnetposition = nil 
  	
 
 end 

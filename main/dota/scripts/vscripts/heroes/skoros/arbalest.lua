@@ -3,27 +3,20 @@ if arbalest == nil then
 end
 LinkLuaModifier( "arbalest_attack_dummy", "heroes/skoros/modifiers/arbalest_attack_dummy.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-
 function SwapSpells (keys)
-	spellowner = keys.caster
+	local caster = keys.caster
+	caster.spellowner = caster
 	local ability = keys.ability
-	mainability =  ability:GetAbilityName()
+	mainability = ability:GetAbilityName()
 	sub_ability_name = keys.sub_ability_name
-	spellowner:AddAbility(sub_ability_name)
-	local attacklevel = ability:GetLevel()
-	spellowner:AddNewModifier(spellowner, ability, "arbalest_attack_dummy", {duration = ability:GetDuration()})
-
-	local attack = keys.caster:FindAbilityByName("Arbalest_Attack")
-	if attack ~= nil and attack:GetLevel() ~= attacklevel then
-		attack:SetLevel(attacklevel)
-	end
-	spellowner:SwapAbilities(mainability, sub_ability_name, false, true)
+	caster.spellowner:AddNewModifier(spellowner, ability, "arbalest_attack_dummy", {duration = ability:GetDuration()})
+	caster.spellowner:SwapAbilities(mainability, sub_ability_name, false, true)
 end
 
-function SwapSpellsBack ()
-	spellowner:Stop()
-	spellowner:SwapAbilities(mainability, sub_ability_name, true, false)
-	spellowner:RemoveAbility(sub_ability_name)
+function SwapSpellsBack (keys)
+	local caster = keys.target
+	caster.spellowner:Stop()
+	caster.spellowner:SwapAbilities(mainability, sub_ability_name, true, false)
 end
 
 function projectilehit (keys)
@@ -37,16 +30,16 @@ function projectilehit (keys)
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_arbalest_creep", {})
 	end
 
-	caster:PerformAttack( target, true, false, true, false, false )
+	caster:PerformAttack( target, true, true, true, false, false )
 	AddFOWViewer(caster:GetTeamNumber(),target:GetAbsOrigin(), vision , duration, true)
 	caster:RemoveModifierByName("modifier_arbalest_creep")
 end
 
 function DONTATTACK (keys)
 	local caster = keys.caster
-	local ability = caster:FindAbilityByName("Arbalest_Attack")
+	local ability = caster:FindAbilityByName("skoros_Arbalest_Attack")
 	local target = keys.target
-	local modifier = caster:FindModifierByName("Arbalest")
+	local modifier = caster:FindModifierByName("skoros_Arbalest")
 	print(ability:GetName())
 	caster:Stop()
 	if IsValidEntity(caster) and ability:IsFullyCastable() then

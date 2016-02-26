@@ -1,6 +1,7 @@
 -- Generated from template
 
 require('internal/util')
+require("statcollection/init")
 require('gamemode')
 
 

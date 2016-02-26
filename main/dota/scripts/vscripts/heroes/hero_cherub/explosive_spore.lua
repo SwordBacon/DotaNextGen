@@ -25,7 +25,7 @@ end
 function ExplosiveSporeSound( keys )
 	print( keys.target:GetHealth() )
 	if not keys.target:IsAlive() then
-		local particleName = "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
+		local particleName = "particles/cherub_explosive_spore.vpcf"
 		local soundEventName = "Ability.Techies_LandMines"
 		
 		local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, keys.target )

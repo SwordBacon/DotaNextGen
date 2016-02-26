@@ -29,7 +29,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"ondistancemoved"	"60 55 50 45"
+				"ondistancemoved"	"150"
 			}
 		}
 

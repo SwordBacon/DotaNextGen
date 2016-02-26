@@ -278,7 +278,7 @@
 			"13"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"max_charges"		"2 3 4"
+				"max_charges"		"3 3 3"
 			}
 			"14"
 			{
@@ -704,7 +704,7 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCooldown"				"40"
 		"AbilityManaCost"				"150"
-		"AbilityDuration"				"5 7 9"
+		"AbilityDuration"				"8"
 		"AbilityCastRange"				"800"
 	
 		"Precache"
@@ -723,7 +723,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"5 7 9"
+				"duration"			"8"
 			}
 			"03"
 			{
@@ -887,6 +887,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityCastPoint"				"0.6"
+		"AbilityManaCost"				"80"
 		"AbilityCastRange"				"600"
 		"AbilityCooldown"				"30"
 		"AbilityDuration"				"5"
@@ -907,12 +908,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"5"
+				"duration"			"5 5 6 6"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage"			"15 22.5 30 35"
+				"damage"			"20 30 40 50"
 			}
 		}
 	
@@ -989,7 +990,7 @@
 			"AbilityCastPoint"				"0.3"
 			"AbilityCooldown"				"18"
 			"AbilityManaCost"				"90"
-			"AbilityDuration"				"8"
+			"AbilityDuration"				"4 5 6 7"
 		
 			"AbilitySpecial"
 			{
@@ -1031,7 +1032,7 @@
 				"08"
 				{	
 					"var_type"			"FIELD_INTEGER"
-					"Rod_Charges"		"4"
+					"Rod_Charges"		"3"
 				}
 				"09"
 				{
@@ -1317,6 +1318,7 @@
 				"particle"  "particles/borus/positive_charge.vpcf"
 				"particle"  "particles/generic_gameplay/generic_disarm.vpcf"
 				"particle"  "particles/generic_gameplay/generic_silenced.vpcf"
+				"particle"	"particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
 			}
 		
 			"AbilitySpecial"		// Values this spell has like charges, AOES and amplifications etc.
@@ -1435,7 +1437,21 @@
 					"IsDebuff"			"0"
 					"IsBuff"			"0"
 			
-		
+					"OnCreated"
+					{
+						"AttachEffect"
+						{
+							"EffectName"	"particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
+							"EffectAttachType"	"start_at_customorigin"
+							"Target"		"TARGET"
+	
+							"ControlPointEntities"
+							{
+								"TARGET"	"attach_hitloc"
+								"CASTER"	"attach_hitloc"
+							}
+						}
+					}
 			
 					"ThinkInterval"  "0.03"			// Every .01 second this gets checked.
 					"OnIntervalThink"
@@ -1477,19 +1493,19 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"600"
 		"AbilityCooldown"				"12"
+		"CastFilterRejectCaster" 		"1"
 	
 	
 		"Precache"
 		{
-			"particle"  "particles/borus/power_surge_slow.vpcf"
-			"particle" "particles/neutral_fx/satyr_trickster_projectile.vpcf"
+			"particle" "particles/units/heroes/hero_medusa/medusa_mana_shield.vpcf"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"push_distance"		"40 60 80 100"
+				"push_distance"		"50"
 			}
 			"02"
 			{
@@ -1514,7 +1530,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"internal_cooldown"	"2 1 0.5 0.25"
+				"internal_cooldown"	"4 3 2 1"
 			}
 		}
 		"OnSpellStart"
@@ -1530,6 +1546,7 @@
 				"Target" 		"TARGET"
 				"Duration"		"%transfer_duration"
 			}
+	
 			"DelayedAction"
 			{
 				"Delay"     "%transfer_duration"
@@ -1552,9 +1569,12 @@
 				"IsHidden" 			"0"
 				"Passive"			"1"
 				"IsPurgable"		"0"
-				"IsBuff"			"0"
+				"IsBuff"			"1"
 				"IsDebuff"			"0"
 				"IsStunDebuff"		"0"
+	
+				"EffectName"	"particles/units/heroes/hero_medusa/medusa_mana_shield.vpcf"
+				"EffectAttachType"	"follow_origin"
 	
 				"OnCreated"
 				{
@@ -1562,7 +1582,7 @@
 					{
 						"ScriptFile"	"heroes/borus/Power_Surge.lua"
 						"Function"		"Start_Effect"
-					}
+					}		
 				}
 	
 				"OnTakeDamage"
@@ -1574,15 +1594,15 @@
 						"Function"		"PushBack"
 					}
 				}
-				"OnAttacked"
+				//"OnAttacked"
 				// "%attack_damage" is set to the damage value after mitigation
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"heroes/borus/Power_Surge.lua"
-						"Function"		"PushBack_Attack"
-					}
-				}
+				//{
+				//	"RunScript"
+				//	{
+				//		"ScriptFile"	"heroes/borus/Power_Surge.lua"
+				//		"Function"		"PushBack_Attack"
+				//	}
+				//}
 				"OnDestroy"
 				{
 					"RunScript"
@@ -1764,7 +1784,7 @@
 				"05"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"ondistancemoved"	"60 55 50 45"
+					"ondistancemoved"	"150"
 				}
 			}
 	
@@ -1915,7 +1935,7 @@
 	
 			"OnProjectileHitUnit"
 			{
-				"DeleteOnHit"	"1"
+				"DeleteOnHit"	"0"
 				"ApplyModifier"
 				{
 					"ModifierName"	"modifier_slice_and_dice_dash"
@@ -4413,7 +4433,7 @@
 					//	"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
 					//}
 				}
-				"modifier_block_commands" // Restricting controls for a short period, 0.25 right now. This makes spamming a bad idea.
+				"modifier_block_commands" // Restricting controls for a short period, 0.5 right now. This makes spamming a bad idea.
 				{
 					"OnCreated"
 					{
@@ -4431,6 +4451,18 @@
 					"States"
 					{
 						"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					}
+				}
+				"MarkLocation"
+				{
+					"OnCreated"
+					{
+						"AttachEffect"
+						{
+							"EffectName"        "particles/bellatrix/bloodrakemarker.vpcf"
+							"EffectAttachType"  "attach_origin"
+							"Target"            "TARGET"
+						}
 					}
 				}
 			}
@@ -4638,6 +4670,558 @@
 				}
 			}
 		}
+	"Argent_Smite"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"uther/uther_Argent_Smite"
+		"MaxLevel" 						"4"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"Cooldown_Factor"	"0.4"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"Cooldown_Chance"	"15 17 19 21"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"Range_Bonus"		"110 170 230 290"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"Heal_Factor"		"0.75 1 1.25 1.5"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_specially_deniable"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+		
+				"EffectName"		""
+				"EffectAttachType"	"follow_origin"
+	
+	
+				"States"
+				{
+					"MODIFIER_STATE_SPECIALLY_DENIABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"EffectName"        ""
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+					}
+				}
+	
+				"OnAttacked"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/uther/Argent_Smite.lua"
+						"Function"		"HealingAttack"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+	
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_argent_smite"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnTeleported"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_argent_smite"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+	
+			"modifier_argent_smite"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				
+				
+				
+			
+				"EffectName"		""
+				"EffectAttachType"	"follow_origin"
+	
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%Range_Bonus" 
+				}
+			}
+			"modifier_argent_smite_orb"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Orb"
+				{
+					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"    ""
+					"CastAttack"		"1"
+				}
+			}
+		}
+	}
+	"Hail_Back"
+		{
+			"BaseClass"             		"ability_datadriven"
+			"AbilityTextureName"			"uther/uther_hail_back"
+			"MaxLevel" 						"1"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"	
+			"AbilityCooldown"				"2"
+	
+			"OnSpellStart"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/uther/hurl_hammer.lua"
+					"Function"		"ReturnHammer"
+				}
+			}
+		}
+	"Hurl_Hammer"
+		{
+			"BaseClass"             		"ability_datadriven"
+			"AbilityTextureName"			"uther/uther_hurl_hammer"
+			"MaxLevel" 						"4"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+			"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+			"AbilityCastRange"				"800 950 1100 1250"
+			"AbilityCastPoint"				"0.4"
+			"AbilityDamage"					"90 130 170 210"
+			"AbilityCooldown"				"12"
+			"AbilityManaCost"				"110 120 130 140"
+			"AbilityDuration"				"12"
+		
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"Hammer_Size"		"250"
+				}
+				"02"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"stun_duration"		"1 1.25 1.5 1.75"
+				}
+				"03"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"Movement_Speed_Bonus"	"10 20 30 40"
+				}
+				"04"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"Automatic_Return"	"18"
+				}
+				"05"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"ministun_duration"	"0.01"
+				}
+				"04"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"hammer_speed"		"800 950 1100 1250"
+				}
+	
+	
+			}
+	
+			"OnSpellStart"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_hammer_thrown"
+					"Target" 		"CASTER"
+					"Duration"		"%Automatic_Return"
+				}
+	
+				"RunScript"
+				{
+					"ScriptFile"	"heroes/uther/hurl_hammer.lua"
+					"Function"		"ThrowHammer"
+					"Target"		"POINT"
+				}
+				
+			}
+			"OnProjectileHitUnit"
+			{
+				"DeleteOnHit"	"0"
+				"Damage"
+				{
+					"Target"		"TARGET"
+					"Type"			"DAMAGE_TYPE_MAGICAL"
+					"Damage"		"%AbilityDamage"
+				}
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_hammer_stun"
+					"Target" 		"TARGET"
+					"Duration"		"%ministun_duration"
+				}
+			}
+	
+			"Modifiers"
+			{
+				"modifier_hammer_thrown"
+				{
+					"Passive"			"0"
+					"IsHidden"			"0"
+					"IsPurgable"		"0"
+					"IsBuff"			"0"
+					"IsDebuff"			"0"
+					"IsStunDebuff"		"0"
+			
+					"EffectName"		""
+					"EffectAttachType"	"follow_origin"
+	
+	
+					"OnAttackStart"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"heroes/uther/hurl_hammer.lua"
+							"Function"		"CancelAttack"
+						}
+					}
+					"OnDeath"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"heroes/uther/hurl_hammer.lua"
+							"Function"		"RemoveHammer"
+						}
+					}
+					"OnDestroy"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"heroes/uther/hurl_hammer.lua"
+							"Function"		"ReturnHammer"
+						}
+					}
+			
+					"Properties"
+					{
+					    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%Movement_Speed_Bonus" 
+					}
+				}
+				"modifier_hammer_stun"
+				{
+					"Passive"			"0"
+					"IsHidden"			"0"
+					"IsDebuff"			"0"
+				
+					"EffectName"		"particles/generic_gameplay/generic_stunned.vpcf"
+					"EffectAttachType"	"follow_overhead"
+				
+					"States"
+					{
+						"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					}
+				}
+				"modifier_hammer_moving_dummy"
+				{	
+					"Passive"			"0"
+					"IsHidden"			"1"
+					"IsDebuff"			"0"
+				
+					"EffectName"		""
+					"EffectAttachType"	"follow_origin"
+				
+					"ThinkInterval"  "0.05"
+					"OnIntervalThink"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"heroes/uther/hurl_hammer.lua"
+							"Function"		"HammerPosition"
+						}
+					}
+	
+					"OnDestroy"
+					{
+						"ApplyModifier"
+						{
+							"ModifierName"	"modifier_hammer_stationary_dummy"
+							"Target" 		"CASTER"
+							//"Duration"		"-1"
+						}
+						"ActOnTargets"
+						{
+							"Target"
+							{
+								"Center"  	"POINT"
+								"Radius" 	"%Hammer_Size"
+								"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+								"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							}
+						
+							"Action"    
+							{
+								"ApplyModifier"
+								{
+									"ModifierName"	"modifier_hammer_stun"
+									"Target" 		"TARGET"
+									"Duration"		"%stun_duration"
+								}
+								
+							}
+						}
+					}
+				}
+				"modifier_hammer_stationary_dummy"
+				{	
+					"Passive"			"0"
+					"IsHidden"			"1"
+					"IsDebuff"			"0"
+				
+					"EffectName"		""
+					"EffectAttachType"	"follow_origin"
+				
+					"ThinkInterval"  "0.05"
+					"OnIntervalThink"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"heroes/uther/hurl_hammer.lua"
+							"Function"		"PickUpHammer"
+						}
+					}
+				}
+				"modifier_hammer_dummy"
+				{
+					"IsHidden" "1"
+					"States"
+					{
+						"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+						"MODIFIER_STATE_ATTACK_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+						"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					}
+				}
+			}
+		}
+	
+	"Omniscience"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"uther/uther_omniscience"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"value"				"25"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"max_stacks"		"2 3 4"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"10"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/uther/Omniscience.lua"
+				"Function"		"AddCharges"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_omniscience"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+		
+				"EffectName"		""
+				"EffectAttachType"	"follow_origin"
+	
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
+				
+	
+				"OnOrder"
+				// OnSpellStart as a Modifier Event, you can Apply it on a target to trigger any Actions.
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/uther/Omniscience.lua"
+						"Function"		"Omniscience"
+					}
+				}
+			}
+			"modifier_omniscience_dummy"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+			
+			
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/uther/Omniscience.lua"
+						"Function"		"AddCharges"
+					}
+				}
+			}
+		}
+	}
+	"Threatening_Bolt"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"AbilityTextureName"			"uther/uther_Threatening_Bolt"
+		"MaxLevel" 						"4"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCoolDown"				"9"
+		"AbilityDuration"				"5"
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityManaCost"				"100 110 120 130"
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+			
+		}
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bolt_speed"			"400"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"125 200 275 350"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attacks_needed"	"3"
+			}
+	
+		}
+	
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/uther/threatening_bolt.lua"
+				"Function"		"Launch_Bolt"
+				"Target" 		"POINT"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_bolt_dummy"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+		
+				"EffectName"		""
+				"EffectAttachType"	"follow_origin"
+	
+				"Properties"
+				{
+				   "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE" "-99.9%" 
+				}
+		
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/uther/threatening_bolt.lua"
+						"Function"		"Direct_Bolt"
+					}
+				}
+				"OnAttacked"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/uther/threatening_bolt.lua"
+						"Function"		"LoseHP"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/uther/threatening_bolt.lua"
+						"Function"		"destroy"
+					}
+					"CreateThinker"
+					{
+						"ModifierName"	"modifier_explode"
+						"Target" 		"TARGET"
+					}
+				}
+			}
+	
+			"modifier_exlode"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"EffectName"		"particle_name"
+				"EffectAttachType"	"follow_origin"
+			
+				"FireEffect"
+				{
+					"EffectName"        "particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "TARGET"
+				}
+			}
+		}
+	}
 	"Ads_Everywhere"
 	{	
 		"BaseClass"             		"ability_datadriven"

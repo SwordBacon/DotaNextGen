@@ -21,9 +21,6 @@ function BeginCooldown( keys )
 			if ability:GetName() == "alpha_strider_plasma_leap" then
 				ability:StartCooldown(0.85)
 			end
-			if ability:GetName() == "alpha_strider_static_charge" then
-				ability:StartCooldown(0.05)
-			end
 			cooldown = cooldown + abilityCD:GetCooldownTimeRemaining()
 			if cooldown > 60 then cooldown = 60 end
 			abilityCD:StartCooldown(cooldown)
@@ -35,7 +32,7 @@ function BeginCooldown( keys )
 				stack_count = caster:GetModifierStackCount("modifier_alternating_current_stacks", ability)
 				mana_spent = (ability:GetManaCost(-1) * stack_count) / 5
 				caster:SetModifierStackCount("modifier_alternating_current_stacks", ability, stack_count + 1)
-				caster:SpendMana(mana_spent, ability)
+				caster:ReduceMana(mana_spent)
 			else 
 				abilityLast = ability
 				caster:RemoveModifierByName("modifier_alternating_current_stacks")

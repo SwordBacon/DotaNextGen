@@ -130,9 +130,11 @@
 		},
 		{
 			m_ChildRef = resource:"particles/blood_trail_a.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/blood_trail_b.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/blood_trail_c.vpcf"
@@ -142,6 +144,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/blood_trail_j.vpcf"
+			m_bDisableChild = true
 		},
 	]
 	m_ConstantColor =

@@ -72,7 +72,7 @@
 				//	"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
 				//}
 			}
-			"modifier_block_commands" // Restricting controls for a short period, 0.25 right now. This makes spamming a bad idea.
+			"modifier_block_commands" // Restricting controls for a short period, 0.5 right now. This makes spamming a bad idea.
 			{
 				"OnCreated"
 				{
@@ -90,6 +90,18 @@
 				"States"
 				{
 					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"MarkLocation"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/bellatrix/bloodrakemarker.vpcf"
+						"EffectAttachType"  "attach_origin"
+						"Target"            "TARGET"
+					}
 				}
 			}
 		}

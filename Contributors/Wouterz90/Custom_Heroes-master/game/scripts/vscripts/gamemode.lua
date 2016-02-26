@@ -1,5 +1,5 @@
 -- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
-LinkLuaModifier("momentum_break_limit", "heroes/eurus/modifiers/momentum_break_limit.lua", LUA_MODIFIER_MOTION_NONE )
+
 
 -- Set this to true if you want to see a complete debug output of all events/processes done by barebones
 -- You can also change the cvar 'barebones_spew' at any time to 1 or 0 for output/no output
@@ -32,6 +32,11 @@ require('settings')
 -- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
 require('events')
 
+
+-- Orders.lua has the orderfilter in it. I took it out of the gamemode to make it easier to see what should be edited.
+require('orders')
+require('modifiergained')
+require('damage')
 --[[
   This function should be used to set up Async precache calls at the beginning of the gameplay.
 
@@ -101,9 +106,13 @@ function GameMode:OnHeroInGame(hero)
           hero:UpgradeAbility(hero:FindAbilityByName("Negative_Charge"))
           hero:SetAbilityPoints(1)
           borus_caster = hero
+      elseif hero:GetUnitName() == "npc_dota_hero_omniknight" then
+          hero:UpgradeAbility(hero:FindAbilityByName("Hail_Back"))
+          hero:SetAbilityPoints(1)
       end
 
   end
+
 
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
   local item = CreateItem("item_example_item", hero, hero)
@@ -187,6 +196,15 @@ function GameMode:InitGameMode()
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
   Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
   GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode,"FilterExecuteOrder"),self)
+  GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(GameMode,"FilterModifierGained"),self)
+  GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode,"FilterDamage"),self)
+
+
+
+  GameRules.AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
+  GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+  GameRules.ItemKV = LoadKeyValues("scripts/npc/npc_items_custom.txt")
+
   --GameRules.SELECTED_UNITS = {}
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
@@ -230,42 +248,9 @@ function GameMode:ExampleConsoleCommand()
 end
 
 
-function GameMode:FilterExecuteOrder( filterTable )
-    local units = filterTable["units"]
-    local issuer = filterTable["issuer_player_id_const"]
-    local order_type = filterTable["order_type"]
-    local abilityIndex = filterTable["entindex_ability"]
-    local ability = EntIndexToHScript(abilityIndex)
-    local targetIndex = filterTable["entindex_target"]
 
-    for n, unit_index in pairs(units) do
-        local unit = EntIndexToHScript(unit_index)
-        local owner_ID = unit:GetPlayerOwnerID()
-        if unit:HasModifier("modifier_blackout") then
-            if PlayerResource:IsValidPlayerID(issuer) and PlayerResource:IsValidPlayerID(owner_ID) then
-                if owner_ID ~= issuer then
-                    return true
-                else
-                    local random = RandomFloat(0, 1) * 100
-                    local chance = blackout:GetLevelSpecialValueFor("halt_chance", blackout:GetLevel() -1)
-                    if random < chance then
-                        unit:Stop()
-                        blackout:ApplyDataDrivenModifier(skoros, unit, "modifier_block_commands", {duration = blackout:GetSpecialValueFor("halt_duration")})
-                        return false
-                    else
-                        return true
-                    end
-                end
-            else
-                return true
-            end
-        else
-            return true
-        end
-    end
-end
 
-function GameMode:DebugCalls()
+--[[function GameMode:DebugCalls()
     if not GameRules.DebugCalls then
         print("Starting DebugCalls")
         GameRules.DebugCalls = true
@@ -328,3 +313,4 @@ DEBUG_CODES = {
     ["debug_c"] = function(...) GameMode:DebugCalls(...) end,               -- Spams the console with every lua call
     ["debug_l"] = function(...) GameMode:DebugLines(...) end,               -- Spams the console with every lua line
 }
+]]

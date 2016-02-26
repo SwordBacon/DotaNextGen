@@ -11,9 +11,13 @@ function modifier_borus_negative_effect_enemies:DeclareFunctions()
 end
 
 function modifier_borus_negative_effect_enemies:GetModifierAttackSpeedBonus_Constant(params)
-	return self.attackspeed_increase
+	if IsServer() then
+		return self:GetCaster().greater_magnet_attackspeed_increase * -1
+	end
 end
 
 function modifier_borus_negative_effect_enemies:GetModifierMoveSpeedBonus_Percentage (params)
-	return self.ms_increase
+	if IsServer() then
+		return self:GetCaster().greater_magnet_ms_increase * -1
+	end
 end

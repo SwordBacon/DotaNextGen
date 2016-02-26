@@ -153,15 +153,15 @@
 	//=================================================================================================================
 	// HERO: Bellatrix
 	//=================================================================================================================
-	"hero_Bellatrix"
+	"npc_dota_hero_Bellatrix"
 	{
 		"override_hero"				"npc_dota_hero_bloodseeker"
 		"InternalName"				"Bellatrix"
 		"AbilityLayout" 			"4"
-		"Ability1"					"blood_rake"
-		"Ability2"					"unholy_ecstasy"
-		"Ability3"					"rip_and_tear"
-		"Ability4"					"live_transfusion"
+		"Ability1"					"Blood Rake"
+		"Ability2"					"Unholy Ecstasy"
+		"Ability3"					"Rip and Tear"
+		"Ability4"					"Live Transfusion"
 		"Ability5"					""
 		"Ability6"					""
 		"Ability7"					"attribute_bonus"	
@@ -416,6 +416,18 @@
 			"StatusHealthRegen"			"1.5"									// Health regeneration rate.
 			"StatusHealth"				"180"
 		}
+	"npc_dota_hero_uther"
+	{
+		"override_hero"				"npc_dota_hero_omniknight"
+		"AbilityLayout" 			"5"
+		"Ability1"					"Hurl_Hammer"
+		"Ability2"					"Threatening_Bolt"
+		"Ability3"					"Argent_Smite"
+		"Ability4"					"Omniscience"
+		"Ability5"					"Hail_Back"
+		"Ability6"					""
+		"Ability7"					"attribute_bonus"
+	}
 	"npc_dota_hero_Whizzi"
 	{
 		"override_hero"				"npc_dota_hero_tinker"

@@ -10985,11 +10985,6 @@
 				"var_type"						"FIELD_INTEGER"
 				"max_delay"					"10"
 			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_1"						"1"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
@@ -11000,20 +10995,10 @@
 				"var_type"						"FIELD_INTEGER"
 				"slow_duration"						"5"
 			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_2"						"1"
-			}
 			"07"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"stun_duration"						"1.5 1.75 2.0 2.25"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_3"						"1"
 			}
 			"09"
 			{
@@ -11243,20 +11228,10 @@
 				"var_type"						"FIELD_INTEGER"
 				"max_delay"					"10"
 			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_1"						"2"
-			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"instant_damage"					"90 180 270 360"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_2"						"2"
 			}
 			"06"
 			{
@@ -11267,11 +11242,6 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"duration"						"10"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_3"						"2"
 			}
 			"09"
 			{
@@ -11509,21 +11479,6 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"number_three"					"3 33 333 3333"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_1"						"3"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_2"						"3"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"effect_3"						"3"
 			}
 		}
 		"OnUpgrade"

@@ -45,7 +45,7 @@ function BattojutsuQ( keys )
         DamageTable.damage_type = DAMAGE_TYPE_PHYSICAL
         DamageTable.ability = ability
 
-    local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+    local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
     if #units > 0 then
         FindClearSpaceForUnit( caster, units[1]:GetAbsOrigin(), true )
@@ -90,7 +90,7 @@ function BattojutsuW( keys )
         DamageTable.damage_type = DAMAGE_TYPE_PHYSICAL
         DamageTable.ability = ability
 
-    local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+    local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
     if #units > 0 then
         FindClearSpaceForUnit( caster, units[1]:GetAbsOrigin(), true )
@@ -135,7 +135,7 @@ function BattojutsuE( keys )
         DamageTable.damage_type = DAMAGE_TYPE_PHYSICAL
         DamageTable.ability = ability
 
-    local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+    local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
     if #units > 0 then
         FindClearSpaceForUnit( caster, units[1]:GetAbsOrigin(), true )
@@ -191,7 +191,7 @@ function BattojutsuR( keys )
 
     if slashOrder == "QWE" then
 
-        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
         if #units > 0 then
             DamageTable.victim = units[1]
@@ -222,7 +222,7 @@ function BattojutsuR( keys )
 
     elseif slashOrder == "QEW" then
         battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_b", {Duration = 0.1})
-        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
         if #units > 0 then
             local targets = FindUnitsInRadius(caster:GetTeam(), units[1]:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, 
@@ -257,7 +257,7 @@ function BattojutsuR( keys )
 
     elseif slashOrder == "WQE" then
         battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_c", {Duration = 0.1})
-        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
         if #units > 0 then
             FindClearSpaceForUnit( caster, units[1]:GetAbsOrigin(), false )
@@ -274,7 +274,7 @@ function BattojutsuR( keys )
 
     elseif slashOrder == "WEQ" then
         battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_d", {Duration = 0.1})
-        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
         if #units > 0 then
             FindClearSpaceForUnit( caster, units[1]:GetAbsOrigin(), false )
@@ -305,7 +305,7 @@ function BattojutsuR( keys )
 
     elseif slashOrder == "EQW" then
         battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_e", {Duration = 0.1})
-        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, highRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, highRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
         if #units > 0 then
             FindClearSpaceForUnit( caster, units[1]:GetAbsOrigin(), false )
@@ -320,7 +320,7 @@ function BattojutsuR( keys )
 
     elseif slashOrder == "EWQ" then
         battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_f", {Duration = 0.1})
-        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, highRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_CLOSEST, false)
+        local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, highRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
         if #units > 0 then
             caster:SetForwardVector((units[1]:GetOrigin() - caster:GetOrigin()):Normalized())

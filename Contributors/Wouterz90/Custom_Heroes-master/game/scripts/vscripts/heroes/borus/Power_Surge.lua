@@ -62,7 +62,7 @@ function PushBack( keys )
 		power_surge_ready = 1
 	end
 	-- Check if flag has been turned from listener
-	if targetUnit.take_next_surge[ attackerEnt ] == 1 and power_surge_ready == 1 then  -- Magic damage received
+	if targetUnit.take_next_surge[ attackerEnt ] == 1 and power_surge_ready == 1 and target:IsHero() then  -- Magic damage received
 		if targetUnit:HasModifier("Positive_Charge_Magnetic") then
 			local knockbackModifierTable =
 			{
@@ -120,7 +120,7 @@ function PushBack( keys )
 				end
 			})
 		end
-	elseif targetUnit.take_next_surge[ attackerEnt ] == 2 and power_surge_ready == 1 then -- Physical damage received
+	elseif targetUnit.take_next_surge[ attackerEnt ] == 2 and power_surge_ready == 1 and target:IsHero() then -- Physical damage received
 		if targetUnit:HasModifier("Positive_Charge_Magnetic") then
 			local knockbackModifierTable =
 			{
@@ -175,7 +175,7 @@ function PushBack( keys )
 				end
 			})
 		end
-	elseif power_surge_ready == 1 then
+	elseif power_surge_ready == 1 and target:IsHero() then
 		local knockbackModifierTable =
 			{
 				should_stun = 0,
@@ -202,13 +202,14 @@ function PushBack_Attack( keys )
 	local targetUnit = keys.caster
 	local attackerEnt = keys.attacker:entindex()
 	local target = keys.attacker
+	local attacker = keys.attacker
 	local ability = keys.ability
 	local wrong_type_x = ability:GetSpecialValueFor("wrong_type_x")
 	local right_type_x = ability:GetSpecialValueFor("right_type_x")
 	local duration = ability:GetLevelSpecialValueFor("push_duration", ability:GetLevel() - 1)
 	local length = ability:GetLevelSpecialValueFor("push_distance", ability:GetLevel() - 1)
 
-	if ability:IsCooldownReady() then
+	if power_surge_ready == 1 then
 		if targetUnit:HasModifier("Positive_Charge_Magnetic") and attacker:IsHero() then
 			local knockbackModifierTable =
 			{

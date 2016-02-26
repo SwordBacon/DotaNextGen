@@ -18,7 +18,7 @@ function ToxicDartsApplyRandomEffect( keys )
 		end
 	end
 
-	ability:CreateVisibilityNode(target_loc, 100, 1.5)
+	ability:CreateVisibilityNode(target_loc, 150, 1.5)
 end
 
 function ToxicDartsStartCharge( keys )

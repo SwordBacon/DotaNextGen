@@ -5,8 +5,7 @@ function AllyDistanceCheck( keys )
 	local modifierName = "modifier_fanatic_buff"
 	
 	local heroes = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, 0, false)
-	
-	print(#heroes)
+
 	if #heroes == 1 then
 		ability:ApplyDataDrivenModifier(caster, caster, modifierName, {})
 	else

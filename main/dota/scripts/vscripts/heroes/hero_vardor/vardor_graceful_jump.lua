@@ -1,5 +1,3 @@
-
-
 function Jump(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -9,17 +7,8 @@ function Jump(keys)
     local difference_vector = target_point - origin_point
 	local charge_speed = ability:GetLevelSpecialValueFor("speed", (ability:GetLevel() - 1)) * 1/30
 
-	if target:HasModifier("modifier_dummy_health") or target:HasModifier("modifier_stuck") then
-		ability:ApplyDataDrivenModifier(caster, caster, "modifier_movement", {Duration = 1} )
-	else
-		ability:RefundManaCost()
-		ability:EndCooldown()
-		FireGameEvent("show_center_message", {message = "No valid target", duration = 2, clear_message_queue = true})
-	end
-
     caster:Stop()
     ProjectileManager:ProjectileDodge(caster)
-
 
         -- Motion Controller Data
     ability.target = target
