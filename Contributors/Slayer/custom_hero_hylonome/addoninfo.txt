@@ -1,0 +1,5 @@
+"AddonInfo"
+{
+	maps			"hero_demo_main"
+	"IsPlayable"	"1"
+}

@@ -3,23 +3,17 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 64
-	m_ConstantColor =
-	[
-		255,
-		255,
-		255,
-		155,
-	]
+	m_ConstantColor = [ 255, 255, 255, 155 ]
 	m_nGroupID = 3
-	m_flMaxDrawDistance = 2000.000000
+	m_flMaxDrawDistance = 2000.0
 	m_bShouldSort = false
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bRefract = true
-			m_flRefractAmount = 0.007500
+			m_flRefractAmount = 0.0075
 			m_nRefractBlurRadius = 3
 			m_nRefractBlurType = "BLURFILTER_BOX"
 			m_bGammaCorrectVertexColors = false
@@ -27,82 +21,82 @@
 			m_nOrientationType = 2
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_fDrag = 0.050000
-			m_flOpTimeOffsetMax = 1.000000
-			m_flOpStrengthMinScale = 0.000000
+			m_fDrag = 0.05
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
 		},
 		{
 			_class = "C_OP_Spin"
 			m_nSpinRateDegrees = 4
-			m_fSpinRateStopTime = 1.000000
-			m_flOpTimeOffsetMax = 1.000000
-			m_flOpStrengthMinScale = 0.000000
+			m_fSpinRateStopTime = 1.0
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
 		},
 		{
 			_class = "C_OP_FadeOut"
-			m_flFadeOutTimeMin = 1.000000
-			m_flFadeOutTimeMax = 1.000000
+			m_flFadeOutTimeMin = 1.0
+			m_flFadeOutTimeMax = 1.0
 			m_bEaseInAndOut = false
-			m_flFadeBias = 0.350000
-			m_flOpTimeOffsetMax = 1.000000
-			m_flOpStrengthMinScale = 0.000000
+			m_flFadeBias = 0.35
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
 		},
 		{
 			_class = "C_OP_Decay"
-			m_flOpTimeOffsetMax = 1.000000
-			m_flOpStrengthMinScale = 0.000000
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
 		},
 		{
 			_class = "C_OP_PositionLock"
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 2.000000
-			m_flBias = 0.850000
+			m_flEndScale = 2.0
+			m_flBias = 0.85
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 116.000000
-			m_flRadiusMax = 125.000000
-			m_flOpTimeOffsetMax = 1.000000
-			m_flOpStrengthMinScale = 0.000000
+			m_flRadiusMin = 116.0
+			m_flRadiusMax = 125.0
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.350000
-			m_fLifetimeMax = 0.700000
-			m_flOpTimeOffsetMax = 1.000000
-			m_flOpStrengthMinScale = 0.000000
+			m_fLifetimeMin = 0.35
+			m_fLifetimeMax = 0.7
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
 		},
 		{
 			_class = "C_INIT_RandomRotation"
-			m_flOpTimeOffsetMax = 1.000000
-			m_flOpStrengthMinScale = 0.000000
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
 		},
 		{
 			_class = "C_INIT_RandomYawFlip"
-			m_flOpTimeOffsetMax = 1.000000
-			m_flOpStrengthMinScale = 0.000000
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 1
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode_b.vpcf"

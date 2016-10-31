@@ -1,3 +1,15 @@
+function GerrymanderInitiate( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+
+	if target:TriggerSpellAbsorb(ability) then
+		target:RemoveModifierByName("modifier_gerrymander_debuff")
+		RemoveLinkens(target)
+		return
+	end
+end
+
 function GerrymanderBuff( keys )
 	local caster = keys.caster
 	local target = keys.unit
@@ -26,6 +38,7 @@ function GerrymanderDebuff( keys )
 	local target = keys.unit
 	local attacker = keys.attacker
 	local ability = keys.ability
+
 	local damage = keys.Damage
 
 	local bonusEffect = ability:GetLevelSpecialValueFor("bonus_effect", ability:GetLevel() - 1) / 100

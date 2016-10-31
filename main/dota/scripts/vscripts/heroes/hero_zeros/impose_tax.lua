@@ -20,14 +20,12 @@ function CheckLastHitGold( keys )
 		target.gold_bounty = target.gold_bounty + bonus_gold 
 	end
 	
-	if attacker:HasModifier("modifier_tax_counter") 
-	and not attacker:HasModifier("modifier_poverty") 
+	if attacker:HasModifier("modifier_tax_counter")
+	and not attacker:HasModifier("modifier_poverty")
 	and not target:IsAlive() then
 		attacker.gold_counter = attacker.gold_counter + target.gold_bounty
-		print(gold_counter)
 		Timers:CreateTimer(duration, function ()
 			attacker.gold_counter = attacker.gold_counter - target.gold_bounty
-			print(gold_counter)
 			return nil
 		end
 		)
@@ -37,18 +35,25 @@ end
 function TaxReturn( keys )
 	local caster = keys.caster
 	local target = keys.target
+	local ability = keys.ability
+
+	if target:TriggerSpellAbsorb(ability) then
+		RemoveLinkens(target)
+		return
+	end
+
 	local cpid = caster:GetPlayerID()
 	local tpid = target:GetPlayerID()
 
 	local player = PlayerResource:GetPlayer( cpid )
 	local enemyPlayer = PlayerResource:GetPlayer( tpid )
 
-	local ability = keys.ability
+	
 	local goldPercent = ability:GetLevelSpecialValueFor("gold_loss_pct", ability:GetLevel() - 1) / 100.0
 	local dmgPerGold = ability:GetLevelSpecialValueFor("damage_per_gold", ability:GetLevel() - 1)
 	local gold_counter = target.gold_counter
 
-	if gold_counter ~= nil then
+	if gold_counter then
 		if gold_counter > 0 then
 			local cgold = PlayerResource:GetGold(cpid) - PlayerResource:GetReliableGold(cpid)
 			local tgold = PlayerResource:GetGold(tpid) - PlayerResource:GetReliableGold(tpid)
@@ -59,7 +64,6 @@ function TaxReturn( keys )
 
 			PlayerResource:SetGold(tpid, goldSubtract, false)
 			PlayerResource:SetGold(cpid, goldAdd, false)
-			ability:ApplyDataDrivenModifier(caster, target, "modifier_poverty_remove", {})
 
 			DamageTable = {}
 	    
@@ -71,7 +75,7 @@ function TaxReturn( keys )
 
 		    ApplyDamage(DamageTable)
 
-		    local amount = goldModify * dmgPerGold
+--[[		local amount = goldModify * dmgPerGold
 
 		    amount = amount - (amount * target:GetMagicalArmorValue())
 
@@ -85,7 +89,7 @@ function TaxReturn( keys )
 		    amount = amount * (1 + (.08 * lens_count))
 
     		amount = math.floor(amount)
-    		PopupNumbers(target, "damage", Vector(153, 0, 204), 2.0, amount, nil, POPUP_SYMBOL_POST_EYE)
+    		PopupNumbers(target, "damage", Vector(153, 0, 204), 2.0, amount, nil, POPUP_SYMBOL_POST_EYE)]]
 
 
 
@@ -117,16 +121,7 @@ function TaxReturn( keys )
 			ParticleManager:SetParticleControl( particle, 1, Vector( symbol, value, 0) )
 		    ParticleManager:SetParticleControl( particle, 2, Vector( lifetime, digits, 0) )
 		    ParticleManager:SetParticleControl( particle, 3, color )
-
-	    else
-		   	ability:ApplyDataDrivenModifier(caster, target, "modifier_poverty", {})
-		   	ability:ApplyDataDrivenModifier(caster, caster, "modifier_poverty_buff", {})
-			ability:ApplyDataDrivenModifier(caster, target, "modifier_poverty_debuff", {Duration = 5.05})
 		end
-	else
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_poverty", {})
-		ability:ApplyDataDrivenModifier(caster, caster, "modifier_poverty_buff", {})
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_poverty_debuff", {Duration = 5.05})
 	end
 end
 
@@ -135,6 +130,12 @@ function StealBounty( keys )
 	local target = keys.unit
 	local attacker = keys.attacker
 	local ability = keys.ability
+
+	if target:TriggerSpellAbsorb(ability) then
+		RemoveLinkens(target)
+		return
+	end
+
 	local Damage = keys.Damage
 	local cpid = caster:GetPlayerID()
 	local player = PlayerResource:GetPlayer( cpid )

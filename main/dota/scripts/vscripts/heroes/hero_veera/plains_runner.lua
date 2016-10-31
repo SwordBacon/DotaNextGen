@@ -9,16 +9,16 @@ function PlainsRunnerInitialize( keys )
 	caster.altitude = 0
 	caster.forwardVec = caster:GetForwardVector().y
 
-	local level = ability:GetLevel()
+	local level = ability:GetLevel() - 1
+	caster.movespeed_max = ability:GetLevelSpecialValueFor("movespeed_limit", level)
 
-	if level ~= 1 then
-		caster:RemoveModifierByName('modifier_movespeed_cap_' .. level - 1)
-	else 
-		stacks = 0
+	if level == 0 then
+		caster:AddNewModifier(caster, ability, 'modifier_movespeed_cap', {})
 	end
-	caster:AddNewModifier(caster, ability, 'modifier_movespeed_cap_' .. level, {})
-
-	
+	caster:SetModifierStackCount('modifier_movespeed_cap', ability, caster.movespeed_max)
+	if caster:HasModifier("modifier_thrill_active") and caster:HasScepter() then
+		caster:SetModifierStackCount('modifier_movespeed_cap', ability, caster.movespeed_max*2)
+	end
 end
 
 function PlainsRunnerDistanceCheck( keys )
@@ -49,6 +49,7 @@ function PlainsRunnerDistanceCheck( keys )
 	end
 
 	while caster.altitude >= 6.4 do
+		if stacks == nil then stacks = caster:GetModifierStackCount("modifier_plains_runner_bonus", ability) end
 		stacks = stacks * (0.96593632892)
 		if stacks < 1 and caster:HasModifier("modifier_plains_runner_bonus") then
 			caster:RemoveModifierByName("modifier_plains_runner_bonus")
@@ -59,6 +60,7 @@ function PlainsRunnerDistanceCheck( keys )
 	end
 	
 	while caster.altitude <= -6.4 do
+		if stacks == nil then stacks = caster:GetModifierStackCount("modifier_plains_runner_bonus", ability) end
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_plains_runner_bonus", {})
 		stacks = stacks + 0.5
 		caster:SetModifierStackCount("modifier_plains_runner_bonus", ability, math.floor(stacks))
@@ -66,6 +68,7 @@ function PlainsRunnerDistanceCheck( keys )
 	end
 
 	while result_angle > 5 and not caster:HasModifier("modifier_thrill_active") do
+		if stacks == nil then stacks = caster:GetModifierStackCount("modifier_plains_runner_bonus", ability) end
 		stacks = stacks * (0.961)
 		caster:SetModifierStackCount("modifier_plains_runner_bonus", ability, math.floor(stacks))
 		result_angle = result_angle - 5
@@ -84,7 +87,7 @@ end
 function PlainsRunnerAgility( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local agi_bonus = ability:GetLevelSpecialValueFor("agility_bonus", ability:GetLevel() - 1)/100
+	local agi_bonus = ability:GetLevelSpecialValueFor("agility_bonus", ability:GetLevel() - 1) / 100
 	local extra_movespeed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()
 
 	local total_bonus = math.floor(extra_movespeed * agi_bonus)
@@ -99,18 +102,19 @@ function PlainsRunnerAgility( keys )
 			caster:RemoveModifierByName("modifier_plains_runner_agility")
 		end
 	end
+
+	if caster:HasModifier("modifier_veera_thrill") then
+
+	else
+
+	end
 end
 
-modifier_movespeed_cap_1 = class({})
-modifier_movespeed_cap_2 = class({})
-modifier_movespeed_cap_3 = class({})
-modifier_movespeed_cap_4 = class({})
-LinkLuaModifier("modifier_movespeed_cap_1", "heroes/hero_veera/plains_runner", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_movespeed_cap_2", "heroes/hero_veera/plains_runner", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_movespeed_cap_3", "heroes/hero_veera/plains_runner", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_movespeed_cap_4", "heroes/hero_veera/plains_runner", LUA_MODIFIER_MOTION_NONE)
+modifier_movespeed_cap = class({})
+LinkLuaModifier("modifier_movespeed_cap", "heroes/hero_veera/plains_runner", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_movespeed_cap_1:DeclareFunctions()
+
+function modifier_movespeed_cap:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_MAX,
         MODIFIER_PROPERTY_MOVESPEED_LIMIT,
@@ -119,98 +123,18 @@ function modifier_movespeed_cap_1:DeclareFunctions()
     return funcs
 end
 
-function modifier_movespeed_cap_1:GetModifierMoveSpeed_Max( params )
-    return 600
+function modifier_movespeed_cap:GetModifierMoveSpeed_Max( params )
+    return self:GetStackCount()
 end
 
-function modifier_movespeed_cap_1:GetModifierMoveSpeed_Limit( params )
-    return 600
+function modifier_movespeed_cap:GetModifierMoveSpeed_Limit( params )
+    return self:GetStackCount()
 end
 
-function modifier_movespeed_cap_1:IsHidden()
+function modifier_movespeed_cap:IsHidden()
     return true
 end
 
-function modifier_movespeed_cap_1:GetAttributes()
-	return MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-
-
-function modifier_movespeed_cap_2:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_MAX,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-    }
-
-    return funcs
-end
-
-function modifier_movespeed_cap_2:GetModifierMoveSpeed_Max( params )
-    return 650
-end
-
-function modifier_movespeed_cap_2:GetModifierMoveSpeed_Limit( params )
-    return 650
-end
-
-function modifier_movespeed_cap_2:IsHidden()
-    return true
-end
-
-function modifier_movespeed_cap_2:GetAttributes()
-	return MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-
-
-function modifier_movespeed_cap_3:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_MAX,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-    }
-
-    return funcs
-end
-
-function modifier_movespeed_cap_3:GetModifierMoveSpeed_Max( params )
-    return 700
-end
-
-function modifier_movespeed_cap_3:GetModifierMoveSpeed_Limit( params )
-    return 700
-end
-
-function modifier_movespeed_cap_3:IsHidden()
-    return true
-end
-
-function modifier_movespeed_cap_3:GetAttributes()
-	return MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-
-function modifier_movespeed_cap_4:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_MAX,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-    }
-
-    return funcs
-end
-
-function modifier_movespeed_cap_4:GetModifierMoveSpeed_Max( params )
-    return 750
-end
-
-function modifier_movespeed_cap_4:GetModifierMoveSpeed_Limit( params )
-    return 750
-end
-
-function modifier_movespeed_cap_4:IsHidden()
-    return true
-end
-
-function modifier_movespeed_cap_4:GetAttributes()
+function modifier_movespeed_cap:GetAttributes()
 	return MODIFIER_ATTRIBUTE_PERMANENT
 end

@@ -3,6 +3,9 @@
 function DamageInterval (keys)
 	local caster = keys.caster
 	local target = keys.target
+	
+	if target:HasModifier("modifier_roshan_bash") then return end
+
 	local ability = keys.ability
 	local target_max_hp = target:GetMaxHealth() /100
 	local effect_damage = ability:GetLevelSpecialValueFor("PercentDamage", ability:GetLevel() - 1 )
@@ -16,6 +19,10 @@ function DamageInterval (keys)
 	damage_table.damage_flags = DOTA_DAMAGE_FLAG_HPLOSS -- Doesnt trigger abilities and items that get disabled by damage
 
 	ApplyDamage(damage_table)
+
+	if caster:HasScepter() then
+		caster:Heal(damage_table.damage, ability)
+	end
 end
 
 function live_transfusion_start_charge( keys )
@@ -204,10 +211,15 @@ function LiveTransfusion( keys )
 
 			i = i + 1
 			if i == 3 then
-			ability:ApplyDataDrivenThinker(caster, caster:GetAbsOrigin(), "modifier_bellatrix_thinker_buff_aura", {duration = duration})
-			ability:ApplyDataDrivenThinker(caster, caster:GetAbsOrigin(), "modifier_bellatrix_thinker_debuff_aura", {duration = duration})
-			i = 1
-		end
+				if caster:HasScepter() then
+					ability:ApplyDataDrivenThinker(caster, caster:GetAbsOrigin(), "modifier_bellatrix_thinker_buff_aura_scepter", {duration = duration})
+					ability:ApplyDataDrivenThinker(caster, caster:GetAbsOrigin(), "modifier_bellatrix_thinker_debuff_aura_scepter", {duration = duration})
+				else
+					ability:ApplyDataDrivenThinker(caster, caster:GetAbsOrigin(), "modifier_bellatrix_thinker_buff_aura", {duration = duration})
+					ability:ApplyDataDrivenThinker(caster, caster:GetAbsOrigin(), "modifier_bellatrix_thinker_debuff_aura", {duration = duration})
+				end		
+				i = 1
+			end
 			return 0.03
 		else
 			caster:RemoveModifierByName("Blood_Visual")

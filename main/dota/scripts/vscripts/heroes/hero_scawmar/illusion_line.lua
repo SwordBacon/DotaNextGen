@@ -2,6 +2,7 @@ function CreateIllusions( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local player = caster:GetPlayerID()
+	local point = keys.target_points[1]
 	
 	local duration = ability:GetLevelSpecialValueFor("duration", ability:GetLevel() - 1 )
 	local delay = ability:GetLevelSpecialValueFor("illusion_delay", ability:GetLevel() - 1 )
@@ -10,241 +11,109 @@ function CreateIllusions( keys )
 	
 	local origin = caster:GetAbsOrigin()
 	local forwardVec = caster:GetForwardVector()
+	local distance = (point - origin):Length2D()
+	local location = origin + forwardVec * distance
 	local sideVec = caster:GetRightVector()
+
 	local randomPos = RandomInt(1,5)
+	if caster:HasModifier("modifier_spirit_realm") then randomPos = 0 end
 
-	local vec1 = origin + sideVec * 350
-	local vec2 = origin + sideVec * 175
-	local vec3 = origin
-	local vec4 = origin + sideVec * -175
-	local vec5 = origin + sideVec * -350
+	local vec = {}
 
-	caster:Stop()
+	vec[0] = origin
+	vec[1] = location + sideVec * 350
+	vec[2] = location + sideVec * 175
+	vec[3] = location
+	vec[4] = location + sideVec * -175
+	vec[5] = location + sideVec * -350
+
+	local casterVec = vec[randomPos]
+
 	ProjectileManager:ProjectileDodge(caster)
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_fire_spawn", {})
+
+	local projectiles = {}
+
+	for i = 1, 5 do
+		distance = (vec[i] - origin):Length2D() + 0.1
+		vector = (vec[i] - origin):Normalized()
+		speed = distance / delay
+		local projectileTable =
+		{
+			EffectName = "particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant_trail.vpcf",
+			Ability = ability,
+			vSpawnOrigin = origin,
+			vVelocity = Vector( vector.x * speed, vector.y * speed, 0 ),
+			fDistance = distance,
+			Source = caster,
+			bHasFrontalCone = false,
+			bReplaceExisting = false,
+		}
+
+		projectiles[i] = ProjectileManager:CreateLinearProjectile(projectileTable)
+
+	end
+
+
 	caster:AddNoDraw()
 	caster:AddNewModifier(caster, ability, "modifier_disabled_invulnerable", {Duration = delay})
-	
+	caster:AddNewModifier(caster, ability, "modifier_disarmed", {Duration = delay})
+
+	FindClearSpaceForUnit(caster, casterVec, false) 
+
+	local illusion = {}
+
 	Timers:CreateTimer(delay, function()
 		caster:RemoveNoDraw()
-		if randomPos == 1 then
-			FindClearSpaceForUnit(caster, vec1, false) 
-			caster:MoveToPositionAggressive(vec1)
-			ability:ApplyDataDrivenModifier(caster, caster, "modifier_fire_spawn", {})
-		else 
-			local illusion1 = CreateUnitByName(caster:GetName(), vec1, true, caster, nil, caster:GetTeamNumber())
-			illusion1:SetPlayerID(caster:GetPlayerID())
-			illusion1:SetControllableByPlayer(player, true)
-			FindClearSpaceForUnit(illusion1, vec1, false) 
-			illusion1:SetForwardVector(forwardVec)
-			local casterLevel = caster:GetLevel()
-			for i=1,casterLevel-1 do
-				illusion1:HeroLevelUp(false)
-			end
-
-			-- Set the skill points to 0 and learn the skills of the caster
-			illusion1:SetAbilityPoints(0)
-			for abilitySlot=0,15 do
-				local ability = caster:GetAbilityByIndex(abilitySlot)
-				if ability ~= nil then 
-					local abilityLevel = ability:GetLevel()
-					local abilityName = ability:GetAbilityName()
-					local illusionAbility1 = illusion1:FindAbilityByName(abilityName)
-					illusionAbility1:SetLevel(abilityLevel)
-				end
-			end
-
-			-- Recreate the items of the caster
-			for itemSlot=0,5 do
-				local item = caster:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					local itemName = item:GetName()
-					local newItem = CreateItem(itemName, illusion, illusion)
-					illusion1:AddItem(newItem)
-				end
-			end
-			illusion1:SetHealth(caster:GetHealth())		
-			illusion1:SetOwner(caster)
-			illusion1:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			ability:ApplyDataDrivenModifier(caster, illusion1, "modifier_illusion_line_death", {})
-			illusion1:MakeIllusion()
-			
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_fire_spawn", {})
+		if not caster:IsChanneling() then
+			caster:MoveToPositionAggressive(casterVec)
 		end
-
-		if randomPos == 2 then
-			FindClearSpaceForUnit(caster, vec2, false) 
-			caster:MoveToPositionAggressive(vec2)
-			ability:ApplyDataDrivenModifier(caster, caster, "modifier_fire_spawn", {})
-		else 
-			local illusion2 = CreateUnitByName(caster:GetName(), vec2, true, caster, nil, caster:GetTeamNumber())
-			illusion2:SetPlayerID(caster:GetPlayerID())
-			illusion2:SetControllableByPlayer(player, true)
-			FindClearSpaceForUnit(illusion2, vec2, false) 	
-			illusion2:SetForwardVector(forwardVec)	
-			local casterLevel = caster:GetLevel()
-			for i=1,casterLevel-1 do
-				illusion2:HeroLevelUp(false)
-			end
-
-			-- Set the skill points to 0 and learn the skills of the caster
-			illusion2:SetAbilityPoints(0)
-			for abilitySlot=0,15 do
-				local ability = caster:GetAbilityByIndex(abilitySlot)
-				if ability ~= nil then 
-					local abilityLevel = ability:GetLevel()
-					local abilityName = ability:GetAbilityName()
-					local illusionAbility2 = illusion2:FindAbilityByName(abilityName)
-					illusionAbility2:SetLevel(abilityLevel)
+		
+		for j = 1, 5 do
+			if randomPos ~= j then
+				illusion[j] = CreateUnitByName(caster:GetName(), vec[j], true, caster, nil, caster:GetTeamNumber())
+				illusion[j]:SetPlayerID(caster:GetPlayerID())
+				illusion[j]:SetControllableByPlayer(player, true)
+				FindClearSpaceForUnit(illusion[j], vec[j], false) 
+				illusion[j]:SetForwardVector(forwardVec)
+				ability:ApplyDataDrivenModifier(caster, illusion[j], "modifier_fire_spawn", {})
+				local casterLevel = caster:GetLevel()
+				for i=1,casterLevel-1 do
+					illusion[j]:HeroLevelUp(false)
 				end
-			end
 
-			-- Recreate the items of the caster
-			for itemSlot=0,5 do
-				local item = caster:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					local itemName = item:GetName()
-					local newItem = CreateItem(itemName, illusion, illusion)
-					illusion2:AddItem(newItem)
+				-- Set the skill points to 0 and learn the skills of the caster
+				illusion[j]:SetAbilityPoints(0)
+				for abilitySlot=0,15 do
+					local illusionAbility = caster:GetAbilityByIndex(abilitySlot)
+					if illusionAbility ~= nil then 
+						local abilityLevel = illusionAbility:GetLevel()
+						local abilityName = illusionAbility:GetAbilityName()
+						illusion[j].illusionAbility = illusion[j]:FindAbilityByName(abilityName)
+						illusion[j].illusionAbility:SetLevel(abilityLevel)
+					end
 				end
-			end
-			illusion2:SetHealth(caster:GetHealth())		
-			illusion2:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			ability:ApplyDataDrivenModifier(caster, illusion2, "modifier_illusion_line_death", {})
-			illusion2:SetOwner(caster)
-			illusion2:MakeIllusion()
-			
-		end
-
-		if randomPos == 3 then
-			FindClearSpaceForUnit(caster, vec3, false) 
-			caster:MoveToPositionAggressive(vec3)
-			ability:ApplyDataDrivenModifier(caster, caster, "modifier_fire_spawn", {})
-		else 
-			local illusion3 = CreateUnitByName(caster:GetName(), vec3, true, caster, nil, caster:GetTeamNumber())
-			illusion3:SetPlayerID(caster:GetPlayerID())
-			illusion3:SetControllableByPlayer(player, true)
-			FindClearSpaceForUnit(illusion3, vec3, false) 
-			illusion3:SetForwardVector(forwardVec)		
-			local casterLevel = caster:GetLevel()
-			for i=1,casterLevel-1 do
-				illusion3:HeroLevelUp(false)
-			end
-
-			-- Set the skill points to 0 and learn the skills of the caster
-			illusion3:SetAbilityPoints(0)
-			for abilitySlot=0,15 do
-				local ability = caster:GetAbilityByIndex(abilitySlot)
-				if ability ~= nil then 
-					local abilityLevel = ability:GetLevel()
-					local abilityName = ability:GetAbilityName()
-					local illusionAbility3 = illusion3:FindAbilityByName(abilityName)
-					illusionAbility3:SetLevel(abilityLevel)
+				-- Recreate the items of the caster
+				for itemSlot=0,5 do
+					local item = caster:GetItemInSlot(itemSlot)
+					if item ~= nil then
+						local itemName = item:GetName()
+						local newItem = CreateItem(itemName, illusion, illusion)
+						illusion[j]:AddItem(newItem)
+					end
 				end
+				illusion[j]:SetHealth(caster:GetHealth())		
+				illusion[j]:SetOwner(caster)
+				illusion[j]:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+				ability:ApplyDataDrivenModifier(caster, illusion[j], "modifier_fire_spawn", {})
+				illusion[j]:MakeIllusion()
+				illusion[j]:EmitSound("Hero_Jakiro.LiquidFire")
 			end
-
-			-- Recreate the items of the caster
-			for itemSlot=0,5 do
-				local item = caster:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					local itemName = item:GetName()
-					local newItem = CreateItem(itemName, illusion, illusion)
-					illusion3:AddItem(newItem)
-				end
-			end
-			illusion3:SetHealth(caster:GetHealth())	
-			illusion3:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			ability:ApplyDataDrivenModifier(caster, illusion3, "modifier_illusion_line_death", {})
-			illusion3:SetOwner(caster)
-			illusion3:MakeIllusion()
-		end
-
-		if randomPos == 4 then
-			FindClearSpaceForUnit(caster, vec4, false) 
-			caster:MoveToPositionAggressive(vec4)
-			ability:ApplyDataDrivenModifier(caster, caster, "modifier_fire_spawn", {})
-		else 
-			local illusion4 = CreateUnitByName(caster:GetName(), vec4, true, caster, nil, caster:GetTeamNumber())
-			illusion4:SetPlayerID(caster:GetPlayerID())
-			illusion4:SetControllableByPlayer(player, true)
-			FindClearSpaceForUnit(illusion4, vec4, false) 
-			illusion4:SetForwardVector(forwardVec)		
-			local casterLevel = caster:GetLevel()
-			for i=1,casterLevel-1 do
-				illusion4:HeroLevelUp(false)
-			end
-
-			-- Set the skill points to 0 and learn the skills of the caster
-			illusion4:SetAbilityPoints(0)
-			for abilitySlot=0,15 do
-				local ability = caster:GetAbilityByIndex(abilitySlot)
-				if ability ~= nil then 
-					local abilityLevel = ability:GetLevel()
-					local abilityName = ability:GetAbilityName()
-					local illusionAbility4 = illusion4:FindAbilityByName(abilityName)
-					illusionAbility4:SetLevel(abilityLevel)
-				end
-			end
-
-			-- Recreate the items of the caster
-			for itemSlot=0,5 do
-				local item = caster:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					local itemName = item:GetName()
-					local newItem = CreateItem(itemName, illusion, illusion)
-					illusion4:AddItem(newItem)
-				end
-			end
-			illusion4:SetHealth(caster:GetHealth())		
-			illusion4:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			ability:ApplyDataDrivenModifier(caster, illusion4, "modifier_illusion_line_death", {})
-			illusion4:SetOwner(caster)
-			illusion4:MakeIllusion()
-		end
-
-		if randomPos == 5 then
-			FindClearSpaceForUnit(caster, vec5, false)
-			caster:MoveToPositionAggressive(vec5)
-			ability:ApplyDataDrivenModifier(caster, caster, "modifier_fire_spawn", {})		
-		else 
-			local illusion5 = CreateUnitByName(caster:GetName(), vec5,  true, caster, nil, caster:GetTeamNumber())
-			illusion5:SetPlayerID(caster:GetPlayerID())
-			illusion5:SetControllableByPlayer(player, true)
-			FindClearSpaceForUnit(illusion5, vec5, false) 		
-			illusion5:SetForwardVector(forwardVec)			
-			local casterLevel = caster:GetLevel()
-			for i=1,casterLevel-1 do
-				illusion5:HeroLevelUp(false)
-			end
-
-			-- Set the skill points to 0 and learn the skills of the caster
-			illusion5:SetAbilityPoints(0)
-			for abilitySlot=0,15 do
-				local ability = caster:GetAbilityByIndex(abilitySlot)
-				if ability ~= nil then 
-					local abilityLevel = ability:GetLevel()
-					local abilityName = ability:GetAbilityName()
-					local illusionAbility5 = illusion5:FindAbilityByName(abilityName)
-					illusionAbility5:SetLevel(abilityLevel)
-				end
-			end
-
-			-- Recreate the items of the caster
-			for itemSlot=0,5 do
-				local item = caster:GetItemInSlot(itemSlot)
-				if item ~= nil then
-					local itemName = item:GetName()
-					local newItem = CreateItem(itemName, illusion, illusion)
-					illusion5:AddItem(newItem)
-				end
-			end
-			illusion5:SetHealth(caster:GetHealth())		
-			illusion5:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			ability:ApplyDataDrivenModifier(caster, illusion5, "modifier_illusion_line_death", {})
-			illusion5:SetOwner(caster)
-			illusion5:MakeIllusion()
 		end
 	end)
 end
-
+--[[
 function CheckDeath( keys )
 	local caster = keys.caster
 	local attacker = keys.attacker
@@ -270,4 +139,4 @@ function CheckDeath( keys )
         target:ForceKill(false)
 	end
 
-end
+end]]--

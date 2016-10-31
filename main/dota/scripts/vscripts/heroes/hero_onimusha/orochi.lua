@@ -1,101 +1,86 @@
- 
-function orochi_start_charge( keys )
-
-    if keys.ability:GetLevel() ~= 1 then return end
-
-    local caster = keys.caster
-    local ability = keys.ability
-    local modifierName = "modifier_orochi_stacks"
-    local maximum_charges = ability:GetLevelSpecialValueFor( "orochi_max_charges", ( ability:GetLevel() - 1 ) )
-    local charge_replenish_time = ability:GetLevelSpecialValueFor( "orochi_replenish_time", ( ability:GetLevel() - 1 ) )
-    local charge_ready = true
-    ability:ApplyDataDrivenModifier( caster, caster, modifierName, {} )
-    orochi_particle = ParticleManager:CreateParticle("particles/onimusha/fx_onimusha_orochi/onimusha_orochi_01.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-
-
-    Timers:CreateTimer(0, function()
-        local stack_count = caster:GetModifierStackCount(modifierName, ability)
-        print(stack_count)
-        if stack_count ~= maximum_charges and charge_ready == true and ability:IsCooldownReady() then
-            ability:ApplyDataDrivenModifier( caster, caster, modifierName, {} )
-            caster:SetModifierStackCount( modifierName, caster, maximum_charges )
-            charge_ready = false
-            orochi_particle = ParticleManager:CreateParticle("particles/onimusha/fx_onimusha_orochi/onimusha_orochi_01.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-            print(orochi_particle)
-            return 0.5
-        elseif caster:HasModifier("modifier_orochi_bloodlust") then
-            charge_ready = true
-            ParticleManager:DestroyParticle(orochi_particle, false)
-            return 0.5
-        else
-            return 0.5
-        end
-    end)
-end
-
 function orochi_On_Atk( keys )
     local modifierName = "modifier_orochi_stacks"
-    local AttackDamage = keys.DamageDealt
     local caster = keys.caster
     local ability = keys.ability
     local target = keys.target
-    local next_charge = caster.orochi_charges
     local charge_replenish_time = ability:GetLevelSpecialValueFor( "orochi_replenish_time", ( ability:GetLevel() - 1 ) )
     caster.orochi_charges = caster:GetModifierStackCount(modifierName, ability)
    
-    if caster.orochi_charges > 1 then
-        local damage_table = {}
-            damage_table.attacker = caster
-            damage_table.ability = ability
-            damage_table.damage_type = ability:GetAbilityDamageType()
-            damage_table.victim = target
+	if target:IsHero() then 
+        if ability:IsCooldownReady() and not caster:HasModifier("modifier_orochi_bloodlust") then
+            ability:ApplyDataDrivenModifier(caster, caster, modifierName, {})
+            caster:SetModifierStackCount( modifierName, caster, caster.orochi_charges + 1 )
+            caster.orochi_charges = caster:GetModifierStackCount(modifierName, ability)
+            if caster.orochi_charges == 1 then
+                orochi_particle = ParticleManager:CreateParticle("particles/onimusha/fx_onimusha_orochi/onimusha_orochi_0" .. (caster.orochi_charges + 1) .. ".vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+            elseif caster.orochi_charges > 1 and caster.orochi_charges < 6 then  
+                ParticleManager:DestroyParticle(orochi_particle, false)
+                orochi_particle = ParticleManager:CreateParticle("particles/onimusha/fx_onimusha_orochi/onimusha_orochi_0" .. caster.orochi_charges .. ".vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+            elseif ability:IsCooldownReady() and caster.orochi_charges == 6 then
+                ability:ApplyDataDrivenModifier(caster, caster, "modifier_orochi_bloodlust_delay", {Duration = 0.6})
+                caster:StartGesture(ACT_DOTA_DIE)
+                ability:StartCooldown(charge_replenish_time)
+            end
+        elseif caster:HasModifier("modifier_orochi_bloodlust") then
+            ability:ApplyDataDrivenModifier(caster, caster, modifierName, {})
+            ability:ApplyDataDrivenModifier(caster, caster, "modifier_orochi_bloodlust", {})
+        end
+	end
 
-        damage_table.damage = AttackDamage
-        ApplyDamage(damage_table)
-		if target:IsHero() then
-            caster.orochi_charges = caster.orochi_charges - 1
-            ParticleManager:DestroyParticle(orochi_particle, false)
-            orochi_particle = ParticleManager:CreateParticle("particles/onimusha/fx_onimusha_orochi/onimusha_orochi_0" .. (6 - caster.orochi_charges) .. ".vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-            caster:SetModifierStackCount( modifierName, caster, caster.orochi_charges )
-		end
-    elseif caster.orochi_charges == 1 then 
-        local damage_table = {}
-            damage_table.attacker = caster
-            damage_table.ability = ability
-            damage_table.damage_type = ability:GetAbilityDamageType()
-            damage_table.victim = target
+    local damage_table = {}
+   
+    damage_table.victim = target
+    damage_table.attacker = caster
+    damage_table.ability = ability
+    damage_table.damage = ability:GetLevelSpecialValueFor("bonus_damage", ability:GetLevel() - 1) * caster:GetModifierStackCount(modifierName, ability)
+    damage_table.damage_type = ability:GetAbilityDamageType() 
+   
 
-        damage_table.damage = AttackDamage
-        ApplyDamage(damage_table)
-       
-        if ability:IsCooldownReady() and target:IsHero() then
-            caster.orochi_charges = caster.orochi_charges - 1
-            caster:RemoveModifierByName(modifierName)
-            keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_orochi_bloodlust", {})
-            ability:StartCooldown(charge_replenish_time)
+    ApplyDamage(damage_table)
+
+    local amount = damage_table.damage
+    amount = amount - (amount * target:GetMagicalArmorValue())
+
+    local lens_count = 0
+    for i=0,5 do
+        local item = caster:GetItemInSlot(i)
+        if item ~= nil and item:GetName() == "item_aether_lens" then
+            lens_count = lens_count + 1
         end
     end
+    amount = amount * (1 + (.08 * lens_count))
+
+    amount = math.floor(amount)
+
+    if amount > 0 then
+        PopupNumbers(target, "damage", Vector(153, 0, 153), 2.0, amount, nil, POPUP_SYMBOL_POST_EYE)
+    end
+end
+
+function RemoveEffects( keys )
+    keys.caster:RemoveModifierByName("modifier_orochi_bloodlust")
+    ParticleManager:DestroyParticle(orochi_particle, false)
 end
 
 function DemonForm( keys )
     local caster = keys.caster
+    local ability = keys.ability
     local model = keys.model
-    if caster.caster_model == nil then 
+    if caster.caster_model == nil then
         caster.caster_model = caster:GetModelName()
     end
     caster.caster_attack = caster:GetAttackCapability()
-
     caster:SetOriginalModel(model)
-
-    print("DEMON")
+    caster:SetModelScale(1.666)
+    caster:RemoveGesture(ACT_DOTA_DIE)
+    ability:ApplyDataDrivenModifier(caster, caster, "modifier_orochi_stacks", {})
 end
 
 function HumanForm( keys )
     local caster = keys.caster
-
     caster:SetModel(caster.caster_model)
     caster:SetOriginalModel(caster.caster_model)
-    print("HUMAN")
+    caster:SetModelScale(1.0)
 end
 
 --[[Author: Noya
@@ -141,16 +126,18 @@ function FinishAttackSound( keys )
     EmitSoundOn("Hero_WarlockGolem.Attack", target )
     Timers:CreateTimer(0.01, function()
 
-        StopSoundOn("Hero_Juggernaut.Attack", target )
+        --StopSoundOn("Hero_Juggernaut.Attack", target )
         StopSoundOn("Hero_Juggernaut.Attack.Rip", target )
         StopSoundOn("Hero_Juggernaut.Attack.Ring", target )
 
-        caster:StopSound("Hero_Juggernaut.Attack")
+        --caster:StopSound("Hero_Juggernaut.Attack")
         caster:StopSound("Hero_Juggernaut.Attack.Rip")
         caster:StopSound("Hero_Juggernaut.Attack.Ring")
 
-        target:StopSound("Hero_Juggernaut.Attack")
-        target:StopSound("Hero_Juggernaut.Attack.Rip")
-        target:StopSound("Hero_Juggernaut.Attack.Ring")
+        --target:StopSound("Hero_Juggernaut.Attack")
+        if target then
+            target:StopSound("Hero_Juggernaut.Attack.Rip")
+            target:StopSound("Hero_Juggernaut.Attack.Ring")
+        end
     end)
 end

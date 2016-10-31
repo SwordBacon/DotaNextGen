@@ -1,9 +1,13 @@
 -- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
-LinkLuaModifier("momentum_break_limit", "heroes/eurus/modifiers/momentum_break_limit.lua", LUA_MODIFIER_MOTION_NONE )
+-- LinkLuaModifier("momentum_break_limit", "heroes/eurus/modifiers/momentum_break_limit.lua", LUA_MODIFIER_MOTION_NONE )
 
 -- Set this to true if you want to see a complete debug output of all events/processes done by barebones
 -- You can also change the cvar 'barebones_spew' at any time to 1 or 0 for output/no output
-BAREBONES_DEBUG_SPEW = false 
+BAREBONES_DEBUG_SPEW = false
+
+_G.NEUTRAL_TEAM = 4 -- global const for neutral team int
+_G.DOTA_MAX_ABILITIES = 16
+_G.HERO_MAX_LEVEL = 25
 
 if GameMode == nil then
     DebugPrint( '[BAREBONES] creating barebones game mode' )
@@ -30,9 +34,16 @@ require('internal/gamemode')
 require('internal/events')
 
 -- settings.lua is where you can specify many different properties for your game mode and is one of the core barebones files.
-require('settings')
+-- require('settings')
 -- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
-require('events')
+-- require('events')
+
+
+-- linkens.lua for when linkens can block a spell's effects
+require('linkens')
+-- Cosmetics for some heroes
+require('CosmeticLib')
+
 
 --[[
   This function should be used to set up Async precache calls at the beginning of the gameplay.
@@ -49,8 +60,14 @@ require('events')
 
   This function should generally only be used if the Precache() function in addon_game_mode.lua is not working.
 ]]
+
+-- "demo_hero_name" is a magic term, "default_value" means no string was passed, so we'd probably want to put them in hero selection
+sHeroSelection = GameRules:GetGameSessionConfigValue( "demo_hero_name", "default_value" )
+-- print( "sHeroSelection: " .. sHeroSelection )
+GameRules.flags = LoadKeyValues('scripts/kv/flags.kv')
+
 function GameMode:PostLoadPrecache()
-  DebugPrint("[BAREBONES] Performing Post-Load precache")    
+  DebugPrint("[BAREBONES] Performing Post-Load precache")
   --PrecacheItemByNameAsync("item_example_item", function(...) end)
   --PrecacheItemByNameAsync("example_ability", function(...) end)
 
@@ -70,7 +87,7 @@ end
   This function is called once and only once after all players have loaded into the game, right as the hero selection time begins.
   It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
 ]]
-function GameMode:OnAllPlayersLoaded()
+function GameMode:OnAllPlayersLoaded(hero)
   DebugPrint("[BAREBONES] All Players have loaded into the game")
 end
 
@@ -81,42 +98,66 @@ end
 
   The hero parameter is the hero entity that just spawned in
 ]]
+
 function GameMode:OnHeroInGame(hero)
   DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
 
-  -- This line for example will set the starting gold of every hero to 500 unreliable gold
-
-  if hero:GetGold() == 0 and hero:GetLevel() == 1 then
-      hero:SetGold(650, false)
-  end
-
   if not hero:IsIllusion() then
-      if hero:GetUnitName() == "npc_dota_hero_clinkz" then 
-          skoros = hero
-          blackout = skoros:FindAbilityByName("skoros_Blackout")
-      elseif hero:GetUnitName() == "npc_dota_hero_razor" then
-          hero:UpgradeAbility(hero:FindAbilityByName("Positive_Charge"))
-          hero:UpgradeAbility(hero:FindAbilityByName("Negative_Charge"))
-          hero:SetAbilityPoints(1)
-          borus_caster = hero
-	  elseif hero:GetUnitName() == "npc_dota_hero_disruptor" then
-		 local Ability = hero:FindAbilityByName("alpha_strider_alternating_current")
-		 if Ability then
-            print('innate found, leveling Reload')
-            Ability:SetLevel(1)
-            print('Reload leveled')
-         end
+    if hero:GetUnitName() == "npc_dota_hero_rattletrap" then
+      hero:UpgradeAbility(hero:FindAbilityByName("borus_Positive_Charge"))
+      hero:UpgradeAbility(hero:FindAbilityByName("borus_Negative_Charge"))
+      hero:SetAbilityPoints(1)
+      borus_caster = hero
+  	elseif hero:GetUnitName() == "npc_dota_hero_disruptor" then
+  		  local Ability = hero:FindAbilityByName("alpha_strider_alternating_current")
+  		  if Ability then
+          print('innate found, leveling Reload')
+          Ability:SetLevel(1)
+          print('Reload leveled')
+        end
+    elseif hero:GetUnitName() == "npc_dota_hero_skeleton_king" then
+      local Ability = hero:FindAbilityByName("zeros_innate")
+      if Ability then
+        print('innate found, leveling Reload')
+        Ability:SetLevel(1)
+        print('Reload leveled')
       end
-
+    elseif hero:GetUnitName() == "npc_dota_hero_omniknight" then
+      hero.hammer = true
+      CosmeticLib:ReplaceWithSlotName( hero, "weapon", 4246 )
+    end
   end
 
-
-  -- These lines will create an item and add it to the player, effectively ensuring they start with the item
-  local item = CreateItem("item_example_item", hero, hero)
-  hero:AddItem(item)
-
-   GameRules.Heroes[hero:GetPlayerID()] = hero
+  GameRules.Heroes[hero:GetPlayerID()] = hero
     hero.positions = {}
+
+  playerHero = hero:GetPlayerOwner()
+  if not playerHero then return end
+  if playerHero.CheckUI == nil then playerHero.CheckUI = true end
+  --print(playerHero.CheckUI)
+  --print(playerHero)
+
+  if GetMapName() == "hero_demo" and playerHero.CheckUI == true then
+    playerHero.CheckUI = false
+    if GameRules:IsCheatMode() then
+      Timers:CreateTimer(1.322, function() 
+        CustomGameEventManager:Send_ServerToPlayer(playerHero, "map_check", event)
+        if hero:IsRealHero() then
+          hero:ModifyGold(99999,true,0)
+        end
+        if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 then
+          Tutorial:AddBot("npc_dota_hero_puck","", "", false)
+        end
+      end)
+    else 
+      Timers:CreateTimer(1.322, function() 
+        if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 then
+          ShowGenericPopupToPlayer(playerHero, "#popupReminderCheats", "#popupReminderCheatsDesc", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
+          Tutorial:AddBot("npc_dota_hero_puck","", "", false)
+        end
+      end)
+    end
+  end
 
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
     --with the "example_ability" ability
@@ -142,22 +183,24 @@ end
 -- main think loop
 function Think(  )
     local currTime = GameRules:GetGameTime()
-    for pID, hero in pairs(GameRules.Heroes) do
-        if not hero:IsNull() then
-            if not hero:IsIllusion() then
-              --print(hero:GetUnitName())
-              if not hero.positions[math.floor(currTime*100)/100] then
-                  hero.positions[math.floor(currTime*100)/100] = hero:GetAbsOrigin()
+    if IsServer() then
+      for pID, hero in pairs(GameRules.Heroes) do
+          if not hero:IsNull() then
+              if not hero:IsIllusion() then
+                --print(hero:GetUnitName())
+                if not hero.positions[math.floor(currTime*100)/100] then
+                    hero.positions[math.floor(currTime*100)/100] = hero:GetAbsOrigin()
+                end
+                for t, pos in pairs(hero.positions) do
+                    if (currTime-t) > 4 then
+                        hero.positions[t] = nil
+                    else -- the rest of the times in the table are <= 4.
+                        break
+                    end
+                end
               end
-              for t, pos in pairs(hero.positions) do
-                  if (currTime-t) > 4 then
-                      hero.positions[t] = nil
-                  else -- the rest of the times in the table are <= 4.
-                      break
-                  end
-              end
-            end
-        end
+          end
+      end
     end
 end
 --[[
@@ -175,8 +218,6 @@ function GameMode:OnGameInProgress()
     end)]]
 end
 
-
-
 -- This function initializes the game mode and is called before anyone loads into the game
 -- It can be used to pre-initialize any values/tables that will be needed later
 function GameMode:InitGameMode()
@@ -188,16 +229,106 @@ function GameMode:InitGameMode()
   -- Call the internal function to set up the rules/behaviors specified in constants.lua
   -- This also sets up event hooks for all event handlers in events.lua
   -- Check out internals/gamemode to see/modify the exact code
-  GameMode:_InitGameMode()
+  -- GameMode:_InitGameMode()
   GameRules.Heroes = {}
-  GameRules.Think = Timers:CreateTimer(function() Think() return .01 end) 
+  GameRules.Think = Timers:CreateTimer(function() Think() return 0.05 end) 
   GameRules:GetGameModeEntity():SetCameraDistanceOverride( 1200 )
+  require("events")
 
+  ListenToGameEvent( "npc_spawned", Dynamic_Wrap( GameMode, "OnNPCSpawned" ), self )
+  -- ListenToGameEvent( "dota_player_used_ability", Dynamic_Wrap( GameMode, "OnAbilityUsed" ), self )
+  -- ListenToGameEvent( "dota_item_picked_up", Dynamic_Wrap( GameMode, "OnItemPickUp"), self )
 	
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
-  Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
+  -- Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
   GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode,"FilterExecuteOrder"),self)
+  GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode,"FilterDamage"),self)
+  GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(GameMode,"FilterModifierGained"),self)
   --GameRules.SELECTED_UNITS = {}
+
+  if GetMapName() == "hero_demo" then
+    
+    require("utility_functions")
+    GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled( true )
+    GameRules:GetGameModeEntity():SetFixedRespawnTime( 4 )
+    --GameMode:SetBotThinkingEnabled( true ) -- the ConVar is currently disabled in C++
+    -- Set bot mode difficulty: can try GameMode:SetCustomGameDifficulty( 1 )
+    GameRules:SetPreGameTime( 0 )
+
+
+    GameRules:SetUseUniversalShopMode( true )
+    GameRules:SetSameHeroSelectionEnabled( true )
+
+    -- Events
+    ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( GameMode, 'OnGameRulesStateChange' ), self )
+    if GameRules:IsCheatMode() then
+      ListenToGameEvent( "dota_item_purchased", Dynamic_Wrap( GameMode, "OnItemPurchased" ), self )
+    end
+    ListenToGameEvent( "npc_replaced", Dynamic_Wrap( GameMode, "OnNPCReplaced" ), self )
+    ListenToGameEvent( "entity_killed", Dynamic_Wrap( GameMode, "OnEntityKilled" ), self )
+
+    CustomGameEventManager:RegisterListener( "WelcomePanelDismissed", function(...) return self:OnWelcomePanelDismissed( ... ) end )
+    CustomGameEventManager:RegisterListener( "RefreshButtonPressed", function(...) return self:OnRefreshButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "LevelUpButtonPressed", function(...) return self:OnLevelUpButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "MaxLevelButtonPressed", function(...) return self:OnMaxLevelButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "FreeSpellsButtonPressed", function(...) return self:OnFreeSpellsButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "InvulnerabilityButtonPressed", function(...) return self:OnInvulnerabilityButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "SpawnAllyButtonPressed", function(...) return self:OnSpawnAllyButtonPressed( ... ) end ) -- deprecated
+    CustomGameEventManager:RegisterListener( "SpawnEnemyButtonPressed", function(...) return self:OnSpawnEnemyButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "LevelUpEnemyButtonPressed", function(...) return self:OnLevelUpEnemyButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "DummyTargetsButtonPressed", function(...) return self:OnDummyTargetsButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "RemoveSpawnedUnitsButtonPressed", function(...) return self:OnRemoveSpawnedUnitsButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "LaneCreepsButtonPressed", function(...) return self:OnLaneCreepsButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "ChangeHeroButtonPressed", function(...) return self:OnChangeHeroButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "ChangeCosmeticsButtonPressed", function(...) return self:OnChangeCosmeticsButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "PauseButtonPressed", function(...) return self:OnPauseButtonPressed( ... ) end )
+    CustomGameEventManager:RegisterListener( "LeaveButtonPressed", function(...) return self:OnLeaveButtonPressed( ... ) end )
+
+    GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 1 )
+    GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 1 )
+    
+    if GameRules:IsCheatMode() then
+      SendToServerConsole( "sv_cheats 1" )
+      SendToServerConsole( "dota_hero_god_mode 0" )
+      SendToServerConsole( "dota_ability_debug 0" )
+      SendToServerConsole( "dota_creeps_no_spawning 0" )
+    end
+    --SendToServerConsole( "dota_bot_mode 1" )
+
+    self.m_sHeroSelection = sHeroSelection -- this seems redundant, but events.lua doesn't seem to know about sHeroSelection
+
+    self.m_bPlayerDataCaptured = false
+    self.m_nPlayerID = 0
+
+    --self.m_nHeroLevelBeforeMaxing = 1 -- unused now
+    --self.m_bHeroMaxedOut = false -- unused now
+    
+    self.m_nALLIES_TEAM = 2
+    self.m_tAlliesList = {}
+    self.m_nAlliesCount = 0
+
+    self.m_nENEMIES_TEAM = 3
+    self.m_tEnemiesList = {}
+
+    self.m_nDUMMIES_TEAM = 4
+    self.m_tDummiesList = {}
+    self.m_nDummiesCount = 0
+    self.m_bDummiesEnabled = true
+
+    self.m_bFreeSpellsEnabled = false
+    self.m_bInvulnerabilityEnabled = false
+    self.m_bCreepsEnabled = true
+
+    self.m_CheckUI = true
+
+    local hNeutralSpawn = Entities:FindByName( nil, "neutral_caster_spawn" )
+    self._hNeutralCaster = CreateUnitByName( "npc_dota_neutral_caster", hNeutralSpawn:GetAbsOrigin(), false, nil, nil, NEUTRAL_TEAM )
+
+    if IsInToolsMode() then
+      GameRules:SetCustomGameSetupTimeout( 0 ) -- skip the custom team UI with 0, or do indefinite duration with -1
+      PlayerResource:SetCustomTeamAssignment( self.m_nPlayerID, self.m_nALLIES_TEAM ) -- put PlayerID 0 on Radiant team (== team 2)
+    end
+  end
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
@@ -218,14 +349,14 @@ function GameMode:CaptureGameMode()
   if mode == nil then
     -- Set GameMode parameters
     mode = GameRules:GetGameModeEntity()
-
-    
+	-- mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )
+	-- print("Bot Thinking Enabled")
   end
 end
 
 
 -- This is an example console command
-function GameMode:ExampleConsoleCommand()
+--[[function GameMode:ExampleConsoleCommand()
   print( '******* Example Console Command ***************' )
   local cmdPlayer = Convars:GetCommandClient()
   if cmdPlayer then
@@ -237,7 +368,7 @@ function GameMode:ExampleConsoleCommand()
   end
 
   print( '*********************************************' )
-end
+end]]--
 
 
 function GameMode:FilterExecuteOrder( filterTable )
@@ -248,31 +379,122 @@ function GameMode:FilterExecuteOrder( filterTable )
     local ability = EntIndexToHScript(abilityIndex)
     local targetIndex = filterTable["entindex_target"]
 
-    for n, unit_index in pairs(units) do
-        local unit = EntIndexToHScript(unit_index)
-        local owner_ID = unit:GetPlayerOwnerID()
-        if unit:HasModifier("modifier_blackout") then
-            if PlayerResource:IsValidPlayerID(issuer) and PlayerResource:IsValidPlayerID(owner_ID) then
-                if owner_ID ~= issuer then
-                    return true
-                else
-                    local random = RandomFloat(0, 1) * 100
-                    local chance = blackout:GetLevelSpecialValueFor("halt_chance", blackout:GetLevel() -1)
-                    if random < chance then
-                        unit:Stop()
-                        blackout:ApplyDataDrivenModifier(skoros, unit, "modifier_block_commands", {duration = blackout:GetSpecialValueFor("halt_duration")})
-                        return false
-                    else
-                        return true
-                    end
-                end
-            else
-                return true
-            end
-        else
-            return true
+    -- Skoros order filters
+    local findSkorosArbalest = require('heroes/hero_skoros/arbalest')
+    arbalest(filterTable)
+    local findSkorosBlackout = require('heroes/hero_skoros/blackout')
+    blackout(filterTable)
+    local findSkorosNexus = require('heroes/hero_skoros/nexus')
+    nexusOrder(filterTable)
+
+    -- Proteus order filters
+    local findProteusJet = require('heroes/hero_proteus/proteus_jet')
+    jetOrder(filterTable)
+
+    if filterTable.position_x then
+        orderVector = Vector(filterTable.position_x,filterTable.position_y,filterTable.position_z)
+    end
+
+    local unit = EntIndexToHScript(units["0"])
+    local target = EntIndexToHScript(targetIndex)
+
+    if unit and target then
+      -- Uther Argent Smite
+      local utherArgentSmite = require('heroes/hero_uther/argent_smite')
+      AllowAlliedAttacks(unit,target,order_type)
+      if CancelOtherAlliedAttacks(unit,target,order_type) == false then
+          return false
+      end
+      StopAllowingAlliedAttacks(unit,target,order_type)
+    end
+    
+    return true
+end
+
+function GameMode:FilterDamage( filterTable )
+  --DeepPrintTable(filterTable)
+
+  local damageFilterTable = {}
+
+  local attackerIndex = filterTable["entindex_attacker_const"]
+  if attackerIndex then
+    damageFilterTable.attacker = EntIndexToHScript(attackerIndex)
+  end
+  
+  local victimIndex = filterTable["entindex_victim_const"]
+  if victimIndex then
+    damageFilterTable.victim = EntIndexToHScript(victimIndex)
+  end
+
+  local inflictorIndex = filterTable["entindex_inflictor_const"]
+  if inflictorIndex then
+    damageFilterTable.inflictor = EntIndexToHScript(inflictorIndex)
+  end
+
+  local damageType = filterTable["damagetype_const"]
+  local damage = filterTable["damage"]
+
+  local utherArgentSmite = require('heroes/hero_uther/argent_smite')
+  damageFilterArgentSmite(filterTable)
+  
+  return true
+end
+
+function GameMode:FilterModifierGained( filterTable )
+
+  local modifierCasterIndex = filterTable["entindex_caster_const"]
+  if modifierCasterIndex then local 
+    modifierCaster = EntIndexToHScript(modifierCasterIndex) 
+  end
+  local modifierAbilityIndex = filterTable["entindex_ability_const"]
+  if modifierAbilityIndex then
+    local modifierAbility = EntIndexToHScript(modifierAbilityIndex)
+  end
+  local modifierDuration = filterTable["duration"]
+  local modifierTargetIndex =  filterTable["entindex_parent_const"]
+  local modifierTarget = EntIndexToHScript(modifierTargetIndex)
+  local modifierName = filterTable["name_const"]
+
+  --Uther Argent Smite
+  if modifierCaster then
+    local utherArgentSmite = require('heroes/hero_uther/argent_smite')
+    if argentSmiteDoNotDebuffAllies(filterTable) == false then
+      return false
+    end
+  end
+
+  return true
+end
+
+
+function CDOTABaseAbility:HasAbilityFlag(flag)
+    if GameRules.flags[flag][self:GetAbilityName()] then
+        return true
+    else
+        return false
+    end
+end
+
+function CDOTA_BaseNPC:FindItemByName(item_name)
+    for i=0,5 do
+        local item = self:GetItemInSlot(i)
+        if item and item:GetAbilityName() == item_name then
+            return item
         end
     end
+    return nil
+end
+
+function CDOTA_BaseNPC:GetAttackTimeRemaining()
+    local lastAttack = self:GetLastAttackTime()
+    local gametime = GameRules:GetGameTime()
+
+    local attackSpan = gametime - lastAttack
+
+    local lastAttackTime = self:GetSecondsPerAttack() - attackSpan
+
+    if lastAttackTime < 0 then lastAttackTime = 0 end
+    return lastAttackTime
 end
 
 function GameMode:DebugCalls()

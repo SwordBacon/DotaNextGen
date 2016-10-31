@@ -1,12 +1,9 @@
 function LevelUpAbility( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	
-	print("Leveled Up")
 end
 
-
-function CreateScryerIllusions( keys )
+function ScryerProjectiles( keys )
 	local caster = keys.caster
 	local player = caster:GetPlayerID()
 	local ability = keys.ability
@@ -16,15 +13,57 @@ function CreateScryerIllusions( keys )
 	local outgoingDamage = -100
 	local incomingDamage = ability:GetLevelSpecialValueFor( "illusion_damage_taken", ability:GetLevel() - 1 )
 	local spawnRadius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
-	print("Scryer's Circle initiated")
+	local delay = ability:GetLevelSpecialValueFor( "spawn_delay", ability:GetLevel() - 1 )
 
 	local point = keys.target_points[1]
 	local casterOrigin = caster:GetAbsOrigin()
 	local casterForwardVec = caster:GetForwardVector()
 	local rotateVar = 0
+	ability:CreateVisibilityNode(point, spawnRadius, 1)
 
-	-- Stop any actions of the caster otherwise its obvious which unit is real
-	caster:Stop()
+	-- Setup a table of projectile positions
+	local vProjPos = {}
+	for i=1, images_count do
+		local rotate_distance = point + casterForwardVec * spawnRadius
+		local rotate_angle = QAngle(0,rotateVar,0)
+		rotateVar = rotateVar + 360/images_count
+		local rotate_position = RotatePosition(point, rotate_angle, rotate_distance)
+
+		local distance = (rotate_position - point):Length2D()
+		local vector = (rotate_position - point):Normalized()
+		local speed = distance / delay
+		local projectileTable =
+		{
+			EffectName = "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil.vpcf",
+			Ability = ability,
+			vSpawnOrigin = point,
+			vVelocity = Vector( vector.x * speed, vector.y * speed, 0 ),
+			fDistance = distance,
+			Source = caster,
+			bHasFrontalCone = false,
+			bReplaceExisting = false,
+		}
+
+		vProjPos[i] = ProjectileManager:CreateLinearProjectile(projectileTable)
+	end
+end
+
+
+function CreateScryerIllusions( keys )
+	local caster = keys.caster
+	local player = caster:GetPlayerID()
+	local ability = keys.ability
+	local unit_name = caster:GetUnitName()
+	local images_count = ability:GetLevelSpecialValueFor("illusion_count", ability:GetLevel() - 1 )
+	local duration = ability:GetLevelSpecialValueFor( "fire_bomb_delay", ability:GetLevel() - 1 ) + 0.4
+	local outgoingDamage = -100
+	local incomingDamage = ability:GetLevelSpecialValueFor( "illusion_damage_taken", ability:GetLevel() - 1 )
+	local spawnRadius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
+
+	local point = keys.target_points[1]
+	local casterOrigin = caster:GetAbsOrigin()
+	local casterForwardVec = caster:GetForwardVector()
+	local rotateVar = 0
 
 	-- Setup a table of potential spawn positions
 	local vSpawnPos = {}
@@ -35,6 +74,7 @@ function CreateScryerIllusions( keys )
 		local rotate_position = RotatePosition(point, rotate_angle, rotate_distance)
 		table.insert(vSpawnPos, rotate_position)
 	end
+	
 
 	-- Spawn illusions
 	for j=1, images_count do
@@ -67,7 +107,6 @@ function CreateScryerIllusions( keys )
 					illusion:AddAbility(abilityName)
 					fireBombIndex = abilitySlot
 				end
-				print(abilityName)
 				local illusionAbility = illusion:FindAbilityByName(abilityName)
 				if abilityName == "scryer_fire_bomb" then
 					illusionAbility:SetAbilityIndex(abilitySlot)
@@ -92,11 +131,8 @@ function CreateScryerIllusions( keys )
 		
 		-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 		illusion:MakeIllusion()
-		
 		-- Sets the illusion to begin channeling Fire Bomb
-		print(fireBombIndex)
 		local fireBomb = illusion:GetAbilityByIndex(fireBombIndex)
-		print(fireBomb)
 		Timers:CreateTimer( 0.035, function() 
 			illusion:CastAbilityOnPosition(point, fireBomb, illusion:GetPlayerID() )
 		end)

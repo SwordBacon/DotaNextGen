@@ -33,8 +33,9 @@ function PopupSporeDamage(keys)
 
 
     amount = CalculateDamage(caster, target, amount, damageType)
-
-    PopupNumbers(target, "damage", Vector(255, 255, 153), 2.0, amount, nil, POPUP_SYMBOL_POST_LIGHTNING)
+    if not target:IsMagicImmune() then
+        PopupNumbers(target, "damage", Vector(255, 255, 153), 2.0, amount, nil, POPUP_SYMBOL_POST_LIGHTNING)
+    end
 end
 
 -- Viscous Ooze: Slime Trail and Toxic Ooze damage
@@ -48,23 +49,9 @@ function PopupToxicDamage(keys)
 
     
     amount = CalculateDamage(caster, target, amount, damageType)
-
-    PopupNumbers(target, "damage", Vector(77, 153, 0), 2.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
-end
-
--- Alpha Stryder: Static Charge damage
-function PopupStaticDamage(keys)
-    local caster = keys.caster
-    local ability = keys.ability
-    local target = keys.target
-    local amount = keys.Damage
-    local damageType = ability:GetAbilityDamageType()
-
-    amount = amount * caster:GetModifierStackCount("modifier_static_charge", caster)
-    if target:IsBuilding() then amount = amount / 2 end
-    amount = CalculateDamage(caster, target, amount, damageType)
-
-    PopupNumbers(target, "crit", Vector(77, 200, 255), 2.0, amount, nil, POPUP_SYMBOL_POST_LIGHTNING)
+    if not target:IsMagicImmune() then
+        PopupNumbers(target, "damage", Vector(128, 255, 128), 2.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
+    end
 end
 
 -- Alpha Stryder: Plasma Leap damage
@@ -77,8 +64,9 @@ function PopupPlasmaDamage(keys)
 
     
     amount = CalculateDamage(caster, target, amount, damageType)
-
-    PopupNumbers(target, "damage", Vector(77, 200, 255), 2.0, amount, nil, POPUP_SYMBOL_POST_LIGHTNING)
+    if not target:IsMagicImmune() then
+        PopupNumbers(target, "damage", Vector(77, 200, 255), 2.0, amount, nil, POPUP_SYMBOL_POST_LIGHTNING)
+    end
 end
 
 -- Onimusha: Dash damage
@@ -92,7 +80,9 @@ function PopupDashDamage(keys)
     amount = amount + caster:GetIntellect() + caster:GetAgility()
     amount = CalculateDamage(caster, target, amount, damageType)
 
-    PopupNumbers(target, "damage", Vector(255, 166, 77), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+    if not target:IsMagicImmune() then
+        PopupNumbers(target, "damage", Vector(255, 166, 77), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+    end
 end
 
 
@@ -105,7 +95,9 @@ function PopupFirebombDamage(keys)
 
     amount = CalculateDamage(caster, target, amount, damageType)
 
-    PopupNumbers(target, "damage", Vector(255, 133, 51), 2.0, amount, nil, POPUP_SYMBOL_POST_EYE)
+    if not target:IsMagicImmune() then
+        PopupNumbers(target, "damage", Vector(255, 133, 51), 2.0, amount, nil, POPUP_SYMBOL_POST_EYE)
+    end
 end
 
 function PopupBlightDamage(keys)
@@ -122,7 +114,9 @@ function PopupBlightDamage(keys)
 
     amount = CalculateDamage(caster, target, amount, damageType)
 
-    PopupNumbers(target, "damage", Vector(165, 150, 140), 2.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
+    if not target:IsMagicImmune() then
+        PopupNumbers(target, "damage", Vector(165, 150, 140), 2.0, amount, nil, POPUP_SYMBOL_POST_SKULL)
+    end
 end
 
 -- Xarax: Trick Box #2 poison damage
@@ -135,7 +129,9 @@ function PopupPoisonDamage(keys)
 
     amount = CalculateDamage(caster, target, amount, damageType)
 
-    PopupNumbers(target, "damage", Vector(204, 255, 102), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+    if not target:IsMagicImmune() then
+        PopupNumbers(target, "damage", Vector(204, 255, 102), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+    end
 end
 
 function PopupBleedDamage(keys)
@@ -147,7 +143,9 @@ function PopupBleedDamage(keys)
 
     amount = CalculateDamage(caster, target, amount, damageType)
 
-    PopupNumbers(target, "damage", Vector(153, 0, 0), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+    if not target:IsMagicImmune() then
+        PopupNumbers(target, "damage", Vector(153, 0, 0), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+    end
 end
 
 
@@ -170,7 +168,7 @@ function CalculateDamage( caster, target, amount, damageType )
             lens_count = lens_count + 1
         end
     end
-    amount = amount * (1 + (.08 * lens_count))
+    amount = amount * (1 + (.05 * lens_count) + ( .01 * caster:GetIntellect() / 16 ))
 
     return math.floor(amount)
 end

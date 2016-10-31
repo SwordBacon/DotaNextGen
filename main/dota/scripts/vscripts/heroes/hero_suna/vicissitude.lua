@@ -33,63 +33,81 @@ function SwapMindControl( keys )
 	caster:RemoveNoDraw()
 end
 
-function MindControlCheckCooldown( keys )
-	local caster = keys.caster
-	local ability = keys.ability
-end
+LinkLuaModifier( "vicissitude_super_illusion", "heroes/hero_suna/modifiers/vicissitude_super_illusion.lua", LUA_MODIFIER_MOTION_NONE )
 
 function MindControlAdd( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
+
+	if target:TriggerSpellAbsorb(ability) then
+		RemoveLinkens(target)
+		caster:Stop()
+		return
+	end
+
 	local duration = ability:GetLevelSpecialValueFor("duration", ability:GetLevel() - 1)
 	caster:RemoveNoDraw()
-	enemyTeam = target:GetTeamNumber()
-	friendlyPlayer = caster:GetPlayerID()
-	enemyPlayer = target:GetPlayerID()
+	target:AddNoDraw()
 
-	ability:ApplyDataDrivenModifier(caster, target, "modifier_vicissitude", {Duration = duration})
-	target:SetControllableByPlayer(friendlyPlayer, false)
-	target:SetOwner(caster)
-	target:SetTeam(15)
+	-- Taken from Skoros' Nexus ability
+	target.nexusdouble = CreateUnitByName( target:GetUnitName(), target:GetAbsOrigin(), false, caster, caster:GetOwner(), caster:GetTeamNumber())
+	--target.nexusdouble:MakeClone
+	target.nexusdouble:SetAngles(0, target:GetAngles().y, 0)
+	target.nexusdouble:AddNewModifier(caster, ability, "vicissitude_super_illusion", {duration = -1})
+	ability:ApplyDataDrivenModifier(caster, target.nexusdouble, "modifier_vicissitude_dummy", {duration = -1})
+	if caster:HasScepter() then
+		target.nexusdouble:AddNewModifier(caster, nil, "modifier_rune_haste", {duration = -1})
+		target.nexusdouble:AddNewModifier(caster, nil, "modifier_omniknight_repel", {duration = -1})
+	end
+	--ability:ApplyDataDrivenModifier(caster, target, "Nexus_Sync_Casts", {duration = -1})
+	target.nexusdouble:SetControllableByPlayer(caster:GetPlayerID(), false)
+	target.nexusdouble:MoveToPositionAggressive(caster:GetAbsOrigin())
+	
+	if target:IsHero() then
+		local caster_level = caster:GetLevel()
+		for i = 2, caster_level do
+			target.nexusdouble:HeroLevelUp(false)
+		end
+		for ability_id = 0, 15 do
+			local ability = target.nexusdouble:GetAbilityByIndex(ability_id)
+			if ability then
+				ability:SetLevel(caster:GetAbilityByIndex(ability_id):GetLevel())
+			end
+		end
+		for item_id = 0, 5 do
+			local item_in_caster = caster:GetItemInSlot(item_id)
+			if item_in_caster ~= nil then
+				local item_name = item_in_caster:GetName()
+				if not (item_name == "item_aegis" or item_name == "item_smoke_of_deceit" or item_name == "item_recipe_refresher" or item_name == "item_refresher" or item_name == "item_ward_observer" or item_name == "item_ward_sentry" or item_name == "item_bottle" or item_name == "item_blink" or item_name == "item_travel_boots" or item_name == "item_travel_boots_2" or item_name == "item_tpscroll") then
+					local item_created = CreateItem( item_in_caster:GetName(), target.nexusdouble, target.nexusdouble)
+					target.nexusdouble:AddItem(item_created)
+					item_created:SetCurrentCharges(item_in_caster:GetCurrentCharges()) 
+					item_created:StartCooldown(item_in_caster:GetCooldownTimeRemaining())
+				end
+			end
+		end
+		target.nexusdouble:SetAbilityPoints(0)
+		target.nexusdouble:SetHasInventory(false)
+	end
+	Timers:CreateTimer(0.01, function()  
+		if not target.nexusdouble:IsNull() then
+			target:SetAngles(0, target.nexusdouble:GetAngles().y, 0)
+			target:SetAbsOrigin(target.nexusdouble:GetAbsOrigin())
+		--else 
+			--return -1
+		end
+	return 0.01
+	end) 
 end
 
 function MindControlRemove( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	target:RemoveNoDraw()
+	target.nexusdouble:RemoveSelf()
 
-	target:SetTeam(enemyTeam)
-	if enemyPlayer then 
-		target:SetControllableByPlayer(enemyPlayer, false)
-		target:SetOwner(PlayerResource:GetPlayer( enemyPlayer ) )
-	else
-		target:SetControllableByPlayer(0, false)
-		target:SetOwner(PlayerResource:GetPlayer( enemyPlayer ) )
-	end
-end
-
-function MindControlKill( keys )
-	local caster = keys.caster
-	local ability = keys.ability
-	local target = targetMC
-	local damage = keys.Damage
-
-	if damage >= target:GetHealth() and not target:HasModifier("modifier_shallow_grave") then
-		target:Kill(ability, caster)
-	end
-
-end
-
-function MindControlDie( keys )
-	local caster = keys.caster
-	local ability = keys.ability
-	local target = keys.target
-	local damage = keys.Damage
-
-	if damage >= target:GetHealth() and not target:HasModifier("modifier_shallow_grave") then
-		target:Kill(ability, caster)
-	end
 end
 
 function SetBurrowLocation( keys )

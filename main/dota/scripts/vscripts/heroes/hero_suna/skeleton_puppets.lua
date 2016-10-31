@@ -1,18 +1,33 @@
 function SetForwardVector( keys )
 	local caster = keys.caster
 	local casterVec = caster:GetForwardVector()
+	local ability = keys.ability
 	local target = keys.target
+
+	table.insert(caster.skeletons, target)
 	target:SetForwardVector(casterVec)
 end
 
-function KillPuppetsOnSpawm( keys )
+function CheckPuppets( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local limit = ability:GetSpecialValueFor("skeleton_count")
+
+	if not caster.skeletons then caster.skeletons = {} end
+	if #caster.skeletons >= limit then
+		
+	end
+end
+
+function KillPuppetsOnSpawn( keys )
 	local caster = keys.caster
 	local targets = caster.skeletons or {}
 	for _,unit in pairs(targets) do	
 		if unit and IsValidEntity(unit) then
 			unit:ForceKill(true)
-			end
 		end
+		table.remove(caster.skeletons, 1)
+	end
 	-- Reset table
 	caster.skeletons = {}
 end

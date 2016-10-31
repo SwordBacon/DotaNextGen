@@ -1,364 +1,411 @@
--- This file contains all barebones-registered events and has already set up the passed-in parameters for your use.
--- Do not remove the GameMode:_Function calls in these events as it will mess with the internal barebones systems.
+--[[ Events ]]
 
--- Cleanup a player when they leave
-function GameMode:OnDisconnect(keys)
-  DebugPrint('[BAREBONES] Player Disconnected ' .. tostring(keys.userid))
-  DebugPrintTable(keys)
+--------------------------------------------------------------------------------
+-- GameEvent:OnGameRulesStateChange
+--------------------------------------------------------------------------------
+function GameMode:OnGameRulesStateChange()
+	local nNewState = GameRules:State_Get()
+	print( "OnGameRulesStateChange: " .. nNewState )
 
-  local name = keys.name
-  local networkid = keys.networkid
-  local reason = keys.reason
-  local userid = keys.userid
+	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
+		print( "OnGameRulesStateChange: Hero Selection" )
 
-end
--- The overall game state has changed
-function GameMode:OnGameRulesStateChange(keys)
-  DebugPrint("[BAREBONES] GameRules State Changed")
-  DebugPrintTable(keys)
+	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
+		print( "OnGameRulesStateChange: Pre Game Selection" )
+		SendToServerConsole( "dota_dev forcegamestart" )
 
-  -- This internal handling is used to set up main barebones functions
-  GameMode:_OnGameRulesStateChange(keys)
-
-  local newState = GameRules:State_Get()
+	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		print( "OnGameRulesStateChange: Game In Progress" )
+	end
 end
 
-function GameMode:OnPlayerSelectedCustomTeam(keys)
-  DebugPrint('[BAREBONES] OnPlayerSelectedCustomTeam')
-  DebugPrintTable(keys)
+--------------------------------------------------------------------------------
+-- GameEvent: OnNPCSpawned
+--------------------------------------------------------------------------------
+function GameMode:OnNPCSpawned( event )
+	spawnedUnit = EntIndexToHScript( event.entindex )
+	 -- This internal handling is used to set up main barebones functions
+  	GameMode:_OnNPCSpawned(event)
+  	local npc = EntIndexToHScript(event.entindex)
 
-  local player = PlayerResource:GetPlayer(keys.player_id)
-  local success = (keys.success == 1)
-  local team = keys.team_id
+	if spawnedUnit:GetPlayerOwnerID() == 0 and spawnedUnit:IsRealHero() and not spawnedUnit:IsClone() then
+		--print( "spawnedUnit is player's hero" )
+		local hPlayerHero = spawnedUnit
+		
+		hPlayerHero:SetContextThink( "self:Think_InitializePlayerHero", function() return self:Think_InitializePlayerHero( hPlayerHero ) end, 0 )
+	end
+
+	if spawnedUnit:GetUnitName() == "npc_dota_neutral_caster" then
+		--print( "Neutral Caster spawned" )
+		spawnedUnit:SetContextThink( "self:Think_InitializeNeutralCaster", function() return self:Think_InitializeNeutralCaster( spawnedUnit ) end, 0 )
+	end
 end
 
--- An NPC has spawned somewhere in game.  This includes heroes
-function GameMode:OnNPCSpawned(keys)
-  DebugPrint("[BAREBONES] NPC Spawned")
-  DebugPrintTable(keys)
-
-  -- This internal handling is used to set up main barebones functions
-  GameMode:_OnNPCSpawned(keys)
-
-  local npc = EntIndexToHScript(keys.entindex)
+--------------------------------------------------------------------------------
+-- GameEvent: OnAbilityUsed
+--------------------------------------------------------------------------------
+function GameMode:OnAbilityUsed( event )
+	local ply = EntIndexToHScript( event.PlayerID )
+	if ply then
+		local hero = PlayerResource:GetSelectedHeroEntity( event.PlayerID )
+		if hero then 
+			local ability = event.abilityname
+			for i = 0, hero:GetAbilityCount() do 
+				if hero:FindAbilityByName(ability) then
+					hero.lastAbility = ability
+				end
+			end
+		end
+	end
 end
 
--- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
--- operations here
-function GameMode:OnEntityHurt(keys)
-  --DebugPrint("[BAREBONES] Entity Hurt")
-  --DebugPrintTable(keys)
+--------------------------------------------------------------------------------
+-- Event: OnItemPickUp
+--------------------------------------------------------------------------------
+--[[function GameMode:OnItemPickUp( event )
+	local item = EntIndexToHScript( event.ItemEntityIndex )
+	local owner = EntIndexToHScript( event.HeroEntityIndex )
+	--r = RandomInt(200, 400)
+	if event.itemname == "item_bag_of_gold" then
+		--print("Bag of gold picked up")
+		PlayerResource:ModifyGold( owner:GetPlayerID(), r, true, 0 )
+		UTIL_Remove( item ) -- otherwise it pollutes the player inventory
+	end
+end
+]]--
+--------------------------------------------------------------------------------
+-- Think_InitializePlayerHero
+--------------------------------------------------------------------------------
+function GameMode:Think_InitializePlayerHero( hPlayerHero )
+	if not hPlayerHero then
+		return 0.1
+	end
 
-  local damagebits = keys.damagebits -- This might always be 0 and therefore useless
-  if keys.entindex_attacker ~= nil and keys.entindex_killed ~= nil then
-    local entCause = EntIndexToHScript(keys.entindex_attacker)
-    local entVictim = EntIndexToHScript(keys.entindex_killed)
+	if self.m_bPlayerDataCaptured == false then
+		if hPlayerHero:GetUnitName() == self.m_sHeroSelection then
+			local nPlayerID = hPlayerHero:GetPlayerOwnerID()
+			PlayerResource:ModifyGold( nPlayerID, 99999, true, 0 )
+			self.m_bPlayerDataCaptured = true
+		end
+	end
 
-    -- The ability/item used to damage, or nil if not damaged by an item/ability
-    local damagingAbility = nil
+	if self.m_bInvulnerabilityEnabled then
+		local hAllPlayerUnits = {}
+		hAllPlayerUnits = hPlayerHero:GetAdditionalOwnedUnits()
+		hAllPlayerUnits[ #hAllPlayerUnits + 1 ] = hPlayerHero
 
-    if keys.entindex_inflictor ~= nil then
-      damagingAbility = EntIndexToHScript( keys.entindex_inflictor )
-    end
-  end
+		for _, hUnit in pairs( hAllPlayerUnits ) do
+			hUnit:AddNewModifier( hPlayerHero, nil, "lm_take_no_damage", nil )
+		end
+	end
+
+	return
 end
 
--- An item was picked up off the ground
-function GameMode:OnItemPickedUp(keys)
-  DebugPrint( '[BAREBONES] OnItemPickedUp' )
-  DebugPrintTable(keys)
+--------------------------------------------------------------------------------
+-- Think_InitializeNeutralCaster
+--------------------------------------------------------------------------------
+function GameMode:Think_InitializeNeutralCaster( neutralCaster )
+	if not neutralCaster then
+		return 0.1
+	end
 
-  local heroEntity = EntIndexToHScript(keys.HeroEntityIndex)
-  local itemEntity = EntIndexToHScript(keys.ItemEntityIndex)
-  local player = PlayerResource:GetPlayer(keys.PlayerID)
-  local itemname = keys.itemname
+	print( "neutralCaster:AddAbility( \"la_spawn_enemy_at_target\" )" )
+	neutralCaster:AddAbility( "la_spawn_enemy_at_target" )
+	return
 end
 
--- A player has reconnected to the game.  This function can be used to repaint Player-based particles or change
--- state as necessary
-function GameMode:OnPlayerReconnect(keys)
-  DebugPrint( '[BAREBONES] OnPlayerReconnect' )
-  DebugPrintTable(keys) 
+--------------------------------------------------------------------------------
+-- Think_InitializeNeutralCaster
+--------------------------------------------------------------------------------
+function GameMode:Think_InitializeCustomUI( neutralCaster )
+	if not neutralCaster then
+		return 0.1
+	end
+
+	print( "neutralCaster:AddAbility( \"la_spawn_enemy_at_target\" )" )
+	neutralCaster:AddAbility( "la_spawn_enemy_at_target" )
+	return
 end
 
--- An item was purchased by a player
-function GameMode:OnItemPurchased( keys )
-  DebugPrint( '[BAREBONES] OnItemPurchased' )
-  DebugPrintTable(keys)
-
-  -- The playerID of the hero who is buying something
-  local plyID = keys.PlayerID
-  if not plyID then return end
-
-  -- The name of the item purchased
-  local itemName = keys.itemname 
-  
-  -- The cost of the item purchased
-  local itemcost = keys.itemcost
-  
+--------------------------------------------------------------------------------
+-- GameEvent: OnItemPurchased
+--------------------------------------------------------------------------------
+function GameMode:OnItemPurchased( event )
+	local hBuyer = PlayerResource:GetPlayer( event.PlayerID )
+	local hBuyerHero = hBuyer:GetAssignedHero()
+	hBuyerHero:ModifyGold( event.itemcost, true, 0 )
 end
 
--- An ability was used by a player
-function GameMode:OnAbilityUsed(keys)
-  DebugPrint('[BAREBONES] AbilityUsed')
-  DebugPrintTable(keys)
-
-  local player = PlayerResource:GetPlayer(keys.PlayerID)
-  local abilityname = keys.abilityname
+--------------------------------------------------------------------------------
+-- GameEvent: OnNPCReplaced
+--------------------------------------------------------------------------------
+function GameMode:OnNPCReplaced( event )
+	local sNewHeroName = PlayerResource:GetSelectedHeroName( event.new_entindex )
+	print( "sNewHeroName == " .. sNewHeroName ) -- we fail to get in here
+	self:BroadcastMsg( "Changed hero to " .. sNewHeroName )
 end
 
--- A non-player entity (necro-book, chen creep, etc) used an ability
-function GameMode:OnNonPlayerUsedAbility(keys)
-  DebugPrint('[BAREBONES] OnNonPlayerUsedAbility')
-  DebugPrintTable(keys)
-
-  local abilityname=  keys.abilityname
-end
-
--- A player changed their name
-function GameMode:OnPlayerChangedName(keys)
-  DebugPrint('[BAREBONES] OnPlayerChangedName')
-  DebugPrintTable(keys)
-
-  local newName = keys.newname
-  local oldName = keys.oldName
-end
-
--- A player leveled up an ability
-function GameMode:OnPlayerLearnedAbility( keys)
-  DebugPrint('[BAREBONES] OnPlayerLearnedAbility')
-  DebugPrintTable(keys)
-
-  local player = EntIndexToHScript(keys.player)
-  local abilityname = keys.abilityname
-end
-
--- A channelled ability finished by either completing or being interrupted
-function GameMode:OnAbilityChannelFinished(keys)
-  DebugPrint('[BAREBONES] OnAbilityChannelFinished')
-  DebugPrintTable(keys)
-
-  local abilityname = keys.abilityname
-  local interrupted = keys.interrupted == 1
-end
-
--- A player leveled up
-function GameMode:OnPlayerLevelUp(keys)
-  DebugPrint('[BAREBONES] OnPlayerLevelUp')
-  DebugPrintTable(keys)
-
-  local player = EntIndexToHScript(keys.player)
-  local level = keys.level
-end
-
--- A player last hit a creep, a tower, or a hero
-function GameMode:OnLastHit(keys)
-  DebugPrint('[BAREBONES] OnLastHit')
-  DebugPrintTable(keys)
-
-  local isFirstBlood = keys.FirstBlood == 1
-  local isHeroKill = keys.HeroKill == 1
-  local isTowerKill = keys.TowerKill == 1
-  local player = PlayerResource:GetPlayer(keys.PlayerID)
-  local killedEnt = EntIndexToHScript(keys.EntKilled)
-end
-
--- A tree was cut down by tango, quelling blade, etc
-function GameMode:OnTreeCut(keys)
-  DebugPrint('[BAREBONES] OnTreeCut')
-  DebugPrintTable(keys)
-
-  local treeX = keys.tree_x
-  local treeY = keys.tree_y
-end
-
--- A rune was activated by a player
-function GameMode:OnRuneActivated (keys)
-  DebugPrint('[BAREBONES] OnRuneActivated')
-  DebugPrintTable(keys)
-
-  local player = PlayerResource:GetPlayer(keys.PlayerID)
-  local rune = keys.rune
-
-  --[[ Rune Can be one of the following types
-  DOTA_RUNE_DOUBLEDAMAGE
-  DOTA_RUNE_HASTE
-  DOTA_RUNE_HAUNTED
-  DOTA_RUNE_ILLUSION
-  DOTA_RUNE_INVISIBILITY
-  DOTA_RUNE_BOUNTY
-  DOTA_RUNE_MYSTERY
-  DOTA_RUNE_RAPIER
-  DOTA_RUNE_REGENERATION
-  DOTA_RUNE_SPOOKY
-  DOTA_RUNE_TURBO
-  ]]
-end
-
--- A player took damage from a tower
-function GameMode:OnPlayerTakeTowerDamage(keys)
-  DebugPrint('[BAREBONES] OnPlayerTakeTowerDamage')
-  DebugPrintTable(keys)
-
-  local player = PlayerResource:GetPlayer(keys.PlayerID)
-  local damage = keys.damage
-end
-
--- A player picked a hero
-function GameMode:OnPlayerPickHero(keys)
-  DebugPrint('[BAREBONES] OnPlayerPickHero')
-  DebugPrintTable(keys)
-
-  local heroClass = keys.hero
-  local heroEntity = EntIndexToHScript(keys.heroindex)
-  local player = EntIndexToHScript(keys.player)
-end
-
--- A player killed another player in a multi-team context
-function GameMode:OnTeamKillCredit(keys)
-  DebugPrint('[BAREBONES] OnTeamKillCredit')
-  DebugPrintTable(keys)
-
-  local killerPlayer = PlayerResource:GetPlayer(keys.killer_userid)
-  local victimPlayer = PlayerResource:GetPlayer(keys.victim_userid)
-  local numKills = keys.herokills
-  local killerTeamNumber = keys.teamnumber
-end
-
--- An entity died
+--------------------------------------------------------------------------------
+-- GameEvent: OnEntityKilled
+--------------------------------------------------------------------------------
 function GameMode:OnEntityKilled( keys )
-  DebugPrint( '[BAREBONES] OnEntityKilled Called' )
-  DebugPrintTable( keys )
+	local killedEntity = EntIndexToHScript( keys.entindex_killed )
 
-  GameMode:_OnEntityKilled( keys )
-  
-
-  -- The Unit that was Killed
-  local killedUnit = EntIndexToHScript( keys.entindex_killed )
-  -- The Killing entity
-  local killerEntity = nil
-  if killedUnit:IsHero() then
-  if keys.entindex_attacker ~= nil then
-    killerEntity = EntIndexToHScript( keys.entindex_attacker )
-  end
-  if killedUnit:HasModifier("Disconnected") then
-    killedUnit:RemoveModifierByName("Disconnected")
-  end
-  local killed_unit_pid = killedUnit:GetPlayerID()
-  if killed_unit_pid ~= nil and PlayerResource:IsValidPlayerID(killed_unit_pid) and PlayerResource:IsValidPlayer(killed_unit_pid) then
-    local killed_unit_player = PlayerResource:GetPlayer(killed_unit_pid)
-    local killed_unit_current_team = killedUnit:GetTeam()
-    if killed_unit_player ~= nil and killed_unit_player.disconnected_original_team ~= nil and killed_unit_current_team ~= "DOTA_TEAM_GOODGUYS" and killed_unit_current_team ~= "DOTA_TEAM_BADGUYS" then  --If the invoker_retro_betrayal_original_team was not stored, we're in trouble.
-      PlayerResource:SetCustomTeamAssignment(killed_unit_pid, killedUnit.disconnected_original_team)
-      killedUnit:SetTeam(killed_unit_player.disconnected_original_team)
-      killedUnit.disconnected_original_team = nil
-    end
-  end
-  -- The ability/item used to kill, or nil if not killed by an item/ability
-  local killerAbility = nil
-
-  if keys.entindex_inflictor ~= nil then
-    killerAbility = EntIndexToHScript( keys.entindex_inflictor )
-  end
-
-  local damagebits = keys.damagebits -- This might always be 0 and therefore useless
-  end
-  -- Put code here to handle when an entity gets killed
+	if killedEntity:IsHero() and keys.entindex_attacker ~= nil then
+	    local killerEntity = EntIndexToHScript( keys.entindex_attacker )
+	    local teamkills = PlayerResource:GetTeamKills(killerEntity:GetTeamNumber())
+	    if teamkills >= 2 and not GameRules:IsCheatMode() then
+	      GameRules:SetCustomVictoryMessage( "Thanks for playing!" )
+		  GameRules:SetCustomVictoryMessageDuration( 3.0 )
+		  GameRules:SetGameWinner( killerEntity:GetTeamNumber() )
+	    end
+	end
+	if killedEntity:IsBuilding() and keys.entindex_attacker ~= nil then
+		local killerEntity = EntIndexToHScript( keys.entindex_attacker )
+		if not GameRules:IsCheatMode() then
+	      GameRules:SetCustomVictoryMessage( "Thanks for playing!" )
+		  GameRules:SetCustomVictoryMessageDuration( 3.0 )
+		  GameRules:SetGameWinner( killerEntity:GetTeamNumber() )
+	    end
+	end
 end
 
-
-
--- This function is called 1 to 2 times as the player connects initially but before they 
--- have completely connected
-function GameMode:PlayerConnect(keys)
-  DebugPrint('[BAREBONES] PlayerConnect')
-  DebugPrintTable(keys)
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnWelcomePanelDismissed
+--------------------------------------------------------------------------------
+function GameMode:OnWelcomePanelDismissed( event )
+	print( "Entering GameMode:OnWelcomePanelDismissed( event )" )
 end
 
--- This function is called once when the player fully connects and becomes "Ready" during Loading
-function GameMode:OnConnectFull(keys)
-  DebugPrint('[BAREBONES] OnConnectFull')
-  DebugPrintTable(keys)
-
-  GameMode:_OnConnectFull(keys)
-  
-  local entIndex = keys.index+1
-  -- The Player entity of the joining user
-  local ply = EntIndexToHScript(entIndex)
-  
-  -- The Player ID of the joining player
-  local playerID = ply:GetPlayerID()
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnRefreshButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnRefreshButtonPressed( eventSourceIndex )
+	SendToServerConsole( "dota_dev hero_refresh" )
+	self:BroadcastMsg( "#Refresh_Msg" )
 end
 
--- This function is called whenever illusions are created and tells you which was/is the original entity
-function GameMode:OnIllusionsCreated(keys)
-  DebugPrint('[BAREBONES] OnIllusionsCreated')
-  DebugPrintTable(keys)
-
-  local originalEntity = EntIndexToHScript(keys.original_entindex)
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnLevelUpButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnLevelUpButtonPressed( eventSourceIndex )
+	SendToServerConsole( "dota_dev hero_level 1" )
+	self:BroadcastMsg( "#LevelUp_Msg" )
 end
 
--- This function is called whenever an item is combined to create a new item
-function GameMode:OnItemCombined(keys)
-  DebugPrint('[BAREBONES] OnItemCombined')
-  DebugPrintTable(keys)
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnMaxLevelButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnMaxLevelButtonPressed( eventSourceIndex, data )
+	local hPlayerHero = PlayerResource:GetSelectedHeroEntity( data.PlayerID )
+	hPlayerHero:AddExperience( 32400, false, false ) -- for some reason maxing your level this way fixes the bad interaction with OnHeroReplaced
+	--while hPlayerHero:GetLevel() < 25 do
+		--hPlayerHero:HeroLevelUp( false )
+	--end
 
-  -- The playerID of the hero who is buying something
-  local plyID = keys.PlayerID
-  if not plyID then return end
-  local player = PlayerResource:GetPlayer(plyID)
+	for i = 0, DOTA_MAX_ABILITIES - 1 do
+		local hAbility = hPlayerHero:GetAbilityByIndex( i )
+		if hAbility and hAbility:CanAbilityBeUpgraded () == ABILITY_CAN_BE_UPGRADED and not hAbility:IsHidden() then
+			while hAbility:GetLevel() < hAbility:GetMaxLevel() do
+				hPlayerHero:UpgradeAbility( hAbility )
+			end
+		end
+	end
 
-  -- The name of the item purchased
-  local itemName = keys.itemname 
-  
-  -- The cost of the item purchased
-  local itemcost = keys.itemcost
+	hPlayerHero:SetAbilityPoints( 0 )
+	self:BroadcastMsg( "#MaxLevel_Msg" )
 end
 
--- This function is called whenever an ability begins its PhaseStart phase (but before it is actually cast)
-function GameMode:OnAbilityCastBegins(keys)
-  DebugPrint('[BAREBONES] OnAbilityCastBegins')
-  DebugPrintTable(keys)
-
-  local player = PlayerResource:GetPlayer(keys.PlayerID)
-  local abilityName = keys.abilityname
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnFreeSpellsButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnFreeSpellsButtonPressed( eventSourceIndex )
+	SendToServerConsole( "toggle dota_ability_debug" )
+	if self.m_bFreeSpellsEnabled == false then
+		self.m_bFreeSpellsEnabled = true
+		SendToServerConsole( "dota_dev hero_refresh" )
+		self:BroadcastMsg( "#FreeSpellsOn_Msg" )
+	elseif self.m_bFreeSpellsEnabled == true then
+		self.m_bFreeSpellsEnabled = false
+		self:BroadcastMsg( "#FreeSpellsOff_Msg" )
+	end	
 end
 
--- This function is called whenever a tower is killed
-function GameMode:OnTowerKill(keys)
-  DebugPrint('[BAREBONES] OnTowerKill')
-  DebugPrintTable(keys)
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnInvulnerabilityButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnInvulnerabilityButtonPressed( eventSourceIndex, data )
+	local hPlayerHero = PlayerResource:GetSelectedHeroEntity( data.PlayerID )
+	local hAllPlayerUnits = {}
+	hAllPlayerUnits = hPlayerHero:GetAdditionalOwnedUnits()
+	hAllPlayerUnits[ #hAllPlayerUnits + 1 ] = hPlayerHero
 
-  local gold = keys.gold
-  local killerPlayer = PlayerResource:GetPlayer(keys.killer_userid)
-  local team = keys.teamnumber
+	if self.m_bInvulnerabilityEnabled == false then
+		for _, hUnit in pairs( hAllPlayerUnits ) do
+			hUnit:AddNewModifier( hPlayerHero, nil, "lm_take_no_damage", nil )
+		end
+		self.m_bInvulnerabilityEnabled = true
+		self:BroadcastMsg( "#InvulnerabilityOn_Msg" )
+	elseif self.m_bInvulnerabilityEnabled == true then
+		for _, hUnit in pairs( hAllPlayerUnits ) do
+			hUnit:RemoveModifierByName( "lm_take_no_damage" )
+		end
+		self.m_bInvulnerabilityEnabled = false
+		self:BroadcastMsg( "#InvulnerabilityOff_Msg" )
+	end
 end
 
--- This function is called whenever a player changes there custom team selection during Game Setup 
-function GameMode:OnPlayerSelectedCustomTeam(keys)
-  DebugPrint('[BAREBONES] OnPlayerSelectedCustomTeam')
-  DebugPrintTable(keys)
-
-  local player = PlayerResource:GetPlayer(keys.player_id)
-  local success = (keys.success == 1)
-  local team = keys.team_id
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnSpawnAllyButtonPressed -- deprecated
+--------------------------------------------------------------------------------
+function GameMode:OnSpawnAllyButtonPressed( eventSourceIndex, data )
+	local hPlayerHero = PlayerResource:GetSelectedHeroEntity( data.PlayerID )
+	self.m_nAlliesCount = self.m_nAlliesCount + 1
+	print( "Ally team count is now: " .. self.m_nAlliesCount )
+	self.m_tAlliesList[ self.m_nAlliesCount ] = CreateUnitByName( "npc_dota_hero_puck", hPlayerHero:GetAbsOrigin(), true, nil, nil, self.m_nALLIES_TEAM )
+	local hUnit = self.m_tAlliesList[ self.m_nAlliesCount ]
+	hUnit:SetControllableByPlayer( self.m_nPlayerID, false )
+	hUnit:SetRespawnPosition( hPlayerHero:GetAbsOrigin() )
+	FindClearSpaceForUnit( hUnit, hPlayerHero:GetAbsOrigin(), false )
+	hUnit:Hold()
+	hUnit:SetIdleAcquire( false )
+	hUnit:SetAcquisitionRange( 0 )
+	self:BroadcastMsg( "#SpawnAlly_Msg" )
 end
 
--- This function is called whenever an NPC reaches its goal position/target
-function GameMode:OnNPCGoalReached(keys)
-  DebugPrint('[BAREBONES] OnNPCGoalReached')
-  DebugPrintTable(keys)
+--------------------------------------------------------------------------------
+-- ButtonEvent: SpawnEnemyButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnSpawnEnemyButtonPressed( eventSourceIndex, data )
+	if #self.m_tEnemiesList >= 100 then
+		print( "#self.m_tEnemiesList == " .. #self.m_tEnemiesList )
 
-  local goalEntity = EntIndexToHScript(keys.goal_entindex)
-  local nextGoalEntity = EntIndexToHScript(keys.next_goal_entindex)
-  local npc = EntIndexToHScript(keys.npc_entindex)
+		self:BroadcastMsg( "#MaxEnemies_Msg" )
+		return
+	end
+
+    local hAbility = self._hNeutralCaster:FindAbilityByName( "la_spawn_enemy_at_target" )
+	self._hNeutralCaster:CastAbilityImmediately( hAbility, -1 )
+
+	local hPlayerHero = PlayerResource:GetSelectedHeroEntity( data.PlayerID )
+	local hAbilityTestSearch = hPlayerHero:FindAbilityByName( "la_spawn_enemy_at_target" )
+	if hAbilityTestSearch then -- Testing whether AddAbility worked successfully on the lua-based ability
+		print( "hPlayerHero:AddAbility( \"la_spawn_enemy_at_target\" ) was successful" )
+	end
+
+	self:BroadcastMsg( "#SpawnEnemy_Msg" )
 end
 
---  This function is called whenever any player sends a chat message to team or All
-function GameMode:OnPlayerChat(keys)
-  local teamonly = keys.teamonly
-  local userID = keys.userid
-  local playerID = self.vUserIds[userID]:GetPlayerID()
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnLevelUpEnemyButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnLevelUpEnemyButtonPressed( eventSourceIndex )
+	for k, v in pairs( self.m_tEnemiesList ) do
+		self.m_tEnemiesList[ k ]:HeroLevelUp( false )
+	end
+	self:BroadcastMsg( "#LevelUpEnemy_Msg" )
+end
 
-  local text = keys.text
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnDummyTargetsButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnDummyTargetsButtonPressed( eventSourceIndex, data )
+	local hPlayerHero = PlayerResource:GetSelectedHeroEntity( data.PlayerID )
+	self.m_nDummiesCount = self.m_nDummiesCount + 1
+	print( "Dummy team count is now: " .. self.m_nDummiesCount )
+	self.m_tDummiesList[ self.m_nDummiesCount ] = CreateUnitByName( "npc_dota_target_dummy_ORIGINAL", hPlayerHero:GetAbsOrigin(), true, nil, nil, self.m_nDUMMIES_TEAM )
+	local hUnit = self.m_tDummiesList[ self.m_nDummiesCount ]
+	hUnit:SetControllableByPlayer( self.m_nPlayerID, false )
+	FindClearSpaceForUnit( hUnit, hPlayerHero:GetAbsOrigin(), false )
+	hUnit:Hold()
+	hUnit:SetIdleAcquire( false )
+	hUnit:SetAcquisitionRange( 0 )
+	self:BroadcastMsg( "#SpawnDummyTarget_Msg" )
+end
+
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnRemoveSpawnedUnitsButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnRemoveSpawnedUnitsButtonPressed( eventSourceIndex )
+	print( "Entering GameMode:OnRemoveSpawnedUnitsButtonPressed( eventSourceIndex )" )
+	PrintTable( self.m_tAlliesList, " " )
+	for k, v in pairs( self.m_tAlliesList ) do
+		self.m_tAlliesList[ k ]:Destroy()
+		self.m_tAlliesList[ k ] = nil
+	end
+	PrintTable( self.m_tEnemiesList, " " )
+	for k, v in pairs( self.m_tEnemiesList ) do
+		self.m_tEnemiesList[ k ]:Destroy()
+		self.m_tEnemiesList[ k ] = nil
+	end
+	PrintTable( self.m_tDummiesList, " " )
+	for k, v in pairs( self.m_tDummiesList ) do
+		self.m_tDummiesList[ k ]:Destroy()
+		self.m_tDummiesList[ k ] = nil
+	end
+
+	self.m_nEnemiesCount = 0
+	self.m_nDummiesCount = 0
+
+	self:BroadcastMsg( "#RemoveSpawnedUnits_Msg" )
+end
+
+--------------------------------------------------------------------------------
+-- ButtonEvent: OnLaneCreepsButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnLaneCreepsButtonPressed( eventSourceIndex )
+	SendToServerConsole( "toggle dota_creeps_no_spawning" )
+	if self.m_bCreepsEnabled == false then
+		self.m_bCreepsEnabled = true
+		self:BroadcastMsg( "#LaneCreepsOn_Msg" )
+	elseif self.m_bCreepsEnabled == true then
+		-- if we're disabling creep spawns, then also kill existing creep waves
+		SendToServerConsole( "dota_kill_creeps radiant" )
+		SendToServerConsole( "dota_kill_creeps dire" )
+		self.m_bCreepsEnabled = false
+		self:BroadcastMsg( "#LaneCreepsOff_Msg" )
+	end
+end
+
+--------------------------------------------------------------------------------
+-- GameEvent: OnChangeCosmeticsButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnChangeCosmeticsButtonPressed( eventSourceIndex )
+	-- currently running the command directly in XML, should run it here if possible
+	-- can use GetSelectedHeroID
+end
+
+--------------------------------------------------------------------------------
+-- GameEvent: OnChangeHeroButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnChangeHeroButtonPressed( eventSourceIndex )
+	-- Clean up enemies
+	for _,unit in pairs(HeroList:GetAllHeroes()) do
+		if PlayerResource:IsFakeClient(unit:GetPlayerOwnerID()) then
+
+		else 
+			
+		end
+	end
+	self.m_tEnemiesList = {}
+	
+	GameRules:SetHeroSelectionTime(3)
+	GameRules:ResetToHeroSelection()
+end
+
+--------------------------------------------------------------------------------
+-- GameEvent: OnPauseButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnPauseButtonPressed( eventSourceIndex )
+	SendToServerConsole( "dota_pause" )
+end
+
+--------------------------------------------------------------------------------
+-- GameEvent: OnLeaveButtonPressed
+--------------------------------------------------------------------------------
+function GameMode:OnLeaveButtonPressed( eventSourceIndex )
+	GameRules:SetCustomVictoryMessage( "Thanks for playing!" )
+	GameRules:SetCustomVictoryMessageDuration( 3.0 )
+	GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
 end

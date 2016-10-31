@@ -1,8 +1,8 @@
 .GameInfo
 {
-    width:100%;
+    width:87%;
     margin-top: -95px;
-    margin-right: 20px;
+    margin-right: 35px;
 }
 .GameInfo Panel
 {
@@ -29,17 +29,17 @@ Label
 }
 #TitleName
 {
-    color: #cccccc;
-    font-size: 48px;
-    margin-left: 16px;
-    margin-top: 16px;
+    color: #dddddd;
+    font-size: 34px;
+    margin-left: 12px;
+    margin-top: 12px;
     text-transform: uppercase;
     vertical-align: center;
-    padding-bottom: -30px;
+    padding-bottom: -25px;
     height: 56px;
 }
 Panel.list Label {
-    margin-left: 25px;
+    margin-left: 20px;
 }
 
 .page Panel {

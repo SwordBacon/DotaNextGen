@@ -11,6 +11,8 @@ function SplitOozelingsCharges( keys )
 	oozeling_charges = oozeling_charges or 0
 	
 	local max_charges = ability:GetLevelSpecialValueFor("max_charges", (ability:GetLevel() - 1))
+	if caster:HasScepter() then max_charges = max_charges + 4 end
+	
 	local threshold = ability:GetLevelSpecialValueFor("threshold", (ability:GetLevel() - 1))
 	if damage_counter == nil then damage_counter = damage end
 	damage_counter = damage_counter + damage
@@ -18,9 +20,10 @@ function SplitOozelingsCharges( keys )
 	while (damage_counter > threshold) do
 		if oozeling_charges < max_charges then
 			oozeling_charges = oozeling_charges + 1
+			local digits = string.len(oozeling_charges) + 1
 			if not caster:HasModifier("modifier_split_oozelings_charges") then
 				caster.ooze_stack = ParticleManager:CreateParticle("particles/viscous_ooze_oozeling_stack.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
-				ParticleManager:SetParticleControl(caster.ooze_stack, 1, Vector(0, 1, 0))
+				ParticleManager:SetParticleControl(caster.ooze_stack, 1, Vector(0, oozeling_charges, 0))
 				ability:ApplyDataDrivenModifier(caster, caster, "modifier_split_oozelings_charges", {})
 			else
 				ParticleManager:SetParticleControl(caster.ooze_stack, 1, Vector(0, oozeling_charges, 0))
@@ -50,7 +53,7 @@ function SplitOozelingsSpendCharges( keys )
 		oozeling_charges = oozeling_charges - 1
 		if caster:GetMaxHealth() > 150 then
 			ability:ApplyDataDrivenModifier(caster, caster, "modifier_ooze_health_modifier", {Duration = 20})
-			caster:SetModelScale(caster:GetModelScale() - 0.015)
+			caster:SetModelScale(caster:GetModelScale() - 0.003)
 		end
 	until( oozeling_charges < 0 )
 
@@ -63,7 +66,7 @@ end
 function OozeGrow( keys )
 	local caster = keys.caster
 
-	caster:SetModelScale(caster:GetModelScale() + 0.015)
+	caster:SetModelScale(caster:GetModelScale() + 0.003)
 end
 
 function LoseParticles( keys )

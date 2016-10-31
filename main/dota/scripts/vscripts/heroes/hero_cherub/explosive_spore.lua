@@ -1,15 +1,14 @@
 function GetSummonPoints( event )
-
 	local caster = event.caster
 	local fv = caster:GetForwardVector()
 	local origin = caster:GetAbsOrigin()
 	local distance = event.distance
 
-local front_position = origin + fv * distance
+	local front_position = origin + fv * distance
 
-local result = { }
-	table.insert(result, front_position)
-return result
+	local result = { }
+		table.insert(result, front_position)
+	return result
 end
 
 function SetUnitsMoveForward( event )
@@ -17,9 +16,9 @@ function SetUnitsMoveForward( event )
 	local target = event.target
 	local fv = caster:GetForwardVector()
 	local origin = caster:GetAbsOrigin()
-target:SetForwardVector(fv)
--- Add the target to a table on the caster handle, to find them later
-table.insert(caster.wolves, target)
+	target:SetForwardVector(fv)
+	-- Add the target to a table on the caster handle, to find them later
+	table.insert(caster.wolves, target)
 end
 
 function ExplosiveSporeSound( keys )

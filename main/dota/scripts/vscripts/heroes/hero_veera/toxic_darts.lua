@@ -5,7 +5,6 @@ function ToxicDartsApplyRandomEffect( keys )
 	local target_loc = target:GetAbsOrigin()
 	
 	local random_effect = RandomInt(1,4) 
-	print(random_effect)
 	if not target:IsMagicImmune() then
 		if random_effect == 1 then
 			ability:ApplyDataDrivenModifier(caster, target, "modifier_toxic_1", {})
@@ -25,6 +24,7 @@ function ToxicDartsStartCharge( keys )
 
 	-- Variables
 	local caster = keys.caster
+	if not caster:IsRealHero() then return end
 	local ability = keys.ability
 	local thrill = caster:FindAbilityByName("veera_thrill_of_the_hunt")
 

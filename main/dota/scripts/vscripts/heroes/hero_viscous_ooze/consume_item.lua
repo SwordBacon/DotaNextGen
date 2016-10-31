@@ -1,3 +1,4 @@
+-- charges used from old ultimate
 function ConsumeItemGainCharges( keys )
 	local caster = keys.caster
 	local ability = keys.ability
@@ -23,6 +24,7 @@ function ConsumeItemOn( keys )
 		if item == nil then	
 			caster:AddItem(CreateItem("item_dummy_datadriven", caster, caster))
 		else
+			local purchaseTime = item:GetPurchaseTime()
 			owner[i] = item:GetPurchaser()
 			local item_name = item:GetName()
 			local consume_item_name = item_name .. "_datadriven"
@@ -38,7 +40,7 @@ function ConsumeItemOn( keys )
 				end
 				checkitem:SetCurrentCharges(item_charges)
 				checkitem:SetLevel(item_level)
-				print(item_level)
+				checkitem:SetPurchaseTime(purchaseTime)
 			end
 		end
 	end
@@ -61,6 +63,7 @@ function ConsumeItemOff( keys )
 		if item == nil then	
 			caster:AddItem(CreateItem("item_dummy_datadriven", caster, caster))
 		else 
+			local purchaseTime = item:GetPurchaseTime()
 			owner[i] = item:GetPurchaser()
 			local item_name = item:GetName()
 			local item_charges = item:GetCurrentCharges()
@@ -72,6 +75,7 @@ function ConsumeItemOff( keys )
 				local checkitem = caster:GetItemInSlot(i)
 				checkitem:SetCurrentCharges(item_charges)
 				checkitem:SetLevel(item_level)
+				checkitem:SetPurchaseTime(purchaseTime)
 			end
 		end
 	end

@@ -25,11 +25,16 @@ function CheckForDeath( keys )
 		respawnPoint = target:GetAbsOrigin()
 		respawnHero = target
 		local time = target:GetRespawnTime() / 2
-		target:RemoveModifierByName("modifier_dead_man")
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_dead_man_contain", {Duration = time})
-		target:Kill(ability, caster)
-		target:SetTimeUntilRespawn(time)
-		caster:SwapAbilities("suna_dead_mans_chest", "suna_kyonshi", false, true)
+		if time > 1 then
+			target:RemoveModifierByName("modifier_dead_man")
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_dead_man_contain", {Duration = time})
+			target:Kill(ability, caster)
+			target:SetTimeUntilRespawn(time)
+			caster:SwapAbilities("suna_dead_mans_chest", "suna_kyonshi", false, true)
+		else
+			target:RemoveModifierByName("modifier_dead_man")
+			target:Kill(ability, caster)
+		end
 	end
 end
 
@@ -56,6 +61,12 @@ function KyonshiRevive( keys )
 	target:RespawnUnit()
 	ability:ApplyDataDrivenModifier(caster, target, "modifier_kyonshi", {Duration = duration})
 	target:RemoveModifierByName("modifier_dead_man_contain")
+
+	if caster:HasScepter() then
+		target:AddNewModifier(caster, nil, "modifier_rune_haste", {duration = -1})
+		target:AddNewModifier(caster, nil, "modifier_omniknight_repel", {duration = -1})
+	end
+
 	Timers:CreateTimer(duration, function()
 		target:SetControllableByPlayer( target:GetPlayerID(), true )
 		target:ForceKill(false)

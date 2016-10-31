@@ -1,0 +1,56 @@
+"itembuilds/default_generic.txt"
+{
+	"author"		"SwordBacon"
+	"hero"			"npc_dota_hero_disruptor"
+	"Title"			"Recommended items for Alpha Stryder"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_flask"
+			"item"		"item_circlet"
+			"item"		"item_branches"
+			"item"		"item_branches"
+			"item"		"item_wind_lace"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_magic_stick"
+			"item"		"item_boots"
+			"item"		"item_ring_of_aquila"	
+		}
+
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_magic_wand"
+			"item"		"item_arcane_boots"
+			"item"		"item_tranquil_boots"
+			"item"		"item_ultimate_scepter"
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_blink"
+			"item"		"item_cyclone"
+			"item"		"item_octarine_core"
+			"item"		"item_veil_of_discord"
+			"item"		"item_midas"
+			"item"		"item_ancient_janggo"
+			"item"		"item_manta_style"
+			"item"		"item_heart"
+			"item"		"item_skadi"
+			"item"		"item_diffusal_blade"
+			"item"		"item_butterfly"
+			"item"		"item_bloodstone"
+			"item"		"item_radiance"
+			"item"		"item_ethereal_blade"
+			"item"		"item_dagon_5"
+			"item"		"item_vladmirs_offering"
+			"item"		"item_lotus_orb"
+			"item"		"item_shivas_guard"
+			"item"		"item_rapier"
+		}
+	}
+}

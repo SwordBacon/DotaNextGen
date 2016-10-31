@@ -1,0 +1,9 @@
+"Attachments"
+{
+	"Particles"
+	{
+	}
+	"Animations"
+	{
+	}
+}

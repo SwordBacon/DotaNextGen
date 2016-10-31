@@ -10,21 +10,34 @@ function TyphoonSpinEffect( keys )
 	local distance = target:GetAbsOrigin() - caster:GetAbsOrigin()
 	local distanceLength = distance:Length2D()
 	local randomSpeed = (RandomInt(5,20) * 60) / distanceLength
+
+	-- Scepter Upgrade - Increases velocity by 50%
+	if caster:HasScepter() then randomSpeed = randomSpeed * 1.5 end
+
 	local increaseSpeed = randomSpeed / 10
 	local variableSpeed = increaseSpeed
 	
 	
 	-- calculates elevation
-	local jump = RandomInt(10,20)/10.0
+	local jump = RandomInt(12,18)/10.0
+
+	-- Scepter Upgrade - Increases lift by 50%
+	if caster:HasScepter() then jump = jump * 1.5 end
+
 	local gravity = 0.5
+	
+	-- Scepter Upgrade - Increases lift by 50%
+	if caster:HasScepter() then gravity = gravity * 1.5 end
+
 	local height = 0
 	
 	local radius = ability:GetLevelSpecialValueFor("radius", ability:GetLevel() - 1 )
 	local duration = ability:GetLevelSpecialValueFor("duration", ability:GetLevel() - 1 )
 	local damageElevation = ability:GetLevelSpecialValueFor("damage", ability:GetLevel() - 1 ) / 100.0
-	print(damageElevation)
 	
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_typhoon_stunned", {})
 	ability:CreateVisibilityNode(caster:GetAbsOrigin(), radius, duration)
+	target:EmitSound("n_creep_Wildkin.Tornado")
 
 	Timers:CreateTimer(0, function()
 		local ground_position = GetGroundPosition(target:GetAbsOrigin() , target)
@@ -41,11 +54,11 @@ function TyphoonSpinEffect( keys )
 		if caster:HasModifier("modifier_typhoon") then
 			jump = jump + (gravity / 5)
 			target:SetAbsOrigin(rotate_point + Vector(0,0,jump) )
-			fallDamage = target:GetAbsOrigin().z * damageElevation
-			print(fallDamage)
+			target.fallDamage = target:GetAbsOrigin().z * damageElevation
 			randomSpeed = randomSpeed + variableSpeed
 			variableSpeed = variableSpeed / 1.03
 		else
+			target:StopSound("n_creep_Wildkin.Tornado")
 			jump = jump - (gravity * 3)
 			randomDistance = randomDistance + 12
 			rotate_position = origin + vector * randomDistance
@@ -68,11 +81,11 @@ function TyphoonSpinEffect( keys )
 				damageTable.victim = target
 				damageTable.damage_type = ability:GetAbilityDamageType()
 				damageTable.ability = ability
-				damageTable.damage = fallDamage
+				damageTable.damage = target.fallDamage
 	
 			ApplyDamage(damageTable)
 
-			local amount = fallDamage
+			local amount = target.fallDamage
 
 	        local armor = target:GetPhysicalArmorValue()
 	        local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))

@@ -26,6 +26,7 @@ function LeapDistance( keys )
 	
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_plasma_leap", {})
 	ability:StartCooldown(0.9)
+	
 
 	-- Move the unit
 	Timers:CreateTimer(0, function()
@@ -42,6 +43,7 @@ function LeapDistance( keys )
 				caster:SetAbsOrigin(GetGroundPosition(caster:GetAbsOrigin() , caster))
 				FindClearSpaceForUnit(caster, origin, false)
 				caster:RemoveModifierByName("modifier_plasma_leap")
+				caster:EmitSound("Hero_Disruptor.ThunderStrike.Target")
 				local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 				ParticleManager:SetParticleControl(particle2, 0, caster:GetAbsOrigin())
 				ParticleManager:SetParticleControl(particle2, 1, caster:GetAbsOrigin())

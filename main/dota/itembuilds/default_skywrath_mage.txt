@@ -1,0 +1,57 @@
+"itembuilds/default_generic.txt"
+{
+	"author"		"SwordBacon"
+	"hero"			"npc_dota_hero_skywrath_mage"
+	"Title"			"Recommended items for Zulf"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_flask"
+			"item"		"item_clarity"
+			"item"		"item_circlet"
+			"item"		"item_courier"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_magic_stick"
+			"item"		"item_boots"
+			"item"		"item_ring_of_aquila"	
+		}
+
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_magic_wand"
+			"item"		"item_power_treads"
+			"item"		"item_glimmer_cape"
+			"item"		"item_medallion_of_courage"
+			"item"		"item_observer_ward"
+			"item"		"item_tp_scroll"
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_soul_ring"
+			"item"		"item_blink"
+			"item"		"item_cyclone"
+			"item"		"item_force_staff"
+			"item"		"item_ultimate_scepter"
+			"item"		"item_ancient_janggo"
+			"item"		"item_manta_style"
+			"item"		"item_diffusal_blade"
+			"item"		"item_butterfly"
+			"item"		"item_octarine_core"
+			"item"		"item_shivas_guard"
+			"item"		"item_heart"
+			"item"		"item_solar_crest"
+			"item"		"item_flying_courier"
+			"item"		"item_urn_of_shadows"
+			"item"		"item_vladmirs_offering"
+			"item"		"item_lotus_orb"
+			"item"		"item_ethereal_blade"
+			"item"		"item_dagon_5"
+		}
+	}
+}

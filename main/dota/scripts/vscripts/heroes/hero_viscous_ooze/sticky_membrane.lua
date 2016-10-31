@@ -12,7 +12,6 @@ function StickyMembraneDistanceCheck( keys )
 	damage_stacks = attack_damage * damage_pct
 	
 	local distance = (caster_location - attacker_location):Length2D()
-	print(distance)
 	local trigger_radius = ability:GetLevelSpecialValueFor("trigger_radius", (ability:GetLevel() - 1))
 	
 	

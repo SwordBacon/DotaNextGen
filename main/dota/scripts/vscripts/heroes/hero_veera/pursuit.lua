@@ -2,13 +2,23 @@ function PursuitAttack (keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	local baseDamage = ability:GetLevelSpecialValueFor("base_damage", ability:GetLevel() - 1)
 	local movementDamage = ability:GetLevelSpecialValueFor("movement_damage", ability:GetLevel() - 1) / 100
 
-	caster:SetForceAttackTarget(target)
-	pursuitDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()) * movementDamage + 0.6
+	pursuitMovementDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()) * movementDamage
+	if pursuitMovementDamage < 0 then pursuitMovementDamage = 0 end
+	pursuitDamage = baseDamage + pursuitMovementDamage
 	pursuitTarget = target
+end
 
-	if pursuitDamage < 0 then pursuitDamage = 0.6 end
+function CheckOrb(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	if ability:IsCooldownReady() then
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_pursuit_orb", {Duration = 0.9})
+	end
 end
 
 function CheckPursuit( keys )
@@ -23,30 +33,44 @@ function CheckPursuit( keys )
 	ability:CreateVisibilityNode(target_loc, 30, 0.15)
 
 	if distance < 300 then
-		if target:IsUnselectable() or target:IsAttackImmune() or target:IsInvulnerable() or not target:IsAlive() then
+		if caster:IsDisarmed() or target:IsUnselectable() or target:IsAttackImmune() or target:IsInvulnerable() or not target:IsAlive() then
 			caster:RemoveModifierByName("modifier_pursuit_buff")
 			pursuitTarget:RemoveModifierByName("modifier_pursuit_vision")
 		end
 	end
 end
 
+function SetPursuitDamage( keys )
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local baseDamage = ability:GetLevelSpecialValueFor("base_damage", ability:GetLevel() - 1)
+	local movementDamage = ability:GetLevelSpecialValueFor("movement_damage", ability:GetLevel() - 1) / 100
+
+	pursuitMovementDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()) * movementDamage
+	if pursuitMovementDamage < 0 then pursuitMovementDamage = 0 end
+	target.pursuitDamage = baseDamage + pursuitMovementDamage
+end
 
 function PursuitDamage( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
 
+	if target.pursuitDamage == nil then target.pursuitDamage = 20 end
+
 	DamageTable = {}
     
         DamageTable.victim = target
         DamageTable.attacker = caster
-        DamageTable.damage = pursuitDamage
+        DamageTable.damage = target.pursuitDamage
         DamageTable.damage_type = ability:GetAbilityDamageType()
         DamageTable.ability = ability
 
     ApplyDamage(DamageTable)
 
-    local amount = pursuitDamage
+--[[local amount = target.pursuitDamage
 
     local armor = target:GetPhysicalArmorValue()
     local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
@@ -60,12 +84,11 @@ function PursuitDamage( keys )
         end
     end
     
-    amount = amount * (1 + (.08 * lens_count))
-
+    amount = amount * (1 + (.08 * lens_count) + (.01 * caster:GetIntellect()/16) )
 
     amount = math.floor(amount)
 
-    PopupNumbers(target, "crit", Vector(204, 0, 0), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+    PopupNumbers(target, "crit", Vector(204, 0, 0), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)]]
 end
 
 
@@ -143,4 +166,14 @@ end
 
 function RemoveForceAttack( keys )
 	keys.caster:SetForceAttackTarget(nil)
+end
+
+function StartCooldown(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local cooldown = ability:GetCooldown(ability:GetLevel() - 1)
+	local mana = ability:GetManaCost(ability:GetLevel() - 1)
+	if caster:HasModifier("modifier_thrill_active") then cooldown = cooldown / 4 end
+	ability:StartCooldown(cooldown)
+	caster:SpendMana(mana, ability)
 end

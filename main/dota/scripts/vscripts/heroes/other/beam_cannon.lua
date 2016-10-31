@@ -22,4 +22,8 @@ function SpecialBeamCannon( keys )
 
 	target:SetAbsOrigin(pointD)
 	newAngle = newAngle + angle
+
+
+	RotateOrientation(QAngle QAngle_1, QAngle QAngle_2)
 end
+

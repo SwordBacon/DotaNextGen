@@ -20,7 +20,7 @@ function FindAbilityMalice( keys )
 
 	local maliceAbility = caster:FindAbilityByName("zeros_blade_of_malice")
 
-	if maliceAbility and maliceAbility:GetLevel() > 0 and not attacker:IsMagicImmune() then
+	if maliceAbility and maliceAbility:GetLevel() > 0 and not attacker:IsMagicImmune() and not attacker:IsBuilding() then
 		maliceAbility:ApplyDataDrivenModifier(caster, attacker, "modifier_malice_debuff", {duration=8.0})
 	end
 end
@@ -31,7 +31,7 @@ function BonusGold (keys )
 	local attacker = keys.attacker
 	local ability = keys.ability
 
-	if target:HasModifier("modifier_statue_effect_creep") then
+	if target:HasModifier("modifier_statue_effect_creep") and attacker:GetTeam() ~= target:GetTeam() then
 
 		local player = PlayerResource:GetPlayer( attacker:GetPlayerID() )
 		local playerID = attacker:GetPlayerOwnerID()
@@ -57,6 +57,50 @@ function BonusGold (keys )
 	    ParticleManager:SetParticleControl( particle, 3, color )
 	end
 end
+
+function TargetHealthCheck( keys )
+	local target = keys.target
+	if target.targetHealth == nil then target.targetHealth = math.floor(target:GetHealthPercent() / 20) + 1 end
+end
+
+--[[
+function DropGold(keys)
+	local caster = keys.caster
+	local target = keys.unit
+	local ability = keys.ability
+
+	local goldDrop = ability:GetLevelSpecialValueFor("bonus_gold", ability:GetLevel() - 1) / 100
+	local goldToDrop = goldDrop * target:GetGoldBounty() / 5
+
+	if target.targetHealth == nil then target.targetHealth = math.floor(target:GetHealthPercent() / 20) + 1 end
+	local targetHealth = target:GetHealthPercent()
+
+	while target.targetHealth > targetHealth / 20 do
+		local newItem = CreateItem( "item_bag_of_gold", nil, nil )
+		newItem:SetPurchaseTime( 0 )
+		if goldToDrop == nil then goldToDrop = 1 end
+		-- newItem:SetCurrentCharges( goldToDrop )
+		local spawnPoint = Vector( 0, 0, 0 )
+		if target ~= nil then
+			spawnPoint = target:GetAbsOrigin()
+		end
+		local drop = CreateItemOnPositionSync( spawnPoint, newItem )
+		drop.value = math.floor(goldToDrop)
+		newItem:LaunchLoot( true, 300, 0.75, spawnPoint + RandomVector( RandomFloat( 50, 350 ) ) )
+		Timers:CreateTimer(20, function()
+			if drop:IsNull() then
+				return
+			end
+			
+			UTIL_Remove( newItem )
+			UTIL_Remove( drop )
+		end)
+
+		target.targetHealth = target.targetHealth - 1
+
+	end
+end
+]]--
 
 function ApplyDamageReductionStacks( keys )
 	local caster = keys.caster

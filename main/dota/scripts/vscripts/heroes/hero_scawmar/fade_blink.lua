@@ -23,3 +23,11 @@ function ApplyInvisibility( keys )
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_fade_invis", {Duration = invisTime})
 	end
 end
+
+function StopChannelingSound(keys)
+	keys.caster:StopSound("Hero_Nevermore.ROS_Cast_Flames")
+end
+
+function StopChannelingLoop(keys)
+	keys.caster:StopSound("Hero_DeathProphet.Exorcism")
+end

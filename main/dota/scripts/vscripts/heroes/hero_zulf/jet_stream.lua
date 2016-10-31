@@ -1,7 +1,10 @@
 function JetStreamGetLocation( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	caster_location = caster:GetAbsOrigin()
+	local point = keys.target_points[1]
+
+	caster.caster_location = caster:GetAbsOrigin()
+	caster.casterVec = (point - caster:GetAbsOrigin()):Normalized()
 end
 
 
@@ -9,15 +12,13 @@ end
 function JetStreamProjectile( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local target = keys.target
-	local target_point = target:GetAbsOrigin()
-	forwardVec = (target_point - caster_location):Normalized()
+	forwardVec = caster.casterVec
 
 	-- Projectile variables
 	local wave_speed = 1500
 	local wave_width = ability:GetLevelSpecialValueFor("width", (ability:GetLevel() - 1))
 	local wave_range = ability:GetLevelSpecialValueFor("length", (ability:GetLevel() - 1))
-	local wave_location = caster_location
+	local wave_location = caster.caster_location
 	local wave_particle = keys.wave_particle
 
 	-- Creating the projectile
@@ -25,7 +26,7 @@ function JetStreamProjectile( keys )
 	{
 		EffectName = wave_particle,
 		Ability = ability,
-		vSpawnOrigin = caster_location,
+		vSpawnOrigin = caster.caster_location,
 		vVelocity = Vector( forwardVec.x * wave_speed, forwardVec.y * wave_speed, 0 ),
 		fDistance = wave_range,
 		fStartRadius = wave_width,
@@ -37,7 +38,7 @@ function JetStreamProjectile( keys )
 		iVisionRadius = wave_width,
 		iVisionTeamNumber = caster:GetTeamNumber(),
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_BOTH,
-		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 		iUnitTargetType = DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 	}
 	-- Saving the projectile ID so that we can destroy it later
@@ -47,7 +48,7 @@ function JetStreamProjectile( keys )
 	Timers:CreateTimer( function()
 		-- Calculating the distance traveled
 		wave_location = wave_location + forwardVec * (wave_speed * 1/30)
-		local distance = (wave_location - caster_location):Length2D()
+		local distance = (wave_location - caster.caster_location):Length2D()
 		-- Checking if we traveled far enough, if yes then destroy the timer
 		if distance >= wave_range then
 			return nil
@@ -71,7 +72,6 @@ function JetStreamEffect( keys )
 	local attacker_angle = angle_difference / math.pi
 	-- See the opening block comment for why I do this. Basically it's to turn negative angles into positive ones and make the math simpler.
 	result_angle = math.abs(attacker_angle)
-	print(result_angle)
 	
 	if caster:GetTeam() == target:GetTeam() and result_angle < 45 then	
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_jet_stream_buff", {})

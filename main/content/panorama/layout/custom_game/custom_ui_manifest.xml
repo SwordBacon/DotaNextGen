@@ -1,7 +1,10 @@
 <root>
+	<script>
+	</script>
 	<Panel>
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/split_panel.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/main.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud_main.xml" />
 		<CustomUIElement type="GameInfo" layoutfile="file://{resources}/layout/custom_game/game_info.xml" />
 	</Panel>
 </root>

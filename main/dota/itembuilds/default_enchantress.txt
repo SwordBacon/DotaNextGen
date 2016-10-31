@@ -1,0 +1,52 @@
+"itembuilds/default_generic.txt"
+{
+	"author"		"SwordBacon"
+	"hero"			"npc_dota_hero_enchantress"
+	"Title"			"Recommended items for Cherub"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			
+			"item"		"item_tango"
+			"item"		"item_flask"
+			"item"		"item_ring_of_protection"
+			"item"		"item_branches"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_ring_of_basilius"
+			"item"		"item_soul_ring"
+			"item"		"item_magic_stick"
+		}
+
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_magic_wand"
+			"item"		"item_mekansm"
+			"item"		"item_force_staff"
+			"item"		"item_veil_of_discord"
+			"item"		"item_travel_boots"
+			"item"		"item_ultimate_scepter"
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_blink"
+			"item"		"item_glimmer_cape"
+			"item"		"item_cyclone"
+			"item"		"item_ancient_janggo"
+			"item"		"item_vladmirs_offering"
+			"item"		"item_octarine_core"
+			"item"		"item_shivas_guard"
+			"item"		"item_bloodstone"
+			"item"		"item_assault"
+			"item"		"item_sheepstick"
+			"item"		"item_rod_of_atos"
+			"item"		"item_lotus_orb"
+			"item"		"item_dagon_5"
+		}
+	}
+}

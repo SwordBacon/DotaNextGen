@@ -1,0 +1,68 @@
+"itembuilds/default_generic.txt"
+{
+	"author"		"SwordBacon"
+	"hero"			"npc_dota_hero_venomancer"
+	"Title"			"Recommended items for Viscous Ooze"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			
+			"item"		"item_tango"
+			"item"		"item_stout_shield"
+			"item"		"item_clarity"
+			"item"		"item_clarity"
+			"item"		"item_branches"
+			"item"		"item_branches"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"		"item_bottle"
+			"item"		"item_boots"
+			"item"		"item_wind_lace"
+			"item"		"item_soul_ring"
+			"item"		"item_magic_wand"
+			"item"		"item_bracer"
+			"item"		"item_throwing_knives"
+		}
+
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_armlet"
+			"item"		"item_heart"
+			"item"		"item_cyclone"
+			"item"		"item_ancient_janggo"
+			"item"		"item_travel_boots"
+			"item"		"item_ultimate_scepter"
+			
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_hand_of_midas"
+			"item"		"item_blademail"
+			"item"		"item_refresher"
+			"item"		"item_octarine_core"
+			"item"		"item_veil_of_discord"
+			"item"		"item_sange_and_yasha"
+			"item"		"item_skadi"
+			"item"		"item_dragon_lance"
+			"item"		"item_shivas_guard"
+			"item"		"item_bloodstone"
+			"item"		"item_assault"
+			"item"		"item_radiance"
+			"item"		"item_blink"
+			"item"		"item_force_staff"
+			"item"		"item_hurricane_pike"
+			"item"		"item_invis_sword"
+			"item"		"item_silver_edge"
+			"item"		"item_moon_shard"
+			"item"		"item_rod_of_atos"
+			"item"		"item_lotus_orb"
+			"item"		"item_dagon_5"
+			"item"		"item_rapier"
+		}
+	}
+}

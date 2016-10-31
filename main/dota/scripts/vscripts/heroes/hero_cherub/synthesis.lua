@@ -36,7 +36,8 @@ function SynthesisDay( keys )
 	if caster:GetHealth() > health and caster:GetManaPercent() < 100 then
 		caster:ModifyHealth( caster:GetHealth() - health, ability, false, 0 )
 		caster:GiveMana( restore_amount )
-	else 
+	elseif caster:GetHealth() > health then
+	else
 		ability:ToggleAbility()
 	end
 end
@@ -53,7 +54,8 @@ function SynthesisNight( keys )
 	if caster:GetMana() >= mana and caster:GetHealthPercent() < 100 then
 		caster:SpendMana( mana, ability )
 		caster:Heal( heal_amount, caster )
-	else 
+	elseif caster:GetHealthPercent() == 100 then
+	else
 		ability:ToggleAbility()
 	end
 end
