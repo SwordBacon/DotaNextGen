@@ -12,5 +12,6 @@
 	"npc_dota_hero_lina"			"1"
 	"npc_dota_hero_naga_siren"			"1"
 	"npc_dota_hero_bane"			"1"
+	"npc_dota_hero_beastmaster"			"1"
 	"npc_dota_hero_skywrath"		"1"
 }
