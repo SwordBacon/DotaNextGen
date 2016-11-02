@@ -1,3 +1,10 @@
+function CDOTA_BaseNPC:SwapAbilityIndexes(index, swapname)
+	local ability = self:GetAbilityByIndex(index)
+	local swapability = self:FindAbilityByName(swapname)
+	self:SwapAbilities(ability:GetName(), swapname, false, true)
+	swapability:SetAbilityIndex(index)
+end
+
 if not skinwalker_fortress_form then skinwalker_fortress_form = class({}) end
 if not skinwalker_predator_form then skinwalker_predator_form = class({}) end
 if not skinwalker_human_form then skinwalker_human_form = class({}) end
