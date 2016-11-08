@@ -254,7 +254,6 @@
 		  "particle"	"particles/achlys_nights_embrace.vpcf"
 		  "particle"	"particles/achlys_nights_embrace_invis.vpcf"
 		  "particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-		  "particle"	"particles/status_effect_nights_embrace.vpcf" 
 		 }
 
 		// Time		
@@ -344,9 +343,7 @@
 			"modifier_achlys_nights_embrace"
 			{
 				"Duration"	"%duration"
-				
-				"StatusEffectName"	"particles/status_effect_nights_embrace.vpcf"
-				"StatusEffectPriority"	"15"
+
 				"EffectName"		"particles/achlys_nights_embrace_invis.vpcf"
 				"EffectAttachType"	"follow_origin"
 				
@@ -530,6 +527,7 @@
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
 			"particle"			"particles/achlys_death_mist_startup.vpcf"
 			"particle"			"particles/achlys_death_mist_main.vpcf"
 			"particle"			"particles/achlys_death_mist_main_shockwave.vpcf"
@@ -1094,6 +1092,7 @@
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_razor/razor_static_link_beam.vpcf"
+			"particle"	"particles/units/heroes/hero_disruptor/disruptor_staticstrom_inits.vpcf"
 			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
 		}
 		"OnSpellStart"
@@ -1435,6 +1434,21 @@
 		}
 	}
 	//=================================================================================================================
+	//
+	//
+	//
+	//
+	//
+	//
+	// 					    			Bellatrix Venai, the Blood Cultist
+	//									Original concept by Eli_Green, coded by Pongping
+	//
+	//
+	//
+	//
+	//
+	//=================================================================================================================
+	//=================================================================================================================
 	// Bellatrix - Sanguine Cross (New)
 	//=================================================================================================================
 	"bellatrix_blood_cross"
@@ -1500,9 +1514,11 @@
 			"particle"  	"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_ground_eztzhok_arc.vpcf"
 			"particle"  	"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
 			"particle"  	"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf"
+			"particle"		"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode.vpcf"
 			"particle" 		"particles/bellatrix_blood_cross_projectile.vpcf"
 			"particle"  	"particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
 			"particle"  	"particles/items2_fx/soul_ring_blood.vpcf"
+			"particle"		"particles/generic_gameplay/generic_lifesteal_old.vpcf"
 			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
 			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
@@ -1714,21 +1730,6 @@
 		}
 	}
 	//=================================================================================================================
-	//
-	//
-	//
-	//
-	//
-	//
-	// 					    			Bellatrix Venai, the Blood Cultist
-	//									Original concept by Eli_Green, coded by Pongping
-	//
-	//
-	//
-	//
-	//
-	//=================================================================================================================
-	//=================================================================================================================
 	// Bellatrix - Blood Rake
 	//=================================================================================================================
 	"bellatrix_blood_rake"
@@ -1757,6 +1758,8 @@
 		//Cost
 		"AbilityManaCost"				"80 90 100 110"
 		"AbilityProcsMagicStick"		"1"
+
+
 		"Precache"
 		{
 			"particle"				"particles/bellatrix/bellatrix_bloodrake1.vpcf"
@@ -1879,7 +1882,6 @@
 				"IsHidden"			"1"
 				"IsDebuff"			"0"
 				
-		
 				"States"
 				{
 					"MODIFIER_STATE_INVULNERABLE"					"MODIFIER_STATE_VALUE_ENABLED"
@@ -3546,8 +3548,8 @@
 		"AbilityChannelTime"			"2.0"
 		"AOERadius"						"%radius"
 		"AbilityProcsMagicStick"		"1"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AnimationPlaybackRate"			"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
+		//"AnimationPlaybackRate"			"0.2"
 		"HasScepterUpgrade" "1"
 	
 		"AbilitySpecial"
@@ -3608,6 +3610,7 @@
 		{
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
 			"particle"	"particles/cherub_pink_flower_heal_projectile.vpcf"
+			"particle"	"particles/units/heroes/hero_enchantress/enchantress_death_enchant_flower.vpcf"
 			"model"		"models/items/furion/treant/father_treant/father_treant.vmdl"
 			"model"		"models/items/furion/treant/primeval_treant/primeval_treant.vmdl"	// Model.
 			"model"		"models/items/furion/treant/furion_treant_nelum_red/furion_treant_nelum_red.vmdl"	// Model.
@@ -3667,6 +3670,11 @@
 				"Target"	"POINT"
 				"OnSpawn"
 				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Enchantress.EnchantCreep"
+						"Target" 		"TARGET"
+					}
 					"ApplyModifier"
 					{
 						"ModifierName"	"modifier_phase_spawn"
@@ -3694,7 +3702,7 @@
 					"Teams"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				}
 				"HealAmount"	"%pink_flower_heal"
-			}		
+			}
 		}
 		"Modifiers"
 		{
@@ -4228,13 +4236,22 @@
 		"precache"
 		{
 			"particle"  "particles/econ/generic/generic_aoe_persistent_sphere_1/generic_aoe_persistent_sphere_1_f.vpcf"
+			"particle"	"particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
 		}
+
+
 		"OnToggleOn"
 		{
 			"ApplyModifier"
 			{
 				"ModifierName"	"modifier_synthesis_active"
-				"Target"	"CASTER"
+				"Target"		"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Puck.IdleLoop"
+				"Target" 		"CASTER"
 			}
 		}
 		"OnToggleOff"
@@ -4242,7 +4259,12 @@
 			"RemoveModifier"
 			{
 				"ModifierName"	"modifier_synthesis_active"
-				"Target"	"CASTER"
+				"Target"		"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/hero_cherub/synthesis.lua"
+				"Function"		"RemoveSound"
 			}
 		}
 		"Modifiers"
@@ -7080,8 +7102,8 @@
 	"hylonome_battle_rhythm"
 	{
 		"BaseClass"             		"ability_datadriven"
-		"AbilityTextureName"			"hylonome_laceration"
-		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"hylonome_battle_rhythm"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"AbilitySpecial"
 		{
@@ -7105,6 +7127,11 @@
 				"var_type"			"FIELD_INTEGER"
 				"duration"			"8"
 			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_centaur/centaur_stampede_haste.vpcf"
 		}
 		"Modifiers"
 		{
@@ -7310,15 +7337,13 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityTextureName"            			"hylonome_anemic_aura"
-		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"            "hylonome_anemic_aura"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AOERadius"					"%radius"
 		"BaseClass" 					"ability_datadriven"	
 
 		"precache"
 		{
-			"particle"	"particles/units/heroes/hero_hylonome/anemic_aura_placeholder3.vpcf"
-			"particle"	"particles/units/heroes/hero_hylonome/status_effect_anemic_aura_placeholder.vpcf"
 			"particle"	"particles/items3_fx/star_emblem_shield_glow.vpcf"
 		}
 
@@ -7368,7 +7393,7 @@
 		// Modifiers
 		//-------------------------------------------------------------------------------------------------------------
 		"Modifiers"
-		{	
+		{
 			"modifier_hylonome_anemic_aura"
 			{
 				"Aura"				"modifier_hylonome_anemic_aura_debuff"
@@ -7481,6 +7506,9 @@
 		"precache"
 		{
 			"particle"  "particles/libation_casting_blade_kill.vpcf"
+			"particle"	"particles/hylonome_tentacle_tako.vpcf"
+			"particle"	"particles/other/hylonome_libation_attack_buff.vpcf"
+			"particle"	"particles/hylonome_libation.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
@@ -7824,6 +7852,8 @@
 	
 		"precache"
 		{
+			"particle"	"particles/units/heroes/hero_centaur/centaur_stampede.vpcf"
+			"particle"	"particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_ixhotil.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
 		}
@@ -8170,7 +8200,7 @@
 		"precache"
 		{
 			"particle"  "particles/ixhotil_right_gore.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sand_king.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
 		}
 	
 		"AbilitySpecial"
@@ -8654,7 +8684,7 @@
 		}
 		"precache"
 		{
-			"particle"  "particles/ixhotil_pinion_feathers.vpcf"
+			"particle"  "particles/pixhotil_pinion_feathers.vpcf"
 			"particle"  "particles/ixhotil_pinion_cloud.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
 		}
@@ -9155,6 +9185,8 @@
 		
 		"precache"
 		{
+			"model"		"models/items/rattletrap/cog_tesla/cog_tesla.vmdl"
+			"particle"	"particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
 		}
 	
@@ -9616,7 +9648,7 @@
 		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf"
-			"particle"  "particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_start_ring_arcana_flag_fire.vpcf"
+			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_cut.vpcf"
 			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_a.vpcf"
 			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_b.vpcf"
 			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_c.vpcf"
@@ -9624,7 +9656,11 @@
 			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_e.vpcf"
 			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_f.vpcf"
 			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_g.vpcf"
+			"particle"  "particles/econ/items/legion/legion_weapon_voth_domosh/legion_duel_start_ring_arcana_flag_fire.vpcf"
+			"particle"	"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+			"particle"	"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf"
 			"particle"	"particles/units/heroes/hero_visage/visage_soul_assumption_bolt6.vpcf"
+			"particle"	"particles/econ/items/spirit_breaker/spirit_breaker_iron_surge/spirit_breaker_charge_iron.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
@@ -10367,6 +10403,7 @@
 
 		"precache"
 		{
+			"particle"  "particles/onimusha/fx_onimusha_battojutsu/onimusha_battojutsu_cut.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
 		}
 	
@@ -10639,7 +10676,7 @@
 						"Function"		"StartAttackSound"
 					}
 				}
-				"OnAttack"
+				"OnAttackLanded"
 				{
 					"RunScript"
 					{
@@ -10696,7 +10733,7 @@
 		"AbilityCastRange"              "600"
 		"AbilityCastPoint"              "0.4 0.4 0.4 0.4"
 	
-		// Time     
+		// Time
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"               "25.0 22.0 19.0 16.0"
 	
@@ -11562,7 +11599,7 @@
 		"precache"
 		{
 			"particle"		"particles/proteus_razorwind_trail.vpcf"
-			"particle"		"particles/proteus_razorwind_projectile.vpcf"		
+			"particle"		"particles/proteus_razorwind_projectile.vpcf"
 			"soundfile"  	"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
 			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
 		}
@@ -11623,6 +11660,7 @@
 
 		"precache"
 		{
+			"model"			"models/heroes/weaver/weaver_bug.vmdl"
 			"particle"		"particles/units/heroes/hero_tidehunter/tidehunter_gush_slow.vpcf"
 			"particle"		"particles/proteus_polyp_damage_buff.vpcf"
 			"soundfile"  	"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
@@ -12063,6 +12101,10 @@
 		"precache"
 		{
 			"particle"  "particles/econ/items/puck/puck_alliance_set/puck_illusory_orb_sphere_halo_whirl_aproset.vpcf"
+			"particle"	"particles/units/heroes/hero_phoenix/phoenix_death.vpcf"
+			"particle"	"particles/status_fx/status_effect_item_editor.vpcf" 
+			"particle"	"particles/econ/items/invoker/invoker_ti6/invoker_tornado_child_ti6.vpcf"
+			"particle"	"particles/scawmar_spirit_return.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
 		}
@@ -12255,7 +12297,7 @@
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
-		{		
+		{
 			"particle"  "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
 		}
@@ -12410,10 +12452,12 @@
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
-		{		
-			"particle" "particles/scawmar_illusion_line_fireball.vpcf"
+		{
+			"model"		"models/creeps/neutral_creeps/n_creep_vulture_a/n_creep_vulture_a.vmdl"
+			"particle"	"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
+			"particle"  "particles/scawmar_illusion_line_fireball.vpcf"
 			"particle"  "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
-			"particle" "particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant_trail.vpcf"
+			"particle"  "particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant_trail.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
 		}
 	
@@ -12746,6 +12790,9 @@
 			"particle"  		"particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil.vpcf"
 			"particle"			"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
 			"particle"			"particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray_team.vpcf"
+			"particle"			"particles/world_environmental_fx/fire_camp_01.vpcf"
+			"particle"			"particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf"
+			"particle"			"particles/units/heroes/hero_warlock/warlock_rain_of_chaos_explosion.vpcf"
 		}
 	
 		// Casting
@@ -13099,7 +13146,7 @@
 			"particle"				"particles/generic_gameplay/generic_stunned_old.vpcf"
 			"particle"				"particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
-			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_sand_king.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
 		}
 
 		"AbilityCastPoint"				"0.12 0.12 0.12 0.12"
@@ -13293,6 +13340,7 @@
 
 		"precache"
 		{
+			"model"						"models/heroes/sand_king/sand_king.vmdl"
 			"particle"					"particles/econ/items/lina/lina_ti6/lina_ti6_laguna_blade.vpcf"
 			"particle"					"particles/units/heroes/hero_sandking/sandking_loadout.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
@@ -13376,7 +13424,6 @@
 				"Target"				"CASTER"
 				"duration"				"%duration"
 			}
-			
 		}
 
 		"Modifiers"
@@ -13540,6 +13587,9 @@
 		{
 			"particle"		"particles/sirocco_desert_curse_projectile.vpcf"
 			"particle"  	"particles/sirocco_desert_curse.vpcf"
+			"particle"		"particles/generic_gameplay/generic_manaburn.vpcf"
+			"particle"		"particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+			"particle"		"particles/econ/items/necrolyte/necronub_ambient/necrolyte_ambient_trail_ka_sand.vpcf"
 			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_sirocco.vsndevts"
 		}
 
@@ -14489,8 +14539,10 @@
 		}
 		"precache"
 		{
-			"model"			"models/items/enigma/eidolon/geodesic/geodesic.vmdl"
-			"particle"		"particles/units/heroes/hero_phantom_assasin/phantom_assassin_blur.vpcf"
+			"model"			"models/heroes/clinkz/clinkz.vmdl"
+			"particle"		"particles/skoros/skoros_nexus.vpcf"
+			"particle"		"particles/units/heroes/hero_clinkz/clinkz_body_fire.vpcf"
+			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
 			"particle"		"particles/units/heroes/hero_undying/undying_fg_heal.vpcf"
 			"particle" 	 	"particles/econ/courier/courier_faceless_rex/cour_rex_flying.vpcf"
 			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_skoros.vsndevts"
@@ -15373,7 +15425,7 @@
 		"precache"
 		{
 			"particle"  "particles/neutral_fx/skeleton_spawn.vpcf"
-			"particle"  "particles/units/heroes/hero_wisp/wisp_tether.vpcf"
+			"particle"  "particles/suna_puppeteer.vpcf"
 			"particle"  "particles/status_fx/status_effect_overpower.vpcf"
 			"model"		"models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
 		}
@@ -16036,6 +16088,14 @@
 						"ScriptFile"    "heroes/hero_tenebris/tenebris.lua"
 						"Function"  "Effigy_OnDealDamage"
 						"damage"    "%attack_damage"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "heroes/hero_tenebris/tenebris.lua"
+						"Function"  "Effigy_OnDestroy"
 					}
 				}
 			}
@@ -16830,7 +16890,8 @@
 		"precache"
 		{
 			"particle"  "particles/ui/ui_godrays.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
+			"particle"	"particles/uther/argent_smite.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
 		}
 		"OnToggleOn"
 		{
@@ -17139,6 +17200,8 @@
 		"precache"
 		{
 			"particle"	"particles/uther/hurl_hammer.vpcf"
+			"particle"	"particles/econ/courier/courier_trail_05/courier_trail_05.vpcf"
+			"model"		"models/heroes/omniknight/hammer.vmdl"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
 		}
@@ -17504,6 +17567,10 @@
 	
 		"precache"
 		{
+			"model"		"models/heroes/vengeful/vengeful_terror_head.vmdl"
+			"particle"	"particles/econ/courier/courier_trail_spirit/courier_trail_spirit.vpcf"
+			"particle"  "particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+			"particle"	"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_source.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
@@ -17531,7 +17598,6 @@
 				"var_type"			"FIELD_INTEGER"
 				"explosion_radius"	"250"
 			}
-	
 		}
 	
 		"OnSpellStart"
@@ -17598,7 +17664,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"uther/uther_compass"
+		"AbilityTextureName"			"uther/uther_omniscience"
 		"AbilityProcsMagicStick"		"1"
 
 		// Casting
@@ -17639,6 +17705,8 @@
 
 		"precache"
 		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf"
+			"particle"  "particles/uther_omniscience_waveactive.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
 		}
 		
@@ -18391,8 +18459,8 @@
 			}
 			"05"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"agility_bonus"			"20"
+				"var_type"			"FIELD_INTEGER"
+				"agility_bonus"			"15"
 			}
 	
 		}
@@ -18474,7 +18542,7 @@
 		}
 	}
 	//=================================================================================================================
-	// Veera - Pursuit (replacement of Evasive Roll)
+	// Veera - Predator Strike (replacement of Evasive Roll)
 	//=================================================================================================================
 	"veera_pursuit"
 	{
@@ -18517,12 +18585,18 @@
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"4.0"
 			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"creep_duration"	"10.0"
+			}
 		}
 		"precache"
 		{
 			"particle"  	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
 			"particle" 		"particles/status_fx/status_effect_rupture.vpcf" 
 			"particle"  	"particles/status_fx/status_effect_beserkers_call.vpcf"
+			"particle"		"particles/veera_pursuit_damage.vpcf"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_veera.vsndevts"
@@ -18608,12 +18682,6 @@
 						"ModifierName"	"modifier_pursuit_orb"
 						"Target" 		"CASTER"
 					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_pursuit_debuff"
-						"Target" 		"TARGET"
-						"Duration"		"%duration"
-					}
 				}
 			}
 			"modifier_pursuit_debuff"
@@ -18682,12 +18750,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"bonus_camera_view"		"800"
+				"bonus_camera_view"		"600"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"cooldown_reduction"		"75"
+				"var_type"			"FIELD_INTEGER"
+				"cooldown_reduction"	"50"
 			}
 			"04"
 			{
@@ -18727,7 +18795,7 @@
 					"RunScript"
 					{
 						"ScriptFile"	"heroes/hero_veera/thrill_of_the_hunt.lua"
-						"Function"	"ThrillInitialize"
+						"Function"		"ThrillInitialize"
 					}
 				}
 			}
@@ -18868,7 +18936,7 @@
 			}
 			"05"
 			{
-				"var_type"			"FIELD_FLOAT"
+				"var_type"			"FIELD_INTEGER"
 				"width"				"64"
 			}
 			"06"
@@ -18878,18 +18946,42 @@
 			}
 			"07"
 			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"10"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration_decrease"	"2"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"toxic_damage"		"6 8 10 12"
+			}
+			"09"
+			{
 				"var_type"			"FIELD_FLOAT"
-				"toxic_damage"		"15"
+				"armor_reduction_tt"	"1.5"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"0.4"
+			}
+			"11"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"armor_reduction"	"-1.5"
 			}
 		}
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
 			"particle"			"particles/veera_toxic_darts.vpcf"
 			"particle"			"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
-			"particle"			"particles/units/heroes/hero_batrider/batrider_stickynapalm_debuff.vpcf"
 			"particle"			"particles/generic_gameplay/generic_stunned.vpcf"
-			"particle"			"particles/veera_toxic_darts_acid_debuff.vpcf"
 		}
 		"OnUpgrade"
 		{
@@ -18951,7 +19043,7 @@
 					"TARGET"	"attach_hitloc"
 					"TARGET"	"attach_hitloc"
 				}
-			}	
+			}
 			"Damage"
 			{
 				"Target"		"TARGET"
@@ -18961,9 +19053,8 @@
 			"RunScript"
 			{
 				"ScriptFile"			"heroes/hero_veera/toxic_darts.lua"
-				"Function"				"ToxicDartsApplyRandomEffect"
+				"Function"				"ToxicDartsApplyToxicEffect"
 			}
-
 		}
 		"Modifiers"
 		{
@@ -18974,20 +19065,22 @@
 				"IsPurgable"			"0"
 				"IsDebuff"				"0"
 			}
-			"modifier_toxic_1"
+			"modifier_toxic_dart_effect"
 			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"TextureName"	"venomancer_poison_sting"
-				"EffectName"	"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"1"
+
+				"EffectName" 	"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
 				"EffectAttachType"	"follow_origin"
-				"EffectColorA" "0 0 255"
-	
-				"Duration"	"5.0"
-				"ThinkInterval"	"1.0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
+				}
+
+				"ThinkInterval"  "1.0"
 				"OnIntervalThink"
 				{
 					"Damage"
@@ -18997,84 +19090,74 @@
 						"Damage"		"%toxic_damage"
 					}
 				}
-			}
-			"modifier_toxic_2"
-			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"TextureName"	"batrider_sticky_napalm"
-				"EffectName"	"particles/units/heroes/hero_batrider/batrider_stickynapalm_debuff.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"EffectColorA" "25 25 25"
-	
-				
-				"Duration"	"5.0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-15"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "-15"
-				}
-			}
-			"modifier_toxic_3"
-			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsDebuff"	"1"
-				"IsStunDebuff"       "1"
-				"IsPurgable"	"1"
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"TextureName"	"witch_doctor_paralyzing_cask"
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"EffectColorA" "55 0 55"
-				
-				"Duration"	"0.75"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_toxic_4"
-			{
-				"Passive"	"0"
-				"IsHidden"	"0"
-				"IsDebuff"	"1"
-				"IsPurgable"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"TextureName"	"alchemist_acid_spray"
-				
-				"Duration"	"8.0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"-3"
-				}
-	
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"heroes/hero_veera/toxic_darts.lua"
-						"Function"		"AcidDartParticle"
-						"particle_name"	"particles/veera_toxic_darts_acid_debuff.vpcf"
-						"modifier"		"modifier_toxic_4"
-					}
-				}
 				"OnDestroy"
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"heroes/hero_veera/toxic_darts.lua"
-						"Function"		"EndAcidDartParticle"
-						"modifier"		"modifier_toxic_4"
+						"ScriptFile"			"heroes/hero_veera/toxic_darts.lua"
+						"Function"				"ToxicDartsApplyEndEffect"
 					}
+				}
+			}
+			"modifier_toxic_dart_stun"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"IsStunDebuff"		"1"
+				"IsPurgable"		"1"
+				"OverrideAnimation"     "ACT_DOTA_DISABLED"
+
+				"EffectName" 		"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
+				}
+
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"hero_viper.viperStrikeImpact"
+						"Target" 		"TARGET"
+					}
+				}
+
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_PHYSICAL"
+						"Damage"		"%toxic_damage"
+					}
+				}
+			
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
 	}
+	//=================================================================================================================
+	//
+	//
+	//	
+	//
+	//
+	//
+	//								Viscous Ooze
+	//
+	//
+	//
+	//
+	//
+	//
+	//=================================================================================================================
 	//=================================================================================================================
 	// Viscous Ooze - Consume Item
 	//=================================================================================================================
@@ -19170,22 +19253,7 @@
 				}
 			}
 		}
-	}
-	//=================================================================================================================
-	//
-	//
-	//	
-	//
-	//
-	//
-	//								Viscous Ooze
-	//
-	//
-	//
-	//
-	//
-	//
-	//=================================================================================================================	
+	}	
 	//=================================================================================================================
 	// Viscous Ooze - Slime Trail
 	//=================================================================================================================
@@ -19523,8 +19591,11 @@
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"particle"		"particles/viscous_ooze_split_oozeling.vpcf"
 			"particle"  	"particles/status_fx/status_effect_stickynapalm.vpcf"
 			"particle"		"particles/viscous_ooze_toxic_ooze.vpcf"
+			"particle"		"particles/units/heroes/hero_batrider/batrider_stickynapalm_debuff.vpcf"
+			"particle"		"particles/status_fx/status_effect_stickynapalm.vpcf" 
 		}
 	
 		"OnSpellStart"
@@ -19933,6 +20004,13 @@
 		"AbilityCooldown"	"40 34 28 22"
 		"AbilityCastPoint"	"0.2"
 		"AbilityProcsMagicStick"		"1"
+
+		"precache"
+		{
+			"particle" 	"particles/items3_fx/glimmer_cape_burst.vpcf"
+			"particle"	"particles/xarax_devils_cape_spin.vpcf"
+			"particle"	"particles/xarax_devils_cape.vpcf"
+		}
 		
 		"AbilitySpecial"
 		{
@@ -20117,6 +20195,12 @@
 		"AbilityCastPoint"	"0.2"
 		"AbilityCastRange"	"750 900 1050 1200"
 		"AbilityProcsMagicStick"		"1"
+
+		"precache"
+		{
+			"model"		"models/heroes/enigma/eidelon.vmdl"
+			"particle"	"particles/econ/events/nexon_hero_compendium_2014/teleport_end_ground_drop_nexon_hero_cp_2014.vpcf"
+		}
 	
 		"AbilitySpecial"
 		{
@@ -22246,7 +22330,6 @@
 					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"			"MODIFIER_STATE_VALUE_ENABLED"
 				}
-	
 			
 				"Aura"          	"modifier_tax_counter"
 				"Aura_Radius"   	"80000"
@@ -22358,6 +22441,7 @@
 		}
 		"precache"
 		{
+			"model"		"models/items/undying/idol_of_ruination/idol_tower_gold.vmdl"
 			"particle"  "particles/econ/items/effigies/status_fx_effigies/base_statue_destruction_gold.vpcf"
 			"particle"	"particles/econ/items/effigies/status_fx_effigies/gold_effigy_ambient_radiant_lvl2.vpcf"
 			"particle"	"particles/econ/courier/courier_golden_doomling/courier_golden_doomling_bloom_ambient.vpcf"
@@ -22615,8 +22699,12 @@
 		{
 			"particle"	"particles/units/heroes/hero_juggernaut/juggernaut_ward_create.vpcf"
 			"particle"	"particles/customgames/capturepoints/cp_wind.vpcf"
+			"particle"	"particles/items_fx/cyclone.vpcf"
 			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+
 		}
+
 		"OnSpellStart"
 		{
 			"SpawnUnit"
@@ -22631,6 +22719,11 @@
 	
 				"OnSpawn"
 				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Juggernaut.HealingWard.Cast"
+						"Target" 		"TARGET"
+					}
 					"ApplyModifier"
 					{
 						"ModifierName"	"modifier_cyclone_trap"
@@ -23168,16 +23261,17 @@
 	"zulf_typhoon"
 	{
 		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
 		"AbilityType"				"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"				"zulf_typhoon"
+		"AbilityTextureName"			"zulf_typhoon"
 		"AnimationPlaybackRate"				"0.5"
 		"AbilityProcsMagicStick"			"1"
 		"HasScepterUpgrade" "1"
+		
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23187,7 +23281,6 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"145 125 105"
-		"AbilityChannelTime"				"3.0 4.0 5.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -23231,8 +23324,19 @@
 		"precache"
 		{
 			"particle"		"particles/zulf_typhoon.vpcf"
+			"particle"		"particles/zulf_typhoon_precast_ti5.vpcf"
 			"particle"		"particles/units/heroes/hero_invoker/invoker_tornado_trail.vpcf"
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		}
+		"OnAbilityPhaseStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_typhoon_precast"
+				"Target" 		"CASTER"
+				"Duration"	"%cast_delay"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -23252,22 +23356,57 @@
 				"EffectName"	"Hero_Invoker.Tornado"
 				"Target" 		"CASTER"
 			}
-	
-		}
-		"OnChannelInterrupted"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_typhoon"
-				"Target"	"CASTER"
-			}
 		}
 		"Modifiers"
 		{
+			"modifier_typhoon_precast"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+			
+				"EffectName"		"particles/zulf_typhoon_precast_ti5.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"States"
+				{
+					"MODIFIER_STATE_FLYING"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Ability.Windrun"
+						"Target" 		"CASTER"
+					}
+				}
+				"OnOrder"
+				// Triggers on Move/Casting/Hold/Stop
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_typhoon_precast"
+						"Target" 		"CASTER"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_zulf/typhoon"
+						"Function"		"RemoveSound"
+					}
+				}
+			}
 			"modifier_typhoon"
 			{
 				"Passive"			"0"
 				"IsHidden"			"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"					"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"					"MODIFIER_STATE_VALUE_ENABLED"
+				}
 	
 	
 				"EffectName"		"particles/zulf_typhoon.vpcf"
@@ -23291,8 +23430,8 @@
 				{
 					"Rotate"
 					{
-							"Target"       		"CASTER"
-							"PitchYawRoll"  	"0 30 0" //x y z values
+						"Target"       		"CASTER"
+						"PitchYawRoll"  	"0 30 0" //x y z values
 					}
 				}
 	

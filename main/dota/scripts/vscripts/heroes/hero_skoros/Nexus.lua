@@ -26,8 +26,7 @@ function CreateSuperIllusion (keys)
 	local ability = owner:FindAbilityByName("skoros_Nexus")
 
 	caster.true_owner = owner
-
-
+	
 	target.nexusdouble = CreateUnitByName( caster:GetUnitName(), target:GetAbsOrigin(), false, owner, caster:GetPlayerOwner(), caster:GetTeamNumber())
 	target.nexusdouble:SetControllableByPlayer(owner:GetPlayerID(), false)
 	target.nexusdouble:SetOwner(owner)

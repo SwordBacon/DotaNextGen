@@ -257,6 +257,7 @@ function SUMMONTHEONETRUEICEFROG( keys )
 	-- Spawn delay
 	local pugnaDelay = 3
 	local scawDelay = 8
+	local ODDelay = 11
 
 	
 	-- Spawn pugnas
@@ -278,6 +279,7 @@ function SUMMONTHEONETRUEICEFROG( keys )
 
 			-- handle_UnitOwner needs to be nil, else it will crash the game.
 			pugna[j] = CreateUnitByName("ritual_pugna", origin, false, caster, nil, caster:GetTeamNumber())
+			pugna[j]:SetForwardVector((point - origin):Normalized())
 			
 			local lifeDrain = pugna[j]:FindAbilityByName("ritual_pugna_life_drain")
 			lifeDrain:SetLevel(3)
@@ -285,7 +287,7 @@ function SUMMONTHEONETRUEICEFROG( keys )
 
 			-- Set the unit as an illusion
 			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-			pugna[j]:AddNewModifier(caster, ability, "modifier_illusion", { duration = maxTime - pugnaDelay, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+			pugna[j]:AddNewModifier(caster, ability, "modifier_kill", { duration = maxTime - pugnaDelay, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 			ability:ApplyDataDrivenModifier(caster, pugna[j], "modifier_icefrogged", {})
 
 			-- Sets the illusion to begin channeling Fire Bomb
@@ -324,13 +326,14 @@ function SUMMONTHEONETRUEICEFROG( keys )
 
 				-- handle_UnitOwner needs to be nil, else it will crash the game.
 				local scaw = CreateUnitByName("npc_dota_hero_phoenix", origin, false, caster, nil, caster:GetTeamNumber())
+				scaw:SetForwardVector((point - origin):Normalized())
 				
 				local fireBomb = scaw:AddAbility("scryer_fire_bomb")
 				fireBomb:SetLevel(1)
 
 				-- Set the unit as an illusion
 				-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-				scaw:AddNewModifier(caster, ability, "modifier_illusion", { duration = 4.8, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+				scaw:AddNewModifier(caster, ability, "modifier_kill", { duration = 4.8, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 				ability:ApplyDataDrivenModifier(caster, scaw, "modifier_icefrogged", {})
 				scaw:MakeIllusion()
 				-- Sets the illusion to begin channeling Fire Bomb
@@ -383,6 +386,52 @@ function SUMMONTHEONETRUEICEFROG( keys )
 		end
 		scawDelay = scawDelay + 0.75
 	end
+
+	-- Spawn ODs
+	local vSpawnPosOD = {}
+	for i=1, ODCount do
+		local rotate_distance = point + forwardVec * ODRadius
+		local rotate_angle = QAngle(0,rotateVar,0)
+		rotateVar = rotateVar + 360/ODCount
+		local rotate_position = RotatePosition(point, rotate_angle, rotate_distance)
+		table.insert(vSpawnPosOD, rotate_position)
+	end
+
+	local OD = {}
+
+	for j = 1, ODCount do
+		Timers:CreateTimer(ODDelay, function()
+			local origin = table.remove( vSpawnPosOD, 1 )
+			local illusionForwardVec = (point - origin):Normalized()
+
+			-- handle_UnitOwner needs to be nil, else it will crash the game.
+			OD[j] = CreateUnitByName("npc_dota_hero_obsidian_destroyer", origin, false, caster, nil, caster:GetTeamNumber())
+			OD[j]:SetForwardVector((point - origin):Normalized())
+			
+			local sanityEclipse = OD[j]:FindAbilityByName("obsidian_destroyer_sanity_eclipse")
+			sanityEclipse:SetLevel(3)
+
+
+			-- Set the unit as an illusion
+			-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+			OD[j]:AddNewModifier(caster, ability, "modifier_kill", { duration = 3.5, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+			OD[j]:MakeIllusion()
+			ability:ApplyDataDrivenModifier(caster, OD[j], "modifier_icefrogged", {})
+
+			-- Sets the illusion to begin channeling Fire Bomb
+			if j > ODCount - 2 then
+				Timers:CreateTimer( 0.322, function()
+					OD[j]:CastAbilityOnPosition(point,sanityEclipse,-1)
+				end)
+			else
+				Timers:CreateTimer( 0.322, function()
+					OD[j]:CastAbilityOnPosition(point,sanityEclipse,-1)
+				end)
+			end
+		end)
+		ODDelay = ODDelay + 0.2
+	end
+
 end
 
 --[[local distance = (rotate_position - point):Length2D()

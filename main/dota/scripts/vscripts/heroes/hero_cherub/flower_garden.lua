@@ -59,6 +59,7 @@ function PlantSetHealthBase( keys )
 	
 	target:SetControllableByPlayer(owner:GetPlayerID(), true)
 	target:SetBaseMaxHealth(health)
+	target:MoveToPositionAggressive(target:GetAbsOrigin())
 	if target:GetUnitName() == "white_flower" then
 		target:SetBaseDamageMin(whiteDamage - 5)
 		target:SetBaseDamageMax(whiteDamage + 5)

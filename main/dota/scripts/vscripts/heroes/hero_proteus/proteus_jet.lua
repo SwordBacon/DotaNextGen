@@ -7,6 +7,8 @@ function Jet( keys )
 	if caster:PassivesDisabled() then 
 		ability:EndCooldown()
 		ability:RefundManaCost()
+		EmitSoundOnClient("General.CastFail_InvalidTarget_Hero", caster:GetPlayerOwner())
+		UTIL_MessageText(pID, "You cannot use this ability while passives are disabled.", 255, 0, 0, 2.0)
 		return 
 	end
 
@@ -66,8 +68,10 @@ function jetOrder(filterTable)
 	local abilityIndex = filterTable["entindex_ability"]
 	local ability = EntIndexToHScript(abilityIndex)
 
+	local caster = EntIndexToHScript(units["0"])
+	if not IsValidEntity(caster) then return false end
+
 	if order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
-		local caster = EntIndexToHScript(units["0"])
 		local jet = caster:FindAbilityByName("proteus_jet")
 		if jet and jet:GetAutoCastState() == true and jet:IsCooldownReady() and caster:GetMana() >= jet:GetManaCost(-1) and not caster:PassivesDisabled() then
 			local posX = filterTable["position_x"]
@@ -83,13 +87,15 @@ function jetOrder(filterTable)
 			abs_result_angle = math.abs(result_angle)
 
 			if abs_result_angle < 5 and distance > 900 and vectorTarget * vectorForward > 0 then
+				if not caster:HasModifier("modifier_proteus_jet_charges") then
+					jet:StartCooldown(jet:GetCooldown(-1))
+				end
 				jet:OnSpellStart()
 				caster:SpendMana(jet:GetManaCost(-1), caster)
-				jet:StartCooldown(jet:GetCooldown(-1))
+				
 			end
 		end
 	elseif order_type == DOTA_UNIT_ORDER_MOVE_TO_TARGET then
-		local caster = EntIndexToHScript(units["0"])
 		local targetIndex = filterTable["entindex_target"]
 		local target = EntIndexToHScript(targetIndex)
 		local jet = caster:FindAbilityByName("proteus_jet")
@@ -103,10 +109,14 @@ function jetOrder(filterTable)
 			abs_result_angle = math.abs(result_angle)
 
 			if abs_result_angle < 5 and distance > 900 and vectorTarget * vectorForward > 0 then
+				if not caster:HasModifier("modifier_proteus_jet_charges") then
+					jet:StartCooldown(jet:GetCooldown(-1))
+				end
 				jet:OnSpellStart()
 				caster:SpendMana(jet:GetManaCost(-1), caster)
-				jet:StartCooldown(jet:GetCooldown(-1))
 			end
 		end
 	end
+
+	return true
 end

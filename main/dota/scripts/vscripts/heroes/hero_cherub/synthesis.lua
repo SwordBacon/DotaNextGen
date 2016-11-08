@@ -10,6 +10,10 @@ function SynthesisCreate( keys )
 	end
 end
 
+function RemoveSound( keys )
+	keys.caster:StopSound("Hero_Puck.IdleLoop")
+end
+
 function SynthesisCheck( keys )
 	local caster = keys.caster
 	local ability = keys.ability

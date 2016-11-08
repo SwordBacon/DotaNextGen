@@ -156,6 +156,5 @@ function RemoveMusic( keys )
 	target:StopSound("Hero_Xarax.Trick.BTSIntro")
 	target:StopSound("Hero_Xarax.Trick.AttackOnTitan")
 	target:StopSound("Hero_Xarax.Trick.ILOVESLAYER")
-	target:StopSound("Hero_Xarax.Trick.CBIN")
 	target:StopSound("Hero_Xarax.Trick.JUSTDOIT")
 end

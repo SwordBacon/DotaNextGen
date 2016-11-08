@@ -54,7 +54,7 @@ function TyphoonSpinEffect( keys )
 		if caster:HasModifier("modifier_typhoon") then
 			jump = jump + (gravity / 5)
 			target:SetAbsOrigin(rotate_point + Vector(0,0,jump) )
-			target.fallDamage = target:GetAbsOrigin().z * damageElevation
+			target.fallDamage = target:GetAbsOrigin().z
 			randomSpeed = randomSpeed + variableSpeed
 			variableSpeed = variableSpeed / 1.03
 		else
@@ -81,11 +81,11 @@ function TyphoonSpinEffect( keys )
 				damageTable.victim = target
 				damageTable.damage_type = ability:GetAbilityDamageType()
 				damageTable.ability = ability
-				damageTable.damage = target.fallDamage
+				damageTable.damage = target.fallDamage  * damageElevation
 	
 			ApplyDamage(damageTable)
 
-			local amount = target.fallDamage
+			local amount = target.fallDamage * damageElevation
 
 	        local armor = target:GetPhysicalArmorValue()
 	        local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
@@ -108,4 +108,8 @@ function TyphoonSpinEffect( keys )
 		end
 		return 1/30
 	end)
+end
+
+function RemoveSound( keys )
+	keys.caster:StopSound("Ability.Windrun")
 end

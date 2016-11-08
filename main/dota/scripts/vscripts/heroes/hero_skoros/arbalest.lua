@@ -171,15 +171,17 @@ function arbalest( filterTable )
 	local ability = EntIndexToHScript(abilityIndex)
 	local targetIndex = filterTable["entindex_target"]
 
+
+	local attacker = EntIndexToHScript(units["0"])
+	if not IsValidEntity(attacker) then return false end
+
 	if order_type == DOTA_UNIT_ORDER_ATTACK_MOVE then
-		local attacker = EntIndexToHScript(units["0"])
 		local arbalest_attack = attacker:FindAbilityByName("skoros_Arbalest_Attack_lua")
 		if arbalest_attack and attacker:HasModifier("arbalest_dummy") and arbalest_attack:IsCooldownReady() and attacker:AttackReady() and not attacker:IsDisarmed() then
 			filterTable["order_type"] = DOTA_UNIT_ORDER_CAST_POSITION
 			filterTable["entindex_ability"] = arbalest_attack:entindex()
 		end
 	elseif order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
-		local attacker = EntIndexToHScript(units["0"])
 		local target = EntIndexToHScript(targetIndex)
 		local distance = (target:GetAbsOrigin() - attacker:GetAbsOrigin()):Length2D() - 64
 		

@@ -45,8 +45,17 @@ function SetPursuitDamage( keys )
 	local target = keys.target
 	local ability = keys.ability
 
+	local duration = ability:GetSpecialValueFor("duration")
+	local creepDuration = ability:GetSpecialValueFor("creep_duration")
+
 	local baseDamage = ability:GetLevelSpecialValueFor("base_damage", ability:GetLevel() - 1)
 	local movementDamage = ability:GetLevelSpecialValueFor("movement_damage", ability:GetLevel() - 1) / 100
+
+	if target:IsHero() then
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_pursuit_debuff",{Duration = duration})
+	else
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_pursuit_debuff",{Duration = creepDuration})
+	end
 
 	pursuitMovementDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()) * movementDamage
 	if pursuitMovementDamage < 0 then pursuitMovementDamage = 0 end
@@ -173,7 +182,10 @@ function StartCooldown(keys)
 	local ability = keys.ability
 	local cooldown = ability:GetCooldown(ability:GetLevel() - 1)
 	local mana = ability:GetManaCost(ability:GetLevel() - 1)
-	if caster:HasModifier("modifier_thrill_active") then cooldown = cooldown / 4 end
+	if caster:HasModifier("modifier_thrill_active") then 
+		local cooldownReduction = 1 - (caster:FindAbilityByName("veera_thrill_of_the_hunt"):GetSpecialValueFor("cooldown_reduction") / 100)
+		cooldown = cooldown * cooldownReduction
+	end
 	ability:StartCooldown(cooldown)
 	caster:SpendMana(mana, ability)
 end

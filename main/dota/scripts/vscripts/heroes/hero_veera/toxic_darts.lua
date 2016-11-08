@@ -1,4 +1,4 @@
-function ToxicDartsApplyRandomEffect( keys )
+--[[function ToxicDartsApplyRandomEffect( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
@@ -18,6 +18,54 @@ function ToxicDartsApplyRandomEffect( keys )
 	end
 
 	ability:CreateVisibilityNode(target_loc, 150, 1.5)
+end]]
+
+function ToxicDartsApplyToxicEffect( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	local target_loc = target:GetAbsOrigin()
+
+	local modifierName = "modifier_toxic_dart_effect"
+	local duration = ability:GetSpecialValueFor("duration")
+	local durationDecrease = ability:GetSpecialValueFor("duration_decrease")
+
+	if target:IsMagicImmune() or not target:IsAlive() then return end
+	
+	if not target:HasModifier(modifierName) then
+		ability:ApplyDataDrivenModifier(caster,target,modifierName,{Duration = duration})
+		target:SetModifierStackCount(modifierName,ability,1)
+		target.toxicStacks = 1
+	else
+		local modifier = target:FindModifierByName(modifierName)
+		local modifierTime = modifier:GetRemainingTime()
+		local stacks = target:GetModifierStackCount(modifierName,ability) + 1
+
+		target:SetModifierStackCount(modifierName,ability,stacks)
+		target.toxicStacks = stacks
+
+		if modifierTime > durationDecrease then
+			modifier:SetDuration(modifierTime - durationDecrease,true)
+		else
+			target:RemoveModifierByName(modifierName)
+		end
+	end
+	ability:CreateVisibilityNode(target_loc, 150, 1.5)
+end
+
+function ToxicDartsApplyEndEffect( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+
+	local modifierName = "modifier_toxic_dart_stun"
+	local stunDuration = ability:GetSpecialValueFor("stun_duration")
+
+	if target and target.toxicStacks then
+		ability:ApplyDataDrivenModifier(caster,target,modifierName,{Duration = stunDuration * target.toxicStacks})
+		target:SetModifierStackCount(modifierName,ability,target.toxicStacks)
+		target.toxicStacks = nil
+	end
 end
 
 function ToxicDartsStartCharge( keys )
@@ -45,8 +93,9 @@ function ToxicDartsStartCharge( keys )
 	Timers:CreateTimer( function()
 		if ability:GetLevel() > level then return end
 
-		if caster:HasModifier("modifier_thrill_active") then
-			charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", ( ability:GetLevel() - 1 ) ) / 4
+		if caster:HasModifier("modifier_thrill_active") and thrill then
+			local cooldownReduction = 1 - (thrill:GetSpecialValueFor("cooldown_reduction") / 100)
+			charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", ( ability:GetLevel() - 1 ) ) * cooldownReduction
 		else 
 			charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", ( ability:GetLevel() - 1 ) )
 		end
@@ -103,10 +152,12 @@ function ShootDart( keys )
 	local modifierName = "modifier_toxic_dart_stack_count"
 	local maximum_charges = ability:GetLevelSpecialValueFor( "maximum_charges", ( ability:GetLevel() - 1 ) )
 	local charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", ( ability:GetLevel() - 1 ) )
+	local thrill = caster:FindAbilityByName("veera_thrill_of_the_hunt")
 
 	-- Check Thrill
-	if caster:HasModifier("modifier_thrill_active") then
-		charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", ( ability:GetLevel() - 1 ) ) / 4
+	if caster:HasModifier("modifier_thrill_active") and thrill then
+		local cooldownReduction = 1 - (thrill:GetSpecialValueFor("cooldown_reduction") / 100)
+		charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", ( ability:GetLevel() - 1 ) ) * cooldownReduction
 	else 
 		charge_replenish_time = ability:GetLevelSpecialValueFor( "charge_replenish_time", ( ability:GetLevel() - 1 ) )
 	end

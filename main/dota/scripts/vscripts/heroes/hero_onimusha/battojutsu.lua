@@ -22,8 +22,8 @@ function SwapBasicAbilities(keys)
 	caster:SwapAbilities("onimusha_guard", "onimusha_battojutsu_w", false, true)
 	caster:SwapAbilities("onimusha_orochi", "onimusha_battojutsu_e", false, true)
 
-	caster.slashOrder = ""
-	caster.finalSlash = true
+	slashOrder = ""
+	finalSlash = true
 end
 
 function SwapUltimateAbilities(keys)
@@ -31,50 +31,50 @@ function SwapUltimateAbilities(keys)
 	local ability = caster:FindAbilityByName("onimusha_battojutsu")
 	if not ability then return end
 	local battoDuration = ability:GetSpecialValueFor("duration")
-	if caster.combos == nil then caster.combos = {} end
+	if combos == nil then combos = {} end
 
 	if caster:HasModifier("modifier_battojutsu") then
 		local combo_limit = ability:GetSpecialValueFor("combos")
 		if caster:HasScepter() then combo_limit = ability:GetSpecialValueFor("combos_scepter") end
 
-		if #caster.combos < combo_limit - 1 then 
-			for _,k in pairs(caster.combos) do
-				if caster.slashOrder == k then
-					caster.slashOrder = ""
+		if #combos < combo_limit - 1 then 
+			for _,k in pairs(combos) do
+				if slashOrder == k then
+					slashOrder = ""
 					caster:RemoveModifierByName("modifier_battojutsu")
-					caster.combos = {}
+					combos = {}
 					SwapUltimateAbilities(keys)
 					break
 				end
 			end
 		else
-			caster.slashOrder = ""
+			slashOrder = ""
 			caster:RemoveModifierByName("modifier_battojutsu")
-			caster.combos = {}
+			combos = {}
 			SwapUltimateAbilities(keys)
 			return
 		end
-		if caster:HasModifier("modifier_battojutsu") and string.len(caster.slashOrder) == 3 then
-			table.insert(caster.combos, caster.slashOrder)
+		if caster:HasModifier("modifier_battojutsu") and string.len(slashOrder) == 3 then
+			table.insert(combos, slashOrder)
 			SwapBasicAbilities(keys)
 			caster:EmitSound("DOTA_Item.Refresher.Activate")
 			caster.battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_combo", {Duration = 0.1})
 			caster.battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu", {Duration = battoDuration})
 		end
-		caster.slashOrder = ""
-	elseif string.len(caster.slashOrder) ~= 3 then
-		if not string.match(caster.slashOrder, "Q") then
+		slashOrder = ""
+	elseif string.len(slashOrder) ~= 3 then
+		if not string.match(slashOrder, "Q") then
 			caster:SwapAbilities("onimusha_battojutsu_q", "onimusha_dash", false, true)
 		end
-		if not string.match(caster.slashOrder, "W") then
+		if not string.match(slashOrder, "W") then
 			caster:SwapAbilities("onimusha_battojutsu_w", "onimusha_guard", false, true)
 		end
-		if not string.match(caster.slashOrder, "E") then
+		if not string.match(slashOrder, "E") then
 			caster:SwapAbilities("onimusha_battojutsu_e", "onimusha_orochi", false, true)
 		end
 
-		caster.slashOrder = ""
-		caster.combos = {}
+		slashOrder = ""
+		combos = {}
 		caster:RemoveModifierByName("modifier_battojutsu")
 	end
 end
@@ -82,15 +82,15 @@ end
 function CheckForUniqueCombos( keys )
 	local caster = keys.caster
 	local ability = caster:FindAbilityByName("onimusha_battojutsu")
-	if caster.combos == nil then caster.combos = {} end
+	if combos == nil then combos = {} end
 
-	for _,k in pairs(caster.combos) do
-		if caster.slashOrder == k then
-			caster.slashOrder = ""
+	for _,k in pairs(combos) do
+		if slashOrder == k then
+			slashOrder = ""
 			caster:RemoveModifierByName("modifier_battojutsu")
-			caster.combos = {}
+			combos = {}
 			SwapUltimateAbilities(keys)
-			caster.finalSlash = false
+			finalSlash = false
 			break
 		end
 	end
@@ -106,7 +106,7 @@ function BattojutsuQ( keys )
 	caster:RemoveModifierByName("modifier_show_dash")
 	caster:RemoveModifierByName("modifier_hide_dash")
 
-	caster.slashOrder = caster.slashOrder .. "Q"
+	slashOrder = slashOrder .. "Q"
 
 	 DamageTable = {}
 	
@@ -133,11 +133,11 @@ function BattojutsuQ( keys )
 		caster:SwapAbilities("onimusha_battojutsu_q", "onimusha_dash", false, true)
 	end
 
-	if string.len(caster.slashOrder) == 3 then
+	if string.len(slashOrder) == 3 then
 		local final_slash = caster:FindAbilityByName("onimusha_battojutsu_r")
 		CheckForUniqueCombos(keys)
 		Timers:CreateTimer( 0.15, function()
-			if final_slash and caster.finalSlash then caster:CastAbilityImmediately(final_slash, caster:GetPlayerOwnerID()) end
+			if final_slash and finalSlash then caster:CastAbilityImmediately(final_slash, caster:GetPlayerOwnerID()) end
 		end)
 	end
 end
@@ -153,7 +153,7 @@ function BattojutsuW( keys )
 	caster:RemoveModifierByName("modifier_hide_dash")
 
 
-	caster.slashOrder = caster.slashOrder .. "W"
+	slashOrder = slashOrder .. "W"
 
 	 DamageTable = {}
 	
@@ -180,11 +180,11 @@ function BattojutsuW( keys )
 		caster:SwapAbilities("onimusha_battojutsu_w", "onimusha_guard", false, true)
 	end
 
-	if string.len(caster.slashOrder) == 3 then
+	if string.len(slashOrder) == 3 then
 		local final_slash = caster:FindAbilityByName("onimusha_battojutsu_r")
 		CheckForUniqueCombos(keys)
 		Timers:CreateTimer( 0.15, function()
-			if final_slash and caster.finalSlash then caster:CastAbilityImmediately(final_slash, caster:GetPlayerOwnerID()) end
+			if final_slash and finalSlash then caster:CastAbilityImmediately(final_slash, caster:GetPlayerOwnerID()) end
 		end)
 	end
 end
@@ -200,7 +200,7 @@ function BattojutsuE( keys )
 	caster:RemoveModifierByName("modifier_hide_dash")
 
 
-	caster.slashOrder = caster.slashOrder .. "E"
+	slashOrder = slashOrder .. "E"
 
 	DamageTable = {}
 	
@@ -227,11 +227,11 @@ function BattojutsuE( keys )
 		caster:SwapAbilities("onimusha_battojutsu_e", "onimusha_orochi", false, true)
 	end
 
-	if string.len(caster.slashOrder) == 3 then
+	if string.len(slashOrder) == 3 then
 		local final_slash = caster:FindAbilityByName("onimusha_battojutsu_r")
 		CheckForUniqueCombos(keys)
 		Timers:CreateTimer( 0.15, function()
-			if final_slash and caster.finalSlash then caster:CastAbilityImmediately(final_slash, caster:GetPlayerOwnerID()) end
+			if final_slash and finalSlash then caster:CastAbilityImmediately(final_slash, caster:GetPlayerOwnerID()) end
 		end)
 	end
 end
@@ -262,7 +262,7 @@ function BattojutsuR( keys )
 	DamageTable.damage_type = DAMAGE_TYPE_PHYSICAL
 	DamageTable.ability = ability
 
-	if caster.slashOrder == "QWE" then
+	if slashOrder == "QWE" then
 
 		local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
@@ -292,7 +292,7 @@ function BattojutsuR( keys )
 			end
 		end
 
-	elseif caster.slashOrder == "QEW" then
+	elseif slashOrder == "QEW" then
 		caster.battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_b", {Duration = 0.1})
 		local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + 
 			DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
@@ -332,7 +332,7 @@ function BattojutsuR( keys )
 			end
 		end
 
-	elseif caster.slashOrder == "WQE" then
+	elseif slashOrder == "WQE" then
 		caster.battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_c", {Duration = 0.1})
 		local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
@@ -349,7 +349,7 @@ function BattojutsuR( keys )
 			ability:ApplyDataDrivenModifier(caster, caster, "modifier_ryumeisen", {Duration = stunDuration})
 		end
 
-	elseif caster.slashOrder == "WEQ" then
+	elseif slashOrder == "WEQ" then
 		caster.battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_d", {Duration = 0.1})
 		local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 
@@ -380,7 +380,7 @@ function BattojutsuR( keys )
 			end
 		end
 
-	elseif caster.slashOrder == "EQW" then
+	elseif slashOrder == "EQW" then
 		caster.battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_e", {Duration = 0.1})
 		local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, highRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_FARTHEST, false)
 
@@ -395,7 +395,7 @@ function BattojutsuR( keys )
 			caster:PerformAttack(caster, true, true, true, false, false)
 		end
 
-	elseif caster.slashOrder == "EWQ" then
+	elseif slashOrder == "EWQ" then
 		caster.battoAbility:ApplyDataDrivenModifier(caster, caster, "modifier_battojutsu_final_strike_f", {Duration = 0.1})
 		local units = FindUnitsInRadius(caster:GetTeam(), casterLoc, nil, highRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_FARTHEST, false)
 

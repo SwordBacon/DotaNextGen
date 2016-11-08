@@ -251,6 +251,27 @@ function Effigy_OnDealDamage(kv)
         end
     end
 end
+
+function Effigy_OnDestroy(kv)
+    local caster    = kv.caster
+    local target    = kv.unit
+    local ability   = kv.ability
+ 
+ 
+    --Find ALL enemy heroes that coul have Effigy
+    local enemies       = HeroList:GetAllHeroes()
+ 
+    --Check if these heroes have Effigy
+    local inactive = true
+    for _,enemy in pairs(enemies) do
+        if enemy:GetTeam() ~= caster:GetTeam() then
+            if enemy:HasModifier("tenebris_effigy_modifier_debuff") then
+                enemy:RemoveModifierByName("tenebris_effigy_modifier_debuff")
+                enemy:RemoveModifierByName("tenebris_effigy_modifier_timer")
+            end
+        end
+    end
+end
  
 function Effigy_OnDeath(kv)
     local caster    = kv.caster
@@ -264,15 +285,19 @@ function Effigy_OnDeath(kv)
     local target_team   = DOTA_UNIT_TARGET_TEAM_ENEMY
     local target_type   = DOTA_UNIT_TARGET_HERO
     local target_flags  = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_INVULNERABLE+DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
-    local enemies       = FindUnitsInRadius(caster:GetTeamNumber(),Vector(0,0,0),target,100000,target_team,target_type,target_flags,0,false)
+
+
+    local enemies       = HeroList:GetAllHeroes()
  
     --Check if these heroes have Effigy
     local inactive = true
     for _,enemy in pairs(enemies) do
-        local modifiers = enemy:FindAllModifiers()
-        for k, v in pairs(modifiers) do
-            if v:GetName() == "tenebris_effigy_modifier_debuff" then
-                inactive = false
+        if enemy:GetTeam() ~= caster:GetTeam() then
+            local modifiers = enemy:FindAllModifiers()
+            for k, v in pairs(modifiers) do
+                if v:GetName() == "tenebris_effigy_modifier_debuff" then
+                    inactive = false
+                end
             end
         end
     end
@@ -282,7 +307,7 @@ function Effigy_OnDeath(kv)
         caster:RemoveModifierByName("tenebris_effigy_modifier_buff")
     end
  
---------Apply Effigy to a new hero
+    --------Apply Effigy to a new hero
  
     --Find new target for Effigy
     local target_flags  = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
@@ -316,6 +341,11 @@ function Effigy_OnDeath(kv)
  
     --Casts Effigy on the new target or stop
     if target_new ~= nil and (not target:TriggerSpellAbsorb(ability)) then
+        local duration = ability:GetLevelSpecialValueFor("duration", ability:GetLevel() - 1)
+        if caster:HasScepter() then
+            duration = ability:GetLevelSpecialValueFor("scepter_duration", ability:GetLevel() - 1)
+        end
+
         local particle = ParticleManager:CreateParticle("particles/econ/items/abaddon/abaddon_alliance/abaddon_death_coil_alliance.vpcf",PATTACH_CUSTOMORIGIN_FOLLOW,target_new)
         ParticleManager:SetParticleControlEnt(particle,0,target,PATTACH_POINT_FOLLOW,"attach_hitloc",target:GetAbsOrigin(),true)
         ParticleManager:SetParticleControlEnt(particle,1,target_new,PATTACH_POINT_FOLLOW,"attach_hitloc",target_new:GetAbsOrigin(),true)
@@ -323,7 +353,7 @@ function Effigy_OnDeath(kv)
         target:EmitSound("Hero_Visage.GraveChill.Cast")
         target_new:EmitSound("Hero_Visage.GraveChill.Target")
  
-        ability:ApplyDataDrivenModifier(caster,target_new,"tenebris_effigy_modifier_timer",{})
+        ability:ApplyDataDrivenModifier(caster,target_new,"tenebris_effigy_modifier_timer",{Duration = duration})
     end
 end
 

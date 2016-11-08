@@ -444,11 +444,12 @@
 		"AttributeIntelligenceGain"	"0"						// Intelligence bonus per level.
 		"AttributeBaseAgility"		"8"						// Base agility
 		"AttributeAgilityGain"		"0"						// Agility bonus per level.
-		"ArmorPhysical"				"16"	
+		"ArmorPhysical"				"321"	
 		"AttackRate" 				"1.7"
 		"MovementSpeed" 			"322"
 		"AttackDamageMin"			"313"						
 		"AttackDamageMax"			"313"
+		"MagicalResistance"         "322"
 	}
 	//=================================================================================================================
 	// HERO: Ixhotil, the Hlotl Precursor

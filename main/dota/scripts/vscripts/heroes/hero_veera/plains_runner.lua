@@ -38,6 +38,8 @@ function PlainsRunnerDistanceCheck( keys )
 	-- See the opening block comment for why I do this. Basically it's to turn negative angles into positive ones and make the math simpler.
 	result_angle = math.abs(pi_angle)
 
+	local stacks = caster.stacks
+
 	
 	while caster.distance >= check_distance do
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_plains_runner_bonus", {})
@@ -77,6 +79,8 @@ function PlainsRunnerDistanceCheck( keys )
 	caster.thinker_altitude = GetGroundHeight(caster:GetAbsOrigin(), caster)
 	caster.thinker_location = caster:GetAbsOrigin()
 	caster.forwardVec = caster:GetForwardVector().y
+
+	caster.stacks = stacks
 	
 end
 

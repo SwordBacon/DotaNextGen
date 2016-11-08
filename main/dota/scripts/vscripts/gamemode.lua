@@ -137,26 +137,29 @@ function GameMode:OnHeroInGame(hero)
   --print(playerHero.CheckUI)
   --print(playerHero)
 
-  if GetMapName() == "hero_demo" and playerHero.CheckUI == true then
+  if playerHero.CheckUI == true then
     playerHero.CheckUI = false
-    if GameRules:IsCheatMode() then
-      Timers:CreateTimer(1.322, function() 
-        CustomGameEventManager:Send_ServerToPlayer(playerHero, "map_check", event)
-        if hero:IsRealHero() then
-          hero:ModifyGold(99999,true,0)
-        end
-        if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 then
-          Tutorial:AddBot("npc_dota_hero_puck","", "", false)
-        end
-      end)
-    else 
-      Timers:CreateTimer(1.322, function() 
-        if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 then
-          ShowGenericPopupToPlayer(playerHero, "#popupReminderCheats", "#popupReminderCheatsDesc", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
-          Tutorial:AddBot("npc_dota_hero_puck","", "", false)
-        end
-      end)
+    if GetMapName() == "hero_demo" then
+      if GameRules:IsCheatMode() then
+        Timers:CreateTimer(1.322, function() 
+          CustomGameEventManager:Send_ServerToPlayer(playerHero, "map_check", event)
+          if hero:IsRealHero() then
+            hero:ModifyGold(99999,true,0)
+          end
+          if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 then
+            Tutorial:AddBot("npc_dota_hero_puck","", "", false)
+          end
+        end)
+      end
     end
+    Timers:CreateTimer(1.322, function() 
+      if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 and not GameRules:IsCheatMode() then
+        ShowGenericPopupToPlayer(playerHero, "#popupReminderCheats", "#popupReminderCheatsDesc", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
+        Tutorial:AddBot("npc_dota_hero_puck","", "", false)
+      else
+        ShowGenericPopupToPlayer(playerHero, "#popupReminder", "#popupReminderDesc", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
+      end
+    end)
   end
 
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
@@ -386,6 +389,7 @@ function GameMode:FilterExecuteOrder( filterTable )
     blackout(filterTable)
     local findSkorosNexus = require('heroes/hero_skoros/nexus')
     nexusOrder(filterTable)
+
 
     -- Proteus order filters
     local findProteusJet = require('heroes/hero_proteus/proteus_jet')

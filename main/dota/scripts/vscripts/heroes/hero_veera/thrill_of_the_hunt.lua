@@ -5,12 +5,8 @@ function ThrillInitialize( keys )
 		caster.caster_altitude = 0
 		camera_distance = 1200
 		view_distance = ability:GetLevelSpecialValueFor("bonus_camera_view", (ability:GetLevel() - 1))
-		day_vision = 1800
-		night_vision = 800
 		bonus_vision = ability:GetLevelSpecialValueFor("bonus_vision", (ability:GetLevel() - 1))
 		GameRules:GetGameModeEntity():SetCameraDistanceOverride( camera_distance )
-		caster:SetDayTimeVisionRange(day_vision)
-		caster:SetNightTimeVisionRange(night_vision)
 
 		
 		caster.caster_altitude = GetGroundHeight(caster:GetAbsOrigin(), caster)
@@ -50,11 +46,17 @@ function ThrillCastPointBonus( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local passive = caster:FindAbilityByName("veera_plains_runner")
+
+	local castpointReduction = 1 - (ability:GetSpecialValueFor("cooldown_reduction") / 100)
+
 	local ability1 = caster:GetAbilityByIndex(0)
 	local ability2 = caster:GetAbilityByIndex(1)
+
+	ability1.castpoint = ability1:GetCastPoint()
+	ability2.castpoint = ability2:GetCastPoint()
 	
-	ability1:SetOverrideCastPoint(0.075)
-	ability2:SetOverrideCastPoint(0.075)
+	ability1:SetOverrideCastPoint(ability1.castpoint * castpointReduction)
+	ability2:SetOverrideCastPoint(ability2.castpoint * castpointReduction)
 
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_thrill_bonus_vision", {})
 
@@ -76,8 +78,8 @@ function ThrillRemoveBonus( keys )
 	local ability1 = caster:GetAbilityByIndex(0)
 	local ability2 = caster:GetAbilityByIndex(1)
 	
-	ability1:SetOverrideCastPoint(0.15)
-	ability2:SetOverrideCastPoint(0.15)
+	ability1:SetOverrideCastPoint(ability1.castpoint)
+	ability2:SetOverrideCastPoint(ability2.castpoint)
 
 	if caster.scepter_stack_count > caster.stack_count then
 		caster.scepter_stack_count = caster.stack_count / 2

@@ -43,6 +43,7 @@ function blackout( filterTable )
 
     local unit = EntIndexToHScript(units["0"])
     if not IsValidEntity(unit) then return false end
+    
     local hasModifier = unit:FindModifierByName("modifier_blackout")
     if hasModifier and (order_type ~= DOTA_UNIT_ORDER_STOP or order_type ~= DOTA_UNIT_ORDER_HOLD_POSITION) then
         local blackout = hasModifier:GetAbility()
