@@ -1,0 +1,125 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 200
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_bAdditive = true
+			m_hTexture = resource:"materials/particle/particle_flares/aircraft_white.vtex"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.03
+			m_nOpEndCapState = 0
+			m_Gravity = [ 0.0, 0.0, 50.0 ]
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+			m_flBias = 0.3
+			m_nOpEndCapState = 0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nField = 4
+			m_Rate = 15.0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 9999.0
+			m_Rate = -3.0
+			m_nField = 16
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 999999.0
+			m_Rate = -3.0
+			m_nField = 1
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_flRotRate = 380.0
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_bOffset = true
+			m_bAdditive = true
+			m_vecOutputMax = [ 64.0, 64.0, 64.0 ]
+			m_vecOutputMin = [ -64.0, -64.0, -64.0 ]
+			m_nFieldOutput = 0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 1.2
+			m_fLifetimeMax = 1.3
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 15.0
+			m_flRadiusMax = 25.0
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fRadiusMin = 32.0
+			m_fRadiusMax = 32.0
+			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
+			m_fSpeedMax = 100.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecAbsVal = [ 1.0, 1.0, 1.0 ]
+			m_vecOutputMin = [ -96.0, -96.0, 842.0 ]
+			m_vecOutputMax = [ 96.0, 96.0, 780.0 ]
+		},
+		{
+			_class = "C_INIT_PositionWarp"
+			m_flWarpStartTime = 1.25
+			m_flWarpTime = 0.75
+			m_vecWarpMax = [ 1.0, 1.0, 0.125 ]
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 255, 216, 0, 255 ]
+			m_ColorMin = [ 255, 235, 119, 255 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flOpEndFadeOutTime = 2.5
+			m_flOpStartFadeOutTime = 1.5
+			m_flEmitRate = 150.0
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_vecComponentScale = [ 1.0, 1.0, 0.0 ]
+			m_fFalloffPower = 0.0
+			m_fForceAmount = -450.0
+		},
+	]
+}
