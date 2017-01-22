@@ -1,0 +1,71 @@
+"CustomHeroList"
+{
+	// In Main Mod
+	"npc_dota_hero_venomancer"		 "1" 	// Viscous Ooze
+	"npc_dota_hero_bounty_hunter"	 "1" 	// Veera
+	"npc_dota_hero_enchantress"		 "1" 	// Cherub
+	"npc_dota_hero_riki"			 "1" 	// Xarax
+	"npc_dota_hero_skywrath_mage"	 "1"	// Zulf
+	"npc_dota_hero_phoenix"			 "1"	// Scaw'mar
+	"npc_dota_hero_disruptor"		 "1"	// Alpha Stryder
+	"npc_dota_hero_skeleton_king"	 "1"	// Zeros
+	"npc_dota_hero_nyx_assassin"	 "1"	// Sunagakure
+	"npc_dota_hero_juggernaut"	     "1"	// Onimusha
+	"npc_dota_hero_clinkz"	 		 "1"	// Skoros
+	"npc_dota_hero_bloodseeker"	 	 "1"	// Bellatrix
+	"npc_dota_hero_visage"	 		 "1"	// Tenebris
+	"npc_dota_hero_bristleback"	 	 "1"	// Ixhotil
+	"npc_dota_hero_gyrocopter"	 	 "1"	// Keen Commander	
+	"npc_dota_hero_sand_king"		 "1"    // Sirocco
+	"npc_dota_hero_omniknight"		 "1"	// Lightbringer
+	"npc_dota_hero_naga_siren"		 "1"	// Proteus
+	"npc_dota_hero_phantom_assassin" "1"	// Hylonome
+	"npc_dota_hero_bane"			 "1"	// Achlys
+
+
+	// In Test Mod
+	"npc_dota_hero_phantom_lancer"	 "0"	// Vardor
+	"npc_dota_hero_rattletrap"		 "0"	// Borus
+	"npc_dota_hero_beastmaster"		 "0"	// Euros
+	"npc_dota_hero_wisp"			 "0"	// Prismere
+	"npc_dota_hero_death_prophet"	 "0"	// Hekate
+	"npc_dota_hero_crystal_maiden" 	 "0"	// Tyra
+	"npc_dota_hero_puck"	 		 "0"	// IceFrog
+	"npc_dota_hero_enigma"			 "0"	// Mega enigma
+	"npc_dota_hero_zeus"			 "0"
+	"npc_dota_hero_zuus"			 "0"
+	
+	// Default heroes
+	"npc_dota_hero_sven"			 "1"
+	"npc_dota_hero_dragon_knight"	 "1"
+	"npc_dota_hero_lina"			 "1"
+	"npc_dota_hero_vengeful_spirit"	 "1"
+	"npc_dota_hero_luna"			 "1"
+	"npc_dota_hero_earthshaker"		 "1"
+	"npc_dota_hero_zeus"			 "1"
+	"npc_dota_hero_viper"			 "1"
+	"npc_dota_hero_pudge"			 "1"
+	"npc_dota_hero_centaur"			 "1"
+	"npc_dota_hero_drow_ranger"		 "1"
+	"npc_dota_hero_windrunner"		 "1"
+	"npc_dota_hero_sniper"		 	 "1"
+	"npc_dota_hero_nevermore"		 "1"
+	"npc_dota_hero_invoker"			 "1"
+	"npc_dota_hero_lion"			 "1"
+	"npc_dota_hero_faceless_void"	 "1"
+	"npc_dota_hero_tidehunter"		 "1"
+	"npc_dota_hero_kunkka"			 "1"
+	"npc_dota_hero_abaddon"			 "1"
+	"npc_dota_hero_rubick"			 "1"
+	"npc_dota_hero_alchemist"		 "1"
+	"npc_dota_hero_enigma"			 "1"
+	"npc_dota_hero_axe"				 "1"
+	"npc_dota_hero_dazzle"			 "1"
+	"npc_dota_hero_mirana"			 "1"
+	"npc_dota_hero_razor" 	 		 "1"
+//	
+//	"npc_dota_hero_abyssal_underlord"		 "1"
+//	"npc_dota_hero_pugna"					 "1"
+//	"npc_dota_hero_obsidian_destroyer"		 "1"
+
+}

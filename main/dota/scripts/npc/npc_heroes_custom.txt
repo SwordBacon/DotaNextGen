@@ -1,5 +1,132 @@
 "DOTAHeroes"
 {
+//	"npc_dota_hero_viscous_ooze"
+//	{
+//		// General
+//		//-------------------------------------------------------------------------------------------------------------
+//		"BaseClass"		"npc_dota_hero"
+//		"BotImplemented"		"0"
+//		"NewHero"		"1"
+//		"HeroPool1"		"0"
+//		"AbilityDraftDisabled"	"1"
+//		"ARDMDisabled"			"1"
+//		"LoadoutScale"			"1"
+//		"Press"			"1"
+//		"ForceEnable"	"1"
+//		"HeroUnlockOrder"		"1"
+//		"CMTournamentIgnore"		"0"
+//		"new_player_enable"		"0"
+//		"Model"		"models/heroes/venomancer/venomancer.vmdl"
+//		"Portrait"		"vgui/hud/heroportraits/portrait_venomancer"
+//		"SoundSet"		"Hero_Venomancer"
+//		"Enabled"		"1"
+//		"Role"			"Carry,Jungler,Durable"
+//		"Rolelevels"	"3,1,2"
+//		"Team"		"Bad"
+//		"HeroID"		"126"
+//		"ModelScale"		"1.180000"
+//		"LoadoutScale"		"0.830000"
+//		//"NameAliases"		"Abaddon"
+//		//"url"		"Abaddon"
+//		//"PickSound"		"abaddon_abad_spawn_01"
+//		//"BanSound"		"abaddon_abad_anger_07"
+//		//"NoCombine"		"1"
+//		//"CMEnabled"		"1"
+//		//"LastHitChallengeRival"		"npc_dota_hero_chaos_knight"
+//		//"HeroSelectSoundEffect"		"Hero_Abaddon.Pick"
+//	
+//		"Ability1"		"viscous_ooze_slime_trail"
+//		"Ability2"		"viscous_ooze_split_oozelings"
+//		"Ability3"		"viscous_ooze_sticky_membrane"
+//		"Ability4"		"viscous_ooze_consume_item"
+//	
+//		//"particle_folder"		"particles/units/heroes/hero_abaddon"
+//		//"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+//		//"VoiceFile"		"soundevents/voscripts/game_sounds_vo_abaddon.vsndevts"
+//		"RenderablePortrait"
+//		{
+//		}
+//		"ItemSlots"
+//		{
+//			"0"
+//			{
+//				"SlotIndex"		"0"
+//				"SlotName"		"weapon"
+//				"SlotText"		"#LoadoutSlot_Weapon"
+//				"TextureWidth"		"256"
+//				"TextureHeight"		"256"
+//				"MaxPolygonsLOD0"		"450"
+//				"MaxPolygonsLOD1"		"300"
+//			}
+//			"1"
+//			{
+//				"SlotIndex"		"1"
+//				"SlotName"		"head"
+//				"SlotText"		"#LoadoutSlot_Head_Accessory"
+//				"TextureWidth"		"256"
+//				"TextureHeight"		"256"
+//				"MaxPolygonsLOD0"		"550"
+//				"MaxPolygonsLOD1"		"300"
+//			}
+//			"2"
+//			{
+//				"SlotIndex"		"2"
+//				"SlotName"		"back"
+//				"SlotText"		"#LoadoutSlot_Back"
+//				"TextureWidth"		"256"
+//				"TextureHeight"		"256"
+//				"MaxPolygonsLOD0"		"600"
+//				"MaxPolygonsLOD1"		"300"
+//			}
+//			"3"
+//			{
+//				"SlotIndex"		"3"
+//				"SlotName"		"shoulder"
+//				"SlotText"		"#LoadoutSlot_Shoulder"
+//				"TextureWidth"		"256"
+//				"TextureHeight"		"256"
+//				"MaxPolygonsLOD0"		"400"
+//				"MaxPolygonsLOD1"		"250"
+//			}
+//			"4"
+//			{
+//				"SlotIndex"		"4"
+//				"SlotName"		"mount"
+//				"SlotText"		"#LoadoutSlot_Mount"
+//				"TextureWidth"		"512"
+//				"TextureHeight"		"256"
+//				"MaxPolygonsLOD0"		"2850"
+//				"MaxPolygonsLOD1"		"1650"
+//			}
+//			"5"
+//			{
+//				"SlotIndex"		"5"
+//				"SlotName"		"taunt"
+//				"SlotText"		"#LoadoutSlot_Taunt"
+//			}
+//			"6"
+//			{
+//				"SlotIndex"		"6"
+//				"SlotName"		"ambient_effects"
+//				"SlotText"		"#LoadoutSlot_Ambient_Effects"
+//				"DisplayInLoadout"		"0"
+//			}
+//		}
+//		"Bot"
+//		{
+//			"HeroType"		"DOTA_BOT_TANK | DOTA_BOT_PURE_SUPPORT"
+//			"LaningInfo"
+//			{
+//				"SoloDesire"		"1"
+//				"RequiresBabysit"		"0"
+//				"ProvidesBabysit"		"2"
+//				"SurvivalRating"		"2"
+//				"RequiresFarm"		"1"
+//				"ProvidesSetup"		"0"
+//				"RequiresSetup"		"1"
+//			}
+//		}
+//	}
 	"npc_dota_hero_achlys"
 	{
 		//=================================================================================================================
@@ -12,10 +139,21 @@
 		"Ability3"				"achlys_sorrow_rising"			// Ability 3
 		"Ability4"				"achlys_death_mist"		// Innate
 		"BotImplemented"			"0"	
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_attack_damage_15"
+		"Ability11"		"special_bonus_magic_resistance_10"
+		"Ability12"		"special_bonus_mp_regen_4"
+		"Ability13"		"special_bonus_movement_speed_25"
+		"Ability14"		"special_bonus_hp_400"
+		"Ability15"		"special_bonus_mp_400"
+		"Ability16"		"special_bonus_all_stats_15"
+		"Ability17"		"special_bonus_unique_achlys_1"
 		
 		
 	
-		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"			// Primary Attribute
 		"AttributeBaseStrength"		"19"						// Base strength
 		"AttributeStrengthGain"		"1.5"						// Strength bonus per level.
 		"AttributeBaseIntelligence"	"27"						// Base intelligence
@@ -44,8 +182,18 @@
 		"Ability4"				"alpha_strider_alternating_current"		// Innate
 		"Ability5"				""
 		"Ability6"				"alpha_strider_short_circuit"			// Ultimate
-		"Ability7"				"attribute_bonus"
 		"BotImplemented"			"0"	
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 		
 	
 		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"			// Primary Attribute
@@ -63,7 +211,7 @@
 		"AttackDamageMax"		"18"	
 	}
 	//=================================================================================================================
-	// HERO: Bellatrix (NYI)
+	// HERO: Bellatrix
 	//=================================================================================================================
 	"hero_Bellatrix"
 	{
@@ -76,8 +224,18 @@
 		"Ability4"					"bellatrix_live_transfusion"
 		"Ability5"					""
 		"Ability6"					""
-		"Ability7"					"attribute_bonus"	
 		"BotImplemented"			"0"	
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 
 	
 		// Armor
@@ -111,63 +269,75 @@
 		"StatusHealthRegen"			"1.5"									// Health regeneration rate.
 		"StatusHealth"				"180"
 	}
-	//=================================================================================================================
-	// HERO: Borus, the Magnet Warrior
-	//=================================================================================================================
-	"hero_borus"
-	{
-		"override_hero"				"npc_dota_hero_rattletrap"
-		"AbilityLayout" 			"6"
-		"Ability1"					"borus_Power_Surge"
-		"Ability2"					"borus_Metal_Rod"
-		"Ability3"					"borus_Magnetic_Echo"
-		"Ability4"					"borus_Positive_Charge"
-		"Ability5"					"borus_Negative_Charge"
-		"Ability6"					"borus_Greater_Magnet"
-		"Ability7"					"attribute_bonus"
-		"BotImplemented"			"0"	
-	
-		// Armor
-		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"				"3"									// Physical protection.
-		"MagicalResistance"			"25"									// Magical protection (percentage).
-	
-		// Attack
-		//-------------------------------------------------------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"25"										// Damage range min.
-		"AttackDamageMax"			"35"										// Damage range max.
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"				// Type of damage dealt. 
-		"AttackRate"				"1.7"									// Speed of attack.
-		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
-		"AttackRange"				"450"									// Range within a target can be attacked.
-		"ProjectileModel"			"particles/units/heroes/hero_razor/razor_base_attack.vpcf"							// Particle system model for projectile.
-		"ProjectileSpeed"			"900"									// Speed of projectile.
-	
-		// Attributes
-		//-------------------------------------------------------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"		"19"										// Base strength
-		"AttributeStrengthGain"		"1.5"										// Strength bonus per level.
-		"AttributeBaseIntelligence"	"20"										// Base intelligence
-		"AttributeIntelligenceGain"	"2.2"										// Intelligence bonus per level.
-		"AttributeBaseAgility"		"23"										// Base agility
-		"AttributeAgilityGain"		"2.4"										// Agility bonus per level.	
-		"MovementSpeed"				"295"									// Speed.
-		"StatusHealthRegen"			"1.5"									// Health regeneration rate.
-		"StatusHealth"				"180"
-	}
+//	//=================================================================================================================
+//	// HERO: Borus, the Magnet Warrior
+//	//=================================================================================================================
+//	"hero_borus"
+//	{
+//		"override_hero"				"npc_dota_hero_rattletrap"
+//		"AbilityLayout" 			"6"
+//		"Ability1"					"borus_Power_Surge"
+//		"Ability2"					"borus_Metal_Rod"
+//		"Ability3"					"borus_Magnetic_Echo"
+//		"Ability4"					"borus_Positive_Charge"
+//		"Ability5"					"borus_Negative_Charge"
+//		"Ability6"					"borus_Greater_Magnet"
+//		"BotImplemented"			"0"	
+//	
+//		// Armor
+//		//-------------------------------------------------------------------------------------------------------------
+//		"ArmorPhysical"				"3"									// Physical protection.
+//		"MagicalResistance"			"25"									// Magical protection (percentage).
+//	
+//		// Attack
+//		//-------------------------------------------------------------------------------------------------------------
+//		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+//		"AttackDamageMin"			"25"										// Damage range min.
+//		"AttackDamageMax"			"35"										// Damage range max.
+//		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"				// Type of damage dealt. 
+//		"AttackRate"				"1.7"									// Speed of attack.
+//		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+//		"AttackRange"				"450"									// Range within a target can be attacked.
+//		"ProjectileModel"			"particles/units/heroes/hero_razor/razor_base_attack.vpcf"							// Particle system model for projectile.
+//		"ProjectileSpeed"			"900"									// Speed of projectile.
+//	
+//		// Attributes
+//		//-------------------------------------------------------------------------------------------------------------
+//		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+//		"AttributeBaseStrength"		"19"										// Base strength
+//		"AttributeStrengthGain"		"1.5"										// Strength bonus per level.
+//		"AttributeBaseIntelligence"	"20"										// Base intelligence
+//		"AttributeIntelligenceGain"	"2.2"										// Intelligence bonus per level.
+//		"AttributeBaseAgility"		"23"										// Base agility
+//		"AttributeAgilityGain"		"2.4"										// Agility bonus per level.	
+//		"MovementSpeed"				"295"									// Speed.
+//		"StatusHealthRegen"			"1.5"									// Health regeneration rate.
+//		"StatusHealth"				"180"
+//	}
 	//=================================================================================================================
 	// HERO: Cherub, the Dancing Flower
 	//=================================================================================================================
 	"hero_cherub"
 	{
-		"override_hero"				"npc_dota_hero_enchantress"
+		"override_hero"			"npc_dota_hero_enchantress"
+
+		"BotImplemented"			"0"	
+
 		"Ability1"				"cherub_sleep_cloud"			// Ability 1
 		"Ability2"				"cherub_synthesis"			// Ability 2
 		"Ability3"				"cherub_explosive_spore"		// Ability 3
 		"Ability4"				"cherub_flower_garden"			// Ultimate
-		"BotImplemented"			"0"	
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 	
 		"AttributeBaseStrength"		"22"						// Base strength
 		"AttributeStrengthGain"		"2.3"						// Strength bonus per level.
@@ -175,7 +345,7 @@
 		"AttributeIntelligenceGain"	"2.5"						// Intelligence bonus per level.
 		"AttributeBaseAgility"		"11"						// Base agility
 		"AttributeAgilityGain"		"1.5"						// Agility bonus per level.
-		"ArmorPhysical"			"1"	
+		"ArmorPhysical"			"1"
 		"AttackRate" 			"1.7"
 		"AttackRange"			"550"
 		"ProjectileSpeed"		"900"
@@ -183,114 +353,111 @@
 		"AttackDamageMin"		"24"						
 		"AttackDamageMax"		"28"
 	}
-	//=================================================================================================================
-	// HERO: Aldebaran, the Edgewalker (NYI)
-	//=================================================================================================================
-	"hero_edgewalker"
-	{
-		"override_hero"				"npc_dota_hero_spectre"
-		"AbilityLayout"				"4"
-		"Ability1"					"edgewalker_cascade_event"				// Ability 1
-		"Ability2"					"edgewalker_neutrino_strike"
-		"Ability3"					"edgewalker_gravity_well"
-		"Ability4"					"edgewalker_reality_shift"
-		"Ability5"					"attribute_bonus"
-		"BotImplemented"			"0"	
-	
-		"ArmorPhysical"				"4"							
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"23"								
-		"AttackDamageMax"			"27"								
-		"AttackRate"				"1.7"								
-		"AttackAnimationPoint"		"0.3"									
-		"AttackAcquisitionRange"	"600"									
-		"AttackRange"				"150"								
-		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
-		"AttributeBaseStrength"			"14"								
-		"AttributeStrengthGain"			"2.25"								
-		"AttributeBaseAgility"			"36"								
-		"AttributeAgilityGain"			"1.35"								
-		"AttributeBaseIntelligence"		"18"								
-		"AttributeIntelligenceGain"		"3.45"								
-		"MovementSpeed"				"325"								
-		"MovementTurnRate"			"0.8"	
-	}
-	//=================================================================================================================
-	// HERO: Eurus
-	//=================================================================================================================
-	"hero_eurus"
-	{
-		"override_hero"				"npc_dota_hero_beastmaster"
-		"AbilityLayout" 			"4"
-		"Ability1"					"eurus_slice_and_dice"
-		"Ability2"					"eurus_feather_barrage"
-		"Ability3"					"eurus_momentum"
-		"Ability4"					"eurus_swirlwind"
-		"Ability5"					""
-		//"Ability6"				""
-		"Ability7"					"attribute_bonus"
-		"BotImplemented"			"0"	
-	
-		// Armor
-		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"				"1"									// Physical protection.
-		"MagicalResistance"			"25"									// Magical protection (percentage).
-	
-		// Attack
-		//-------------------------------------------------------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"23"										// Damage range min.
-		"AttackDamageMax"			"31"										// Damage range max.
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"				// Type of damage dealt. 
-		"AttackRate"				"1.7"									// Speed of attack.
-		"AttackAnimationPoint"		"0.3"									// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
-		"AttackRange"				"150"									// Range within a target can be attacked.
-		"ProjectileModel"			""										// Particle system model for projectile.
-		"ProjectileSpeed"			""										// Speed of projectile.
-	
-		// Attributes
-		//-------------------------------------------------------------------------------------------------------------
-		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"		"16"										// Base strength
-		"AttributeStrengthGain"		"1.4"										// Strength bonus per level.
-		"AttributeBaseIntelligence"	"28"										// Base intelligence
-		"AttributeIntelligenceGain"	"1.8"										// Intelligence bonus per level.
-		"AttributeBaseAgility"		"22"										// Base agility
-		"AttributeAgilityGain"		"2.6"										// Agility bonus per level.	
-		"MovementSpeed"				"290"									// Speed.
-		"StatusHealthRegen"			"1.5"									// Health regeneration rate.
-		"StatusHealth"				"180"
-	}
-	//=================================================================================================================
-	// HERO: Hekate, the Priestess of Chaos (aka Icefrog's Ghost Revenant)
-	//=================================================================================================================
-	"hero_hekate"
-	{
-		"override_hero"				"npc_dota_hero_death_prophet"
-		"AbilityLayout"				"4"
-		"Ability1"				"hekate_spellbind"			// Ability 1
-		"Ability2"				"hekate_witchfire"			// Ability 2
-		"Ability3"				"hekate_blackjack"			// Ability 3
-		"Ability5"				"attribute_bonus"				
-		"Ability4"				"hekate_chaos_nova"			// Ultimate
-		
-	
-		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
-		"AttributeBaseStrength"		"19"						// Base strength
-		"AttributeStrengthGain"		"2.15"						// Strength bonus per level.
-		"AttributeBaseIntelligence"	"19"						// Base intelligence
-		"AttributeIntelligenceGain"	"2.75"						// Intelligence bonus per level.
-		"AttributeBaseAgility"		"12"						// Base agility
-		"AttributeAgilityGain"		"1.35"						// Agility bonus per level.
-		"ArmorPhysical"			"3"	
-		"AttackRate" 			"1.7"
-		"AttackRange"			"505"
-        "ProjectileSpeed"               "1875"
-		"MovementSpeed" 		"325"
-		"AttackDamageMin"		"32"						
-		"AttackDamageMax"		"38"	
-	}
+//	//=================================================================================================================
+//	// HERO: Aldebaran, the Edgewalker (NYI)
+//	//=================================================================================================================
+//	"hero_edgewalker"
+//	{
+//		"override_hero"				"npc_dota_hero_spectre"
+//		"AbilityLayout"				"4"
+//		"Ability1"					"edgewalker_cascade_event"				// Ability 1
+//		"Ability2"					"edgewalker_neutrino_strike"
+//		"Ability3"					"edgewalker_gravity_well"
+//		"Ability4"					"edgewalker_reality_shift"
+//		"BotImplemented"			"0"	
+//	
+//		"ArmorPhysical"				"4"							
+//		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+//		"AttackDamageMin"			"23"								
+//		"AttackDamageMax"			"27"
+//		"AttackRate"				"1.7"								
+//		"AttackAnimationPoint"		"0.3"									
+//		"AttackAcquisitionRange"	"600"									
+//		"AttackRange"				"150"								
+//		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
+//		"AttributeBaseStrength"			"14"								
+//		"AttributeStrengthGain"			"2.25"								
+//		"AttributeBaseAgility"			"36"								
+//		"AttributeAgilityGain"			"1.35"								
+//		"AttributeBaseIntelligence"		"18"								
+//		"AttributeIntelligenceGain"		"3.45"								
+//		"MovementSpeed"				"325"								
+//		"MovementTurnRate"			"0.8"	
+//	}
+//	//=================================================================================================================
+//	// HERO: Eurus
+//	//=================================================================================================================
+//	"hero_eurus"
+//	{
+//		"override_hero"				"npc_dota_hero_beastmaster"
+//		"AbilityLayout" 			"4"
+//		"Ability1"					"eurus_slice_and_dice"
+//		"Ability2"					"eurus_feather_barrage"
+//		"Ability3"					"eurus_momentum"
+//		"Ability4"					"eurus_swirlwind"
+//		"Ability5"					""
+//		//"Ability6"				""
+//		"BotImplemented"			"0"	
+//	
+//		// Armor
+//		//-------------------------------------------------------------------------------------------------------------
+//		"ArmorPhysical"				"1"									// Physical protection.
+//		"MagicalResistance"			"25"									// Magical protection (percentage).
+//	
+//		// Attack
+//		//-------------------------------------------------------------------------------------------------------------
+//		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+//		"AttackDamageMin"			"23"										// Damage range min.
+//		"AttackDamageMax"			"31"										// Damage range max.
+//		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"				// Type of damage dealt. 
+//		"AttackRate"				"1.7"									// Speed of attack.
+//		"AttackAnimationPoint"		"0.3"									// Normalized time in animation cycle to attack.
+//		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+//		"AttackRange"				"150"									// Range within a target can be attacked.
+//		"ProjectileModel"			""										// Particle system model for projectile.
+//		"ProjectileSpeed"			""										// Speed of projectile.
+//	
+//		// Attributes
+//		//-------------------------------------------------------------------------------------------------------------
+//		"AttributePrimary"			"DOTA_ATTRIBUTE_AGILITY"
+//		"AttributeBaseStrength"		"16"										// Base strength
+//		"AttributeStrengthGain"		"1.4"										// Strength bonus per level.
+//		"AttributeBaseIntelligence"	"28"										// Base intelligence
+//		"AttributeIntelligenceGain"	"1.8"										// Intelligence bonus per level.
+//		"AttributeBaseAgility"		"22"										// Base agility
+//		"AttributeAgilityGain"		"2.6"										// Agility bonus per level.	
+//		"MovementSpeed"				"290"									// Speed.
+//		"StatusHealthRegen"			"1.5"									// Health regeneration rate.
+//		"StatusHealth"				"180"
+//	}
+//	//=================================================================================================================
+//	// HERO: Hekate, the Priestess of Chaos (aka Icefrog's Ghost Revenant)
+//	//=================================================================================================================
+//	"hero_hekate"
+//	{
+//		"override_hero"				"npc_dota_hero_death_prophet"
+//		"AbilityLayout"				"4"
+//		"Ability1"				"hekate_spellbind"			// Ability 1
+//		"Ability2"				"hekate_witchfire"			// Ability 2
+//		"Ability3"				"hekate_blackjack"			// Ability 3
+//		"Ability4"				"hekate_chaos_nova"			// Ultimate
+//		
+//	
+//		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
+//		"AttributeBaseStrength"		"19"						// Base strength
+//		"AttributeStrengthGain"		"2.15"						// Strength bonus per level.
+//		"AttributeBaseIntelligence"	"19"						// Base intelligence
+//		"AttributeIntelligenceGain"	"2.75"						// Intelligence bonus per level.
+//		"AttributeBaseAgility"		"12"						// Base agility
+//		"AttributeAgilityGain"		"1.35"						// Agility bonus per level.
+//		"ArmorPhysical"			"3"	
+//		"AttackRate" 			"1.7"
+//		"AttackRange"			"505"
+//        "ProjectileSpeed"               "1875"
+//		"MovementSpeed" 		"325"
+//		"AttackDamageMin"		"32"						
+//		"AttackDamageMax"		"38"	
+//	}
 	//=================================================================================================================
 	// HERO: Hylonome
 	//=================================================================================================================
@@ -299,16 +466,8 @@
 		"override_hero"				"npc_dota_hero_phantom_assassin"			// Hero to override
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"					"npc_dota_hero_phantom_assassin"							// Class of entity of link to.
-		"Enabled"					"1"
-		"Level"						"1"
-		"BotImplemented"			"0"
-		"NewHero"					"0"
-		"HeroPool1"					"0"
-		"HeroUnlockOrder"			"1"										// The higher the number the later these heros will unlock for new players.
-		"CMEnabled"					"0"
-		"CMTournamentIgnore"		"0"
-		"new_player_enable"			"0"
+		//"BaseClass"					"npc_dota_hero"							// Class of entity of link to.
+
 
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------
@@ -317,12 +476,18 @@
 		"Ability2"					"hylonome_battle_rhythm"
 		"Ability3"					"hylonome_anemic_aura"
 		"Ability4"					"hylonome_libation"	
-		"Ability5"					""
-		"Ability6"					""
-		"Ability7"					""
-		"Ability8"					""
-		"Ability9"					""
-		"Ability10"					"attribute_bonus"						// Ability 5 - Bonuses.
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
+
 
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------
@@ -385,40 +550,8 @@
 		
 		//Inventory
 		"HasInventory"				"1"
-		
-		//Voice
-		"VoiceBackgroundSound"		""
-		"GameSoundsFile"			"scripts/game_sounds_creeps.txt"
-				
+						
 		"HealthBarOffset"			"-1"
-		
-
-		"HUD"
-		{
-			"StatusHUD"
-			{
-				"StatusStrength"
-				{
-					"LocalizeToken"		"#DOTA_StrengthStatus"
-					"Parameters"		"Traits:Strength"
-					"HUDName"			"unitstrength"
-				}
-			
-				"StatusAgility"
-				{		
-					"LocalizeToken"		"#DOTA_AgilityStatus"
-					"Parameters"		"Traits:Agility"
-					"HUDName"			"unitagility"
-				}
-			
-				"StatusIntellect"	
-				{
-					"LocalizeToken"		"#DOTA_IntellectStatus"
-					"Parameters"		"Traits:Intellect"
-					"HUDName"			"unitintellect"
-				}
-			}	
-		}
 	}
 	//=================================================================================================================
 	// HERO: IceFrog, the Balance Overlord
@@ -435,20 +568,28 @@
 		"Ability5"				""
 		"Ability6"				""
 		"DisableWearables" 		"1"
+		"AbilityDraftDisabled"	"1"
+		"ARDMDisabled"			"1"
+		"LoadoutScale"			"1"
+		"Press"					"1"
+		"ForceEnable"			"1"
+		"HeroUnlockOrder"		"1"
+
+
 	
-		"StatusHealth"				"202"
-		"StatusMana"				"214"
-		"AttributeBaseStrength"		"6"						// Base strength
+		"StatusHealth"				"182"
+		"StatusMana"				"322"
+		"AttributeBaseStrength"		"7"						// Base strength
 		"AttributeStrengthGain"		"0"						// Strength bonus per level.
-		"AttributeBaseIntelligence"	"9"						// Base intelligence
+		"AttributeBaseIntelligence"	"0"						// Base intelligence
 		"AttributeIntelligenceGain"	"0"						// Intelligence bonus per level.
-		"AttributeBaseAgility"		"8"						// Base agility
+		"AttributeBaseAgility"		"0"						// Base agility
 		"AttributeAgilityGain"		"0"						// Agility bonus per level.
-		"ArmorPhysical"				"321"	
+		"ArmorPhysical"				"322"	
 		"AttackRate" 				"1.7"
 		"MovementSpeed" 			"322"
-		"AttackDamageMin"			"313"						
-		"AttackDamageMax"			"313"
+		"AttackDamageMin"			"322"
+		"AttackDamageMax"			"322"
 		"MagicalResistance"         "322"
 	}
 	//=================================================================================================================
@@ -463,10 +604,20 @@
 		"Ability2"				"ixhotil_gore_right"			// Ability 1b
 		"Ability3"				"ixhotil_unyielding_pinion"		// Ability 2
 		"Ability4"				"ixhotil_precursors_protection"	// Ability 3
-		"Ability5"				"attribute_bonus"	
 		"Ability6"				"ixhotil_disruptive_charge"		// Ultimate
 		"BotImplemented"			"0"	
 		"DisableWearables" "1"
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 	
 		"AttributeBaseStrength"		"25"						// Base strength
 		"AttributeStrengthGain"		"2.4"						// Strength bonus per level.
@@ -486,14 +637,28 @@
 	"hero_keen_commander"
 	{
 		"override_hero"			"npc_dota_hero_gyrocopter"
+		"Role"              	"Carry,Escape,Nuker,Initiator"
+		"Rolelevels"            "3,2,2,1"
+		"Team"              	"Bad"
+
 		"AbilityLayout"			"4"
 		"Ability1"				"keen_commander_recon_systems"		// Ability 1
 		"Ability2"				"keen_commander_mortar_shot"		// Ability 2
 		"Ability3"				"keen_commander_slag_armor"			// Ability 3
-		"Ability4"				"attribute_bonus"			
 		// "Ability5"				"keen_commander_guerrilla_mode"		// Sub-ultimate
 		"Ability6"				"keen_commander_siege_mode"			// Ultimate
 		"Ability7"				"keen_commander_mortar_shot_siege"	
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 	
 		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"			// Primary Attribute
 		"AttributeBaseStrength"		"21"						// Base strength
@@ -518,6 +683,14 @@
 	{
 		"override_hero"                         "npc_dota_hero_juggernaut"
 		"InternalName"                          "onimusha"
+		"Role"              	"Carry,Escape,Nuker,Initiator,Disabler"
+		"Rolelevels"            "3,2,2,1,1"
+		"Team"              	"Bad"
+		"BotImplemented"						"0"
+		"DrawParticlesWhileHidden"				"1"
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
 		"AbilityLayout"                         "4"
 		"Ability1"                              "onimusha_dash"
 		"Ability2"                              "onimusha_guard"
@@ -525,11 +698,20 @@
 		"Ability4"                              "onimusha_battojutsu_q"
 		"Ability5"                              "onimusha_battojutsu_w"
 		"Ability6"                              "onimusha_battojutsu"
-		"Ability7"                              "attribute_bonus"
 		"Ability8"                              "onimusha_battojutsu_e"      
 		"Ability9"                              "onimusha_battojutsu_r"
-		"BotImplemented"						"0"
-		"DrawParticlesWhileHidden"				"1"
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
+		
 	
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------
@@ -560,25 +742,40 @@
 		"AttributeAgilityGain"          "2" 																			// Agility bonus per level.    
 		"MovementSpeed"                 "305"                                                                   // Speed.
 	}
-	//=================================================================================================================
-	// HERO: Prismere
-	//=================================================================================================================
-	"hero_prismere"
-	{
-		"override_hero"				"npc_dota_hero_ancient_apparition"
-		"Ability1"					"prismere_last_prism"			// Ultimate
-	}
-	//=================================================================================================================
-	// HERO: Proteus, the Kracken Offspring
-	//=================================================================================================================
+//	//=================================================================================================================
+//	// HERO: Prismere
+//	//=================================================================================================================
+//	"hero_prismere"
+//	{
+//		"override_hero"				"npc_dota_hero_ancient_apparition"
+//		"Ability1"					"prismere_last_prism"			// Ultimate
+//	}
+//	//=================================================================================================================
+//	// HERO: Proteus, the Kracken Offspring
+//	//=================================================================================================================
 	"hero_proteus"
 	{
 		"override_hero"			"npc_dota_hero_naga_siren"
+		"Role"              	"Initiator,Escape,Support"
+		"Rolelevels"            "2,2,3"
+		"Team"              	"Good"
+
 		"AbilityLayout"			"4"
 		"Ability1"				"proteus_razorwind"			// Ability 1
 		"Ability2"				"proteus_polyp"			// Ability 2
 		"Ability3"				"proteus_jet"			// Ability 3
 		"Ability4"				"proteus_rarefaction"		// Ultimate
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 	
 		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
 		"AttributeBaseStrength"		"24"						// Base strength
@@ -608,15 +805,31 @@
 	{
 		"override_hero"				"npc_dota_hero_phoenix"
 		"Model" 			"models/creeps/neutral_creeps/n_creep_vulture_a/n_creep_vulture_a.vmdl"
-		"Portrait"		"vgui/hud/heroportraits/portrait_phoenix"
+		"Role"              	"Carry,Disabler,Nuker"
+		"Rolelevels"            "1,1,3"
+		"Team"              	"Bad"
+		
+		"BotImplemented"		"0"	
+		"DisableWearables" 		"1"
+
 		"AbilityLayout"				"4"
 		"Ability1"				"scawmar_illusion_line"			// Ability 1
 		"Ability2"				"scawmar_spirits_away"			// Ability 2
 		"Ability3"				"scawmar_mind_control"			// Ability 3
-		"Ability4"				"attribute_bonus"		
-		"Ability5"				"attribute_bonus"				
+		"Ability4"				""
+		"Ability5"				""
 		"Ability6"				"scawmar_scryers_circle"		// Ultimate
-		"BotImplemented"			"0"	
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 	
 	
 		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
@@ -638,11 +851,17 @@
 	"hero_sirocco"
 	{
 		"override_hero"		"npc_dota_hero_sand_king"
+		"Role"              	"Support,Disabler,Nuker"
+		"Rolelevels"            "1,2,3"
+		"Team"              	"Bad"
+
+		"BotImplemented"		"0"
+
 		"Ability1"          "sirocco_shifting_sands"
 		"Ability2"          "sirocco_mirage"
 		"Ability3"          "sirocco_dehydration_aura"
 		"Ability4"          "sirocco_desert_curse"
-		"BotImplemented"			"0"
+		
 
 		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
 		"AttributeBaseStrength"		"18"						// Base strength
@@ -669,6 +888,15 @@
 	"hero_skoros"
 	{
 		"override_hero"				"npc_dota_hero_clinkz"
+		"Role"              	"Carry,Support,Disabler,Nuker"
+		"Rolelevels"            "3,1,2,1"
+		"Team"              	"Bad"
+		"BotImplemented"			"0"
+		"DrawParticlesWhileHidden"	"1"
+
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
 		"AbilityLayout"				"4"
 		"Ability1"					"skoros_Arbalest"
 		"Ability2"					"skoros_Blackout"
@@ -676,9 +904,20 @@
 		"Ability4"					"skoros_Nexus"
 		"Ability5"					"skoros_Arbalest_Attack_lua"
 		"Ability6"					""
-		"Ability7"					"attribute_bonus"
-		"BotImplemented"			"0"
-		"DrawParticlesWhileHidden"	"1"
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
+
+
+		
 	
 		//"DisplayAdditionalHeroes"   "1" // Doesn't work because the illusions won't popup
 		// Armor
@@ -724,7 +963,6 @@
 		"Ability1"				"suna_blight_and_wither"			// Ability 1
 		"Ability2"				"suna_vicissitude"			// Ability 2
 		"Ability3"				"suna_puppeteer"			// Ability 3
-		"Ability4"				"attribute_bonus"
 		"Ability6"				"suna_dead_mans_chest"		// Ultimate
 		"Ability7"				"suna_kyonshi"			// Ability 3
 		"Ability8"				"suna_mind_control"
@@ -756,12 +994,8 @@
 	{
 		//Technical
 		"override_hero"         "npc_dota_hero_visage"
-		"Enabled"           "1"
-		"CMEnabled"         "1"
-		"NoCombine"         "1"
-		"NameAliases"       "visage"
-		"url"               "Visage"
-		"BotImplemented"			"0"	
+		"BotImplemented"		"0"
+		"DisableWearables" 		"1"
 	
 		//General
 		"Role"              "Carry,Escape,Support,Disabler,Nuker"
@@ -773,7 +1007,17 @@
 		"Ability2"          "tenebris_blood_ward"
 		"Ability3"          "tenebris_mortal_coil"
 		"Ability4"          "tenebris_effigy"
-		"Ability5"          "attribute_bonus"
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 	
 		//Attributes
 		"AttributePrimary"      "DOTA_ATTRIBUTE_AGILITY"
@@ -805,47 +1049,36 @@
 		"Model"             "models/creeps/neutral_creeps/n_creep_satyr_c/n_creep_satyr_c.vmdl"
 		"ModelScale"            "0.750000"
 		"LoadoutScale"          "0.750000"
-		"Portrait"          "vgui/hud/heroportraits/portrait_visage"
 		"HealthBarOffset"       "135"
-		"particle_folder"       "particles/units/heroes/hero_visage"
-	
-		//Sound
-		"SoundSet"          "Hero_Visage"
-		"IdleExpression"        ""
-		"IdleSoundLoop"         "Hero_Visage.IdleLoop"
-		"PickSound"         "visage_visa_spawn_01"
-		"BanSound"          "visage_visa_anger_10"
-		"HeroSelectSoundEffect"     "Hero_Visage.Pick"
-		"GameSoundsFile"        "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
-		"VoiceFile"         "soundevents/voscripts/game_sounds_vo_visage.vsndevts"
+
 	}
-	//=================================================================================================================
-	// HERO: Tyra, the Blank Sorceress
-	//=================================================================================================================
-	"hero_tyra"
-	{
-		"override_hero"			"npc_dota_hero_crystal_maiden"
-		"AbilityLayout"			"4"
-		"Ability1"				"tyra_spell_amnesia"		// Ability 1
-		//"Ability2"				""							// Ability 2
-		"Ability3"				"tyra_unseen_potential"							// Ability 3		
-		//"Ability4"				""							// Ultimate
-		"BotImplemented"		"0"	
-	
-	
-		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
-		"AttributeBaseStrength"		"17"						// Base strength
-		"AttributeStrengthGain"		"1.9"						// Strength bonus per level.
-		"AttributeBaseIntelligence"	"25"						// Base intelligence
-		"AttributeIntelligenceGain"	"2.4"						// Intelligence bonus per level.
-		"AttributeBaseAgility"		"21"						// Base agility
-		"AttributeAgilityGain"		"1.6"						// Agility bonus per level.
-		"ArmorPhysical"			"-2"	
-		"AttackRate" 			"1.7"
-		"MovementSpeed" 		"310"
-		"AttackDamageMin"		"17"					
-		"AttackDamageMax"		"25"	
-	}
+//	//=================================================================================================================
+//	// HERO: Tyra, the Blank Sorceress
+//	//=================================================================================================================
+//	"hero_tyra"
+//	{
+//		"override_hero"			"npc_dota_hero_crystal_maiden"
+//		"AbilityLayout"			"4"
+//		"Ability1"				"tyra_spell_amnesia"		// Ability 1
+//		//"Ability2"				""							// Ability 2
+//		"Ability3"				"tyra_unseen_potential"							// Ability 3		
+//		//"Ability4"				""							// Ultimate
+//		"BotImplemented"		"0"	
+//	
+//	
+//		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
+//		"AttributeBaseStrength"		"17"						// Base strength
+//		"AttributeStrengthGain"		"1.9"						// Strength bonus per level.
+//		"AttributeBaseIntelligence"	"25"						// Base intelligence
+//		"AttributeIntelligenceGain"	"2.4"						// Intelligence bonus per level.
+//		"AttributeBaseAgility"		"21"						// Base agility
+//		"AttributeAgilityGain"		"1.6"						// Agility bonus per level.
+//		"ArmorPhysical"			"-2"	
+//		"AttackRate" 			"1.7"
+//		"MovementSpeed" 		"310"
+//		"AttackDamageMin"		"17"					
+//		"AttackDamageMax"		"25"	
+//	}
 	//=================================================================================================================
 	// HERO: Uther, the Lightbringer
 	//=================================================================================================================
@@ -859,10 +1092,17 @@
 		"Ability4"					"uther_omniscience_wave"
 		"Ability5"					"uther_Hail_Back"
 		"Ability6"					""
-		"Ability7"					"attribute_bonus"
 
-		"NameAliases"       "lightbringer"
-		"url"               "omniknight"
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 	
 		"BotImplemented"			"0"
 	}
@@ -877,52 +1117,89 @@
 	
 		"BotImplemented"			"0"
 	}
-	//=================================================================================================================
-	// HERO: Vardor, the Yari Archmage
-	//=================================================================================================================
-	"hero_vardor"
-	{
-		"override_hero"				"npc_dota_hero_phantom_lancer"			// Hero to override
-		"Ability1"					"vardor_piercing_shot"			// Ability 1
-		"Ability2"					"vardor_graceful_jump"			// Ability 2
-		"Ability3"					"vardor_mental_thrusts"			// Ability 3
-		"Ability4"					"vardor_celestial_yari"			// Ultimate
-		"Ability6"					"vardor_return_of_the_yari"		// Bonus Ability
-		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
-		"BotImplemented"			"0"
-	
-		"ArmorPhysical"		"3"
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"26"
-		"AttackDamageMax"		"38"
-		"AttackRate"		"1.700000"
-		"AttackAnimationPoint"		"0.500000"
-		"AttackAcquisitionRange"		"600"
-		"AttackRange"		"150"
-		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
-		"AttributeBaseStrength"		"22"
-		"AttributeStrengthGain"		"2.300000"
-		"AttributeBaseIntelligence"		"28"
-		"AttributeIntelligenceGain"		"2.700000"
-		"AttributeBaseAgility"		"14"
-		"AttributeAgilityGain"		"1.600000"
-		"StatusHealthRegen"		"1.000000"
-		"MovementSpeed"		"305"
-		"MovementTurnRate"		"0.600000"
-	
-	}
+//	//=================================================================================================================
+//	// HERO: Vardor, the Yari Archmage
+//	//=================================================================================================================
+//	"hero_vardor"
+//	{
+//		"override_hero"				"npc_dota_hero_phantom_lancer"			// Hero to override
+//		"Ability1"					"vardor_piercing_shot"			// Ability 1
+//		"Ability2"					"vardor_graceful_jump"			// Ability 2
+//		"Ability3"					"vardor_mental_thrusts"			// Ability 3
+//		"Ability4"					"vardor_celestial_yari"			// Ultimate
+//		"Ability6"					"vardor_return_of_the_yari"		// Bonus Ability
+//		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
+//		"BotImplemented"			"0"
+//	
+//		"ArmorPhysical"		"3"
+//		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+//		"AttackDamageMin"		"26"
+//		"AttackDamageMax"		"38"
+//		"AttackRate"		"1.700000"
+//		"AttackAnimationPoint"		"0.500000"
+//		"AttackAcquisitionRange"		"600"
+//		"AttackRange"		"150"
+//		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
+//		"AttributeBaseStrength"		"22"
+//		"AttributeStrengthGain"		"2.300000"
+//		"AttributeBaseIntelligence"		"28"
+//		"AttributeIntelligenceGain"		"2.700000"
+//		"AttributeBaseAgility"		"14"
+//		"AttributeAgilityGain"		"1.600000"
+//		"StatusHealthRegen"		"1.000000"
+//		"MovementSpeed"		"305"
+//		"MovementTurnRate"		"0.600000"
+//	
+//	}
 	//=================================================================================================================
 	// HERO: Veera, the Plains Hunter
 	//=================================================================================================================
 	"hero_veera"
 	{
 		"override_hero"				"npc_dota_hero_bounty_hunter"
+		"Role"						"Carry,Initiator,Escape,Disabler"
+		"Rolelevels"				"2,2,1,1"
+		"Team"						"Good"
+		"BotImplemented"			"0"	
+
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"				"veera_toxic_darts"			// Ability 1
 		"Ability2"				"veera_pursuit"			// Ability 2
 		"Ability3"				"veera_plains_runner"			// Ability 3
 		"Ability4"				"veera_thrill_of_the_hunt"		// Ultimate
-		"BotImplemented"			"0"	
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 		
+		
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"-1"									// Physical protection.
+		"MagicalResistance"			"25"									// Magical protection (percentage).
+
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"20"										// Damage range min.
+		"AttackDamageMax"			"28"										// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"				// Type of damage dealt. 
+		"AttackRate"				"1.600"									// Speed of attack.
+		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
+		"AttackRange"				"150"									// Range within a target can be attacked.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
 		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"			// Primary Attribute
 		"AttributeBaseStrength"		"18"						// Base strength
 		"AttributeStrengthGain"		"1.8"						// Strength bonus per level.
@@ -930,11 +1207,37 @@
 		"AttributeIntelligenceGain"	"2.4"						// Intelligence bonus per level.
 		"AttributeBaseAgility"		"27"						// Base agility
 		"AttributeAgilityGain"		"2.4"						// Agility bonus per level.
-		"ArmorPhysical"			"-1"	
-		"AttackRate" 			"1.6"
-		"MovementSpeed" 		"300"
-		"AttackDamageMin"		"20"						
-		"AttackDamageMax"		"28"	
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"									// Speed.
+		"MovementTurnRate"			"0.4"									// Turning rate.
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"				"200"									// Base health.
+		"StatusHealthRegen"			"0.25"									// Health regeneration rate.
+		"StatusMana"				"50"										// Base mana.
+		"StatusManaRegen"			"0.01"									// Mana regeneration rate.
+
+		// Team
+		//-------------------------------------------------------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		
 	}
 	//=================================================================================================================
 	// HERO: Viscous Ooze
@@ -943,27 +1246,90 @@
 	{
 		"override_hero"				"npc_dota_hero_venomancer"
 		"BaseClass"					"npc_dota_hero_venomancer"							// Class of entity of link to.
+		"Role"						"Carry,Jungler,Durable"
+		"Rolelevels"				"3,2,2"
+		"Team"						"Bad"
+		"BotImplemented"			"0"	
+
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"				"viscous_ooze_slime_trail"		// Ability 1
 		"Ability2"				"viscous_ooze_split_oozelings"		// Ability 2
 		"Ability3"				"viscous_ooze_sticky_membrane"		// Ability 3
 		"Ability4"				"viscous_ooze_consume_item"		// Ultimate 
-		"BotImplemented"			"0"	
+
+		// Talents
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability10"		"special_bonus_undefined"
+		"Ability11"		"special_bonus_undefined"
+		"Ability12"		"special_bonus_undefined"
+		"Ability13"		"special_bonus_undefined"
+		"Ability14"		"special_bonus_undefined"
+		"Ability15"		"special_bonus_undefined"
+		"Ability16"		"special_bonus_undefined"
+		"Ability17"		"special_bonus_undefined"
 		
-		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"			// Primary Attribute
+		
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"-1"									// Physical protection.
+		"MagicalResistance"			"25"									// Magical protection (percentage).
+
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"30"										// Damage range min.
+		"AttackDamageMax"			"40"										// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"				// Type of damage dealt. 
+		"AttackRate"				"1.900"									// Speed of attack.
+		"AttackAnimationPoint"		"0.300"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
+		"AttackRange"				"250"									// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_venomancer/venomancer_base_attack.vpcf"							// Particle system model for projectile.
+		"ProjectileSpeed"			"800"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"			// Primary Attribute
 		"AttributeBaseStrength"		"40"						// Base strength
 		"AttributeStrengthGain"		"2.5"						// Strength bonus per level.
 		"AttributeBaseIntelligence"	"8"						// Base intelligence
 		"AttributeIntelligenceGain"	"0.6"						// Intelligence bonus per level.
 		"AttributeBaseAgility"		"10"						// Base agility
 		"AttributeAgilityGain"		"0.75"						// Agility bonus per level.
-		"MovementTurnRate"		"0.4"
-		"ArmorPhysical"			"-1"
-		"AttackRate" 			"1.9"
-		"AttackRange"			"250"
-		"ProjectileSpeed"		"800"
-		"MovementSpeed" 		"240"
-		"AttackDamageMin"		"30"					
-		"AttackDamageMax"		"40"
+
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"240"									// Speed.
+		"MovementTurnRate"			"0.4"									// Turning rate.
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"				"200"									// Base health.
+		"StatusHealthRegen"			"0.25"									// Health regeneration rate.
+		"StatusMana"				"50"										// Base mana.
+		"StatusManaRegen"			"0.01"									// Mana regeneration rate.
+
+		// Team
+		//-------------------------------------------------------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
 	}
 	//=================================================================================================================
 	// HERO: Xarax, the Trickster
@@ -971,6 +1337,10 @@
 	"hero_xarax"
 	{
 		"override_hero"				"npc_dota_hero_riki"
+		"Role"              	"Support,Escape,Nuker,Initiator"
+		"Rolelevels"            "3,2,1,1"
+		"Team"              	"Good"
+
 		"AbilityLayout"				"6"
 		"Ability1"				"xarax_trap_door"
 		"Ability2"				"xarax_devils_cape"
@@ -978,7 +1348,6 @@
 		"Ability4"				"xarax_trick_box_2"
 		"Ability5"				"xarax_trick_box_3"
 		"Ability6"				"xarax_share_tricks"
-		"Ability7"				"attribute_bonus"
 		"BotImplemented"			"0"
 	
 		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"			// Primary Attribute
@@ -1000,11 +1369,15 @@
 	"hero_zeros"
 	{
 		"override_hero"				"npc_dota_hero_skeleton_king"
+		"Role"              	"Carry,Initiator,Durable"
+		"Rolelevels"            "3,2,2"
+		"Team"              	"Bad"
+
+
 		"Ability1"				"zeros_impose_tax"		// Ability 1
 		"Ability2"				"zeros_royal_statue"
 		"Ability3"				"zeros_blade_of_malice"
 		"Ability4"				"zeros_gerrymandering"
-		"Ability5"				"attribute_bonus"
 		"Ability6"				"zeros_innate"
 		"BotImplemented"			"0"	
 	
@@ -1028,11 +1401,16 @@
 	"hero_zulf"
 	{
 		"override_hero"			"npc_dota_hero_skywrath_mage"
+		"Role"              	"Support,Carry,Nuker,Initiator,Escape"
+		"Rolelevels"            "2,2,1,1,1"
+		"Team"              	"Good"
+		"BotImplemented"			"0"	
+
+
 		"Ability1"				"zulf_cyclone_trap"
 		"Ability2"				"zulf_jet_stream"
 		"Ability3"				"zulf_gale_force"
 		"Ability4"				"zulf_typhoon"
-		"BotImplemented"			"0"	
 	
 		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"			// Primary Attribute
 		"AttributeBaseStrength"		"22"						// Base strength

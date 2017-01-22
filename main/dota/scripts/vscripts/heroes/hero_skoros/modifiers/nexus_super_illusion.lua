@@ -14,6 +14,7 @@ end
 function nexus_super_illusion:GetAttributes()
     return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
 end
+
 function nexus_super_illusion:IsHidden()
     return true
 end

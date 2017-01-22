@@ -36,9 +36,10 @@ function Precache( context )
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts", context)
+  PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_abaddon.vsndevts", context)
 
-  PrecacheResource("model", "models/heroes/omniknight/hammer.vmdl", context)
-  PrecacheResource("model", "models/creeps/neutral_creeps/n_creep_vulture_a/n_creep_vulture_a.vmdl", context)
+  PrecacheModel("models/heroes/omniknight/hammer.vmdl", context)
+  PrecacheModel("models/creeps/neutral_creeps/n_creep_vulture_a/n_creep_vulture_a.vmdl", context)
 
   -- Entire items can be precached by name
   -- Abilities can also be precached in this way despite the name

@@ -144,7 +144,7 @@ function GameMode:OnHeroInGame(hero)
         Timers:CreateTimer(1.322, function() 
           CustomGameEventManager:Send_ServerToPlayer(playerHero, "map_check", event)
           if hero:IsRealHero() then
-            hero:ModifyGold(99999,true,0)
+            --hero:ModifyGold(99999,true,0)
           end
           if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 then
             Tutorial:AddBot("npc_dota_hero_puck","", "", false)
@@ -152,10 +152,12 @@ function GameMode:OnHeroInGame(hero)
         end)
       end
     end
-    Timers:CreateTimer(1.322, function() 
-      if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 and not GameRules:IsCheatMode() then
+    Timers:CreateTimer(1.322, function()
+      if PlayerResource:GetPlayerCount() == 1 and ( GetMapName() == "dota" or not GameRules:IsCheatMode() ) then
         ShowGenericPopupToPlayer(playerHero, "#popupReminderCheats", "#popupReminderCheatsDesc", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
-        Tutorial:AddBot("npc_dota_hero_puck","", "", false)
+        if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) == 0 then
+          Tutorial:AddBot("npc_dota_hero_puck","", "", false)
+        end
       else
         ShowGenericPopupToPlayer(playerHero, "#popupReminder", "#popupReminderDesc", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
       end
@@ -248,6 +250,8 @@ function GameMode:InitGameMode()
   GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode,"FilterDamage"),self)
   GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(GameMode,"FilterModifierGained"),self)
   --GameRules.SELECTED_UNITS = {}
+
+  Convars:RegisterCommand( "keyvalues_reload", function(...) GameRules:Playtesting_UpdateAddOnKeyValues() end, "Update Keyvalues", FCVAR_CHEAT )
 
   if GetMapName() == "hero_demo" then
     

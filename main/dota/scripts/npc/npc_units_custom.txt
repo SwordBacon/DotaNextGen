@@ -1,5 +1,215 @@
 "DOTAUnits"
 {
+	"npc_dota_hero_viscous_ooze"
+	{
+		"BaseClass"					"npc_dota_hero"	// Class of entity of link to.
+		"BotImplemented"		"0"
+		"NewHero"		"1"
+		"HeroPool1"		"0"
+		"AbilityDraftDisabled"	"1"
+		"ARDMDisabled"			"1"
+		"LoadoutScale"			"1"
+		"Press"			"1"
+		"ForceEnable"	"1"
+		"HeroUnlockOrder"		"1"
+		"CMTournamentIgnore"		"0"
+		"new_player_enable"		"0"
+		"Model"		"models/heroes/venomancer/venomancer.vmdl"
+		"Portrait"		"vgui/hud/heroportraits/portrait_venomancer"
+		"IdleExpression"		"scenes/venomancer/venomancer_exp_idle_01.vcd"
+		"IdleSoundLoop"		"Hero_Venomancer.IdleLoop"
+		"SoundSet"		"Hero_Venomancer"
+		"Enabled"		"1"
+		"Role"			"Carry,Jungler,Durable"
+		"Rolelevels"	"3,1,2"
+		"Team"		"Bad"
+		"HeroID"		"40"
+		"ModelScale"		"0.880000"
+		"LoadoutScale"		"0.630000"
+		"NameAliases"		"Viscous Ooze"
+		"url"		"Viscous Ooze"
+		//"PickSound"		"abaddon_abad_spawn_01"
+		//"BanSound"		"abaddon_abad_anger_07"
+		"NoCombine"		"1"
+		"CMEnabled"		"1"
+		"LastHitChallengeRival"		"npc_dota_hero_viper"
+		"HeroSelectSoundEffect"		"Hero_Venomancer.Pick"
+
+		// Skills
+		"Ability1"		"viscous_ooze_slime_trail"
+		"Ability2"		"viscous_ooze_split_oozelings"
+		"Ability3"		"viscous_ooze_sticky_membrane"
+		"Ability4"		"viscous_ooze_consume_item"
+		"Ability5"		"attribute_bonus"
+
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"				"-1"									// Physical protection.
+		"MagicalResistance"			"25"									// Magical protection (percentage).
+
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"30"										// Damage range min.
+		"AttackDamageMax"			"40"										// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"				// Type of damage dealt. 
+		"AttackRate"				"1.900"									// Speed of attack.
+		"AttackAnimationPoint"		"0.300"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"600"									// Range within a target can be acquired.
+		"AttackRange"				"250"									// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_venomancer/venomancer_base_attack.vpcf"							// Particle system model for projectile.
+		"ProjectileSpeed"			"800"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"			// Primary Attribute
+		"AttributeBaseStrength"		"40"						// Base strength
+		"AttributeStrengthGain"		"2.5"						// Strength bonus per level.
+		"AttributeBaseIntelligence"	"8"						// Base intelligence
+		"AttributeIntelligenceGain"	"0.6"						// Intelligence bonus per level.
+		"AttributeBaseAgility"		"10"						// Base agility
+		"AttributeAgilityGain"		"0.75"						// Agility bonus per level.
+
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"RingRadius"				"70"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"240"									// Speed.
+		"MovementTurnRate"			"0.4"									// Turning rate.
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"				"200"									// Base health.
+		"StatusHealthRegen"			"0.25"									// Health regeneration rate.
+		"StatusMana"				"50"										// Base mana.
+		"StatusManaRegen"			"0.01"									// Mana regeneration rate.
+
+		// Team
+		//-------------------------------------------------------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_HERO"
+		
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"									// Range of vision during day light.
+		"VisionNighttimeRange"		"800"									// Range of vision at night time.
+		
+		//Inventory
+		"HasInventory"				"1"
+
+		//Particles
+		"particle_folder"		"particles/units/heroes/hero_venomancer"
+
+		//Voice
+		"VoiceBackgroundSound"		""
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_venomancer.vsndevts"
+
+				
+		"HealthBarOffset"			"-1"
+
+		"RenderablePortrait"
+		{
+			"Particles"
+			{
+				"particles/units/heroes/hero_venomancer/venomancer_loadout.vpcf"
+				{
+					"0"
+					{
+						"type"		"follow_attachment"
+						"location"		"attach_hitloc"
+					}
+				}
+			}
+		}
+		"ItemSlots"
+		{
+			"0"
+			{
+				"SlotIndex"		"0"
+				"SlotName"		"shoulder"
+				"SlotText"		"#LoadoutSlot_Shoulder"
+				"TextureWidth"		"512"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1905"
+				"MaxPolygonsLOD1"		"1360"
+			}
+			"1"
+			{
+				"SlotIndex"		"1"
+				"SlotName"		"head"
+				"SlotText"		"#LoadoutSlot_Head_Accessory"
+				"TextureWidth"		"256"
+				"TextureHeight"		"128"
+				"MaxPolygonsLOD0"		"705"
+				"MaxPolygonsLOD1"		"500"
+			}
+			"2"
+			{
+				"SlotIndex"		"2"
+				"SlotName"		"tail"
+				"SlotText"		"#LoadoutSlot_Tail"
+				"TextureWidth"		"256"
+				"TextureHeight"		"128"
+				"MaxPolygonsLOD0"		"440"
+				"MaxPolygonsLOD1"		"240"
+			}
+			"3"
+			{
+				"SlotIndex"		"3"
+				"SlotName"		"arms"
+				"SlotText"		"#LoadoutSlot_Venomancer_StingerLimbs"
+				"TextureWidth"		"256"
+				"TextureHeight"		"128"
+				"MaxPolygonsLOD0"		"1075"
+				"MaxPolygonsLOD1"		"670"
+			}
+			"4"
+			{
+				"SlotIndex"		"4"
+				"SlotName"		"misc"
+				"SlotText"		"#LoadoutSlot_Misc"
+				"DisplayInLoadout" "0"
+			}
+			"5"
+			{
+				"SlotIndex"		"5"
+				"SlotName"		"taunt"
+				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"6"
+			{
+				"SlotIndex"		"6"
+				"SlotName"		"ability3"
+				"SlotText"		"#LoadoutSlot_Venomancer_PlagueWard"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1500"
+				"MaxPolygonsLOD1"		"800"
+				"no_import"		"1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_venomancer_plague_ward"
+				}
+			}
+			"7"
+			{
+				"SlotIndex"		"7"
+				"SlotName"		"ambient_effects"
+				"SlotText"		"#LoadoutSlot_Ambient_Effects"
+				"DisplayInLoadout"		"0"
+			}
+		}
+	}
 	"blue_flower"
 	{
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
@@ -11,11 +221,11 @@
 	
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"destroy_flower"	// Ability 1.
-		"Ability2"					""			// Ability 2.
-		"Ability3"					""			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"                    "garden_teleport"    // Ability 1.
+		"Ability2"                    "destroy_flower"            // Ability 2.
+		"Ability3"                    ""            // Ability 3.
+		"Ability4"                    ""            // Ability 4.
+		"Ability5"                    ""            // Ability 5.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -35,13 +245,14 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"70"
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"            // Hull type used for navigation/locomotion.
+		"HealthBarOffset"            "70"
 	
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
-		"MovementSpeed"				"200"			// Speed
+		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_GROUND"            // Type of locomotion - ground, air
+		"MovementSpeed"                "200"            // Speed
+		"MovementTurnRate"            "0.5"        // Turning rate.
 		
 		// Bounty
 		//----------------------------------------------------------------
@@ -196,10 +407,9 @@
 	
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
-		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
-		"MovementSpeed"				"0"			// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_GROUND"            // Type of locomotion - ground, air
+		"MovementSpeed"                "200"            // Speed
+		"MovementTurnRate"            "0.5"        // Turning rate.
 		
 		// Bounty
 		//----------------------------------------------------------------
@@ -238,10 +448,10 @@
 		"Level"						"1"
 		"ModelScale" 				"0.8"
 	
-	    	// Attack
-	    	//----------------------------------------------------------------
-	    	"AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
-	
+    	// Attack
+    	//----------------------------------------------------------------
+    	"AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
+
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"0"			// Physical protection.
@@ -762,11 +972,11 @@
 	
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"destroy_flower"	// Ability 1.
-		"Ability2"					""			// Ability 2.
-		"Ability3"					""			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"                    "garden_teleport"    // Ability 1.
+		"Ability2"                    "destroy_flower"            // Ability 2.
+		"Ability3"                    ""            // Ability 3.
+		"Ability4"                    ""            // Ability 4.
+		"Ability5"                    ""            // Ability 5.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -786,13 +996,14 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"70"
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"            // Hull type used for navigation/locomotion.
+		"HealthBarOffset"            "70"
 	
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
-		"MovementSpeed"				"200"			// Speed
+		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_GROUND"            // Type of locomotion - ground, air
+		"MovementSpeed"                "200"            // Speed
+		"MovementTurnRate"            "0.5"        // Turning rate.
 		
 		// Bounty
 		//----------------------------------------------------------------
@@ -833,11 +1044,11 @@
 	
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"destroy_flower"	// Ability 1.
-		"Ability2"					""			// Ability 2.
-		"Ability3"					""			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"                    "garden_teleport"    // Ability 1.
+		"Ability2"                    "destroy_flower"            // Ability 2.
+		"Ability3"                    ""            // Ability 3.
+		"Ability4"                    ""            // Ability 4.
+		"Ability5"                    ""            // Ability 5.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -850,13 +1061,14 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"70"
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"            // Hull type used for navigation/locomotion.
+		"HealthBarOffset"            "70"
 	
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
-		"MovementSpeed"				"200"			// Speed
+		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_GROUND"            // Type of locomotion - ground, air
+		"MovementSpeed"                "200"            // Speed
+		"MovementTurnRate"            "0.5"        // Turning rate.
 		
 		// Bounty
 		//----------------------------------------------------------------
@@ -897,11 +1109,11 @@
 	
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"destroy_flower"	// Ability 1.
-		"Ability2"					""			// Ability 2.
-		"Ability3"					""			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"                    "garden_teleport"    // Ability 1.
+		"Ability2"                    "destroy_flower"            // Ability 2.
+		"Ability3"                    ""            // Ability 3.
+		"Ability4"                    ""            // Ability 4.
+		"Ability5"                    ""            // Ability 5.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -923,14 +1135,14 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"70"
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"            // Hull type used for navigation/locomotion.
+		"HealthBarOffset"            "70"
 	
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
-		"MovementSpeed"				"200"			// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_GROUND"            // Type of locomotion - ground, air
+		"MovementSpeed"                "200"            // Speed
+		"MovementTurnRate"            "0.5"        // Turning rate.
 		
 		// Bounty
 		//----------------------------------------------------------------
@@ -1287,11 +1499,11 @@
 	
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"destroy_flower"	// Ability 1.
-		"Ability2"					""			// Ability 2.
-		"Ability3"					""			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"                    "garden_teleport"    // Ability 1.
+		"Ability2"                    "destroy_flower"            // Ability 2.
+		"Ability3"                    ""            // Ability 3.
+		"Ability4"                    ""            // Ability 4.
+		"Ability5"                    ""            // Ability 5.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -1313,14 +1525,14 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"70"
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"            // Hull type used for navigation/locomotion.
+		"HealthBarOffset"            "70"
 	
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
-		"MovementSpeed"				"200"			// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_GROUND"            // Type of locomotion - ground, air
+		"MovementSpeed"                "200"            // Speed
+		"MovementTurnRate"            "0.5"        // Turning rate.
 		
 		// Bounty
 		//----------------------------------------------------------------
@@ -1361,11 +1573,11 @@
 	
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"destroy_flower"	// Ability 1.
-		"Ability2"					""			// Ability 2.
-		"Ability3"					""			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
+		"Ability1"                    "garden_teleport"    // Ability 1.
+		"Ability2"                    "destroy_flower"            // Ability 2.
+		"Ability3"                    ""            // Ability 3.
+		"Ability4"                    ""            // Ability 4.
+		"Ability5"                    ""            // Ability 5.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -1378,13 +1590,14 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"70"
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"            // Hull type used for navigation/locomotion.
+		"HealthBarOffset"            "70"
 	
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
-		"MovementSpeed"				"200"			// Speed
+		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_GROUND"            // Type of locomotion - ground, air
+		"MovementSpeed"                "200"            // Speed
+		"MovementTurnRate"            "0.5"        // Turning rate.
 		
 		// Bounty
 		//----------------------------------------------------------------

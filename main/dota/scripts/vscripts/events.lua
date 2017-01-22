@@ -34,7 +34,7 @@ function GameMode:OnNPCSpawned( event )
 		
 		hPlayerHero:SetContextThink( "self:Think_InitializePlayerHero", function() return self:Think_InitializePlayerHero( hPlayerHero ) end, 0 )
 	end
-
+	
 	if spawnedUnit:GetUnitName() == "npc_dota_neutral_caster" then
 		--print( "Neutral Caster spawned" )
 		spawnedUnit:SetContextThink( "self:Think_InitializeNeutralCaster", function() return self:Think_InitializeNeutralCaster( spawnedUnit ) end, 0 )
