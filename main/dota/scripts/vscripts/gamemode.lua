@@ -101,7 +101,7 @@ end
 
 function GameMode:OnHeroInGame(hero)
   DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
-
+  
   if not hero:IsIllusion() then
     if hero:GetUnitName() == "npc_dota_hero_rattletrap" then
       hero:UpgradeAbility(hero:FindAbilityByName("borus_Positive_Charge"))
@@ -128,8 +128,8 @@ function GameMode:OnHeroInGame(hero)
     end
   end
 
-  GameRules.Heroes[hero:GetPlayerID()] = hero
-    hero.positions = {}
+  --GameRules.Heroes[hero:GetPlayerID()] = hero
+  --  hero.positions = {}
 
   playerHero = hero:GetPlayerOwner()
   if not playerHero then return end
