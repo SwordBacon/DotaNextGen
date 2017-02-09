@@ -128,8 +128,8 @@ function GameMode:OnHeroInGame(hero)
     end
   end
 
-  GameRules.Heroes[hero:GetPlayerID()] = hero
-    hero.positions = {}
+  --GameRules.Heroes[hero:GetPlayerID()] = hero
+  --  hero.positions = {}
 
   playerHero = hero:GetPlayerOwner()
   if not playerHero then return end
