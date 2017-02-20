@@ -139,6 +139,7 @@ function GameMode:OnGameStateChanged( keys )
             --SendToServerConsole("dota_bot_set_difficulty 2")
         end
     elseif state == DOTA_GAMERULES_STATE_PRE_GAME then
+      Tutorial:StartTutorialMode()
 --      for i=0, DOTA_MAX_TEAM_PLAYERS do`
 --          print(i)
 --          if PlayerResource:IsFakeClient(i) then
